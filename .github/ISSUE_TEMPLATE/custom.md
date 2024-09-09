@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-** Date and Time **
+**Date and Time**
 
-** Attendance **
+**Attendance**
 
 - [ ] team member1
 - [ ] team member2
@@ -17,4 +17,4 @@ assignees: ''
 - [ ] team member4
 - [ ] team member5
 
-** Agenda **
+**Agenda**
