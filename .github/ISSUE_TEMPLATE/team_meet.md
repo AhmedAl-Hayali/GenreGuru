@@ -1,5 +1,5 @@
 ---
-name: Team Meeting
+name: Team Meeting - Date
 about: Create an agenda for team meetings and track details.
 title: 'Team Meeting'
 labels: 'meeting'
