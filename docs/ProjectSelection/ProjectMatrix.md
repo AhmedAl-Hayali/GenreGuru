@@ -7,7 +7,7 @@
 | Trading Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Restaurant Finder |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Videogame |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Music Generator |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Music Generator | 100 | 25 | 15 | 100 | 0 | 75 | 80 | 100 | 80 | 100 | 80 | 90 | 75 | 80 | 90 | 90 |
 | MMA Judging Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 
 ## Criteria Dictionary
