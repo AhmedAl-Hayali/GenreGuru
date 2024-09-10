@@ -5,7 +5,7 @@
 |Criterion<br><br>━<br>Project| Feasibility | Real-World Impact | Productive<br>in Industry | Productive<br>Personally | Economic<br>Impact | Socially<br>Responsible | Interesting<br>Computationally | Impressive<br>Computationally | Interesting<br>Data | Impressive<br>Data | Interesting System<br>Integration | Impressive<br>Documentation<br>Process | Interesting<br>to Develop | Interesting<br>Infrastructure | Impressive<br>Infrastructure | Supervisor(s)/<br>Stakeholder(s)<br>Availability |
 |---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Trading Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| Restaurant Finder |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Restaurant Finder |90/100  |80/100  |70/100  |80/100  |70/100  |90/100  |65/100  |70/100  |80/100  |70/100  |80/100  |70/100  |80/100  |70/100  |70/100  |80/100  |
 | Videogame |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Music Generator |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | MMA Judging Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
