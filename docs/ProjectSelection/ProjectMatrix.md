@@ -8,7 +8,7 @@
 | Restaurant Finder |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Videogame |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 | Music Generator |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| MMA Judging Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| MMA Judging Bot | 60 | 50 | 80 | 80 | 80 | 80 | 70 | 100 | 80 | 100 | 90 | 60 | 60 | 90 | 90 | 35 |
 
 ## Criteria Dictionary
 * **Feasibility**: *Likelihood of completing the project to an adequate level.*
