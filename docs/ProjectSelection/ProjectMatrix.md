@@ -5,7 +5,7 @@
 |Criterion<br><br>━<br>Project| Feasibility | Real-World Impact | Productive<br>in Industry | Productive<br>Personally | Economic<br>Impact | Socially<br>Responsible | Interesting<br>Computationally | Impressive<br>Computationally | Interesting<br>Data | Impressive<br>Data | Interesting System<br>Integration | Impressive<br>Documentation<br>Process | Interesting<br>to Develop | Interesting<br>Infrastructure | Impressive<br>Infrastructure | Supervisor(s)/<br>Stakeholder(s)<br>Availability |
 |---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Trading Bot |90/100  |65/100  |65/100  |80/100  |70/100  |50/100  |75/100  |65/100  |40/100  |80/100  |95/100  |60/100  |80/100  |70/100  |70/100  |100/100  |
-| Restaurant Finder |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Restaurant Finder |90/100  |80/100  |70/100  |80/100  |70/100  |90/100  |65/100  |70/100  |80/100  |70/100  |80/100  |70/100  |80/100  |70/100  |70/100  |80/100  |
 | Videogame | 80/100 | 20/100 | 15/100 | 100/100 | 35/100 | 100/100 | 80/100 | 80/100 | 70/100 | 40/100 | 90/100 | 30/100 | 100/100 | 15/100 | 15/100 | 100/100 |
 | Music Generator | 100 | 25 | 15 | 100 | 0 | 75 | 80 | 100 | 80 | 100 | 80 | 80 | 75 | 80 | 90 | 90 |
 | MMA Judging Bot |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
