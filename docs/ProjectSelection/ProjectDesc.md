@@ -1,11 +1,13 @@
 ## Videogame
-
 ### Problem Statement
 #### Checklist
 ##### Clear scope
-A locally run game
+A locally run game that contains infinite procedurally generated levels, each with their own mechanics, along with a meaningful difficulty and reward progression system, all rendered from an isometric perspective
 ##### Abstract document - no programming language, no algorithm choice
-This game will be rendered with a 2.5D perspective
+There are hardly any games that have the three crucial pillars of a great game. We hope to create one that has all three:
+- a satisfying and responsive gameplay loop
+- A meaningful progression system for both rewards and difficulty
+- An incentive for players to continue playing the game
 ##### Output is unambiguous
 The game is responsively rendered on the monitor at high FPS and no stuttering
 ##### Inputs are unambiguous
@@ -29,9 +31,10 @@ The industry needs a game that delivers on its promises that also has a rock-sol
 - Game will contain infinite procedurally generated levels, allowing for endless fun
 - Levels will have mechanics that both hinder and help the player
 - Difficulty will increase as the levels are completed
+- Rewards need to improve with the difficulty curve
 - Completion of each level will provide the player the option to improve their build with points they earned from previous levels
 - A wide variety of enemies that will provide unique gameplay mechanics that will require the player to think on their feet to overcome
-- 2.5D perspective from some of the most popular roguelike games
+- Isometric perspective from some of the most popular roguelike games
 - Every few levels there will be a special boss level that will act as a skill check for players that want to push themselves further
 #### Problem
 Most games lack various crucial components that prevent them from being truly memorable. Our goal is to fix that by producing a fun, engaging, rewarding and challenging experience for players to either push their skill to the limit or enjoy a more casual experience
