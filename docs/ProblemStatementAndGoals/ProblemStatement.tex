@@ -52,30 +52,47 @@ Use abstraction so that you can avoid details.}
 \wss{Hardware and software environment}
 
 \section{Goals}
-\subsection*{Song Recommendations based on Song Features / Feature Based Recommendations}
+% Song Analysis Section
+\subsubsection*{Song Analysis}
 \begin{itemize}
-    \item \textbf{Explanation}
-    \begin{itemize}
-        \item Based on the user’s input (e.g., a song), the system will recommend songs that closely match the input's features (e.g., genre, rhythm, pitch, timbre). Users can modify these features and receive updated recommendations.
-    \end{itemize}
-    \item \textbf{Reasoning}
-    \begin{itemize}
-        \item By leveraging advanced audio signal processing and machine learning models (or whatever models we want to use), the system will provide more accurate, personalized song recommendations compared to standard mediocre platforms like Spotify.
-    \end{itemize}
+    \item \textbf{Explanation:} GenreGurus will analyze a song or snippet and extract important musical features. The data gathered from this analysis will then be fed into the recommendation and generation systems, ensuring they work with accurate data about each song's musical features.
+    \item \textbf{Reasoning:} By providing a detailed analysis, users can better understand the components of a given song. The analysis also ensures that the recommendations and generated music are based on actual musical data, which in turn improves the system’s accuracy and output quality.
 \end{itemize}
 
-\subsection*{Song Generation}
+% Music Generation Section
+\subsubsection*{Music Generation}
 \begin{itemize}
-    \item \textbf{Explanation}
-    \begin{itemize}
-        \item The system will include two generative models: one that generates new songs based on user input (multiple song references) and one that (need better explanation for this one).
-    \end{itemize}
-    \item \textbf{Reasoning}
-    \begin{itemize}
-        \item Users will be able to create and customize music through AI without needing extensive musical knowledge, making the platform more accessible while still appealing to expert musicians.
-    \end{itemize}
+    \item \textbf{Explanation:} GenreGurus will allow users to input one or more reference songs or snippets and generate new music based on the features of these inputs. Users can adjust certain musical characteristics, and the system will produce an original track reflecting these changes.
+    \item \textbf{Reasoning:} Users will be able to create and customize music through AI without needing extensive musical knowledge, making the platform more accessible while still appealing to expert musicians.
 \end{itemize}
 
+% User Customizable Recommendations Section
+\subsubsection*{User Customizable Recommendations}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will allow users to adjust the musical features of the input clip/song. Based on these adjustments, the system will update its recommendations in real-time.
+    \item \textbf{Reasoning:} Customizable recommendations give users more control over the output, increasing user engagement and user satisfaction.
+\end{itemize}
+
+% User Centric Design and Interface Section
+\subsubsection*{User Centric Design and Interface}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will include a clean, intuitive interface where users can easily access the music recommendation, generation, and analysis features. The UI will be designed to require minimal understanding of how music adjustments work for a better user experience.
+    \item \textbf{Reasoning:} An accessible and simple interface will appeal to a broader audience, from casual listeners to professionals.
+\end{itemize}
+
+% Machine Learning Cover Art Generation Section
+\subsubsection*{Machine Learning Cover Art Generation}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will use AI models to generate custom art based on the features of a generated song or user preferences. The art will visually reflect the song's mood, genre, style, etc.
+    \item \textbf{Reasoning:} Music encompasses more than just using one's auditory senses; it is also a visual and emotional experience. By generating art that matches the music, the system offers more connection for creators, appealing to both their auditory and visual senses.
+\end{itemize}
+
+% Supportive of Many Music Genres Section
+\subsubsection*{Supportive of Many Music Genres}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will include a variety of both popular and niche genres.
+    \item \textbf{Reasoning:} This will allow users to not only customize and explore their favorite genres of music but will allow them to explore genres they’ve never heard or experienced before.
+\end{itemize}
 
 \section{Stretch Goals}
 
