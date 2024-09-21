@@ -51,6 +51,32 @@ Use abstraction so that you can avoid details.}
 We strive to launch an on-premise server operating with a version of Ubuntu server, likely the most recent version, \href{https://ubuntu.com/download/server}{24.04.1}. The server shall respond to and process requests from a web-application front-end, making the service accessible to many different devices, but requiring a network.
 
 \section{Goals}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|| p{0.45\textwidth} | p{0.45\textwidth} ||}
+        \hline
+        \textbf{Goals} & \textbf{Importance} \\
+        \hline
+        The system shall \textcolor{red}{adequately} process and respond to 
+        requests involving widely-published music genres, e.g., pop, hip-hop, 
+        and rock. & Widely-published music genres have the largest corpus of 
+        data that can be used to train the featurization and generation 
+        mechanisms of the system, i.e., the system must perform favourably in 
+        tasks that it is well-trained on. \\
+        \hline
+        The system shall generate tabular features that correspond to characteristics 
+        of the input song (snippet), akin to those of Spotify, e.g., danceability, 
+        instrumentalness, and energy. & Structured tabular data can be rapidly process, 
+        making the task of song recommendation more efficient and song generation 
+        more explainable. \\
+        \hline
+        The system shall produce a list of songs that are \textcolor{red}{similar} 
+        to a single song provided or a collecetion of songs provided by the user. & 
+        This is a core feature of the system. Its inclusion should facilitate users 
+        to explore a music genre or \textcolor{red}{``sound''} of interest. \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \section{Stretch Goals}
 
