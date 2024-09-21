@@ -43,7 +43,40 @@ information.}
 \subsection{Inputs and Outputs}
 
 \wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+Use abstraction so that you can avoid details.}\\
+
+
+There are two main components of this project. They are both generative systems, one being a recommendation
+system, the other being a pseudo-music generator. There is also a song analysis system, necessary in
+order to get the recommendation system and generative systems working as they will most likely operate on 
+the data that the song analysis system provides. \\
+
+Inputs:\\
+A "track" is defined as a full song. A snippet is defined as a fragment of a track. These are objects that 
+contain a sound file and some labels describing the song. 
+High-Level: 
+For system 1 (recommendation): a list of track(s). \\
+For system 2 (music generation): a reference track or snippet. \\
+For system 3 (analysis): a singular reference track. \\
+
+Explanation: The main idea behind the inputs is essentially to make them all related to each other as they are
+fundamentally connected within the system. This means that roughly, all the files are either lists containing
+the track as an object and a snippet is functionally under the hood a track, simply labelled differently for
+categorization purposes. This allows the system to share behaviors along the sub systems for 
+faster implementation and design. As for format specifically, we can pull these from the spotify API song previews,
+API song features. \\
+
+Outputs: \\
+For System 1 (recommendation): A list of track(s), indexed with a similarity score. \\
+For System 2 (music generation): a snippet. \\
+For System 3 (analysis): a breakdown of the main aspects of the track.\\
+
+Explanation: for system 1, it should output a list of recommended tracks and some form of a similarity score
+as a way to justify itself. This score could be derived on factors such as genre, sound signature, artist, etc.
+
+For system 2, the snippest is an object containing the sound file. 
+
+For system 3, a score that categorizes the main features of the song, such as the musical range, genre, rythm, etc. \\
 
 \subsection{Stakeholders}
 
@@ -61,7 +94,7 @@ Use abstraction so that you can avoid details.}
 challenge can come through the required domain knowledge, the implementation or
 something else.  Usually the greater the novelty of a project the greater its
 challenge level.  You should include your rationale for the selected level.
-Approval of the level will be part of the discussion with the instructor for
+Approval of the level will be part of the discussion with the instructor forx
 approving the project.  The challenge level, with the approval (or request) of
 the instructor, can be modified over the course of the term.}
 
