@@ -22,7 +22,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+2024-09-21 & Muhammad Jawad & Updated Problem section with Problem Definition and Problem Importance subsections.\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -40,12 +40,70 @@ information.}
 
 \subsection{Problem}
 
+\subsubsection{Problem Definition}
+
+Current music recommendation systems, such as Spotify, often lack personalization and depth, leading to suboptimal suggestions. Furthermore, the ability to create music typically requires extensive knowledge of instruments, production software, or technical tools, limiting accessibility. This project aims to bridge that gap by offering a platform that allows users to receive tailored music recommendations and generate music without needing specialized training. By simplifying the creation and recommendation process, this platform democratizes music production for both professionals and casual users.
+
+\subsubsection{Problem Importance}
+
+This project holds significant value for a wide range of users. Music recommendation systems have millions of daily users, and improving the quality of recommendations can greatly enhance user satisfaction. Additionally, by providing tools that make music creation more accessible, the project opens creative opportunities for individuals who might otherwise be excluded due to the technical barriers involved in music production. The platform is poised to impact both the music industry and hobbyists, facilitating innovation and creativity in music generation and exploration.
+
 \subsection{Inputs and Outputs}
 
 \wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+Use abstraction so that you can avoid details.}\\
+
+There are two main components of this project. They are both generative systems, one being a recommendation
+system, the other being a pseudo-music generator. There is also a song analysis system, necessary in
+order to get the recommendation system and generative systems working as they will most likely operate on 
+the data that the song analysis system provides. \\
+
+Inputs:\\
+A "track" is defined as a full song. A snippet is defined as a fragment of a track. These are objects that 
+contain a sound file and some labels describing the song. 
+High-Level: 
+For system 1 (recommendation): a list of track(s). \\
+For system 2 (music generation): a reference track or snippet. \\
+For system 3 (analysis): a singular reference track. \\
+
+Explanation: The main idea behind the inputs is essentially to make them all related to each other as they are
+fundamentally connected within the system. This means that roughly, all the files are either lists containing
+the track as an object and a snippet is functionally under the hood a track, simply labelled differently for
+categorization purposes. This allows the system to share behaviors along the sub systems for 
+faster implementation and design. As for format specifically, we can pull these from the spotify API song previews,
+API song features. \\
+
+Outputs: \\
+For System 1 (recommendation): A list of track(s), indexed with a similarity score. \\
+For System 2 (music generation): a snippet. \\
+For System 3 (analysis): a breakdown of the main aspects of the track.\\
+
+Explanation: for system 1, it should output a list of recommended tracks and some form of a similarity score
+as a way to justify itself. This score could be derived on factors such as genre, sound signature, artist, etc.
+
+For system 2, the snippest is an object containing the sound file. 
+
+For system 3, a score that categorizes the main features of the song, such as the musical range, genre, rythm, etc. \\
 
 \subsection{Stakeholders}
+
+The stakeholders for this project include:
+\begin{itemize}
+    \item \textbf{Music Producers}: Professionals who are looking to generate new ideas, experiment with different genres, and augment their existing works.
+    \item \textbf{Hobbyist Musicians}: Individuals interested in exploring and tinkering with familiar sounds and experimenting with new, creative compositions.
+    \item \textbf{Music Theorists}: Users who seek to study and analyze different musical elements (e.g., pitch, rhythm) as a part of their research or hobby.
+    \item \textbf{Audio Engineers}: Audio experts who can use the system to better understand sound characteristics and possibly optimize their workflows.
+    \item \textbf{Independent Artists and Musicians}: Artists looking for accessible and affordable tools to experiment with and create music.
+    \item \textbf{Music Educators}: Teachers seeking innovative ways to introduce students to music theory and composition.
+    \item \textbf{Content Creators and Streamers}: Creators in need of unique music or soundtracks for their content.
+    \item \textbf{Sound Designers}: Professionals working in film, games, or other industries where custom soundscapes and music are needed.
+    \item \textbf{DJs}: DJs who want to generate new tracks and remixes based on existing music for performances.
+    \item \textbf{Music App Developers}: Developers looking to integrate music recommendation and generation into their own apps.
+    \item \textbf{Music Therapy Practitioners}: Therapists using music to help clients and generate tailored soundscapes for treatment.
+    \item \textbf{Casual Music Listeners}: Users who want to discover and generate music for personal enjoyment.
+    \item \textbf{Record Labels}: Companies interested in discovering new trends and helping artists explore experimental genres.
+\end{itemize}
+
 
 \subsection{Environment}
 We strive to launch an on-premise server operating with a version of Ubuntu server, likely the most recent version, \href{https://ubuntu.com/download/server}{24.04.1}. The server shall respond to and process requests from a web-application front-end, making the service accessible to many different devices, but requiring a network.
@@ -78,6 +136,42 @@ We strive to launch an on-premise server operating with a version of Ubuntu serv
     \end{tabular}
 \end{table}
 
+% Song Analysis Section
+\subsubsection*{Song Analysis}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will analyze a song or snippet and extract important musical features. The data gathered from this analysis will then be fed into the recommendation and generation systems, ensuring they work with accurate data about each song's musical features.
+    \item \textbf{Reasoning:} By providing a detailed analysis, users can better understand the components of a given song. The analysis also ensures that the recommendations and generated music are based on actual musical data, which in turn improves the system’s accuracy and output quality.
+\end{itemize}
+
+% Music Generation Section
+\subsubsection*{Music Generation}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will allow users to input one or more reference songs or snippets and generate new music based on the features of these inputs. Users can adjust certain musical characteristics, and the system will produce an original track reflecting these changes.
+    \item \textbf{Reasoning:} Users will be able to create and customize music through AI without needing extensive musical knowledge, making the platform more accessible while still appealing to expert musicians.
+\end{itemize}
+
+% User Customizable Recommendations Section
+\subsubsection*{User Customizable Recommendations}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will allow users to adjust the musical features of the input clip/song. Based on these adjustments, the system will update its recommendations in real-time.
+    \item \textbf{Reasoning:} Customizable recommendations give users more control over the output, increasing user engagement and user satisfaction.
+\end{itemize}
+
+% User Centric Design and Interface Section
+\subsubsection*{User Centric Design and Interface}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will include a clean, intuitive interface where users can easily access the music recommendation, generation, and analysis features. The UI will be designed to require minimal understanding of how music adjustments work for a better user experience.
+    \item \textbf{Reasoning:} An accessible and simple interface will appeal to a broader audience, from casual listeners to professionals.
+\end{itemize}
+
+% Supportive of Popular Music Genres Section
+\subsubsection*{Supportive of Many Music Genres}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will include a variety of popular genres of music.
+    \item \textbf{Reasoning:} This will allow users to customize and explore their favorite genres of music.
+\end{itemize}
+
+
 \section{Stretch Goals}
 \begin{table}[h]
     \centering
@@ -100,6 +194,20 @@ We strive to launch an on-premise server operating with a version of Ubuntu serv
         \hline
     \end{tabular}
 \end{table}
+
+% Machine Learning Cover Art Generation Section
+\subsubsection*{Machine Learning Cover Art Generation}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will use AI models to generate custom art based on the features of a generated song or user preferences. The art will visually reflect the song's mood, genre, style, etc.
+    \item \textbf{Reasoning:} Music encompasses more than just using one's auditory senses; it is also a visual and emotional experience. By generating art that matches the music, the system offers more connection for creators, appealing to both their auditory and visual senses.
+\end{itemize}
+
+% Supportive of Niche Music Genres Section
+\subsubsection*{Supportive of Many Music Genres}
+\begin{itemize}
+    \item \textbf{Explanation:} GenreGurus will explore a variety niche genres.
+    \item \textbf{Reasoning:} This will allow users to explore genres they’ve never heard or experienced before. Which will engage the users more.
+\end{itemize}
 
 \section{Challenge Level and Extras}
 
@@ -133,6 +241,24 @@ for easy startup, and design thinking to build an intuitive user interface.
     \item What went well while writing this deliverable? 
     \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+    
+\emph{Ansel}
+The main disagreements we had were the project selection. To resolve this, we used a project selection matrix 
+where we rated the proposed projects by a large amount of criteria and then discussed which projects we felt
+were the most interesting, feasible, or doable. We ended up eliminating some projects due to this. We then proceeded to use a strawpoll in order to sort out which
+remaining projects were our top choices, and which ones were projects where there was 1 team member who simply was not
+interested in at all. This lead us to select the GenreGuru project. The documentation allowed us to neatly organize our
+thoughts on each project and to compare them in the most fair and honest method possible. 
+
+We also predicted that editing a latex
+document and then resolving conflict through github could be potentially an issue, which we resolved by having each member 
+edit one section of the document and then using pull requests to review our changes before having one person handling merging
+all our edits into the final .tex file. This helped us stay organized and not cause headaches with merge conflicts. 
+
+    did you resolve them? \\ \\
+    \emph{Bahsoun}
+    During this deliverable, we anticipated challenges, so we approached the task by dividing the workload among our team. Each member volunteered to focus on a specific section while contributing thoughts during collaborative discussions. After completing our individual sections and reviewing each other's work, we convened for a call to share our feedback on what we liked and what needed adjustments. Overall, while the deliverable went smoothly, we did encounter some pain points. One critical challenge was selecting the right technologies, particularly in determining which frameworks and machine learning libraries to use. To tackle this, each member conducted research to evaluate the strengths of various options, allowing us to narrow down our choices effectively. Another challenge arose from team members' busy schedules, making it difficult to coordinate in-person meetings. To overcome this, we prioritized communication throughout the week, ensuring everyone stayed informed. Instead of requiring everyone to attend every meeting, we arranged for a few members to attend and then relay key points to those who couldn't make it. This approach helped keep the entire team aligned and engaged.
+
     \item How did you and your team adjust the scope of your goals to ensure
     they are suitable for a Capstone project (not overly ambitious but also of
     appropriate complexity for a senior design project)?
