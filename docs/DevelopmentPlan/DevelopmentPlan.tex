@@ -32,17 +32,60 @@ Date2 & Name(s) & Description of changes\\
 \wss{Put your introductory blurb here.}
 
 \section{Team Meeting Plan}
-
+Team Meeting objective(s):
+\begin{itemize}
+  \item Discuss and delegate tasks for upcoming deliverable(s)
+  \item Group work sessions on upcoming deliverable(s)
+\end{itemize}
+\noindent
+Team meetings are schedulied throughout the week, at the start of the week, via a discord poll.
+Each team member is expected to respond to each poll. If a team member confirms that they can attend, then
+they are expected to attend.
 \section{Team Communication Plan}
+All team communication is done through a discord server. The discord has three text
+channels:
+\begin{itemize}
+  \item General (anything not project-related is posted here)
+  \item Important Updates (anything related to weekly meeting availability goes here)
+  \item Locked In (anything related to project work goes here)
+\end{itemize}
+\noindent
+The discord also has 2 voice channels:
 
+\begin{itemize}
+  \item Weekly Meeting (administrative meetings happen here)
+  \item Locked In (collaboration of project development happens here)
+\end{itemize}
 \section{Team Member Roles}
+\begin{itemize}
+  \item Ahmed: Meeting manager and scheduler, developer
+  \item Ansel: Team liaison, developer
+  \item Matthew: Developer
+  \item Mohammed-Hassan: Developer
+  \item Muhammad: Developer
+\end{itemize}
 
 \section{Workflow Plan}
 
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
+	\item Git standards
+  \begin{itemize}
+    \item Development branches will follow the "dev/*name*/*description*" naming convention
+    \item Documentation branches will follow the "docs/*name*/*description*" naming convention
+    \item A feature branch will be created for every major component of the project
+    \item Developers will base their branches off the feature branch they are contributing towards
+    \item Developers will create pull requests that concisely explain what the pull request is doing,
+    with any useful information being written in the PR description
+  \end{itemize}
+	\item Issue standards
+  \begin{itemize}
+    \item Issues are created during usability testing
+    \item Issues must contain a comparison between what is expected of the code
+    and what is actually seen by the user
+    \item If possible, issue creators should attach any log files they collect to the issue
+    \item The issue must be assigned to the developer who originally pushed
+    the code that is causing the bug
+  \end{itemize}
 \end{itemize}
 
 \section{Proof of Concept Demonstration Plan}
@@ -99,7 +142,14 @@ Topics to discuss include the following:
 
 \begin{enumerate}
     \item Why is it important to create a development plan prior to starting the
-    project?
+    project?\\
+    - Creating a development plan is crucial for a few reasons:
+    \begin{itemize}
+      \item It gives the project a clear direction and scope since all goals are outlined
+      \item It sets boundaries on the project to prevent unplanned expansions
+      \item It outlines anticipated challenges and contingency plans
+      \item It provides transparent communication of the project expectations to the stakeholders
+    \end{itemize}
     \item In your opinion, what are the advantages and disadvantages of using
     CI/CD?
     \item What disagreements did your group have in this deliverable, if any,
