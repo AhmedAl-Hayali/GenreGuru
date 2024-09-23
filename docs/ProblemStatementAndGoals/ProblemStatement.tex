@@ -3,7 +3,7 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 
-\title{Problem Statement and Goals\\\progname}
+\title{Problem Statement and Goals\\ GenreGuru}
 
 \author{\authname}
 
@@ -43,7 +43,39 @@ information.}
 \subsection{Inputs and Outputs}
 
 \wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+Use abstraction so that you can avoid details.}\\
+
+There are two main components of this project. They are both generative systems, one being a recommendation
+system, the other being a pseudo-music generator. There is also a song analysis system, necessary in
+order to get the recommendation system and generative systems working as they will most likely operate on 
+the data that the song analysis system provides. \\
+
+Inputs:\\
+A "track" is defined as a full song. A snippet is defined as a fragment of a track. These are objects that 
+contain a sound file and some labels describing the song. 
+High-Level: 
+For system 1 (recommendation): a list of track(s). \\
+For system 2 (music generation): a reference track or snippet. \\
+For system 3 (analysis): a singular reference track. \\
+
+Explanation: The main idea behind the inputs is essentially to make them all related to each other as they are
+fundamentally connected within the system. This means that roughly, all the files are either lists containing
+the track as an object and a snippet is functionally under the hood a track, simply labelled differently for
+categorization purposes. This allows the system to share behaviors along the sub systems for 
+faster implementation and design. As for format specifically, we can pull these from the spotify API song previews,
+API song features. \\
+
+Outputs: \\
+For System 1 (recommendation): A list of track(s), indexed with a similarity score. \\
+For System 2 (music generation): a snippet. \\
+For System 3 (analysis): a breakdown of the main aspects of the track.\\
+
+Explanation: for system 1, it should output a list of recommended tracks and some form of a similarity score
+as a way to justify itself. This score could be derived on factors such as genre, sound signature, artist, etc.
+
+For system 2, the snippest is an object containing the sound file. 
+
+For system 3, a score that categorizes the main features of the song, such as the musical range, genre, rythm, etc. \\
 
 \subsection{Stakeholders}
 
@@ -109,7 +141,7 @@ Use abstraction so that you can avoid details.}
 challenge can come through the required domain knowledge, the implementation or
 something else.  Usually the greater the novelty of a project the greater its
 challenge level.  You should include your rationale for the selected level.
-Approval of the level will be part of the discussion with the instructor for
+Approval of the level will be part of the discussion with the instructor forx
 approving the project.  The challenge level, with the approval (or request) of
 the instructor, can be modified over the course of the term.}
 
@@ -132,8 +164,25 @@ instructor, can be modified over the course of the term.}
 \begin{enumerate}
     \item What went well while writing this deliverable? 
     \item What pain points did you experience during this deliverable, and how
+    did you resolve them?
+    
+\emph{Ansel}
+The main disagreements we had were the project selection. To resolve this, we used a project selection matrix 
+where we rated the proposed projects by a large amount of criteria and then discussed which projects we felt
+were the most interesting, feasible, or doable. We ended up eliminating some projects due to this. We then proceeded to use a strawpoll in order to sort out which
+remaining projects were our top choices, and which ones were projects where there was 1 team member who simply was not
+interested in at all. This lead us to select the GenreGuru project. The documentation allowed us to neatly organize our
+thoughts on each project and to compare them in the most fair and honest method possible. 
+
+We also predicted that editing a latex
+document and then resolving conflict through github could be potentially an issue, which we resolved by having each member 
+edit one section of the document and then using pull requests to review our changes before having one person handling merging
+all our edits into the final .tex file. This helped us stay organized and not cause headaches with merge conflicts. 
+
     did you resolve them? \\ \\
+    \emph{Bahsoun}
     During this deliverable, we anticipated challenges, so we approached the task by dividing the workload among our team. Each member volunteered to focus on a specific section while contributing thoughts during collaborative discussions. After completing our individual sections and reviewing each other's work, we convened for a call to share our feedback on what we liked and what needed adjustments. Overall, while the deliverable went smoothly, we did encounter some pain points. One critical challenge was selecting the right technologies, particularly in determining which frameworks and machine learning libraries to use. To tackle this, each member conducted research to evaluate the strengths of various options, allowing us to narrow down our choices effectively. Another challenge arose from team members' busy schedules, making it difficult to coordinate in-person meetings. To overcome this, we prioritized communication throughout the week, ensuring everyone stayed informed. Instead of requiring everyone to attend every meeting, we arranged for a few members to attend and then relay key points to those who couldn't make it. This approach helped keep the entire team aligned and engaged.
+
     \item How did you and your team adjust the scope of your goals to ensure
     they are suitable for a Capstone project (not overly ambitious but also of
     appropriate complexity for a senior design project)?
