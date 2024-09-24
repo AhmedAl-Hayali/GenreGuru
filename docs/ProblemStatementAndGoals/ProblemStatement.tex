@@ -83,107 +83,51 @@ Project stakeholders are concerned with experimentation in music.
 \subsection{Environment}
 We strive to launch an on-premise server operating with a version of Ubuntu server, likely the most recent version, \href{https://ubuntu.com/download/server}{24.04.1}. The server shall respond to and process requests from a web-application front-end, making the service accessible to many different devices, but requiring a network.
 
+\newpage
 \section{Goals}
-\begin{table}[h]
+The project goals are captured in tabular form below.
+\begin{table}[h!]
     \centering
-    \begin{tabular}{|| p{0.45\textwidth} | p{0.45\textwidth} ||}
-        \hline
+    \begin{tabular}{p{0.45\textwidth} || p{0.45\textwidth}}
+        \toprule
         \textbf{Goals} & \textbf{Importance} \\
-        \hline
-        The system shall \textcolor{red}{adequately} process and respond to 
-        requests involving widely-published music genres, e.g., pop, hip-hop, 
-        and rock. & Widely-published music genres have the largest corpus of 
-        data that can be used to train the featurization and generation 
-        mechanisms of the system, i.e., the system must perform favourably in 
-        tasks that it is well-trained on. \\
-        \hline
-        The system shall generate tabular features that correspond to characteristics 
-        of the input song (snippet), akin to those of Spotify, e.g., danceability, 
-        instrumentalness, and energy. & Structured tabular data can be rapidly process, 
-        making the task of song recommendation more efficient and song generation 
-        more explainable. \\
-        \hline
-        The system shall produce a list of songs that are \textcolor{red}{similar} 
-        to a single song provided or a collecetion of songs provided by the user. & 
-        This is a core feature of the system. Its inclusion should facilitate users 
-        to explore a music genre or \textcolor{red}{``sound''} of interest. \\
-        \hline
+        \midrule
+        The collective system shall \textcolor{red}{adequately} process and respond to requests involving widely-published music genres, e.g., pop, hip-hop, and rock. & Widely-published music genres have the largest corpus of data that can be used to train the featurization and generation mechanisms of the system, i.e., the system must perform favourably in tasks that it is well-trained on. \\
+        \midrule
+        The generation system shall produce an audio artifact \textcolor{red}{similar} to (a) reference song(s) and/or snippet(s) provided by the user. & This is a core feature of the system. Its inclusion should make experimenting with ``new'' but familiar \textcolor{red}{``sounds''} easy. \\
+        \midrule
+        The analysis system shall generate tabular features that correspond to characteristics of the input song (snippet), akin to those of Spotify, e.g., danceability, instrumentalness, and energy. & This is a core feature of the system. Structured tabular data can be rapidly process, making the task of song recommendation more efficient and song generation more \href{https://en.wikipedia.org/wiki/Explainable_artificial_intelligence}{explainable}. \\
+        \midrule
+        The recommendation system shall produce a collection of songs that are \textcolor{red}{similar} to a single reference song provided or a collecetion of reference songs provided by the user. & This is a core feature of the system. Its inclusion should facilitate users to explore a music genre or \textcolor{red}{``sound''} of interest. \\
+        \midrule
+        The collective system shall include a \textcolor{red}{clean}, \textcolor{red}{intuitive} interface to facilitate easy access to the generation, analysis, and recommendation systems. The user interface should require \textcolor{red}{minimal understanding} of how music production is conducted. & This is a foundational non-functional goal -- a simple and accessible interface appeals to a broad audience, hobbyists and professionals alike. \\
+        \bottomrule
     \end{tabular}
 \end{table}
 
-% Song Analysis Section
-\subsubsection*{Song Analysis}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will analyze a song or snippet and extract important musical features. The data gathered from this analysis will then be fed into the recommendation and generation systems, ensuring they work with accurate data about each song's musical features.
-    \item \textbf{Reasoning:} By providing a detailed analysis, users can better understand the components of a given song. The analysis also ensures that the recommendations and generated music are based on actual musical data, which in turn improves the system’s accuracy and output quality.
-\end{itemize}
-
-% Music Generation Section
-\subsubsection*{Music Generation}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will allow users to input one or more reference songs or snippets and generate new music based on the features of these inputs. Users can adjust certain musical characteristics, and the system will produce an original track reflecting these changes.
-    \item \textbf{Reasoning:} Users will be able to create and customize music through AI without needing extensive musical knowledge, making the platform more accessible while still appealing to expert musicians.
-\end{itemize}
-
-% User Customizable Recommendations Section
-\subsubsection*{User Customizable Recommendations}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will allow users to adjust the musical features of the input clip/song. Based on these adjustments, the system will update its recommendations in real-time.
-    \item \textbf{Reasoning:} Customizable recommendations give users more control over the output, increasing user engagement and user satisfaction.
-\end{itemize}
-
-% User Centric Design and Interface Section
-\subsubsection*{User Centric Design and Interface}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will include a clean, intuitive interface where users can easily access the music recommendation, generation, and analysis features. The UI will be designed to require minimal understanding of how music adjustments work for a better user experience.
-    \item \textbf{Reasoning:} An accessible and simple interface will appeal to a broader audience, from casual listeners to professionals.
-\end{itemize}
-
-% Supportive of Popular Music Genres Section
-\subsubsection*{Supportive of Many Music Genres}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will include a variety of popular genres of music.
-    \item \textbf{Reasoning:} This will allow users to customize and explore their favorite genres of music.
-\end{itemize}
-
-
+\newpage
 \section{Stretch Goals}
-\begin{table}[h]
+Beyond goals that are essential to the project's success, stretch goals are additional opportunities for success if the project is completed early. The stretch goals are captured in tabular form below.
+\begin{table}[h!]
     \centering
-    \begin{tabular}{|| p{0.45\textwidth} | p{0.45\textwidth} ||}
-        \hline
+    \begin{tabular}{p{0.45\textwidth} || p{0.45\textwidth}}
+        \toprule
         \textbf{Goals} & \textbf{Importance} \\
-        \hline
-        The system shall \textcolor{red}{adequately} process and respond to 
-        requests involving \emph{not-as-widely}-published music genres, e.g., 
-        jazz, funk, and blues. & Such music genres have a smaller corpus of 
-        data that can be used for training, hence the system may not perform 
-        as favourably in tasks that it is not very well-trained on, but the 
-        inclusion of such genres would allow access to a larger user-group. \\
-        \hline
-        The system shall generate tabular features that correspond to 
-        characteristics of the input song's \emph{cover art}. & Cover art tends 
-        to capture, however abstractly, the mood, energy, and intent of a song 
-        or album, thus may contain tacit information that can be accessed with 
-        image processing. \\
-        \hline
+        \midrule
+        The system shall \textcolor{red}{adequately} process and respond to requests involving \emph{not-as-widely}-published music genres, e.g., jazz, funk, and blues. & Such music genres have a smaller corpus of data that can be used for training, hence the system may not perform as favourably in tasks that it is not very well-trained on, but the inclusion of such genres would allow access to a larger user-group. \\
+        \midrule
+        The generation system shall allow adjustment of the initial audio artifact produced, altered by editing the tabular features produced by the analysis system. & This is an additional feature of the system. Its inclusion should make the experimentation horizon broader, exposing more music than would be possible by default. \\
+        \midrule
+        The recommendation system shall allow adjustment of the initial collection of songs produced, altered by editing the tabular features produced by the analysis system. & This is an additional feature of the system. Its inclusion should facilitate users to explore a music genre or \textcolor{red}{``sound''} of interest with much more fidelity, again expanding the experimentation horizon. \\
+        \midrule
+        The system shall generate tabular features that correspond to characteristics of the input song's \emph{cover art}. & Cover art tends to capture, however abstractly, the mood, energy, and intent of a song or album, thus may contain tacit information that can be accessed with image processing. \\
+        \midrule
+        The system shall generate custom cover art that corresponds to characteristics of the input song's features, e.g., mood, energy, or style. & Cover art abstractly captures the mood and energy of a song, thus producing imagery relevant to a song's character can enhance the user's listening experience. \\
+        \bottomrule
     \end{tabular}
 \end{table}
 
-% Machine Learning Cover Art Generation Section
-\subsubsection*{Machine Learning Cover Art Generation}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will use AI models to generate custom art based on the features of a generated song or user preferences. The art will visually reflect the song's mood, genre, style, etc.
-    \item \textbf{Reasoning:} Music encompasses more than just using one's auditory senses; it is also a visual and emotional experience. By generating art that matches the music, the system offers more connection for creators, appealing to both their auditory and visual senses.
-\end{itemize}
-
-% Supportive of Niche Music Genres Section
-\subsubsection*{Supportive of Many Music Genres}
-\begin{itemize}
-    \item \textbf{Explanation:} GenreGurus will explore a variety niche genres.
-    \item \textbf{Reasoning:} This will allow users to explore genres they’ve never heard or experienced before. Which will engage the users more.
-\end{itemize}
-
+\newpage
 \section{Challenge Level and Extras}
 
 The project is of a \emph{general} challenge level.
