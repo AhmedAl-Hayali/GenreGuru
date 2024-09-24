@@ -2,6 +2,7 @@
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{amsfonts}
 
 \title{Problem Statement and Goals\\\progname}
 
@@ -43,40 +44,27 @@ This project holds significant value for a wide range of users. Music recommenda
 
 \subsection{Inputs and Outputs}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}\\
+The project can be characterized by three systems: \emph{music generation}, \emph{music analysis}, and \emph{music recommendation}. For completeness, a song is a full track, i.e., a completed audio file published by a musician, and a snippet is a fragment of a track, i.e., an incomplete audio file. Such audio files can be in a \emph{lossy} compressed format, e.g., \texttt{.mp3}, a \emph{lossless} compressed format, e.g., \texttt{.FLAC}, or an uncompressed format, e.g., \texttt{.WAV}. While the file formats of audio files are known, the source of a song or song snippet can be anything. A concrete example is a 30-second snippet from Spotify's API being an MP3 file delivered through the Spotify content delivery network, \texttt{scdn}, e.g., \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}.
 
-There are two main components of this project. They are both generative systems, one being a recommendation
-system, the other being a pseudo-music generator. There is also a song analysis system, necessary in
-order to get the recommendation system and generative systems working as they will most likely operate on 
-the data that the song analysis system provides. \\
 
-Inputs:\\
-A "track" is defined as a full song. A snippet is defined as a fragment of a track. These are objects that 
-contain a sound file and some labels describing the song. 
-High-Level: 
-For system 1 (recommendation): a list of track(s). \\
-For system 2 (music generation): a reference track or snippet. \\
-For system 3 (analysis): a singular reference track. \\
+\subsubsection{Inputs}
 
-Explanation: The main idea behind the inputs is essentially to make them all related to each other as they are
-fundamentally connected within the system. This means that roughly, all the files are either lists containing
-the track as an object and a snippet is functionally under the hood a track, simply labelled differently for
-categorization purposes. This allows the system to share behaviors along the sub systems for 
-faster implementation and design. As for format specifically, we can pull these from the spotify API song previews,
-API song features. \\
+\begin{itemize}
+    \item \emph{Music generation:} reference song(s) and/or song snippet(s).
+    \item \emph{Music analysis:} reference song(s) and/or song snippet(s).
+    \item \emph{Music recommendation:} reference song(s).
+\end{itemize}
 
-Outputs: \\
-For System 1 (recommendation): A list of track(s), indexed with a similarity score. \\
-For System 2 (music generation): a snippet. \\
-For System 3 (analysis): a breakdown of the main aspects of the track.\\
-
-Explanation: for system 1, it should output a list of recommended tracks and some form of a similarity score
-as a way to justify itself. This score could be derived on factors such as genre, sound signature, artist, etc.
-
-For system 2, the snippest is an object containing the sound file. 
-
-For system 3, a score that categorizes the main features of the song, such as the musical range, genre, rythm, etc. \\
+\subsubsection{Outputs}
+\begin{itemize}
+    \item \emph{Music generation:} generated song or song snippet, likely \texttt{.MP3} files.
+    \item \emph{Music analysis:}
+    \begin{itemize}
+        \item A collection $\in \mathbb{R}^k$ of features, e.g., pitch, timbre, or ``danceability''.
+        \item Visualizations of song characteristics, e.g., spectrograms and spectral density estimates.
+    \end{itemize}
+    \item \emph{Music recommendation:} collection of references to songs, e.g., string names of songs or URLs to music providers. Potentially sortable by likeness to the input reference songs. Please note the distinction between \emph{references to songs} and \emph{reference songs}.
+\end{itemize}
 
 \subsection{Stakeholders}
 
