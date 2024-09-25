@@ -40,8 +40,7 @@ Team meetings will be scheduled in a relatively ad-hoc fashion. Members have sha
 \end{itemize}
 
 \section{Team Communication Plan}
-All team communication is done through a discord server. The discord has three text
-channels:
+All team communication is done through a discord server. The discord has three text channels:
 \begin{itemize}
   \item General (anything not project-related is posted here)
   \item Important Updates (anything related to weekly meeting availability goes here)
@@ -64,26 +63,19 @@ The discord also has 2 voice channels:
 \end{itemize}
 
 \section{Workflow Plan}
-
+\subsection{General Workflow}
 \begin{itemize}
-	\item Git standards
-  \begin{itemize}
-    \item Development branches will follow the "dev/*name*/*description*" naming convention
-    \item Documentation branches will follow the "docs/*name*/*description*" naming convention
-    \item A feature branch will be created for every major component of the project
-    \item Developers will base their branches off the feature branch they are contributing towards
-    \item Developers will create pull requests that concisely explain what the pull request is doing,
-    with any useful information being written in the PR description
-  \end{itemize}
-	\item Issue standards
-  \begin{itemize}
-    \item Issues are created during usability testing
-    \item Issues must contain a comparison between what is expected of the code
-    and what is actually seen by the user
-    \item If possible, issue creators should attach any log files they collect to the issue
-    \item The issue must be assigned to the developer who originally pushed
-    the code that is causing the bug
-  \end{itemize}
+  \item Issues are created, assigned, and attached to the project. Issues will have a template akin to those find on \href{https://github.com/stevemao/github-issue-templates/tree/master/system/ISSUE_TEMPLATE}{stevemao/github-issue-templates}. These issues should pertain to deliverable sections, split into a completion assignee and a reviewer;
+  \item The \texttt{main} branch is protected, so team members must work in independent branches. We hope to restrict branch naming to a standardized format, e.g., \href{https://dev.to/varbsan/a-simplified-convention-for-naming-branches-and-commits-in-git-il4}{this} or akin to \href{https://www.conventionalcommits.org/en/v1.0.0/}{conventional commits} (which comes with \href{https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional}{a linter}!);
+  \item Team members' commits must follow the \href{https://www.conventionalcommits.org/en/v1.0.0/}{conventional commits} standard;
+  \item Whenever necessary, a team member can choose to merge their changes to the \texttt{main} branch with a pull request. Pull requests should have a template akin to the simple pull request found \href{https://graphite.dev/guides/pull-request-templates}{here} or the more complicated \href{https://github.com/dbt-labs/dbt-init/blob/master/starter-project/.github/pull_request_template.md}{data-centric template from dbt}. A pull request should be attached to the \href{https://github.com/users/AhmedAl-Hayali/projects/1}{GenreGuru Project on GitHub} with a \emph{dedicated} reviewer and potentially a review timeline and checklist. Having only one reviewer avoids the issue of \href{https://en.wikipedia.org/wiki/Diffusion_of_responsibility}{diffusion of responsiblity}.
+\end{itemize}
+
+\subsection{Usability Testing}
+\begin{itemize}
+  \item Issues must contain a comparison between what is expected of the code and what is actually seen by the user;
+  \item If possible, issue creators should attach any log files they collect to the issue;
+  \item The issue must be assigned to the developer who originally pushed the code that is causing the bug.
 \end{itemize}
 
 \section{Proof of Concept Demonstration Plan}
