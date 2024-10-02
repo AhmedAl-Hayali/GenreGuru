@@ -29,10 +29,10 @@ Fixes #(issue number)
 - [ ] The commits are named in accordance with [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification).
 - [ ] The PR is named in accordance with [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification).
 - [ ] There are no future/additional changes required. If there are, they are mentioned in *Additional Information* above.
-- [ ] I have changed the issue status in the project tracker to *In Review*.
-- [ ] I have created a review issue in the project tracker and assigned it to my reviewer.
+- [ ] I have changed the issue status in the [project tracker](https://github.com/users/AhmedAl-Hayali/projects/1/) to *In Review*.
+- [ ] I have created a review issue in the [project tracker](https://github.com/users/AhmedAl-Hayali/projects/1/) and assigned it to my reviewer.
 - [ ] I have provided my reviewer a checklist of necessary actions, if applicable.
 
 ## Reviewer Checklist
 <!--Checklist of things that reviewer should do/have a look at (optional, feel free to an "N/A" instead of checklist items)-->
-- [ ] ...
+- [ ] I have updated the issue(s) status(es) on the [project tracker](https://github.com/users/AhmedAl-Hayali/projects/1/).
