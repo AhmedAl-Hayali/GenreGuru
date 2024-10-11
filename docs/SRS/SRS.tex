@@ -114,35 +114,26 @@ involved in the Project}
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
 \begin{itemize}
-  \item Existing music recommendation algorithms are limited in customization
-  and accuracy
-  \item Current generative models struggle to match the quality of human-produced music
-  \item The output of current generative models is unpredicatble
-  \item Existing audio analysis tools provide a strong foundation that can be expanded upon
-  \item The system will rely on external APIs to gather data on musical features
+  \item Music contains the following core features \begin{itemize}
+    \item Tempo
+    \item Key signature
+    \item Time signature
+    \item Pitch
+    \item Timbre
+  \end{itemize}
+  \item Song files have metadata that contains information such as: \begin{itemize}
+    \item Song title
+    \item Artist
+    \item Release date
+  \end{itemize}
+  \item Most songs can be classified into a particular genre
 \end{itemize}
 \subsection{Business Rules}
-This section will list out the high-level functionality of the project
 \begin{itemize}
-  \item The project will contain a generative system that will use a machine learning model 
-  to generate music aligning with a user's input critera
-  \item The project will contain an analysis system that will extract musical features
-  from a user's input song
-  \item The project will contain a recommendation system that will recommend songs to the user
-  that match the user's input critera
-  \item the user will interact with the project through a website
-  \item the website will communicate with a locally deployed server
-  \item the server will handle the large datasets and machine learning models implemented in the project
-  \item the user will interact with the generative system by typing in various musical features they wish
-  to be generated
-  \item the user will interact with the analysis system by providing either a song file or a link to a video
-  containing the song they wish to analyze
-  \item the user will interact with the recommendation system by tuping in various musical features they wish
-  to experience in the recommended songs
-  \item the generative system will return and display multiple song files to the user, with the ability to both play them directly
-  in their browser and download the song to their computer
-  \item the recommendation system will return and display a list of songs and their links to the user
-  \item the analysis system will return and display a list of musical features to the user
+  \item The user should be able to generate their own music
+  \item The user should be able to figure out what musical features a song contains 
+  \item The user should be able to ask for similar songs
+  \item the user shouldn't have to download an application to interact with the system
 \end{itemize}
 \subsection{Assumptions}
 \begin{itemize}
