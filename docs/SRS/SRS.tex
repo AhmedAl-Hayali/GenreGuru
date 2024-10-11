@@ -83,6 +83,19 @@ Date 2 & 1.1 & Notes\\
 \subsection{Partner or Collaborative Applications}
 \lips
 \subsection{Off-the-Shelf Software}
+
+
+There are several existing solutions that could serve as part of the music generation and recommendation system. These include:
+
+\begin{itemize}
+    \item \textbf{Spotify API}: Provides access to a vast library of music, including song previews and metadata, which can be leveraged for generating recommendations.
+    \item \textbf{Librosa Library}: An open-source Python package for analyzing and processing music files, suitable for extracting features from songs and facilitating generative components.
+    \item \textbf{TensorFlow and PyTorch Pre-trained Models}: Both frameworks offer pre-trained models that could be adapted for music generation tasks. These solutions provide a basis for deep learning models without having to build and train from scratch.
+    \item \textbf{OpenAI Jukebox}: A generative model that is capable of producing music, which could potentially be adapted and integrated into our system.
+\end{itemize}
+
+These off-the-shelf software solutions provide a foundation upon which we can build our custom features, significantly reducing the development time and leveraging existing technologies to enhance the functionality of our platform.
+
 \lips
 \subsection{Anticipated Workplace Environment}
 \lips
@@ -242,17 +255,48 @@ Inhibit the New Product}
 
 \section{Migration to the New Product}
 \subsection{Requirements for Migration to the New Product}
-\lips
+There are no migration requirements as this project is not a replacement or upgrade of a previous project
 \subsection{Data That Has to be Modified or Translated for the New System}
-\lips
+Similarly, there currently is no data that needs to be modified
 
 \section{Costs}
-\lips
+The monetary cost estimate of the project is \$0 CAD. All of the necessary equipment is
+owned by at least one group member.\\
+
+\noindent
+The total time cost estimate of the project is 8 months (September 2024 - April 2025).\\
+
+\noindent
+The function point cost estimate is 12. This is derived from the business rules, which
+list out all the high level function points of the project.
 \section{User Documentation and Training}
+
 \subsection{User Documentation Requirements}
-\lips
+
+The music featurization feature is heavily API-driven, and as such, detailed documentation will primarily be covered within the API reference section. This approach ensures that developers and advanced users can understand the feature's capabilities without needing additional user guides.
+
+To ensure that users can effectively interact with the music generation and recommendation platform, the following user documentation will be provided:
+
+\begin{itemize}
+  \item \textbf{Quick Start Guide}: A concise guide aimed at helping new users get started with the basics of generating and recommending music.
+  \item \textbf{API Reference and Technical Specifications}: Detailed documentation of the platform’s API, including available endpoints, request/response formats, and example queries. This reference is crucial for developers and advanced users who want to integrate the platform with other applications or automate tasks.
+  \item \textbf{Installation Guide}: A step-by-step guide for installing the platform on local servers, including system requirements, installation commands, and troubleshooting common setup issues.
+  \item \textbf{FAQs and Troubleshooting}: A list of frequently asked questions and troubleshooting tips to help users solve common issues independently.
+  \item \textbf{Video Tutorials}: Step-by-step video guides that visually demonstrate key features and workflows, including setting up the platform, using the API, and generating music.
+\end{itemize}
+
+These documents will be designed for users of varying technical backgrounds to ensure they can fully utilize the platform's capabilities. The documentation will be created and maintained primarily by the development team, ensuring accuracy and alignment with the latest platform features. However, feedback from user groups will be actively sought to improve clarity and address any documentation gaps. Updates to the API reference and technical specifications will be managed as part of the regular software update cycle.
 \subsection{Training Requirements}
-\lips
+
+To provide users with sufficient knowledge to operate the platform effectively, the following training resources will be developed:
+
+\begin{itemize}
+  \item \textbf{Video Tutorials}: Developed by the development team, these tutorials will cover various aspects of the platform, including API usage, generating music, and using advanced features. 
+  \item \textbf{Online Training Modules}: If additional resources become available, online training modules could be developed to provide users with a structured learning path. However, due to current resource constraints, we do not plan to offer live training sessions.
+\end{itemize}
+
+These training requirements aim to encourage users to explore the full potential of the platform, regardless of their prior experience in music production or technology.
+
 
 \section{Waiting Room}
 \begin{enumerate}
@@ -269,7 +313,22 @@ Inhibit the New Product}
 \end{enumerate}
 
 \section{Ideas for Solution}
-\lips
+
+\begin{itemize}
+    \item \textbf{Hybrid Recommendation System}: 
+    A hybrid recommendation system combines content-based filtering and collaborative filtering techniques to provide a more personalized experience for users. Content-based filtering analyzes song features, such as genre, key, and rhythm, to suggest similar tracks. Collaborative filtering uses user preferences and historical listening patterns to suggest music. By combining these approaches, the system can offer users personalized suggestions while also helping them discover new genres and music styles.
+
+    \item \textbf{Generative Music Model}: 
+    To enable the creation of new music, a generative model will be used. This model could be based on techniques such as a Generative Adversarial Network (GAN) or Recurrent Neural Network (RNN). A GAN would allow for the generation of realistic music by having the generator and discriminator work together to produce convincing compositions. An RNN, on the other hand, would be well-suited for learning the sequential nature of music, generating new melodies based on learned patterns. This solution provides users with an innovative way to create new music based on their inputs and preferences.
+
+    \item \textbf{Feature Manipulation Interface}: 
+    This interface will allow users to interact directly with song features, such as tempo, key, and rhythm, enabling them to create customized versions of existing tracks or generate entirely new compositions. By adjusting different musical parameters, users can personalize their musical experience and experiment with creative variations, providing a high level of control over the output.
+
+    \item \textbf{Integration with Existing Platforms}: 
+    Integrating the system with existing music platforms, such as Spotify, will allow users to easily access and analyze a large library of songs. Users will be able to input their favorite tracks from these platforms and generate variations or receive recommendations. This integration ensures a smooth user experience, allowing seamless interaction between existing music libraries and the platform's generative capabilities.
+
+\end{itemize}
+
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -285,6 +344,36 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   computer science knowledge.  Skills may be related to technology, or writing,
   or presentation, or team management, etc.  You should look to identify at
   least one item for each team member.
+  \\ \\ 
+  As a team, the Rhythm Rangers, we need to acquire a diverse range of knowledge and skills from various domains, including software development, 
+  music generation, and collaborative teamwork, to successfully complete our capstone project. Given the scope of this task, it is essential 
+  for each team member to focus on specific areas of expertise that align with their skills, passions, roles, and responsibilities, 
+  as well as learn new skills and gain new knowledge. Outlined below is the knowledge and skills the team will collectively need to acquire
+  to successfully complete this capstone project: 
+  \\ \\
+  \textbf{Music Analysis and Signal Processing:} This capstone project involves developing expertise in audio signal processing to analyze sound data and extract 
+  valuable insights for music recommendation and generation systems. The team will learn to implement machine learning models for tasks such as genre 
+  classification and feature extraction. Proficiency in Python libraries for audio analysis and model training is essential. This will deepen the 
+  teams understanding of music theory and the connections between song features and genres.
+  \\ \\ 
+  \textbf{Frontend or Backend Development:} The team will need to understand backend frameworks for building and managing the recommendation system's 
+  infrastructure. The will be integrating external APIs to access song previews and features. They will also gain knowledge in database 
+  management for storing and organizing song data and user preferences. Furthermore, this involves learning how to scale and efficiently handle data
+  for a local server-based system.
+  \\ \\
+  \textbf{UI/UX and Design:} The team will need to design user-friendly interfaces that ensure smooth interaction with the music recommendation and 
+  generation systems. UI/UX design skills will need refinement and utilizization of frontend development frameworks will be needed to craft the systems user 
+  interface. They will also learn to connect frontend components with backend APIs for real-time updates, such as delivering song recommendations.
+  \\ \\
+  \textbf{Music Generation:} An understanding of generative models to create music snippets from input tracks or references will be a huge component for this project. 
+  The team will delve into music feature engineering, transforming audio data into usable features for machine learning applications. Familiarity with music data 
+  will assist in generating new content and making recommendations.
+  \\ \\ 
+  \textbf{Team Management and Infrastructure:} For this project to be a success improving project management and team coordination skills will foster effective communication, 
+  sprint planning, and task assignment. We will need to learn how to establish and maintain local server infrastructure for efficient hosting and operation of the platform. 
+  Understanding security best practices to safeguard user data and ensure the system's resilience against vulnerabilities is critical. Mastery of version control and Git management 
+  will promote seamless collaboration and code review among the team.
+  \\ \\
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
