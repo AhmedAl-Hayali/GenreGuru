@@ -9,6 +9,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{graphicx}
+
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -77,14 +79,44 @@ Date 2 & 1.1 & Notes\\
 
 \section{Mandated Constraints}
 \subsection{Solution Constraints}
-\lips
+\begin{itemize}
+
+  \item The service uses a music dataset
+  \\ \textbf{Rationale:} A dataset for an AI project is necessary as some form of training data must be used 
+  in order to train the AI generative, analysis and recommendation systems. 
+  \\ \textbf{Fit Criterion:} The machine learning algorithms use a music dataset as the training set. 
+
+  \item The service uses a machine learning algorithm in order to generate song recommendations and snippets. 
+  \\ \textbf{Rationale:} The general gist of this project is a leveraging of different signal processing and machine learning
+  algorithms in order to provide an end user with a better experience for consuming music. We believe that using a machine 
+  learning algorithm for these ends would both be interesting in terms of implementing and training a model, but also practically
+  useful for the end user to provide better recommendations by leveraging training over a very large dataset in order to produce results. 
+  \\\textbf{Fit Criterion:} The recommendation and generation components utilize trained machine learning algorithm. 
+
+  \item The service features integration with an existing music streaming provider's platform. 
+  \\ \textbf{Rationale:} A music service provider (such as Spotify) would allow the service to bypass the need to have
+  music inputted, instead being able to use references to a track. In addition, through API calls, providers such as spotify
+  already have a large amount of useful labels for invidiual track(s) that can be used as features for the machine learning
+  components of the service.  
+  \\ \textbf{Fit Criterion:} The service has components that make uses of features (such as API calls) 
+  that belong to a music service provider's platform. 
+
+  \item The service uses a server to process the user requests separately from the front end.
+  \\ \textbf{Rationale:} Ideally, our service would use an on-premise deployed ubuntu server in order to process the user 
+  analysis, recommendation, and generation components of the project, as this would allow a more flexible front end design
+  (such as through a web application). 
+  \\ \textbf{Fit Criterion:} An on-premise server is deployed for the purposes of handling the analysis, generation and recommendations
+  systems separately from the front end. 
+
+\end{itemize}
+
 \subsection{Implementation Environment of the Current System}
-\lips
+\includegraphics[scale=0.552]{3_2_environment_diagram.pdf}
+
 \subsection{Partner or Collaborative Applications}
-\lips
+\includegraphics[scale=0.72]{3_3_partner_constraints_figure}
+
 \subsection{Off-the-Shelf Software}
-
-
 There are several existing solutions that could serve as part of the music generation and recommendation system. These include:
 
 \begin{itemize}
@@ -96,15 +128,67 @@ There are several existing solutions that could serve as part of the music gener
 
 These off-the-shelf software solutions provide a foundation upon which we can build our custom features, significantly reducing the development time and leveraging existing technologies to enhance the functionality of our platform.
 
-\lips
 \subsection{Anticipated Workplace Environment}
-\lips
+\begin{itemize}
+  \item Home Usage
+  \\\textbf{Rationale:} This environment is more appropriate for casual music listeners. 
+  This means users will most likely be using it in a form of a casual environment. This can 
+  include such as during a public commute on the train, where the user might try to interact 
+  with the service while there is an unreliable internet connection on a mobile device. This
+  means the front end of the service must be easy to use and access on all types of devices, 
+  and preferrably, not a large amount of data is streamed between the user and the service. 
+  This means that preferrably, the input would have references to pieces of music instead of 
+  having say, full .MP3 files as the input. These users are also more likely interested in the 
+  recommendation system to attempt to find new pieces of music to listen to, and might be more
+  willing to use the generation system for "fun", so they might be satifisfied even with a 
+  generation component that produces odd results.
+ 
+  \item Studio Usage
+  \\\textbf{Rationale:} This environment is more professional and what is most likely what 
+  creative professionals will be using. The expectation is that they will be using this on their 
+  computers, thus they are more likely have a reliable internet connection in addition to being
+  willing to input a lot more music to the service. This means that the service needs to faciliate 
+  entering a large amount of music, and be able to generate results in a rapid and efficient 
+  manner. Because the users of this type of environment would likely be inviduals engaged in some form
+  of creative endeavors, they will generally have higher standards of what the service provides, and
+  might be more interested in the analysis component, such as being able to find new labels for their
+  existing work to get new perspectives. This also means that they most likely expect the music generation
+  component to give them something more "listenable", something they could directly use as a sample or inspiration.  
+
+\end{itemize}
+
 \subsection{Schedule Constraints}
-\lips
+This project was started in the 2024 Fall Term and is expected to be completed by the 
+2025 winter term at McMaster university. Some of the key deadlines are: 
+\begin{itemize}
+  \item Proof of Concept Demonstration Plan, November 11-22
+  \\This deadline accounts for 5\% of the mark. The group should have identified the most significant
+  risks involving the project and come up with plans on how to migitate said risks. If this is not possible, then the project 
+  can be redefined. The group also needs to predict and note other concerns about potential problems or difficulties that could arise
+  during development, such as testing difficulties or software portability. If this deadline is not met, then it means that our group
+   does not fully understand the potential pitfalls of our project and we need to redefine certain aspects of the project. 
+
+  \item Final Demonstration, March 24-30
+  \\This deadline accounts for 20\% of the mark. This deadline involves a demonstration of a finalized 
+  version of the project to supervisors before the public EXPO happening at a TBD date. By this deadline, 
+  the service should be in a completed state ready for use and demonstration. If this deadline is not met then
+  the project can be considered a "failure". 
+
+  \item Final Documentation, April 2
+  \\This deadline accounts for 30\% of the mark. It involves the finalized documentation of plans pertaining to 
+  the project and the actual working program/service. Any final revisions and reflections pertaining to the project
+  should have been completed by this deadline as no further changes to the project will be possible. Whatever documentation
+  or code that is not completed by this deadline would be considered permanently unfinished. 
+\end{itemize}
+
 \subsection{Budget Constraints}
-\lips
+The budget limit as stated by the capstone outline is 750\$ CAD. Potential additional
+costs might include API calls, software liscensing, account fees for cloud services. 
+For the purposes of the demonstration they should not exceed the 750\$ limit. 
+
 \subsection{Enterprise Constraints}
-\lips
+There are no specific enterprise constraints as we do not have outside investors
+for this project. 
 
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
