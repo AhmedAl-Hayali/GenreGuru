@@ -113,11 +113,43 @@ involved in the Project}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
-\lips
+\begin{itemize}
+  \item Music contains the following core features \begin{itemize}
+    \item Tempo
+    \item Key signature
+    \item Time signature
+    \item Pitch
+    \item Timbre
+  \end{itemize}
+  \item Song files have metadata that contains information such as: \begin{itemize}
+    \item Song title
+    \item Artist
+    \item Release date
+  \end{itemize}
+  \item Most songs can be classified into multiple genres
+\end{itemize}
 \subsection{Business Rules}
-\lips
+\begin{itemize}
+  \item The user should be able to generate their own music
+  \item The user should be able to figure out what musical features a song contains 
+  \item The user should be able to ask for similar songs
+  \item the user should be able to interact with the system without any external installation
+\end{itemize}
 \subsection{Assumptions}
-\lips
+\begin{itemize}
+  \item Users will have at least some familiarity of music theory
+  \item The analysis and recommendation systems will use as many well-established musical 
+  features as possible
+  \item All API inputs will be easily accessible and reliable enough to support the
+  recommendation and analysis systems
+  \item The system will be written in a language that all developers are familiar with
+  \item The system will use a local server to handle the processing of
+  the machine learning model and large datasets
+  \item Handling of niche features and cover art are designed to enhance the user experience, but 
+  these will not be a part of the core functionality of the system
+  \item The generative system will be completed by the POC demo date
+  \item The recommendation and analysis systems will be completed by the Revision 0 date
+\end{itemize}
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
