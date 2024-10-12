@@ -10,7 +10,8 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{graphicx}
-
+\usepackage{array}
+\graphicspath{ {./diagrams/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -258,11 +259,113 @@ involved in the Project}
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
-\lips
+\includegraphics[width=\textwidth]{product_boundary.png} \\
 \subsection{Product Use Case Table}
-\lips
+\begin{table}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+        \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input \& Output} \\ \hline
+        1 & UI Interaction & User & User Actions (click, swipe, drag) (in) \newline System Response (out) \\ \hline
+        2 & Song Recommendation Based on Features & User & User's desired features (in) \newline Collection of reference songs (out) \\ \hline
+        3 & Music Generation Based on Input & User & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
+        4 & Analyze Music & User & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
+        5 & Song Recommendation Based on Input & User & Reference song(s) (in) \newline Collection of reference songs (out) \\ \hline
+        6 & Server Interaction for Music Generation & Server & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
+        7 & Server Interaction for Song Recommendation & Server & User's desired features or reference song(s) and/or snippet(s) (in) \newline Collection of reference songs (out) \\ \hline
+        8 & Server Interaction for Music Analysis & Server & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
+    \end{tabular}
+    }
+    \caption{Product Use Case Table}
+    \label{tab:PUCtable}
+\end{table}
+
 \subsection{Individual Product Use Cases (PUC's)}
-\lips
+\textbf{1. Product Use Case Name:} UI Interaction \\
+\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging) \\
+\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru \\
+\textbf{Interested Stakeholders:} All \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{UI.png} \\
+\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.
+
+\vspace{1cm}
+
+\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features \\
+\textbf{Trigger:} User picks features, and indicates they want to search for recommendations \\
+\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{recommendation_feature.png} \\
+\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.
+
+\vspace{1cm}
+
+\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input \\
+\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
+\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{generate_song.png} \\
+\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.
+
+\vspace{1cm}
+
+\noindent \textbf{4. Product Use Case Name:} Analyze Music \\
+\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input \\
+\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{analyze_song.png} \\
+\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.
+
+\vspace{1cm}
+
+\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input \\
+\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{recommend_song.png} \\
+\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.
+
+\vspace{1cm}
+
+\textbf{6. Product Use Case Name:} Server Interaction for Music Generation \\
+\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation \\
+\textbf{Preconditions:} User has provided a valid input through, and the server is operational \\
+\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians \\
+\textbf{Actor/s:} Server \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_gen.png} \\
+\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user
+
+\vspace{1cm}
+
+\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation \\
+\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations \\
+\textbf{Preconditions:} User has provided valid input, and the server is available \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} Server \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_rec.png} \\
+\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.
+
+\vspace{1cm}
+
+\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis \\
+\textbf{Trigger:} User submits a reference song or snippet and requests music analysis \\
+\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze \\
+\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
+\textbf{Actor/s:} Server \ \textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_analysis.png} \\
+\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
