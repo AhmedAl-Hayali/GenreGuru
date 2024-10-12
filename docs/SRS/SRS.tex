@@ -112,42 +112,9 @@ Date 2 & 1.1 & Notes\\
 
 \subsection{Implementation Environment of the Current System}
 \begin{itemize}
-  \item Cloud Hosting Infrastructure
-  \\ \textbf{Rationale:} Cloud hosting can allow the service to remotely store user and service information, in addition to AI machine learning 
-  features.
-
-  \item Computational Resources Available for the Service/Hardware Constraints
-  \\ \textbf{Rationale:} The computational resources accessible for both the training and service provision to the user must be considered. 
-  This can include, but is not limited to how powerful the CPU, GPU that can be used to train the machine learning model and what level of
-  computational power the end user has on hand determines how much resources the services can use to give the user their desired results. 
-
-  \item Storage/Database Systems
-  \\ \textbf{Rationale:} How the training data and user data is trained are both very important considerations. This can include both using some form
-  of a cloud storage or local database. 
-
-  \item Network Constraints
-  \\ \textbf{Rationale:} The system will likely require a fast, high-bandwidth internet connections because the user is expected to upload music or references 
-  to said music before the service responds to the user request. This means an efficient method of allowing users to upload said references is 
-  important, as the user uploading entire music files might greatly reduce the amount of music that can be fed into the final service (as some
-  of said music files would likely be illegally obtained) and would require uploading far too much data, thus slowing the entire process down.
-
-  \item External Resources Constraints
-  \\ \textbf{Rationale:} The service will most likely have to access an external API, such as spotify's, which already includes a lot of 
-  useful information that can be provided for the service in order to function. Whether these are available or not, or how expensive the API
-  calls actually are can greatly affect the viability of certain aspects of the project. This also includes open source music data sets for
-  a machine learning project, it is possible those sets only contain a certain type of music (such as electronic) and does not feature a lot of
-  hip hop, which can prevent the service from effectively engaging with certain types of sound or genre. 
-
-  \item Security Constraints
-  \\ \textbf{Rationale:} Security protocols to protect a potential remote server the service employs and preventing unauthorized access to 
-  user data are both potentially very important elements of the service that need to be considered. 
-
-  \item Liscensing Constraints 
-  \\ \textbf{Rationale:} Currently, there is an ongoing debate over whether AI generation, especially related to art, can be considered 
-  as plagiarism or intellectual properthy theft. If the machine learning components of the service is trained on music from a large artist 
-  that does not approve of the end project, it is possible that there would be some form of legal consequences, thus the selection of 
-  trianing data and what songs the user is allowed to input into the final model needs to be seriously considered. 
-
+  \item A server system to handle user requests, such as deployed unbuntu server
+  \item The service is expected to be used by either mobile or desktop devices
+  \item 
 \end{itemize}
 
 \subsection{Partner or Collaborative Applications}
@@ -165,8 +132,6 @@ There are several existing solutions that could serve as part of the music gener
 \end{itemize}
 
 These off-the-shelf software solutions provide a foundation upon which we can build our custom features, significantly reducing the development time and leveraging existing technologies to enhance the functionality of our platform.
-
-\lips
 
 \subsection{Anticipated Workplace Environment}
 \begin{itemize}
@@ -186,10 +151,27 @@ These off-the-shelf software solutions provide a foundation upon which we can bu
 
 \subsection{Schedule Constraints}
 This project was started in the 2024 Fall Term and is expected to be completed by the 
-2025 winter term at McMaster university. Some of the key deadlines are: \\
-Proof of concept, November 11-22nd\\
-Final demonstraintion, March 24-30th\\
-Final Documentation, April 2\\
+2025 winter term at McMaster university. Some of the key deadlines are: 
+\begin{itemize}
+  \item Proof of concept, November 11-22nd
+  \\This deadline accounts for 5\% of the mark. This deadline involves having some form of a 
+  working demo to show the project supervisors that some concrete development work has been done and 
+  to reassess the feasibility of certain aspects of the project. If a working demonstration of the key 
+  features of the project cannot be presented to the supervisor by this deadline, then most likely 
+  certain currently planned features will have to be put on the cutting floor. 
+
+  \item Proof of concept, November 11-22nd
+  \\This deadline accounts for 20\% of the mark. This deadline involves a demonstration of a finalized 
+  version of the project to supervisors before the public EXPO happening at a TBD date. By this deadline, 
+  the service should be in a completed state ready for use and demonstration. If this deadline is not met then
+  the project can be considered a "failure". 
+
+  \item Final Documentation, April 2
+  \\This deadline accounts for 30\% of the mark. It involves the finalized documentation of plans pertaining to 
+  the project and the actual working program/service. Any final revisions and reflections pertaining to the project
+  should have been completed by this deadline as no further changes to the project will be possible. Whatever documentation
+  or code that is not completed by this deadline would be considered permanently unfinished. 
+\end{itemize}
 
 \subsection{Budget Constraints}
 The budget limit as stated by the capstone outline is 750\$ CAD. Potential additional
