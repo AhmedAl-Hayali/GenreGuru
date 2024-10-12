@@ -224,7 +224,24 @@ involved in the Project}
 \lips
 
 \section{Open Issues}
-\lips
+\begin{itemize}
+  \item Generated output use regulation, \#1
+  \\\textbf{Summary:} The service EULA agreement might need to consider how and where the generated snippet by the service is allowed
+  to be used. This is important because depending on the the source of the algorithm training data or the inputted tracks into the service
+  might have strict copyright laws \& rules associated with them, thus we need to consider whether those rules are inherited with the 
+  generated snippet. This could be for example, whether the end user is allowed to use the generated snippet commercially. This means 
+  that creative professionals ability to actually use this portion of the service could be greatly limited depending on what tracks they
+  are inputting. 
+
+  \item Dataset Bias, \#2
+  \\\textbf{Summary:} We are currently not exactly certain about what dataset we will be using for the algorithm training. 
+  For example, if we are using some form of non-copyrighted music, there's a likely chance it is heavily biased towards electronic dance 
+  music as a genre. This could skew the algorithm's ability to interact with music that is not of that genre, thus the service 
+  might not be able to properly process requests users who perhaps listen to more niche genres of music. This means we might need to train the 
+  machine learning algorithms on multiple, different datasets, or we need find a way to integrate more niche genres of music into the 
+  dataset we are already using for training. 
+
+\end{itemize}
 
 \section{Off-the-Shelf Solutions}
 \subsection{Ready-Made Products}
