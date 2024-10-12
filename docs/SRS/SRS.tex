@@ -11,7 +11,8 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{graphicx}
-
+\usepackage{array}
+\graphicspath{ {./diagrams/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -57,9 +58,14 @@ Date 2 & 1.1 & Notes\\
 ~\newpage
 \section{Purpose of the Project}
 \subsection{User Business}
-\lips
+Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.
 \subsection{Goals of the Project}
-\lips
+\emph{GenreGuru} shall:
+\begin{itemize}
+  \item \emph{featurize} -- produce tabular features corresponding to characteristics of input songs;
+  \item \emph{recommend} -- produce a collection of songs similar to input songs;
+  \item \emph{generate} -- produce an audio artifact similar to input reference songs.
+\end{itemize}
 \section{Stakeholders}
 \subsection{Client} \label{2.1-client}
 The project is academic in nature, hence has no formal clients beyond the supervisor, who will be consulted periodically to direct project effort.
@@ -277,7 +283,19 @@ for this project.
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
-\lips
+\begin{itemize}
+  \item Track is full song, i.e., a completed audio file published by a musician. 
+  \item A snippet is a fragment of a track, i.e., an incomplete audio file. Such audio files can be in a \emph{lossy} compressed format, e.g., 
+  \texttt{.mp3}, a \emph{lossless} compressed format, e.g., \texttt{.FLAC}, or an uncompressed format, e.g., \texttt{.WAV}. While the file formats of audio files are known, 
+  the source of a song or song snippet can be anything. A concrete example is a 30-second snippet from Spotify's API being an MP3 file delivered through the Spotify content 
+  delivery network, \texttt{scdn}, e.g., \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}.
+  \item Model: Statistical Model (Not software module)
+  \item Module: Software Component
+  \item AI: Artificial Intelligence
+  \item ML: Machine Learning Model
+  \item Music Metadata: labels obtained through streaming music API (eg spotify) that are
+  like features (eg genre, 'danceability')
+\end{itemize}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
@@ -337,15 +355,254 @@ involved in the Project}
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
-\lips
+\includegraphics[width=\textwidth]{product_boundary.png} \\
 \subsection{Product Use Case Table}
-\lips
+\begin{table}[!ht]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+        \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input \& Output} \\ \hline
+        1 & UI Interaction & User & User Actions (click, swipe, drag) (in) \newline System Response (out) \\ \hline
+        2 & Song Recommendation Based on Features & User & User's desired features (in) \newline Collection of reference songs (out) \\ \hline
+        3 & Music Generation Based on Input & User & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
+        4 & Analyze Music & User & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
+        5 & Song Recommendation Based on Input & User & Reference song(s) (in) \newline Collection of reference songs (out) \\ \hline
+        6 & Server Interaction for Music Generation & Server & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
+        7 & Server Interaction for Song Recommendation & Server & User's desired features or reference song(s) and/or snippet(s) (in) \newline Collection of reference songs (out) \\ \hline
+        8 & Server Interaction for Music Analysis & Server & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
+    \end{tabular}
+    }
+    \caption{Product Use Case Table}
+    \label{tab:PUCtable}
+\end{table}
+
 \subsection{Individual Product Use Cases (PUC's)}
-\lips
+\textbf{1. Product Use Case Name:} UI Interaction \\
+\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging) \\
+\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru \\
+\textbf{Interested Stakeholders:} All \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{UI.png} \\
+\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.
+
+\vspace{1cm}
+
+\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features \\
+\textbf{Trigger:} User picks features, and indicates they want to search for recommendations \\
+\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{recommendation_feature.png} \\
+\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.
+
+\vspace{1cm}
+
+\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input \\
+\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
+\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{generate_song.png} \\
+\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.
+
+\vspace{1cm}
+
+\noindent \textbf{4. Product Use Case Name:} Analyze Music \\
+\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input \\
+\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{analyze_song.png} \\
+\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.
+
+\vspace{1cm}
+
+\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input \\
+\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations \\
+\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} User \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{recommend_song.png} \\
+\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.
+
+\vspace{1cm}
+
+\textbf{6. Product Use Case Name:} Server Interaction for Music Generation \\
+\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation \\
+\textbf{Preconditions:} User has provided a valid input through, and the server is operational \\
+\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians \\
+\textbf{Actor/s:} Server \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_gen.png} \\
+\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user
+
+\vspace{1cm}
+
+\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation \\
+\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations \\
+\textbf{Preconditions:} User has provided valid input, and the server is available \\
+\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
+\textbf{Actor/s:} Server \\
+\textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_rec.png} \\
+\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.
+
+\vspace{1cm}
+
+\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis \\
+\textbf{Trigger:} User submits a reference song or snippet and requests music analysis \\
+\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze \\
+\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
+\textbf{Actor/s:} Server \ \textbf{Activity Diagram:} \\
+\includegraphics[width=\textwidth]{server_song_analysis.png} \\
+\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
-\lips
+\hspace{14pt}
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 1} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 1 \\
+\textbf{Description:} The system should respond to user actions (e.g. swipe, tap). \\
+\textbf{Rationale:} To allow users to interact with the system efficiently and intuitively. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} User performs an action (e.g. swipe, tap) and system responds within 2 seconds. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 6, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 2} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 2 \\
+\textbf{Description:} The system allows the users to select song features (e.g. tempo, genre), and it returns recommendations. \\
+\textbf{Rationale:} User wants song recommendations based on desired features. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} User can select features and does receive song recommendations. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 6, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 3} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 3 \\
+\textbf{Description:} The system generates a song based on reference song(s) or snippet(s) received from the user as input. \\
+\textbf{Rationale:} Users need an easy way to create music, without prior knowledge, that is similar to their input songs. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} Music is generated from the input reference song(s) or snippet(s). \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 6, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 4} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 4 \\
+\textbf{Description:} The system will analyze a reference song or snippet, and provide its features. \\
+\textbf{Rationale:} Users, more particularly music producers and educators, need a way to break down songs for a more detailed analysis of their features. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} User is provided with various features and visualizations showing an accurate breakdown of their song or snippet. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 11, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 5} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 4 \\
+\textbf{Description:} The system will analyze a reference song or snippet, and provide its visualizations. \\
+\textbf{Rationale:} Users, more particularly music producers and educators, need a way to visualize the breakdown of songs for a better understading and analysis. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} User is provided with various visualizations that accurately represent their song or snippet. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 11, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 6} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 5 \\
+\textbf{Description:} Users want recommendations based on reference song(s) and/or snippet(s). \\
+\textbf{Rationale:} Users want to discover new music or want music similar to the ones they are listening to. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} The system returns a list of recommendations. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 6, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 7} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 2,3,4,5 \\
+\textbf{Description:} The system will validate user inputs to ensure they are correct. \\
+\textbf{Rationale:} Prevents errors and ensures the system processes valid data. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 6, 2024
+\end{minipage}
+}
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
@@ -424,7 +681,29 @@ involved in the Project}
 \lips
 
 \section{Open Issues}
-\lips
+\begin{itemize}
+  \item Generated output use regulation, \#1
+  \\\textbf{Summary:} The service EULA agreement might need to consider how and where the generated snippet by the service is allowed
+  to be used. 
+  
+  This is important because the training data or inputted track(s) into the service
+  might have copyright laws \& rules regulating commerical use associated with them, thus we need to consider whether those rules \& regulations
+   also apply with the generated snippet.  
+  
+  For example, the EULA might need to state that generated snippets cannot be used for commercial purposes if the input contains song from a 
+  specific artist belonging to some specific record label. This means that a creative professional's ability to actually use 
+  this portion of the service could be greatly limited depending on what tracks they
+  are inputting, and/or what the machine learning algorithm was trained on. 
+
+  \item Dataset Bias, \#2
+  \\\textbf{Summary:} We are currently not exactly certain about what dataset we will be using for the algorithm training. 
+  For example, if we are using some form of non-copyrighted music, there's a likely chance it is heavily biased towards electronic dance 
+  music as a genre. This could skew the algorithm's ability to interact with music that is not of that genre, thus the service 
+  might not be able to properly process requests users who perhaps listen to more niche genres of music. This means we might need to train the 
+  machine learning algorithms on multiple different datasets, or we need to manually modify an existing dataset to integrate more niche genres 
+  of music as the training source. 
+
+\end{itemize}
 
 \section{Off-the-Shelf Solutions}
 \subsection{Ready-Made Products}
@@ -462,10 +741,19 @@ Once the platform is deployed, several follow-up issues will need to be addresse
 \lips
 
 \section{Tasks}
-\subsection{Project Planning}
-\lips
-\subsection{Planning of the Development Phases}
-\lips
+\begin{itemize}
+  \item Revise requirements document
+  \item Design the systems structure
+  \item Build prototype and get feedback
+  \item Integrate Spotify API for song data
+  \item Develop music recommendation module
+  \item Work on music generation  module
+  \item Create song analysis moudle
+  \item Test the platform and gather feedback
+  \item Revise based on feedback
+  \item Write user guide and documentation
+  \item Finalize revisions to documentation
+\end{itemize}
 
 \section{Migration to the New Product}
 \subsection{Requirements for Migration to the New Product}
@@ -592,26 +880,6 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
   member pursue, and why did they make this choice?
-  \\ \\ 
-  \textbf{Music Analysis and Signal Processing:} To acquire knowledge and skills in Music Analysis and Signal Processing, we can take online courses focused 
-  on audio signal processing and machine learning for music, building a solid theoretical foundation. We can also engage in discussions with university professors 
-  knowledgeable in this field. Additionally, we will take a look into analyzing audio data and implementing models using libraries like Librosa.
-  \\ \\
-  \textbf{Frontend or Backend Development:} For knowledge and skills in Frontend or Backend Development, we will look at documentation for backend 
-  frameworks like Django or Flask to learn how to build and manage the recommendation system. We will collaborate with teammates to share knowledge and enhance 
-  our skills.
-  \\ \\ 
-  \textbf{UI/UX and Design:} To acquire knowledge and skills in UI/UX and Design, we can read books and articles on UI/UX best practices to deepen our 
-  understanding of design principles. We can conduct user testing sessions with prototypes to gather feedback and iterate on the design.
-  \\ \\ 
-  \textbf{Music Generation and AI:} To acquire knowledge and skills in Music Generation and AI, we can will read research papers on generative models in music to 
-  understand their applications. Using Python libraries, we can test various algorithms to gain practical experience.
-  \\ \\
-  \textbf{Team Management and Infrastructure:} For Team Management and Infrastructure, the team will read books and articles on effective 
-  team leadership and management strategies, allowing us to understand different team dynamics and communication styles. We will also draw on our past experiences with team 
-  managers from co-op terms. Additionally, studying documentation on local server management and security best practices will help to establish a strong foundation for 
-  the project’s infrastructure.
-  \\
 \end{enumerate}
 
 \end{document}
