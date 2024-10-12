@@ -199,7 +199,19 @@ for this project.
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
-\lips
+\begin{itemize}
+  \item Track is full song, i.e., a completed audio file published by a musician. 
+  \item A snippet is a fragment of a track, i.e., an incomplete audio file. Such audio files can be in a \emph{lossy} compressed format, e.g., 
+  \texttt{.mp3}, a \emph{lossless} compressed format, e.g., \texttt{.FLAC}, or an uncompressed format, e.g., \texttt{.WAV}. While the file formats of audio files are known, 
+  the source of a song or song snippet can be anything. A concrete example is a 30-second snippet from Spotify's API being an MP3 file delivered through the Spotify content 
+  delivery network, \texttt{scdn}, e.g., \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}.
+  \item Model: Statistical Model (Not software module)
+  \item Module: Software Component
+  \item AI: Artificial Intelligence
+  \item ML: Machine Learning Model
+  \item Music Metadata: labels obtained through streaming music API (eg spotify) that are
+  like features (eg genre, 'danceability')
+\end{itemize}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
