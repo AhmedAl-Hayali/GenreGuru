@@ -11,6 +11,8 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{array}
+\graphicspath{ {./diagrams/} }
 
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
@@ -47,8 +49,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2024-10-11 & 0.0 & Revision 0\\
 \bottomrule
 \end{tabularx}
 
@@ -707,79 +708,83 @@ involved in the Project}
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
-\lips
+\textbf{APR1.} The system shall present usable options without clutter. \\
+\textbf{APR2.} The system shall be visually accessible by using highly contrasting elements. \\
+\textbf{APR3.} The system shall use an easily navigable, professional design.
 \subsection{Style Requirements}
-\lips
+\textbf{STR1.} The system shall be responsive to various screen sizes.
 
 \section{Usability and Humanity Requirements}
 \subsection{Ease of Use Requirements}
-\lips
+\textbf{EUR1.} The system shall show tooltips pop-ups upon users hovering on an interactable element.
 \subsection{Personalization and Internationalization Requirements}
-\lips
+\textbf{PIR1.} The system shall support different display colour themes.
 \subsection{Learning Requirements}
-\lips
+\textbf{LR1.} The system shall provide a first-time user guide to use features upon first launch. \\
+\textbf{LR2.} The user shall be able to complete the tutorial within \emph{10} minutes.
 \subsection{Understandability and Politeness Requirements}
-\lips
+\textbf{UPR1.} The system shall not generate vulgar content.
+\textbf{UPR2.} The system shall only use standardized, inoffensive iconography wherever icons are needed.
 \subsection{Accessibility Requirements}
-\lips
-
+\textbf{ACR1.} The system shall only use accessible fonts. \\
+\textbf{ACR2.} The system shall offer a color-blind mode.
 \section{Performance Requirements}
 \subsection{Speed and Latency Requirements}
-\lips
+\emph{N/A -- while there is a server and networking in the system, such requirements are considered out of scope.}
 \subsection{Safety-Critical Requirements}
-\lips
+\emph{N/A -- there are no safety-affiliated components affiliated with the project.}
 \subsection{Precision or Accuracy Requirements}
-\lips
+\textbf{PAR1.} Query request times are displayed to within 1 minute of precision. \\
+\textbf{PAR2.} Displayed percentages will be rounded to the nearest two decimals.
 \subsection{Robustness or Fault-Tolerance Requirements}
-\lips
+\textbf{RAR1.} The system shall maintain 97.5\% uptime, i.e., an average downtime of 18 hours every month.
 \subsection{Capacity Requirements}
-\lips
+\textbf{CR1.} The system shall handle concurrent usage by up to four users. \\
+\textbf{CR2.} The system shall store a cached record of songs and corresponding information.
 \subsection{Scalability or Extensibility Requirements}
-\lips
+\emph{N/A -- while there is a server in the system, scaling is not in scope.}
 \subsection{Longevity Requirements}
-\lips
-
+\emph{N/A -- maintenance and longevity of the project is not in scope, at least not until after the POC demonstration.}
 \section{Operational and Environmental Requirements}
 \subsection{Expected Physical Environment}
-\lips
+\textbf{EPER1.} The system server shall run on a modified Dell OptiPlex 3050. \\
 \subsection{Wider Environment Requirements}
-\lips
+\emph{N/A}
 \subsection{Requirements for Interfacing with Adjacent Systems}
-\lips
+\emph{N/A}
 \subsection{Productization Requirements}
-\lips
+\textbf{PRR1.} The system front-end shall be accessible from a browser across different devices.
 \subsection{Release Requirements}
-\lips
+\emph{NA -- the project is academic in nature, so a release cycle is unnecessary.}
 
 \section{Maintainability and Support Requirements}
 \subsection{Maintenance Requirements}
-\lips
+\textbf{MR1.} The system shall facilitate switching between music providers overnight.
 \subsection{Supportability Requirements}
-\lips
+\emph{NA -- the project is academic in nature, and its lifespan is unlikely to extend such that it needs support.}
 \subsection{Adaptability Requirements}
-\lips
+\emph{N/A -- a web-app is the most portable format for the specified target users.}
 
 \section{Security Requirements}
 \subsection{Access Requirements}
-\lips
+\textbf{ACR1.} The user shall only be able to access songs they upload or ones that are licensed for their use.
 \subsection{Integrity Requirements}
-\lips
+\emph{N/A -- inapplicable to the scope of the project.}
 \subsection{Privacy Requirements}
-\lips
+\textbf{PR1.} The system shall only expose query requests to the user that made them.
 \subsection{Audit Requirements}
-\lips
+\textbf{AUR1.} The system shall maintain a history of user query requests.
 \subsection{Immunity Requirements}
-\lips
-
+\emph{N/A -- again, the project is academic in nature, and its purpose is not to be robust for attacks on a commercial software.}
 \section{Cultural Requirements}
 \subsection{Cultural Requirements}
-\lips
-
+\textbf{CUR1.} The system shall not contain any (potentially) culturally offensive iconography or language.
 \section{Compliance Requirements}
 \subsection{Legal Requirements}
-\lips
+\textbf{LGR1.} The system shall not make use of any copyrighted material without express permission. \\
+\textbf{LGR2.} The data collection process must obey all potential API developer rules.
 \subsection{Standards Compliance Requirements}
-\lips
+\emph{N/A -- out of project scope.}
 
 \section{Open Issues}
 \begin{itemize}
