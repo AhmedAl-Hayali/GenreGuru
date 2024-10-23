@@ -57,10 +57,23 @@ Date2 & Name(s) & Description of changes\\
 
 \wss{You can include your definition of what a hazard is here.}
 
+This document is dedicated as a Hazard Analysis of the GenreGuru Music System. The GenreGuru software is designed
+to aid its users with their consumption and creation of music, doing so by providing song analysis, recommendation,
+and music generation services. As such, we define a hazard as a potential malfunction in the system, either due to internal
+factors (such as the training data, defects in the software) or external factors (such as user inputs).  
+
 \section{Scope and Purpose of Hazard Analysis}
 
-\wss{You should say what \textbf{loss} could be incurred because of the
-hazards.}
+\wss{You should say what \textbf{loss} could be incurred because of the hazards.}
+
+The purpose of hazard analysis for this project is to determine points and causes of failure in the system. This 
+includes their effects and considering migitation methods. Here are some brief types of loss we expect hazards could 
+incurr: 
+\begin{itemize}
+    \item Compromised Data - such as corruption of the training dataset/outputs
+    \item Project History - improper github merging causing portions of documentation to vanish
+    \item User Experience Loss - generated recommendations/snippets do not satisfy user needs. 
+\end{itemize}
 
 \section{System Boundaries and Components}
 
@@ -70,12 +83,33 @@ ones.  For projects that involve hardware, the components will typically include
 each individual piece of hardware.  If your software will have a database, or an
 important library, these are also potential components.}
 
+The GenreGuru Software Application is primarily composed of the following components: 
+\begin{itemize}
+\item Track Analysis (Featurization) System
+\item Track recommendations generation system
+\item The snippet generation system
+\item User interaction interface
+\item Backend Processing System (On-Premise Server)
+\end{itemize}
+In addition to the software components, the GenreGuru Project also relies on the following 
+external resources/components:
+\begin{itemize}
+    \item Music Streaming Service Provider API (Such as Spotify's)
+    \item Music Data set
+    \item Music-Related Machine Learning Algorithms/Libraries
+\end{itemize}
+Finally, the github repository is the project's documentation, contains the source code
+and handles version control for the project. 
 \section{Critical Assumptions}
 
 \wss{These assumptions that are made about the software or system.  You should
 minimize the number of assumptions that remove potential hazards.  For instance,
 you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+this potential failure mode.} 
+
+Currently, we have one critical assumption for this project. This assumption is that volume control
+is handled by the user's hardware in a way such that the user cannot experience sounds that 
+could potentially physically harm them. 
 
 \section{Failure Mode and Effect Analysis}
 
@@ -117,6 +151,23 @@ Which requirements will be implemented in the future?}
     \item Other than the risk of physical harm (some projects may not have any
     appreciable risks of this form), list at least 2 other types of risk in
     software products. Why are they important to consider?
+
+    Two types of risks in software products that aren't related to physical 
+    are 1) the risk of comprising data (both the user's and the software's), 2) 
+    Scope Creep, where the software is uncontrollably growing and adding features
+    beyond what was intially agreed to. 
+
+    1) is important because user and application data can be very sensitive, eg
+    users often reuse their passwords/emails, thus said data being compromised could
+    have far-reaching effects beyond just the user's ability to interact with the service.
+    Company Data can also be very valuable, if it is exposed it could be used by competitors 
+    or used to exploit other vulnerabilities within the software.
+
+    2) is important because scope creep arises when the project was not properly 
+    defined during the early planning stages. This often leads to extra developement work,
+    costs, all for features that might not work properly because of the creep or are 
+    unecessary and were not requested by the client. 
+
 \end{enumerate}
 
 \end{document}
