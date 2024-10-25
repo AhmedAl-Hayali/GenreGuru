@@ -32,7 +32,7 @@
 
 \title{Software Requirements Specification for \progname: subtitle describing software} 
 \author{\authname}
-\date{\today}
+\date{October 11, 2024}
 	
 \maketitle
 
@@ -451,9 +451,102 @@ involved in the Project}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\lips
+\includegraphics[width=\textwidth]{7_1_business_data_model.png}
 \subsection{Data Dictionary}
-\lips
+\subsubsection{Relations}
+Please refer to table \ref{tbl:rel-data-dict}.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ p{.25\linewidth} || p{.65\linewidth} }
+    \textbf{Relation Name} & \textbf{Relation Description} \\
+    \toprule
+    \emph{Track} & Primary relation containing track name, track length, \& references to other relations. \\
+    \midrule
+    \emph{TrackArtists} & Intermediate relation to retain information about which artists appear on which tracks. \\
+    \midrule
+    \emph{TracksAlbum} & Intermediate relation to retain information about which tracks appear on which albums, if applicable. \\
+    \midrule
+    \emph{TrackSource} & Secondary relation containing information about the source of a track, e.g., Spotify, Deezer, Amazon music, BandCamp, or local. \\
+    \midrule
+    \emph{TrackFeatures} & Secondary relation contianing information about the features of a track, following the \href{https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model}{entity-attribute-value (EAV) model}. \\
+    \midrule
+    \emph{TrackCover} & Abstract relation containing information about the cover art of the track. \\
+    \midrule
+    \emph{Artist} & Secondary relation containing information about artists. \\
+    \midrule
+    \emph{Album} & Secondary relation containing information about albums. \\
+    \midrule
+    \textcolor{red}{Audio Access System} & Abstract storage system containing information about the track audio. \\
+  \end{tabular}
+  \label{tbl:rel-data-dict}
+  \caption{Relations Data Dictionary}
+\end{table}
+\subsubsection{Attributes}
+Please refer to table \ref{tbl:attr-data-dict}.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{ p{.35\linewidth} || p{.55\linewidth} }
+    \textbf{Attribute Name} & \textbf{Attribute Description} \\
+    \toprule
+    \textbf{track\_id} & Unique track identifier. \\
+    \midrule
+    \textbf{artist\_id} & Unique artist identifier. \\
+    \midrule
+    \textbf{album\_id} & Unique album identifier. \\
+    \midrule
+    \textbf{audio\_id} & Unique track audio reference identifier. \\
+    \midrule
+    \textbf{track\_source\_id} & Unique track source reference identifier. \\
+    \midrule
+    \textbf{track\_features\_id} & Unique track features reference identifier. \\
+    \midrule
+    \textbf{track\_cover\_id} & Unique track cover art reference identifier. \\
+    \midrule
+    \emph{Track}.name & Track name. \\
+    \midrule
+    \emph{Track}.length & Track length. \\
+    \midrule
+    \emph{Artist}.name & Artist name. \\
+    \midrule
+    \emph{Album}.title & Album title \\
+    \midrule
+    \emph{TrackSource}.track\_source & Track source name. \\
+    \midrule
+    \emph{TrackSource}.track\_loc\_type & Track source location type, e.g., ``URL'' or ``path''. \\
+    \midrule
+    \emph{TrackSource}.track\_loc & Track location, i.e., a URL or path. \\
+    \midrule
+    \emph{TrackFeatures}.feature\_name & Track feature name, e.g., popularity. \\
+    \midrule
+    \emph{TrackFeatures}.feature\_value & Track feature corresponding value, e.g., 88. \\
+    \midrule
+    \emph{TrackCover}.cover\_loc\_type & Track cover art location type, e.g., ``URL'' or ``path''. \\
+    \midrule
+    \emph{TrackCover}.cover\_loc & Track cover art location, i.e., a URL or path.
+  \end{tabular}
+  \label{tbl:attr-data-dict}
+  \caption{Attributes Data Dictionary}
+\end{table}
+\subsubsection{Relationships}
+Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model#Crow's_foot_notation}{Entity Relationship Model - Crow's Foot Notation} as a notation reference if necessary - it is mostly useful for the connector multiplicities.
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ p{.175\linewidth} || p{.175\linewidth} || p{.55\linewidth} }
+    \textbf{Relation 1} & \textbf{Relation 2} & \textbf{Relationship Description} \\
+    \toprule
+    \emph{Track} & \emph{TrackArtists} & A track can correspond to multiple artists, and vice versa. \\
+    \emph{Track} & \emph{TracksAlbum} & A track can correspond to multiple albums (a single and a long-playing (LP) album), and vice versa. \\
+    \emph{Track} & \textcolor{red}{Audio Access System} & Multiple tracks can correspond to a single instance of an audio file, i.e., a single and an LP release of a song point to the same audio file. \\
+    \emph{Track} & \emph{TrackSource} & A track should only belong to one and only one source to avoid duplication. \\
+    \emph{Track} & \emph{TrackFeatures} & A track can correspond to 0 or more features, i.e., a song with no features has not been featurized and a song with multiple features has. This allows modular and evolvable data storage. \\
+    \emph{Track} & \emph{TrackCover} & A track can correspond to at most one cover, i.e., it can have no cover art. The cover art of an album can also apply to its constitutent tracks. \\
+    \emph{TrackArtists} & \emph{Artist} & A mapping relationship, where an artist can exist on multiple tracks. \\
+    \emph{TracksAlbum} & \emph{Album} & A mapping relationship, where an album can contain multiple tracks. \\
+    \emph{Artist} & \emph{Album} & An artist can have 0 or more albums, but an album must have at least one artist. 
+  \end{tabular}
+  \label{tbl:relsh-data-dict}
+  \caption{Relationships Data Dictionary}
+\end{table}
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
