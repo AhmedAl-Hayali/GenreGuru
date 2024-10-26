@@ -3,6 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\graphicspath{./diagrams/}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -63,12 +67,32 @@ Date2 & Name(s) & Description of changes\\
 hazards.}
 
 \section{System Boundaries and Components}
-
-\wss{Dividing the system into components will help you brainstorm the hazards.
-You shouldn't do a full design of the components, just get a feel for the major
-ones.  For projects that involve hardware, the components will typically include
-each individual piece of hardware.  If your software will have a database, or an
-important library, these are also potential components.}
+\subsection{Diagrammatic System Characterization}
+\begin{center}
+    \includegraphics[width=\textwidth]{/diagrams/2_1_system_characterization_diagram.png}
+\end{center}
+\subsection{System Component Descriptions}
+Please refer to table \ref{tbl:sys-cmpnt-desc}.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ p{.25\linewidth} || p{.65\linewidth} }
+      \textbf{Component Name} & \textbf{Component Description} \\
+      \toprule
+      \emph{Client Application} & User-facing component through which they can input track information and view track features as system output. \\
+      \midrule
+      \emph{Server Networking} & Abstract component that represents communication between the server and external components, i.e., the client application and external service APIs. \\
+      \midrule
+      \emph{Server Compute} & Component that represents the server processing mechanism, i.e., the component that issues the featurization request. \\
+      \midrule
+      \emph{Server Storage} & Component that represents the server storage, i.e., the database. \\
+      \midrule
+      \emph{External Service APIs} & Component that represents external service APIs, e.g., the \href{https://developer.spotify.com/}{Spotify API} or \href{https://developers.deezer.com/}{Deezer API}. \\
+      \midrule
+      \emph{Featurizer} & Component that handles the featurization process.
+    \end{tabular}
+    \label{tbl:sys-cmpnt-desc}
+    \caption{System Component Descriptions}
+  \end{table}
 
 \section{Critical Assumptions}
 
@@ -79,7 +103,36 @@ this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here. This is the most important part of this document.}
+\begin{landscape}
+\begin{table}[]
+    \scalebox{.45}{
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    Component/Design Function & Failure Mode & Effects of Failure & Causes of Failure & Detection & Recommended Action(s) \\ \hline
+    \multirow{2}{*}{User Interface App} & Unresponsive UI elements & UI stops responding to user inputs & Poor backend implementation &  & Display a message to the user to refresh the page \\
+     &  & User frustration & Poor frontend implementation &  &  \\
+    Featurizer & Poor featurization of music & Featurizer returns incorrect or incomplete data to the webapp & Poor implementation of featurizer algorithm &  & Ensure featurizer algorithm is robust and well tested \\
+    External Service APIs & API Request Blocked & Service that requires API stops functioning & Hit Music Streaming Provider API rate limit &  & \begin{tabular}[c]{@{}l@{}}- Throttle API requests if there are a large amount of them\\ - minimize the amount of API calls the service makes\\ - fallbacks if API request denied (request post-poned instead of cancelled)\end{tabular} \\
+    Version Control System & Merge conflict resolved improperly & Section(s) of documentation are erroneously deleted & Improper merge conflict resolution within github & \begin{tabular}[c]{@{}l@{}}- Regularly Checking Github Repo for integrity\\ - Recompiling the PDF from latex to check for errors before deadlines\\ - Project Supervisor(s) notice during marking\end{tabular} & \begin{tabular}[c]{@{}l@{}}- Use Github Branchrs\\ - Proper Merge Conflict resolution\end{tabular} \\
+    \multirow{3}{*}{Server Networking} & Webapp can't connect to server & App gets stuck on current task & Server network module fails &  & Display message to user, attempt to reconnect to the server \\
+     &  &  & Server loses power &  & Regularly backup server storage \\
+     &  &  & Webapp device network module fails &  &  \\
+    \multirow{3}{*}{Server Compute} & Server timeout & No response from the server & Server is overloaded &  & Display message to user to contact system administrator \\
+     &  &  & Server power loss &  & Regularly backup server storage \\
+     &  &  & Poor computation logic &  & Optimize processing algorithms \\
+    \multirow{8}{*}{Server Storage} & Server storage is inaccessible & Server query failure & Storage device failure &  & Display message to user to contact system administrator \\
+     &  &  & Server power loss &  & Regularly backup server storage \\
+     &  &  &  &  &  \\
+     & Duplicate database entries & Compute unit returns incorrect information & Lack of duplicate protection &  & Implement duplicate protection measures \\
+     &  &  &  &  & Merge duplicate entries \\
+     &  &  &  &  &  \\
+     & Data corruption & Compute unit response contains errors or is empty & Server power loss &  & Regularly backup server storage \\
+     &  & Data loss & Storage device failure &  &  \\ \hline
+    \end{tabular}
+    }
+\end{table}
+\end{landscape}
+
 \wss{The safety requirements in the table do not have to have the prefix SR.
 The most important thing is to show traceability to your SRS. You might trace to
 requirements you have already written, or you might need to add new
