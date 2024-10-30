@@ -246,52 +246,93 @@ the contents of the subsections.}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
-
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
 		
-\paragraph{Title for Test}
+\subsubsection{Client Application User Interface Elements Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{Test-FR1.1\\}
+Control: Manual
+					
+Initial State: The client application has been opened. 
+					
+Input: Interacting with the user interface elements. 
+					
+Output: The client application's user interface elements (such as buttons, text input, etc) respond to the user's inputs. 
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: If the user interacts with an element of the user interface, they expect a appropriate response based on what they
+interacted with. 
 
 How test will be performed: 
+\begin{itemize}
+  \item Interaction Validation: The tester interacts with elements (such as buttons, dropdowns, text input fields) and sees 
+  if the system responds as expected. 
+  \item Outcome Documentation: The tester documents how the interface elements responds and notes the behave unexpectedly. 
+  \item Error Handling: Verify that there are appropriate error messages if an element or portion of the system fails. 
+\end{itemize}
+
+\item{Test-FR4.1\\}
+
+Control: Manual
+					
+Initial State: The client application has been opened, the tester has a verified list of valid and invalid inputs. 
+					
+Input: Correct and Incorrect Song References are provided by a tester to the system. 
+					
+Output: The service accepts the correct references, and returns an error message(s) on invalid. 
+
+Test Case Derivation: The expected value in the output field is some form of an error message if the input is invalid. For valid inputs the service 
+should simply not return an error message and behave nomrally. We purposely test both 
+valid and invalid inputs in order to make sure that the service is treating valid and invalid inputs differently. 
+
+How test will be performed: 
+
+The test is performed by creating a list of valid references and invalid references, after which the 
+tester is expected to input them into the client application and noting the results. 
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Music Featurizer/Analyzer Module Tests}
+\begin{enumerate}
+  \item{test-FR3.1\\}
 
-...
+  Control: Manual
+            
+  Initial State: The tester already knows the features of a specific song, and the client application is open. 
+            
+  Input: Song referenecs where the features are already known. 
+            
+  Output: Song features corresponding to the input
+
+  Test Case Derivation: The output of the system should be corresponded with the features of another database, such as 
+  spotify's. We use this known quantity in order to evaluate the correctness of the outputs of our system. 
+
+  How test will be performed: The tester will input a list of songs where the features are already known, and compare the 
+  results the system outputs. 
+
+\end{enumerate}
+
+\subsubsection{Music Recommendations Module Tests}
+\begin{enumerate}
+  \item{test-FRx.1\\}
+
+  Control: Manual versus Automatic
+            
+  Initial State:
+            
+  Input:
+            
+  Output:
+
+  Test Case Derivation: 
+
+  How test will be performed:
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
