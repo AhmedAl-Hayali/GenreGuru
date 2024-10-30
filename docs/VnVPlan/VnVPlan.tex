@@ -183,17 +183,23 @@ verified.  Techniques for this include review and mutation testing.}
 \wss{Create a checklists?}
 
 \subsection{Implementation Verification Plan}
-
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
-
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
+The following are the approaches we will use to verify the implementation of the system:
+\begin{itemize}
+  \item Static Techniques:
+  \begin{itemize}
+    \item Code walkthroughs with the supervisor and other teammates
+    \item Static analyzers to improve code quality and readability
+  \end{itemize}
+  \item Dynamic Techniques:
+  \begin{itemize}
+    \item Running full system tests to verify that all requirements are met
+    \item Running unit tests to verify the implementation matches the designs described
+    in other system documents
+  \end{itemize}
+  \item All pull requests are required to be reviewed by at least one other group member
+  before merging
+\end{itemize}
+Static analyzers and unit tests will be automated through github actions.
 
 \subsection{Automated Testing and Verification Tools}
 
