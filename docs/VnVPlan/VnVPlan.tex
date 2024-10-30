@@ -205,14 +205,26 @@ The following automated tools will be used throughout the verification and valid
 process of the system:
 \begin{itemize}
   \item Flake8 python linter
-  \item ESLint javascript linter
-  \item Pytest unit testing framework
-  \item Jest unit testing framework
+  \item Pytest unit testing framework (automated through Tox)
   \item github actions
 \end{itemize}
-Our code coverage tools of choice are tox and jest for python and javascript, respectively.
-These tools are really nice as not only can they run unit tests, but they also report the
-code coverage back to the developers. 
+
+\noindent
+Our automated testing tools will be used to strictly verify the implementation of the system
+(See the previous section of this document for more details). We decided to use Flake8
+because it is the most popular python linter and it can do both style and syntax checking.
+We decided to use Tox because it can automate our unit tests while also reporting both testing
+and coverage metrics.\\
+
+\noindent
+When a pull request gets created, github actions are triggered. Firt, github actions will run the
+pull request through the linter to highlight any syntax and style erros in the code. If that fails,
+github actions will immediately terminate its execution and report that the linter reported errors.
+If there are no linter errors, github actions will then invoke Tox. Tox will build the entire project
+and then run all unit tests across all project modules. After all unit tests are run, github actions
+will report which tests passed and which tests failed. The Tox output will also be piped to a text
+file, which creates the testing and coverage report. If all tests pass, github will re-enable the
+ability to merge the pull request.
 \subsection{Software Validation Plan}
 
 \wss{If there is any external data that can be used for validation, you should
