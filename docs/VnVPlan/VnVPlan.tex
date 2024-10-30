@@ -193,20 +193,21 @@ The following are the approaches we will use to verify the implementation of the
   \item Static Techniques:
   \begin{itemize}
     \item Code walkthroughs of the algorithms of the featurization component with the supervisor and other teammates.
-    Code walkthroughs will accompanied with a checklist.
+    Code walkthroughs will be performed with a checklist.
     \item Flake8 linter to perform static analysis of our source code to check for syntax errors and ensure conformance
     to PEP8 style guidelines
   \end{itemize}
   \item Dynamic Techniques:
   \begin{itemize}
-    \item Running full system tests to verify that all requirements are met
+    \item Running full system tests to verify that all requirements are met (see section 4 of this document)
     \item Running unit tests via tox to verify the implementation matches the designs described
     in other system documents
   \end{itemize}
   \item All pull requests are required to be reviewed by at least one other group member
   before merging
 \end{itemize}
-Flake8 and tox will be automated through github actions (see section 3.6 of this document).\\
+\noindent
+Flake8 and tox will be automated through github actions (see section 3.6 of this document for further details).\\
 
 \noindent
 Here is a sample code walkthrough checklist. It will be updated as reviews are performed:\\
@@ -253,6 +254,8 @@ Testing
 \begin{itemize}
   \item[$\square$] Are there enough unit tests to achieve 100\% code coverage in tox?    
   \item[$\square$] Does tox report that 100\% of unit tests are passing? 
+  \item[$\square$] Are there enough system tests to cover all requirements? 
+  \item[$\square$] Are all system tests passing? 
 \end{itemize}
 
 \subsection{Automated Testing and Verification Tools}
