@@ -661,15 +661,16 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 \section{Functional Requirements}
 \subsection{Functional Requirements}
 \hspace{14pt}
+
 \fbox{
 \begin{minipage}{\textwidth}
 \textbf{Requirement \# 1} \\
 \textbf{Requirement Type:} 9 \\
 \textbf{Event/Use Case \#:} 1 \\
-\textbf{Description:} The system should respond to user actions (e.g. swipe, tap). \\
+\textbf{Description:} The system should feature a client application for user interaction and input. \\
 \textbf{Rationale:} To allow users to interact with the system efficiently and intuitively. \\
 \textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} User performs an action (e.g. swipe, tap) and system responds within 2 seconds. \\
+\textbf{Fit Criterion:} The client application handles user inputs and sends requests to the compute server. \\
 \textbf{Customer Satisfaction:} 5 \\
 \textbf{Customer Dissatisfaction:} 0 \\
 \textbf{Priority:} High \\
@@ -685,88 +686,8 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 \begin{minipage}{\textwidth}
 \textbf{Requirement \# 2} \\
 \textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} 2 \\
-\textbf{Description:} The system allows the users to select song features (e.g. tempo, genre), and it returns recommendations. \\
-\textbf{Rationale:} User wants song recommendations based on desired features. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} User can select features and does receive song recommendations. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created October 6, 2024
-\end{minipage}
-}
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 3} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} 3 \\
-\textbf{Description:} The system generates a song based on reference song(s) or snippet(s) received from the user as input. \\
-\textbf{Rationale:} Users need an easy way to create music, without prior knowledge, that is similar to their input songs. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} Music is generated from the input reference song(s) or snippet(s). \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created October 6, 2024
-\end{minipage}
-}
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 4} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} 4 \\
-\textbf{Description:} The system will analyze a reference song or snippet, and provide its features. \\
-\textbf{Rationale:} Users, more particularly music producers and educators, need a way to break down songs for a more detailed analysis of their features. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} User is provided with various features and visualizations showing an accurate breakdown of their song or snippet. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created October 11, 2024
-\end{minipage}
-}
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 5} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} 4 \\
-\textbf{Description:} The system will analyze a reference song or snippet, and provide its visualizations. \\
-\textbf{Rationale:} Users, more particularly music producers and educators, need a way to visualize the breakdown of songs for a better understading and analysis. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} User is provided with various visualizations that accurately represent their song or snippet. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created October 11, 2024
-\end{minipage}
-}
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 6} \\
-\textbf{Requirement Type:} 9 \\
 \textbf{Event/Use Case \#:} 5 \\
-\textbf{Description:} Users want recommendations based on reference song(s) and/or snippet(s). \\
+\textbf{Description:} The system will generate song recommendations based on the user's input. \\
 \textbf{Rationale:} Users want to discover new music or want music similar to the ones they are listening to. \\
 \textbf{Originator:} Requirement Analyst \\
 \textbf{Fit Criterion:} The system returns a list of recommendations. \\
@@ -783,10 +704,50 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 
 \fbox{
 \begin{minipage}{\textwidth}
-\textbf{Requirement \# 7} \\
+\textbf{Requirement \# 3} \\
+\textbf{Requirement Type:} 9 \\
+\textbf{Event/Use Case \#:} 4 \\
+\textbf{Description:} The system will analyze a reference song or snippet, and display its features. \\
+\textbf{Rationale:} Users, more particularly music producers and educators, need a way to break down songs for a more detailed analysis of their features. \\
+\textbf{Originator:} Requirement Analyst \\
+\textbf{Fit Criterion:} User is provided with various features and visualizations showing an accurate breakdown of their song or snippet. \\
+\textbf{Customer Satisfaction:} 5 \\
+\textbf{Customer Dissatisfaction:} 0 \\
+\textbf{Priority:} High \\
+\textbf{Conflicts:} None \\
+\textbf{Supporting Material:} None \\
+\textbf{History:} Created October 11, 2024
+\end{minipage}
+}
+
+\vspace{10pt}
+
+% \fbox{
+% \begin{minipage}{\textwidth}
+% \textbf{Requirement \# 4} \\
+% \textbf{Requirement Type:} 9 \\
+% \textbf{Event/Use Case \#:} 4 \\
+% \textbf{Description:} The system will analyze a reference song or snippet, and provide its visualizations. \\
+% \textbf{Rationale:} Users, more particularly music producers and educators, need a way to visualize the breakdown of songs for a better understading and analysis. \\
+% \textbf{Originator:} Requirement Analyst \\
+% \textbf{Fit Criterion:} User is provided with various visualizations that accurately represent their song or snippet. \\
+% \textbf{Customer Satisfaction:} 5 \\
+% \textbf{Customer Dissatisfaction:} 0 \\
+% \textbf{Priority:} High \\
+% \textbf{Conflicts:} None \\
+% \textbf{Supporting Material:} None \\
+% \textbf{History:} Created October 11, 2024
+% \end{minipage}
+% }
+
+% \vspace{10pt}
+
+\fbox{
+\begin{minipage}{\textwidth}
+\textbf{Requirement \# 4} \\
 \textbf{Requirement Type:} 9 \\
 \textbf{Event/Use Case \#:} 2,3,4,5 \\
-\textbf{Description:} The system will validate user inputs to ensure they are correct. \\
+\textbf{Description:} The system will validate user inputs to ensure they are correct, eg of the right format (reference to song, not audio file). \\
 \textbf{Rationale:} Prevents errors and ensures the system processes valid data. \\
 \textbf{Originator:} Requirement Analyst \\
 \textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid. \\
