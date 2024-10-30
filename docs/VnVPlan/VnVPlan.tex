@@ -276,7 +276,6 @@ How test will be performed:
 \end{itemize}
 
 \item{Test-FR4.1\\}
-
 Control: Manual
 					
 Initial State: The client application has been opened, the tester has a verified list of valid and invalid inputs. 
@@ -299,14 +298,13 @@ tester is expected to input them into the client application and noting the resu
 \subsubsection{Music Featurizer/Analyzer Module Tests}
 \begin{enumerate}
   \item{test-FR3.1\\}
-
   Control: Manual
             
   Initial State: The tester already knows the features of a specific song, and the client application is open. 
             
   Input: Song referenecs where the features are already known. 
             
-  Output: Song features corresponding to the input
+  Output: Song feeatures that are the same as the ones that are already known. 
 
   Test Case Derivation: The output of the system should be corresponded with the features of another database, such as 
   spotify's. We use this known quantity in order to evaluate the correctness of the outputs of our system. 
@@ -318,21 +316,27 @@ tester is expected to input them into the client application and noting the resu
 
 \subsubsection{Music Recommendations Module Tests}
 \begin{enumerate}
-  \item{test-FRx.1\\}
-
-  Control: Manual versus Automatic
+  \item{test-FR2.1\\}
+  Control: Manual
             
-  Initial State:
+  Initial State: The tester has a list of songs where their features are known and verified. 
             
-  Input:
+  Input: A list of songs where the features are already known. 
             
-  Output:
+  Output: A list of songs where the features have similarities to the ones inputted. 
 
-  Test Case Derivation: 
+  Test Case Derivation: The song recommendation component should operate by generating recommendations based on the inputted 
+  song's features and checking for other songs where the features are also similar. Through this, we are testing if the output
+  of the generation system is correct or not by checking if there are overlapping features between the input and outputs, which 
+  also allows us to determine how good the outputs are as opposed to only whether they are sensible or not. 
 
-  How test will be performed:
+  How test will be performed: The tester will input to the recommendation module a list of songs where the features are known. 
+  The tester then notes the generated songs, notes the features of the generated songs, after which they document which features
+  are overlapping and then checks which outputs are matching. 
 
 \end{enumerate}
+
+
 
 \subsection{Tests for Nonfunctional Requirements}
 
