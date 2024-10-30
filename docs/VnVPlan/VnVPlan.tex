@@ -196,22 +196,18 @@ walkthrough.  There is also a possibility of using the final presentation (in
 CAS741) for a partial usability survey.}
 
 \subsection{Automated Testing and Verification Tools}
-
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
-
+The following automated tools will be used throughout the verification and validation
+process of the system:
+\begin{itemize}
+  \item Flake8 python linter
+  \item ESLint javascript linter
+  \item Pytest unit testing framework
+  \item Jest unit testing framework
+  \item github actions
+\end{itemize}
+Our code coverage tools of choice are tox and jest for python and javascript, respectively.
+These tools are really nice as not only can they run unit tests, but they also report the
+code coverage back to the developers. 
 \subsection{Software Validation Plan}
 
 \wss{If there is any external data that can be used for validation, you should
