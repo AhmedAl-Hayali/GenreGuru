@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{amssymb}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -187,19 +188,68 @@ The following are the approaches we will use to verify the implementation of the
 \begin{itemize}
   \item Static Techniques:
   \begin{itemize}
-    \item Code walkthroughs with the supervisor and other teammates
-    \item Static analyzers to improve code quality and readability
+    \item Code walkthroughs of the algorithms of the featurization component with the supervisor and other teammates.
+    Code walkthroughs will accompanied with a checklist.
+    \item Flake8 linter to perform static analysis of our source code to check for syntax errors and ensure conformance
+    to PEP8 style guidelines
   \end{itemize}
   \item Dynamic Techniques:
   \begin{itemize}
     \item Running full system tests to verify that all requirements are met
-    \item Running unit tests to verify the implementation matches the designs described
+    \item Running unit tests via tox to verify the implementation matches the designs described
     in other system documents
   \end{itemize}
   \item All pull requests are required to be reviewed by at least one other group member
   before merging
 \end{itemize}
-Static analyzers and unit tests will be automated through github actions.
+Flake8 and tox will be automated through github actions (see section 3.6 of this document).\\
+
+\noindent
+Here is a sample code walkthrough checklist. It will be updated as reviews are performed:\\
+
+\noindent
+Functionality
+\begin{itemize}
+  \item[$\square$] Does the code perform its intended task?
+  \item[$\square$] Can this code be traced to a requirement?
+  \item[$\square$] Is there redundant or unnecessary code?
+\end{itemize}
+
+\noindent
+Readability
+\begin{itemize}
+  \item[$\square$] Do the functions and variables have meaningful names?
+  \item[$\square$] Does the source code contain sufficient commenting?
+  \item[$\square$] Does the code follow PEP8 style guidelines
+\end{itemize}
+
+\noindent
+Modularity
+\begin{itemize}
+  \item[$\square$] Are there excessively long functions that can be broken down?
+  \item[$\square$] Is the code organized? 
+  \item[$\square$] Is the code easy to change or expand upon?
+\end{itemize}
+
+\noindent
+Performance
+\begin{itemize}
+  \item[$\square$] Are there any unnecessary data structures or computations?
+\end{itemize}
+
+\noindent
+Error Handling
+\begin{itemize}
+  \item[$\square$] Are exceptions and errors handled gracefully?
+  \item[$\square$] Do exceptions and erros have useful error messages? 
+\end{itemize}
+
+\noindent
+Testing
+\begin{itemize}
+  \item[$\square$] Are there enough unit tests to achieve 100\% code coverage in tox?    
+  \item[$\square$] Does tox report that 100\% of unit tests are passing? 
+\end{itemize}
 
 \subsection{Automated Testing and Verification Tools}
 
