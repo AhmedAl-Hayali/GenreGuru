@@ -217,14 +217,22 @@ We decided to use Tox because it can automate our unit tests while also reportin
 and coverage metrics.\\
 
 \noindent
-When a pull request gets created, github actions are triggered. Firt, github actions will run the
+When a pull request gets created, github actions are triggered. First, github actions will run the
 pull request through the linter to highlight any syntax and style erros in the code. If that fails,
 github actions will immediately terminate its execution and report that the linter reported errors.
 If there are no linter errors, github actions will then invoke Tox. Tox will build the entire project
 and then run all unit tests across all project modules. After all unit tests are run, github actions
 will report which tests passed and which tests failed. The Tox output will also be piped to a text
 file, which creates the testing and coverage report. If all tests pass, github will re-enable the
-ability to merge the pull request.
+ability to merge the pull request.\\
+
+\noindent
+This automated testing setup allows for every pull request to undergo thorough checks before integration
+into the main codebase. By using Flake8 for style and syntax verification, we can ensure to maintain consistent
+code quality and catch common errors early. Tox automates our unit tests, making it easier to identify any failures
+across modules and simplifying the process of tracking test results and code behavior. GitHub Actions integrates
+these tools, creating a reliable CI pipeline that allows the team to focus on development whilst maintaining quality.
+
 \subsection{Software Validation Plan}
 
 \wss{If there is any external data that can be used for validation, you should
