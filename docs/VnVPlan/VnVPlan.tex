@@ -275,23 +275,20 @@ How test will be performed:
   \item Error Handling: Verify that there are appropriate error messages if an element or portion of the system fails. 
 \end{itemize}
 
-\item{Test-FR4.1\\}
-Control: Manual
-					
-Initial State: The client application has been opened, the tester has a verified list of valid and invalid inputs. 
-					
-Input: Correct and Incorrect Song References are provided by a tester to the system. 
-					
-Output: The service accepts the correct references, and returns an error message(s) on invalid. 
+\item{Test-FR1.2, 5.1 (Should this be its own section)\\}
+  Control: Manual
+            
+  Initial State: The client application has been opened, and the system has processed the users input
+  
+  Input: Song/snippet references
+            
+  Output: The client application displays the output  
 
-Test Case Derivation: The expected value in the output field is some form of an error message if the input is invalid. For valid inputs the service 
-should simply not return an error message and behave nomrally. We purposely test both 
-valid and invalid inputs in order to make sure that the service is treating valid and invalid inputs differently. 
+  Test Case Derivation: The output to the users request should be displayed for the user to see. This allows the user to 
+  interpret and interact with the results
 
-How test will be performed: 
-
-The test is performed by creating a list of valid references and invalid references, after which the 
-tester is expected to input them into the client application and noting the results. 
+  How test will be performed: The tester will  submit a song/snippet reference, and observe the client applications display (must we mention here
+  if it needs to be accurate?)
 
 \end{enumerate}
 
@@ -334,6 +331,27 @@ tester is expected to input them into the client application and noting the resu
   The tester then notes the generated songs, notes the features of the generated songs, after which they document which features
   are overlapping and then checks which outputs are matching. 
 
+\end{enumerate}
+
+\subsection{Input Validation Tests}
+\begin{enumerate}
+  \item{Test-FR4.1\\}
+  Control: Manual
+            
+  Initial State: The client application has been opened, the tester has a verified list of valid and invalid inputs. 
+            
+  Input: Correct and Incorrect Song References are provided by a tester to the system. 
+            
+  Output: The service accepts the correct references, and returns an error message(s) on invalid. 
+
+  Test Case Derivation: The expected value in the output field is some form of an error message if the input is invalid. For valid inputs the service 
+  should simply not return an error message and behave nomrally. We purposely test both 
+  valid and invalid inputs in order to make sure that the service is treating valid and invalid inputs differently. 
+
+  How test will be performed: 
+
+  The test is performed by creating a list of valid references and invalid references, after which the 
+  tester is expected to input them into the client application and noting the results. 
 \end{enumerate}
 
 
