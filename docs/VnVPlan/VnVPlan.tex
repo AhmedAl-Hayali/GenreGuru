@@ -189,7 +189,29 @@ verified.  Techniques for this include review and mutation testing.}
 \wss{Create a checklists?}
 
 \subsection{Implementation Verification Plan}
-The following are the approaches we will use to verify the implementation of the system:
+\subsubsection{Static Analysis}
+Static analysis is the analysis of program content without execution. Below is a description of static analysis techniques we plan to implement as part of our testing process.
+
+\begin{description}[style=unboxed,leftmargin=0cm]
+  \item[Linting] Linters like \href{https://pylint.readthedocs.io/}{\texttt{Pylint}}, \href{https://docs.astral.sh/ruff/}{\texttt{Ruff}}, or or \href{https://flake8.pycqa.org/en/stable/}{\texttt{Flake8}} check for errors, enforce a coding standard, identify \href{https://refactoring.guru/refactoring/smells}{code smells}, and can make code refactoring suggestions.
+  
+  \item[Formatting] Formatters like \href{https://black.readthedocs.io/}{\texttt{Black}} and \texttt{Ruff} (indeed, Ruff is also a formatter) standardize code appearance and adhere to style guides, allowing the code reader to focus on code content.
+  
+  \item[Type Checking] Type checkers like \href{https://mypy.readthedocs.io/}{\texttt{mypy}} ensure correct use of variables and functions in code using type hints, as outlined in \href{https://peps.python.org/pep-484/}{PEP 484}. Type hinting can also serve as documentation when publishing an API reference or developer guide.
+  
+  \item[Security Checking] Static security checkers like \href{https://bandit.readthedocs.io/}{\texttt{Bandit}} find common security vulnerabilities in code, e.g., framework misconfiguration (\texttt{B2XX}, e.g., exposing the Flask debugger in a production application, allowing \href{https://flask.palletsprojects.com/en/stable/quickstart/#debug-mode:~:text=Warning}{remote code execution}), blacklist calls (\href{https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html}{\texttt{B3XX}}, e.g., loading serialized pickle files), blacklist imports (\href{https://bandit.readthedocs.io/en/latest/blacklists/blacklist_imports.html}{\texttt{B4XX}}, e.g., importing \texttt{ftplib} for insecure file transfer), cryptography (\texttt{B5XX}, e.g., \href{https://bandit.readthedocs.io/en/latest/plugins/b501_request_with_no_cert_validation.html}{missing certificate validation}), and injection (\texttt{B6XX}, e.g., testing for \href{https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html}{SQL injection}).
+  
+  \item[Code Metrics Analysis] A code metrics analysis tool like \href{https://radon.readthedocs.io/en/stable/index.html}{\texttt{radon}} can provide insights on various aspects of the codebase:
+    \begin{description}[style=unboxed,labelindent=1cm]
+      \item[Raw metrics] Number of lines of source code (SLOC), logic (LLOC), comments, and whitespace.
+      \item[Cyclomatic complexity] Number of decisions (or linearly independent paths) in a code block.
+      \item[Halstead metrics] Statically-generated program \href{https://radon.readthedocs.io/en/stable/intro.html#halstead-metrics}{metrics}.
+    \end{description}
+  
+  \item[Composite Analysis Techniques] Tools like \href{https://radon.readthedocs.io/en/stable/index.html}{\texttt{Prospector}} combine multiple analysis techniques into one, i.e., linting via \texttt{Pylint}, \href{https://launchpad.net/pyflakes}{\texttt{Pyflakes}}, or \texttt{Ruff}, \href{https://peps.python.org/pep-8}{PEP 8} and PEP 257 formatting via \href{https://pycodestyle.pycqa.org/en/stable/}{\texttt{pycodestyle}} and \href{https://www.pydocstyle.org/en/stable/}{\texttt{pydocstyle}}, code complexity analysis via \href{https://flake8.pycqa.org/en/stable/}{\texttt{McCabe}}, simple security checking via \href{https://github.com/prospector-dev/dodgy}{\texttt{Dodgy}}, packaging quality checking via \href{https://github.com/regebro/pyroma}{\texttt{Pyroma}}, unused modules checking via \href{https://github.com/jendrikseipp/vulture}{\texttt{Vulture}}, type checking via \texttt{Mypy} or \href{https://microsoft.github.io/pyright/}{\texttt{Pyright}}, and security checking via \texttt{Bandit}.
+  
+  \item[Code Walkthroughs] walkthroughs of the algorithms of the featurization component with the supervisor and other teammates. Code walkthroughs will be performed with a checklist.
+\end{description}
 \begin{itemize}
   \item Static Techniques:
   \begin{itemize}
