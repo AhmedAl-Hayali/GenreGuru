@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{enumitem}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -173,155 +174,106 @@ This is the initial SRS checklist that reviewers will use. It will be updated as
 \subsection{Design Verification Plan}
 
 The design verification will ensure that each component of the system meets the requirements outlined in the Software Requirements Specification (SRS). Verification will occur through systematic reviews, testing, and validation checklists tailored to each component.
-\\ \\
-\textbf{\large Client Application} \\
-User-facing component for inputting track information and displaying system output.
 
-\textbf{Verification Approach:}
-\begin{itemize}
+\subsubsection{Client Application Design Verification}
+User-facing component for inputting track information and displaying system output.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  
+  \begin{itemize}[leftmargin=0cm]
     \item Conduct usability testing with users to assess ease of input and clarity of output.
     \item Review design documents to ensure UI/UX aligns with requirements.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+  
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item User can input track information without errors.
+    \item System output is clear and comprehensible.
+    \item User feedback is collected and assessed.
+  \end{itemize}
+\end{description}
 
-\textbf{Roles:}
-\begin{itemize}
-    \item Ansel Chen: Joint responsibility for client application testing.
-    \item Mohamad-Hassan Bahsoun: Joint responsibility for client application testing.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] User can input track information without errors.
-  \item[$\square$] System output is clear and comprehensible.
-  \item[$\square$] User feedback is collected and assessed.
-\end{itemize}
-
-\vspace{1cm}
-
-\noindent \textbf{\large Server Networking} \\
-Represents communication between the server and external components (client application, APIs).
-
-\textbf{Verification Approach:}
-\begin{itemize}
+\subsubsection{Server Networking Design Verification}
+Represents communication between the server and external components, e.g., between the client application and external service APIs.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
     \item Review network architecture to confirm it supports required protocols.
     \item Test for successful data transmission between components.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All intended connections are established.
+    \item Data loss during transmission is within acceptable limits.
+    \item Network security measures are implemented and verified.
+  \end{itemize}
+\end{description}
 
-\textbf{Roles:}
-\begin{itemize}
-    \item Ahmed Al-Hayali: Server networking interface testing.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] All intended connections are established.
-  \item[$\square$] Data loss during transmission is within acceptable limits.
-  \item[$\square$] Network security measures are implemented and verified.
-\end{itemize}
-
-\vspace{1cm}
-
-\noindent \textbf{\large Server Compute} \\
-Component responsible for processing requests and issuing featurization.
-
-\textbf{Verification Approach:}
-\begin{itemize}
+\subsubsection{Server Compute Design Verification}
+Component responsible for processing user requests and issuing featurization and data access requests.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
     \item Review processing algorithms for efficiency.
     \item Conduct code reviews to ensure best practices are followed.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Processing time is optimized for expected load.
+    \item Code is clean and adheres to project standards.
+    \item Edge cases are handled appropriately.
+  \end{itemize}
+\end{description}
 
-\textbf{Roles:}
-\begin{itemize}
-    \item Matthew Baleanu: Unit testing for compute.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] Processing time is optimized for expected load.
-  \item[$\square$] Code is clean and adheres to project standards.
-  \item[$\square$] Edge cases are handled appropriately.
-\end{itemize}
-
-\vspace{1cm}
-
-\noindent \textbf{\large Server Storage} \\
+\subsubsection{Server Storage Design Verification}
 Represents the database for storing data.
-
-\textbf{Verification Approach:}
-\begin{itemize}
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
     \item Review database schema against the SRS.
     \item Test data retrieval and storage for accuracy.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Schema supports all required data types and relationships.
+    \item Data retrieval times meet performance criteria.
+    \item Data integrity is maintained during transactions.
+  \end{itemize}
+\end{description}
 
-\textbf{Roles:}
-\begin{itemize}
-    \item Ahmed Al-Hayali: Functional testing for server storage.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] Schema supports all required data types and relationships.
-  \item[$\square$] Data retrieval times meet performance criteria.
-  \item[$\square$] Data integrity is maintained during transactions.
-\end{itemize}
-
-\vspace{1cm}
-
-\noindent \textbf{\large External Service APIs} \\
+\subsubsection{External Service APIs Design Verification}
 Represents integration with external services like Spotify or Deezer.
-
-\textbf{Verification Approach:}
-\begin{itemize}
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
     \item Review API documentation for compliance.
     \item Test integration for successful data exchange.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All API endpoints are functional as expected.
+    \item Data that is exchanged is accurate and formatted correctly.
+    \item Error handling for API failures is in place.
+  \end{itemize}
+\end{description}
 
-\textbf{Roles:}
-\begin{itemize}
-    \item Mohamad-Hassan Bahsoun: External service API interface testing.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] All API endpoints are functional as expected.
-  \item[$\square$] Data exchanged is accurate and formatted correctly.
-  \item[$\square$] Error handling for API failures is in place.
-\end{itemize}
-
-\vspace{1cm}
-
-\noindent \textbf{\large Featurizer} \\
+\subsubsection{Featurizer Design Verification}
 Handles the featurization process.
-
-\textbf{Verification Approach:}
-\begin{itemize}
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
     \item Review featurization algorithms for correctness.
     \item Test output against known input cases to validate accuracy.
-\end{itemize}
-
-\textbf{Roles:}
-\begin{itemize}
-    \item Ansel Chen: Joint featurizer algorithm testing.
-    \item Muhammad Jawad: Joint featurizer algorithm testing.
-    \item Mohamad-Hassan Bahsoun: Joint featurizer algorithm testing.
-    \item Matthew Baleanu: Joint featurizer algorithm testing.
-    \item Ahmed Al-Hayali: Joint featurizer algorithm testing.
-\end{itemize}
-
-\textbf{Checklist:}
-\begin{itemize}
-  \item[$\square$] All features are correctly extracted from input data.
-  \item[$\square$] Featurization time is within acceptable limits.
-  \item[$\square$] Results match expected outputs for test cases.
-\end{itemize}
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All features are correctly extracted from input data.
+    \item Featurization time is within acceptable limits.
+    \item Results match expected outputs for test cases.
+  \end{itemize}
+\end{description}
 
 A group discussion will be held bi-weekly to review the verification process and address any outstanding issues. Feedback from classmates will be incorporated throughout the development process, especially during review sessions.
-
-% \wss{Plans for design verification}
-
-% \wss{The review will include reviews by your classmates}
-
-% \wss{Create a checklists?}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
