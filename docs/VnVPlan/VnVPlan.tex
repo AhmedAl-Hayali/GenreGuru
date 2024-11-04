@@ -92,21 +92,21 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 \wss{Say what software is being tested.  Give its name and a brief overview of
   its general functions.}
 
-\subsection{Objectives}
-Verification gives us confidence that we are building the thing right and satisfying our requirements. Validation ensures that what we are building is the right thing.
+  \subsection{Objectives}
 
-\emph{Verify} -- Assess whether project satisfies (F/NF) requirements or a set of specifications; often internal to project team. ``Confirmation by examination \& provision of objective evidence that input requirements fulfilled.'' Modelling, simulations, alternative calculations, comparing with other proven designs, experiments, test, \& specialist technical reviews.
-\begin{itemize}
-  \item Test atomic items.
-  \item Test interactions between atomic items (integration).
-  \item System (end-to-end) testing.
-  \item \textcolor{red}{3S wk13 lec 2}
-  \item TDD where/whenever possible (after POC :))
-  \item Refactoring - eliminate code smells
-\end{itemize}
-
-\noindent
-\emph{Validate} -- Assure that project meets needs of customer and/or stakeholder, in specified environment, e.g., acceptance testing; usually external to project team. \textcolor{red}{``Design validation is similar to verification, except this time you should check the designed product under conditions of actual use.'' (ISO 9001:2015)}
+  The objectives of this Verification and Validation (VnV) Plan are twofold: to provide confidence that the project satisfies all specified functional and nonfunctional requirements (verification) and to confirm that the end product aligns with user expectations and project goals (validation).
+  
+  \emph{Verification} --  ensures that we are building the product correctly according to the defined requirements and specifications. This involves:
+  \begin{itemize}
+    \item Assessing each atomic item (unit testing) to confirm it functions as intended.
+    \item Testing interactions between atomic items (integration testing) to verify that components work together seamlessly.
+    \item Performing end-to-end (system) testing to confirm that the entire system functions correctly and meets project specifications.
+    \item Applying Test-Driven Development (TDD) practices where feasible to enhance code reliability from early stages.
+    \item Refactoring code regularly to eliminate code smells and maintain clean, efficient, and maintainable code.
+  \end{itemize}
+  
+  \emph{Validation} -- Ensure that the project meets the needs of the customer and/or stakeholders within the intended environment, typically through acceptance testing. This process is often performed by individuals external to the project team. \textcolor{red}{``Design validation is similar to verification, except this time you should check the designed product under conditions of actual use.'' (ISO 9001:2015)}
+    
 
 \wss{State what is intended to be accomplished.  The objective will be around
   the qualities that are most important for your project.  You might have
