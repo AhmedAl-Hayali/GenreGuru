@@ -215,77 +215,22 @@ Static analysis is the analysis of program content without execution. Below is a
   \item[Peer Desk Checks] Changes to the codebase will require approval from at least one other group member via a pull request review before merging to the main/production branch.
 \end{description}
 
-\noindent
-Here is a sample code walkthrough checklist. It will be updated as reviews are performed:\\
+\subsubsection{Dynamic Testing}
+Dynamic testing is the analysis of program runtime responses during and after execution. Below is a description of dynamic testing techniques we plan to implement as part of our testing process. For further details about the automated components, refer to section \ref{3.6-auto-test-verif-tools}.
 
-\noindent
-Functionality
-\begin{itemize}[label=$\square$]
-  \item Does the code perform its intended task?
-  \item Can this code be traced to a requirement?
-  \item Is there redundant or unnecessary code?
-\end{itemize}
+\begin{description}[style=unboxed,leftmargin=0cm]
+  \item[System Testing] Tests are orchestrated via Testing orchestration tools like \href{https://tox.wiki/}{\texttt{tox}} can manage all testing, from atomic unit tests to end-to-end system tests. System tests outlined in section 4 will be run to ensure necessary requirements are met.
+  \item[Unit Testing] Unit testing frameworks like \href{https://docs.pytest.org/en/stable/}{\texttt{pytest}} or \href{https://docs.python.org/3/library/unittest}{\texttt{unittest}} can verify that the implementation matches designs described in other system documents.
+  % \href{https://realpython.com/python-testing/#testing-data-driven-applications}{Guide to testing data-driven applications}. \href{https://coderpad.io/blog/development/a-guide-to-database-unit-testing-with-pytest-and-sqlalchemy/}{Guide to testing databases with \texttt{pytest}}.
+  \item[User Interface Testing] UI components can be described as a set of discrete interactions, i.e., a transition model can capture user interactions as events then test it. Tools like the \href{https://selenium-python.readthedocs.io/}{\texttt{Selenium} Python API} automate web-based interactions, i.e., can serve as a testing framework to automate interaction sequences using the UI model.
+  % If using the MVC/PAC architecture, we can test the M/P and V/A separately using stubs/mocks.
+  \item[Integration Testing] Testing frameworks like \texttt{pytest} can be combined with modular \href{https://docs.pytest.org/explanation/fixtures.html}{fixtures} or factories via \href{https://factoryboy.readthedocs.io/}{\texttt{factoryboy}} to simulate databases or other complex objects for testing operability between various interfaces, i.e., integration testing.
+  \item[Regression Testing] Persistence of tests across iterations of the project facilitates ease of regression testing, with automation via GitHub actions.
+\end{description}
+% \item \textcolor{red}{Ownership of code/data - likely algorithm person}
+% \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
 
-\noindent
-Readability
-\begin{itemize}[label=$\square$]
-  \item Do the functions and variables have meaningful names?
-  \item Does the source code contain sufficient commenting?
-  \item Does the code follow PEP8 style guidelines
-\end{itemize}
-
-\noindent
-Modularity
-\begin{itemize}[label=$\square$]
-  \item Are there excessively long functions that can be broken down?
-  \item Is the code organized? 
-  \item Is the code easy to change or expand upon?
-\end{itemize}
-
-\noindent
-Error Handling
-\begin{itemize}[label=$\square$]
-  \item Are exceptions and errors handled gracefully?
-  \item Do exceptions and erros have useful error messages? 
-\end{itemize}
-
-\noindent
-Testing
-\begin{itemize}[label=$\square$]
-  \item Does tox report that 100\% of unit tests are passing? 
-  \item Are there enough system tests to cover all requirements? 
-  \item Are all system tests passing? 
-\end{itemize}
-
-\noindent
-Reliability
-\begin{itemize}[label=$\square$]
-  \item Is the code fault-tolerant? I.e., does the system continue to operate despite failures/faults?
-  \item Does the code have effective exception-handling and error recovery mechanisms?
-\end{itemize}
-
-\noindent
-Efficiency
-\begin{itemize}[label=$\square$]
-  \item How much memory or processor capacity does the program consume?
-  \item Are algorithms optimized, avoiding unnecessary operations?
-\end{itemize}
-
-\noindent
-Reusability
-\begin{itemize}[label=$\square$]
-  \item Can components be reused in other applications/other parts of the application?
-  \item Does the program have a well-partitioned, modular design with \emph{strong cohesion} and \emph{loose coupling}?
-\end{itemize}
-
-\noindent
-Scalability
-\begin{itemize}[label=$\square$]
-  \item Can the system grow to accomodate more users, servers, data or other components?
-  \item Can it do so with acceptable performance and at acceptable cost?
-\end{itemize}
-
-\subsection{Automated Testing and Verification Tools}
+\subsection{Automated Testing and Verification Tools} \label{3.6-auto-test-verif-tools}
 
 \wss{What tools are you using for automated testing.  Likely a unit testing
   framework and maybe a profiling tool, like ValGrind.  Other possible tools
