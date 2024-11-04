@@ -163,12 +163,12 @@ The following approaches will be used for SRS verification:
   \item Ad-hoc reviews from peers and other teams in the course
 \end{itemize}
 This is the initial SRS checklist that reviewers will use. It will be updated as reviews are performed:
-\begin{enumerate}
-  \item[$\square$] Does each functional requirement have a detailed and accurate description, rationale and fit criteria?
-  \item[$\square$] Is each requirement (both functional and non-functional) relevant and necessary?
-  \item[$\square$] Are all functional requirements traceable to at least one use case?
-  \item[$\square$] Are all fit critera unambiguous and verifiable?
-  \item[$\square$] Have all issues opened by reviewers been closed? 
+\begin{enumerate}[label=$\square$]
+  \item Does each functional requirement have a detailed and accurate description, rationale and fit criteria?
+  \item Is each requirement (both functional and non-functional) relevant and necessary?
+  \item Are all functional requirements traceable to at least one use case?
+  \item Are all fit critera unambiguous and verifiable?
+  \item Have all issues opened by reviewers been closed? 
 \end{enumerate}
 
 \subsection{Design Verification Plan}
@@ -215,43 +215,49 @@ Here is a sample code walkthrough checklist. It will be updated as reviews are p
 
 \noindent
 Functionality
-\begin{itemize}
-  \item[$\square$] Does the code perform its intended task?
-  \item[$\square$] Can this code be traced to a requirement?
-  \item[$\square$] Is there redundant or unnecessary code?
+\begin{itemize}[label=$\square$]
+  \item Does the code perform its intended task?
+  \item Can this code be traced to a requirement?
+  \item Is there redundant or unnecessary code?
 \end{itemize}
 
 \noindent
 Readability
-\begin{itemize}
-  \item[$\square$] Do the functions and variables have meaningful names?
-  \item[$\square$] Does the source code contain sufficient commenting?
-  \item[$\square$] Does the code follow PEP8 style guidelines
+\begin{itemize}[label=$\square$]
+  \item Do the functions and variables have meaningful names?
+  \item Does the source code contain sufficient commenting?
+  \item Does the code follow PEP8 style guidelines
 \end{itemize}
 
 \noindent
 Modularity
-\begin{itemize}
-  \item[$\square$] Are there excessively long functions that can be broken down?
-  \item[$\square$] Is the code organized? 
-  \item[$\square$] Is the code easy to change or expand upon?
+\begin{itemize}[label=$\square$]
+  \item Are there excessively long functions that can be broken down?
+  \item Is the code organized? 
+  \item Is the code easy to change or expand upon?
 \end{itemize}
 
 \noindent
 Performance
-\begin{itemize}
-  \item[$\square$] Are there any unnecessary data structures or computations?
+\begin{itemize}[label=$\square$]
+  \item Are there any unnecessary data structures or computations?
 \end{itemize}
 
 \noindent
 Error Handling
-\begin{itemize}
-  \item[$\square$] Are exceptions and errors handled gracefully?
-  \item[$\square$] Do exceptions and erros have useful error messages? 
+\begin{itemize}[label=$\square$]
+  \item Are exceptions and errors handled gracefully?
+  \item Do exceptions and erros have useful error messages? 
 \end{itemize}
 
 \noindent
 Testing
+\begin{itemize}[label=$\square$]
+  \item Does tox report that 100\% of unit tests are passing? 
+  \item Are there enough system tests to cover all requirements? 
+  \item Are all system tests passing? 
+\end{itemize}
+
 \begin{itemize}
   \item[$\square$] Are there enough unit tests to achieve 100\% code coverage in tox?    
   \item[$\square$] Does tox report that 100\% of unit tests are passing? 
