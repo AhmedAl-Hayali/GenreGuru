@@ -300,62 +300,237 @@ How test will be performed:
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
+\subsubsection{APR1 - Minimalist Layout}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-APR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User interface loaded
+    \item \textbf{Input/Condition:} Visual inspection of layout
+    \item \textbf{Output/Result:} Interface presents a minimalist layout with minimal distractions.
+    \item \textbf{How test will be performed:} Manually inspect interface layout to ensure it follows minimalist design guidelines.
+\end{itemize}
 
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
+\subsubsection{APR2 - High Contrast}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-APR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface set to default theme
+    \item \textbf{Input/Condition:} Check for visual contrast
+    \item \textbf{Output/Result:} All text and elements display high contrast for readability.
+    \item \textbf{How test will be performed:} Perform a manual inspection of UI contrast using WCAG contrast standards.
+\end{itemize}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
+\subsubsection{APR3 - Intuitive Navigation}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-APR3
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface opened
+    \item \textbf{Input/Condition:} Navigate through different pages
+    \item \textbf{Output/Result:} Users can easily navigate and locate functions within 3 clicks.
+    \item \textbf{How test will be performed:} Manually navigate to different features and confirm efficient accessibility.
+\end{itemize}
 
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+\subsubsection{STR1 - Consistent Button Styles}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-STR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface loaded
+    \item \textbf{Input/Condition:} Check for style consistency in buttons
+    \item \textbf{Output/Result:} All buttons follow a consistent color and shape style.
+    \item \textbf{How test will be performed:} Visually inspect all buttons to ensure they meet the style guidelines.
+\end{itemize}
 
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
+\subsubsection{EUR1 - Tooltip Visibility}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-EUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface loaded with tooltips
+    \item \textbf{Input/Condition:} Hover over interactive elements
+    \item \textbf{Output/Result:} Tooltips display with descriptive content.
+    \item \textbf{How test will be performed:} Manually hover over elements to confirm tooltip visibility.
+\end{itemize}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{PIR1 - Customizable Color Themes}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-PIR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface with theme options
+    \item \textbf{Input/Condition:} User switches between themes
+    \item \textbf{Output/Result:} All themes display correctly with no visual errors.
+    \item \textbf{How test will be performed:} Switch themes manually and verify consistent color scheme application.
+\end{itemize}
 
-\begin{enumerate}
+\subsubsection{LR1 - Initial Tutorial}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-LR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} First-time user experience loaded
+    \item \textbf{Input/Condition:} User accesses the system for the first time
+    \item \textbf{Output/Result:} System displays an introductory tutorial.
+    \item \textbf{How test will be performed:} Manually confirm tutorial launches on initial access.
+\end{itemize}
 
-\item{test-id1\\}
+\subsubsection{LR2 - Tutorial Completion Time}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-LR2
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Tutorial in progress
+    \item \textbf{Input/Condition:} Measure time for tutorial completion
+    \item \textbf{Output/Result:} Users complete the tutorial within 5 minutes.
+    \item \textbf{How test will be performed:} Track completion time for new users.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{UPR1 - Friendly Feedback}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-UPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Error states are accessible
+    \item \textbf{Input/Condition:} Trigger common errors
+    \item \textbf{Output/Result:} System provides friendly, clear feedback.
+    \item \textbf{How test will be performed:} Manually review error messages to confirm they are polite and helpful.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\subsubsection{ACR1 - Access Control Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-ACR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} User session active
+    \item \textbf{Input/Condition:} Attempt unauthorized access to restricted data
+    \item \textbf{Output/Result:} Unauthorized users are blocked from accessing data.
+    \item \textbf{How test will be performed:} Attempt to access restricted areas with limited privileges.
+\end{itemize}
 
-\end{enumerate}
+\subsubsection{ACR2 - Data Privacy Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-ACR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Database access
+    \item \textbf{Input/Condition:} Attempt to access personal data
+    \item \textbf{Output/Result:} User data is secured and encrypted.
+    \item \textbf{How test will be performed:} Review database encryption protocols and access policies.
+\end{itemize}
 
-\subsubsection{Area of Testing2}
+\subsubsection{PAR1 - Precision of Data Analysis}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-PAR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Analysis function active
+    \item \textbf{Input/Condition:} Input test data with known precision values
+    \item \textbf{Output/Result:} Analysis output matches expected precision.
+    \item \textbf{How test will be performed:} Run automated precision tests on analysis output.
+\end{itemize}
 
-...
+\subsubsection{PAR2 - Rounding Accuracy}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-PAR2
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} System loaded with rounding functions
+    \item \textbf{Input/Condition:} Input values with decimals
+    \item \textbf{Output/Result:} Values are rounded accurately according to specification.
+    \item \textbf{How test will be performed:} Perform automated tests on rounding functions with pre-defined decimal values.
+\end{itemize}
+
+\subsubsection{CR1 - Maximum Concurrent Users}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-CR1
+    \item \textbf{Type:} Dynamic, Load Test
+    \item \textbf{Initial State:} System idle
+    \item \textbf{Input/Condition:} Simulate multiple user logins
+    \item \textbf{Output/Result:} System handles expected concurrent user limit.
+    \item \textbf{How test will be performed:} Use a load testing tool to simulate concurrent users.
+\end{itemize}
+
+\subsubsection{CR2 - Data Storage Capacity}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-CR2
+    \item \textbf{Type:} Static, Inspection
+    \item \textbf{Initial State:} Database system active
+    \item \textbf{Input/Condition:} Inspect data storage configurations
+    \item \textbf{Output/Result:} System storage meets or exceeds required capacity.
+    \item \textbf{How test will be performed:} Inspect database storage setup and ensure it meets capacity requirements.
+\end{itemize}
+
+\subsubsection{EPER1 - Server Room Conditions}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-EPER1
+    \item \textbf{Type:} Environmental, Inspection
+    \item \textbf{Initial State:} Server environment configured
+    \item \textbf{Input/Condition:} Measure physical conditions in server room
+    \item \textbf{Output/Result:} Server room meets temperature and humidity requirements.
+    \item \textbf{How test will be performed:} Use physical monitoring devices to ensure environmental controls.
+\end{itemize}
+
+\subsection{Productization Requirements}
+
+\subsubsection{PRR1 - Production Readiness Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-PRR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System deployed in staging environment
+    \item \textbf{Input/Condition:} Perform a complete end-to-end run
+    \item \textbf{Output/Result:} System operates without failure in a production-like setting.
+    \item \textbf{How test will be performed:} Conduct end-to-end test in staging to verify production readiness.
+\end{itemize}
+
+\subsubsection{MR1 - Ease of Code Updates}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-MR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Source code repository active
+    \item \textbf{Input/Condition:} Review update process
+    \item \textbf{Output/Result:} Codebase is structured for easy updates.
+    \item \textbf{How test will be performed:} Review code structure and modularity to ensure maintainability.
+\end{itemize}
+
+\subsubsection{PR1 - Data Encryption Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-PR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Database system in use
+    \item \textbf{Input/Condition:} Inspect database for encryption protocols
+    \item \textbf{Output/Result:} All sensitive data is encrypted in storage.
+    \item \textbf{How test will be performed:} Review encryption settings in database configuration.
+\end{itemize}
+
+\subsubsection{AUR1 - Access Logs for User Sessions}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-AUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System active with user sessions
+    \item \textbf{Input/Condition:} Access user session logs
+    \item \textbf{Output/Result:} Logs capture all user activities accurately.
+    \item \textbf{How test will be performed:} Review session logs for accuracy and completeness.
+\end{itemize}
+
+\subsubsection{CUR1 - Multilingual Support}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-CUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface displayed
+    \item \textbf{Input/Condition:} Switch to different language options
+    \item \textbf{Output/Result:} System adapts to selected language without errors.
+    \item \textbf{How test will be performed:} Switch languages manually and verify accurate translations.
+\end{itemize}
+
+\subsubsection{LGR1 - Compliance with Copyright Laws}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-LGR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Content library loaded
+    \item \textbf{Input/Condition:} Inspect all music content for licensing
+    \item \textbf{Output/Result:} All content has proper copyright attributions.
+    \item \textbf{How test will be performed:} Check each music file and source for copyright compliance.
+\end{itemize}
+
+\subsubsection{LGR2 - Adherence to Data Protection Regulations}
+\begin{itemize}
+    \item \textbf{Test ID:} NFR-LGR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User data system in place
+    \item \textbf{Input/Condition:} Inspect data management policies
+    \item \textbf{Output/Result:} User data management meets legal requirements.
+    \item \textbf{How test will be performed:} Review data management practices to confirm legal compliance.
+\end{itemize}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
