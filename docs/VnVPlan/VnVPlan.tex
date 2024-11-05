@@ -460,14 +460,14 @@ How test will be performed:
     \item \textbf{How test will be performed:} Use a load testing tool to simulate concurrent users.
 \end{itemize}
 
-\subsubsection{CR2 - Data Storage Capacity}
+\subsubsection{CR2 - Data Storage}
 \begin{itemize}
     \item \textbf{Test ID:} TCR2
-    \item \textbf{Type:} Static, Inspection
-    \item \textbf{Initial State:} Database system active.
-    \item \textbf{Input/Condition:} Inspect data storage configurations.
-    \item \textbf{Output/Result:} System storage meets or exceeds required capacity.
-    \item \textbf{How test will be performed:} Inspect database storage setup and ensure it meets capacity requirements.
+    \item \textbf{Type:} Dynamic, automated
+    \item \textbf{Initial State:} Mock database active.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Database stores appropriate data related to songs and query information.
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and test storage functionality.
 \end{itemize}
 
 \subsubsection{EPER1 - Server Room Conditions}
