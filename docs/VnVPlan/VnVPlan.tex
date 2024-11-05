@@ -173,11 +173,107 @@ This is the initial SRS checklist that reviewers will use. It will be updated as
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
+The design verification will ensure that each component of the system meets the requirements outlined in the Software Requirements Specification (SRS). Verification will occur through systematic reviews, testing, and validation checklists tailored to each component.
 
-\wss{The review will include reviews by your classmates}
+\subsubsection{Client Application Design Verification}
+User-facing component for inputting track information and displaying system output.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  
+  \begin{itemize}[leftmargin=0cm]
+    \item Conduct usability testing with users to assess ease of input and clarity of output.
+    \item Review design documents to ensure UI/UX aligns with requirements.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+  
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item User can input track information without errors.
+    \item System output is clear and comprehensible.
+    \item User feedback is collected and assessed.
+  \end{itemize}
+\end{description}
 
-\wss{Create a checklists?}
+\subsubsection{Server Networking Design Verification}
+Represents communication between the server and external components, e.g., between the client application and external service APIs.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review network architecture to confirm it supports required protocols.
+    \item Test for successful data transmission between components.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All intended connections are established.
+    \item Data loss during transmission is within acceptable limits.
+    \item Network security measures are implemented and verified.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Server Compute Design Verification}
+Component responsible for processing user requests and issuing featurization and data access requests.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review processing algorithms for efficiency.
+    \item Conduct code reviews to ensure best practices are followed.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Processing time is optimized for expected load.
+    \item Code is clean and adheres to project standards.
+    \item Edge cases are handled appropriately.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Server Storage Design Verification}
+Represents the database for storing data.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review database schema against the SRS.
+    \item Test data retrieval and storage for accuracy.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Schema supports all required data types and relationships.
+    \item Data retrieval times meet performance criteria.
+    \item Data integrity is maintained during transactions.
+  \end{itemize}
+\end{description}
+
+\subsubsection{External Service APIs Design Verification}
+Represents integration with external services like Spotify or Deezer.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review API documentation for compliance.
+    \item Test integration for successful data exchange.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All API endpoints are functional as expected.
+    \item Data that is exchanged is accurate and formatted correctly.
+    \item Error handling for API failures is in place.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Featurizer Design Verification}
+Handles the featurization process.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review featurization algorithms for correctness.
+    \item Test output against known input cases to validate accuracy.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All features are correctly extracted from input data.
+    \item Featurization time is within acceptable limits.
+    \item Results match expected outputs for test cases.
+  \end{itemize}
+\end{description}
+
+A group discussion will be held bi-weekly to review the verification process and address any outstanding issues. Feedback from classmates will be incorporated throughout the development process, especially during review sessions.
 
 \subsection{Verification and Validation Plan Verification Plan}
 
@@ -330,62 +426,287 @@ How test will be performed:
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
+\subsubsection{APR1 - Minimalist Layout}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User interface loaded.
+    \item \textbf{Input/Condition:} Visual inspection of layout.
+    \item \textbf{Output/Result:} Interface presents a minimalist layout with minimal distractions.
+    \item \textbf{How test will be performed:} Manually inspect interface layout to ensure it follows minimalist design guidelines.
+\end{itemize}
 
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
+\subsubsection{APR2 - High Contrast}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface set to default theme.
+    \item \textbf{Input/Condition:} Check for visual contrast.
+    \item \textbf{Output/Result:} All text and elements display high contrast for readability.
+    \item \textbf{How test will be performed:} Perform a manual inspection of UI contrast using WCAG contrast standards.
+\end{itemize}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
+\subsubsection{APR3 - Intuitive Navigation}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR3
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface opened.
+    \item \textbf{Input/Condition:} Navigate through different pages.
+    \item \textbf{Output/Result:} Users can easily navigate and locate functions within 3 clicks.
+    \item \textbf{How test will be performed:} Manually navigate to different features and confirm efficient accessibility.
+\end{itemize}
 
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+\subsubsection{STR1 - Consistent Button Styles}
+\begin{itemize}
+    \item \textbf{Test ID:} TSTR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface loaded.
+    \item \textbf{Input/Condition:} Check for style consistency in buttons.
+    \item \textbf{Output/Result:} All buttons follow a consistent color and shape style.
+    \item \textbf{How test will be performed:} Visually inspect all buttons to ensure they meet the style guidelines.
+\end{itemize}
 
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
+\subsubsection{EUR1 - Tooltip Visibility}
+\begin{itemize}
+    \item \textbf{Test ID:} TEUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface loaded with tooltips.
+    \item \textbf{Input/Condition:} Hover over interactive elements.
+    \item \textbf{Output/Result:} Tooltips display with descriptive content.
+    \item \textbf{How test will be performed:} Manually hover over elements to confirm tooltip visibility.
+\end{itemize}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{PIR1 - Customizable Color Themes}
+\begin{itemize}
+    \item \textbf{Test ID:} TPIR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface with theme options.
+    \item \textbf{Input/Condition:} User switches between themes.
+    \item \textbf{Output/Result:} All themes display correctly with no visual errors.
+    \item \textbf{How test will be performed:} Switch themes manually and verify consistent color scheme application.
+\end{itemize}
 
-\begin{enumerate}
+\subsubsection{LR1 - Initial Tutorial}
+\begin{itemize}
+    \item \textbf{Test ID:} TLR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} First-time user experience loaded.
+    \item \textbf{Input/Condition:} User accesses the system for the first time.
+    \item \textbf{Output/Result:} System displays an introductory tutorial.
+    \item \textbf{How test will be performed:} Manually confirm tutorial launches on initial access.
+\end{itemize}
 
-\item{test-id1\\}
+\subsubsection{LR2 - Tutorial Completion Time}
+\begin{itemize}
+    \item \textbf{Test ID:} TLR2
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Tutorial in progress.
+    \item \textbf{Input/Condition:} Measure time for tutorial completion.
+    \item \textbf{Output/Result:} Users complete the tutorial within 5 minutes.
+    \item \textbf{How test will be performed:} Track completion time for new users.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{UPR1 - Friendly Feedback}
+\begin{itemize}
+    \item \textbf{Test ID:} TUPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Error states are accessible.
+    \item \textbf{Input/Condition:} Trigger common errors.
+    \item \textbf{Output/Result:} System provides friendly, clear feedback.
+    \item \textbf{How test will be performed:} Manually review error messages to confirm they are polite and helpful.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\subsubsection{UPR2 - Standardized Iconography}
+\begin{itemize}
+    \item \textbf{Test ID:} TUPR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} A subset of complete interface iconography is available.
+    \item \textbf{Input/Condition:} Developer reviews subset of complete interface iconography.
+    \item \textbf{Output/Result:} Subset of complete interface iconography is deemed standard and inoffensive.
+    \item \textbf{How test will be performed:} Manually review individual icons to confirm they are standard and inoffensive.
+\end{itemize}
 
-\end{enumerate}
+\subsubsection{ACR1 - Accessible Fonts}
+\begin{itemize}
+    \item \textbf{Test ID:} TACR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Font-defining code is available.
+    \item \textbf{Input/Condition:} Developer reviews font-defining code.
+    \item \textbf{Output/Result:} Font-defining code is deemed to only contain accessible fonts in accordance to the \href{https://www.w3.org/TR/2023/REC-WCAG22-20231005/}{WCAG 2.2} standard.
+    \item \textbf{How test will be performed:} Perform a manual inspection of fonts available in the UI and cross-check them with the WCAG 2.2 standard.
+\end{itemize}
 
-\subsubsection{Area of Testing2}
+\subsubsection{ACR2 - Color Blind Mode}
+\begin{itemize}
+    \item \textbf{Test ID:} TACR2
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface set to default visibility mode.
+    \item \textbf{Input/Condition:} Enable color blind mode.
+    \item \textbf{Output/Result:} Interface set to color blind visibility mode.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output.
+\end{itemize}
 
-...
+\subsubsection{PAR1 - Query Request Time Precision}
+\begin{itemize}
+    \item \textbf{Test ID:} TPAR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Server active and client application open.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Server returns response and client application displays query request time.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output, capturing displayed time for verification.
+\end{itemize}
+
+\subsubsection{PAR2 - Rounding Accuracy}
+\begin{itemize}
+    \item \textbf{Test ID:} TPAR2
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} System loaded with rounding functions.
+    \item \textbf{Input/Condition:} Input values with decimals.
+    \item \textbf{Output/Result:} Values are rounded accurately according to specification.
+    \item \textbf{How test will be performed:} Perform automated tests on rounding functions with pre-defined decimal values.
+\end{itemize}
+
+\subsubsection{RAR1 - Fault Tolerance}
+\begin{itemize}
+    \item \textbf{Test ID:} TRAR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Server operational with any state or load, e.g., idle, under little load (2 or fewer users interleaving requests less than once every 30 minutes), under intermediate use (2 or more users interleaving requests at least once every 30 minutes), or under strenuous use (4 or more users interleaving requests at least once every 5 minutes).
+    \item \textbf{Input/Condition:} Server operational under any sequence of state transitions, e.g., from any of idle, under little, intermediate, or strenuous load, to idle, under little, intermediate, or strenuous load.
+    \item \textbf{Output/Result:} Server operational with any state or load.
+    \item \textbf{How test will be performed:} Schedule a 3-day monitoring period and use Ubuntu Server's \href{https://manpages.ubuntu.com/manpages/xenial/man1/uptime.1.html}{\texttt{uptime}} command to find the uptime across the monitoring period, allowing assessment and extrapolation of results from 3 days to 30 days. If possible, repeat the test with a 30-day (or longer) monitoring period. \textcolor{red}{\emph{Note}: Precise uptime metrics can only be achieved by formal checking which we do not have the expertise, time, or necessity for. A simple extrapolation result suffices for the given scope.}
+\end{itemize}
+
+\subsubsection{CR1 - Minimum Concurrent Users Load}
+\begin{itemize}
+    \item \textbf{Test ID:} TCR1
+    \item \textbf{Type:} Dynamic, Load Test
+    \item \textbf{Initial State:} System idle.
+    \item \textbf{Input/Condition:} Simulate multiple user logins.
+    \item \textbf{Output/Result:} System handles expected concurrent user limit.
+    \item \textbf{How test will be performed:} Use a load testing tool to simulate concurrent users.
+\end{itemize}
+
+\subsubsection{CR2 - Data Storage}
+\begin{itemize}
+    \item \textbf{Test ID:} TCR2
+    \item \textbf{Type:} Dynamic, automated
+    \item \textbf{Initial State:} Mock database active.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Database stores appropriate data related to songs and query information.
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and test storage functionality.
+\end{itemize}
+
+\subsubsection{EPER1 - Server Device}
+\begin{itemize}
+    \item \textbf{Test ID:} TEPER1
+    \item \textbf{Type:} Environment, Inspection
+    \item \textbf{Initial State:} Server is available for inspection.
+    \item \textbf{Input/Condition:} Inspect server specifications and body.
+    \item \textbf{Output/Result:} Server is of make and model Dell OptiPlex 3050.
+    \item \textbf{How test will be performed:} View server using los ojos.
+\end{itemize}
+
+\subsection{Productization Requirements}
+
+\subsubsection{PRR1 - Production Readiness Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} TPRR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System deployed in staging environment.
+    \item \textbf{Input/Condition:} Perform a complete end-to-end run.
+    \item \textbf{Output/Result:} System operates without failure in a production-like setting.
+    \item \textbf{How test will be performed:} Conduct end-to-end test in staging to verify production readiness.
+\end{itemize}
+
+\subsubsection{MR1 - Ease of Code Updates}
+\begin{itemize}
+    \item \textbf{Test ID:} TMR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Source code repository active.
+    \item \textbf{Input/Condition:} Review update process.
+    \item \textbf{Output/Result:} Codebase is structured for easy updates.
+    \item \textbf{How test will be performed:} Review code structure and modularity to ensure maintainability.
+\end{itemize}
+
+\subsubsection{ACCR1 - Licensed Song Access}
+\begin{itemize}
+    \item \textbf{Test ID:} TMR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Mock database active with multiple queries from different (at least 2 unique) users already loaded.
+    \item \textbf{Input/Condition:} Issue queries to access songs requested other users, not the current user.
+    \item \textbf{Output/Result:} Database returns an empty response because the requesting user does not have access (or a license) to the songs uploaded/licensed by the other user(s).
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and entries, then issue queries, capture response, and ensure it is empty.
+\end{itemize}
+
+\subsubsection{IR1 - Database Backup}
+\begin{itemize}
+    \item \textbf{Test ID:} TIR1
+    \item \textbf{Type:} Static \& Manual, Dynamic \& Automated
+    \item \textbf{Initial State:} Database layout configured \& backup code is complete.
+    \item \textbf{Input/Condition:} Conduct code review to ensure backup functionality is correct, and simulate it running (on-command as opposed to weekly) to ensure it does backup.
+    \item \textbf{Output/Result:} Database backup functionality is found to be correct, with ad-hoc generated backup artifacts to check it live.
+    \item \textbf{How test will be performed:} Conduct a code review/walkthrough and use both unit and integration testing through \texttt{Pytest} with fixtures (alongside \texttt{factoryboy}) to ensure the correct backup artifacts are generated.
+\end{itemize}
+
+\subsubsection{IR2 - Database Deduplication}
+\begin{itemize}
+    \item \textbf{Test ID:} TIR2
+    \item \textbf{Type:} Static \& Manual, Dynamic \& Automated
+    \item \textbf{Initial State:} Database layout configured \& deduplication code is complete.
+    \item \textbf{Input/Condition:} Conduct code review to ensure deduplication functionality is correct, and insert duplicate records to ensure the mechanism prevents their insertion or ``\href{https://oncodingstyle.blogspot.com/2008/10/fail-early-fail-loudly.html#:~:text=Failing%20loudly%20is%20a%20benefit,this%20is%20a%20checked%20exception.}{fails loudly}''.
+    \item \textbf{Output/Result:} Database deduplication functionality is found to be correct, with induced duplicate insertions prevented.
+    \item \textbf{How test will be performed:} Conduct a code review/walkthrough and use both unit and integration testing through \texttt{Pytest} with fixtures (alongside \texttt{factoryboy}) to ensure the correct deduplication behaviour is encountered.
+\end{itemize}
+
+\subsubsection{PR1 - Data Encryption Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} TPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Database system in use.
+    \item \textbf{Input/Condition:} Inspect database for encryption protocols.
+    \item \textbf{Output/Result:} All sensitive data is encrypted in storage.
+    \item \textbf{How test will be performed:} Review encryption settings in database configuration.
+\end{itemize}
+
+\subsubsection{AUR1 - Access Logs for User Sessions}
+\begin{itemize}
+    \item \textbf{Test ID:} TAUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System active with user sessions.
+    \item \textbf{Input/Condition:} Access user session logs.
+    \item \textbf{Output/Result:} Logs capture all user activities accurately.
+    \item \textbf{How test will be performed:} Review session logs for accuracy and completeness.
+\end{itemize}
+
+\subsubsection{CUR1 - Multilingual Support}
+\begin{itemize}
+    \item \textbf{Test ID:} TCUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface displayed.
+    \item \textbf{Input/Condition:} Switch to different language options.
+    \item \textbf{Output/Result:} System adapts to selected language without errors.
+    \item \textbf{How test will be performed:} Switch languages manually and verify accurate translations.
+\end{itemize}
+
+\subsubsection{LGR1 - Compliance with Copyright Laws}
+\begin{itemize}
+    \item \textbf{Test ID:} TLGR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Content library loaded.
+    \item \textbf{Input/Condition:} Inspect all music content for licensing.
+    \item \textbf{Output/Result:} All content has proper copyright attributions.
+    \item \textbf{How test will be performed:} Check each music file and source for copyright compliance.
+\end{itemize}
+
+\subsubsection{LGR2 - Adherence to Data Protection Regulations}
+\begin{itemize}
+    \item \textbf{Test ID:} TLGR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User data system in place.
+    \item \textbf{Input/Condition:} Inspect data management policies.
+    \item \textbf{Output/Result:} User data management meets legal requirements.
+    \item \textbf{How test will be performed:} Review data management practices to confirm legal compliance.
+\end{itemize}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
