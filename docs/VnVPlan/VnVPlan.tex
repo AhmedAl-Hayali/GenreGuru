@@ -322,6 +322,7 @@ Dynamic testing is the analysis of program runtime responses during and after ex
   % If using the MVC/PAC architecture, we can test the M/P and V/A separately using stubs/mocks.
   \item[Integration Testing] Testing frameworks like \texttt{pytest} can be combined with modular \href{https://docs.pytest.org/explanation/fixtures.html}{fixtures} or factories via \href{https://factoryboy.readthedocs.io/}{\texttt{factoryboy}} to simulate databases or other complex objects for testing operability between various interfaces, i.e., integration testing.
   \item[Regression Testing] Persistence of tests across iterations of the project facilitates ease of regression testing, with automation via GitHub actions.
+  \item[Coverage Testing] Code coverage libraries like \href{https://coverage.readthedocs.io/en/7.6.4/}{\texttt{coverage}} or \href{https://pypi.org/project/pytest-cov/}{\texttt{pytest-cov}} can be used to generate code coverage reports. These reports will inform developers of any possible code execution paths that have not been covered by unit tests.
 \end{description}
 % \item \textcolor{red}{Ownership of code/data - likely algorithm person}
 % \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
@@ -895,8 +896,8 @@ Error Handling
 \noindent
 Testing
 \begin{itemize}[label=$\square$]
-  \item Are there enough unit tests to achieve 100\% code coverage in tox?
-  \item Does tox report that 100\% of unit tests are passing? 
+  \item Are there enough unit tests such that the code coverage tool reports 100\% code coverage?
+  \item Does \texttt{Pytest} report that 100\% of unit tests are passing? 
   \item Are there enough system tests to cover all requirements? 
   \item Are all system tests passing? 
 \end{itemize}
