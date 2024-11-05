@@ -14,6 +14,7 @@
 }
 \usepackage[round]{natbib}
 \usepackage{enumitem}
+\usepackage{graphicx}
 
 \input{../Comments}
 \input{../Common}
@@ -851,8 +852,109 @@ How test will be performed:
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{FR1}
+    & \rotatebox{90}{FR2}
+    & \rotatebox{90}{FR3}
+    & \rotatebox{90}{FR4}
+    & \rotatebox{90}{FR5}
+    & \rotatebox{90}{FR6}
+    & \rotatebox{90}{FR7}
+    & \rotatebox{90}{FR8}
+    & \rotatebox{90}{FR9}
+  \\ \hline
+  UII-01    &X& & & & & & & & \\ \hline
+  CDH-01    & &X& & & & & & & \\ \hline
+  FE-01     & & &X& & & & & & \\ \hline
+  EADR-01   & & & &X& & & & & \\ \hline
+  AFD-01    & & & & &X& &X& & \\ \hline
+  IVED-01   & & & & & &X& &X& \\ \hline
+  EF-01     & & & & & &X& & & \\ \hline
+  OD-01     & & & & & & &X& & \\ \hline
+  UII-02    & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Functional Requirements}
+  \label{Table:trace_fr}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{APR1}
+    & \rotatebox{90}{APR2}
+    & \rotatebox{90}{APR3}
+    & \rotatebox{90}{STR1}
+    & \rotatebox{90}{EUR1}
+    & \rotatebox{90}{PIR1}
+    & \rotatebox{90}{LR1}
+    & \rotatebox{90}{LR2}
+    & \rotatebox{90}{UPR1}
+    & \rotatebox{90}{UPR2}
+    & \rotatebox{90}{ACR1}
+    & \rotatebox{90}{ACR2}
+    & \rotatebox{90}{PAR1}
+    & \rotatebox{90}{PAR2}
+  \\ \hline
+  APR1    &X& & & & & & & & & & & & & \\ \hline
+  APR2    & &X& & & & & & & & & & & & \\ \hline
+  APR3    & & &X& & & & & & & & & & & \\ \hline
+  STR1    & & & &X& & & & & & & & & & \\ \hline
+  EUR1    & & & & &X& & & & & & & & & \\ \hline
+  PIR1    & & & & & &X& & & & & & & & \\ \hline
+  LR1     & & & & & & &X& & & & & & & \\ \hline
+  LR2     & & & & & & & &X& & & & & & \\ \hline
+  UPR1    & & & & & & & & &X& & & & & \\ \hline
+  UPR2    & & & & & & & & & &X& & & & \\ \hline
+  ACR1    & & & & & & & & & & &X& & & \\ \hline
+  ACR2    & & & & & & & & & & & &X& & \\ \hline
+  PAR1    & & & & & & & & & & & & &X& \\ \hline
+  PAR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 1-14}
+  \label{Table:trace_nfr1-14}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{RAR1}
+    & \rotatebox{90}{CR1}
+    & \rotatebox{90}{CR2}
+    & \rotatebox{90}{EPER1}
+    & \rotatebox{90}{PRR1}
+    & \rotatebox{90}{MR1}
+    & \rotatebox{90}{ACCR1}
+    & \rotatebox{90}{IR1}
+    & \rotatebox{90}{IR2}
+    & \rotatebox{90}{PR1}
+    & \rotatebox{90}{AUR1}
+    & \rotatebox{90}{CUR1}
+    & \rotatebox{90}{LGR1}
+    & \rotatebox{90}{LGR2}
+  \\ \hline
+  RAR1    &X& & & & & & & & & & & & & \\ \hline
+  CR1     & &X& & & & & & & & & & & & \\ \hline
+  CR2     & & &X& & & & & & & & & & & \\ \hline
+  EPER1   & & & &X& & & & & & & & & & \\ \hline
+  PRR1    & & & & &X& & & & & & & & & \\ \hline
+  MR1     & & & & & &X& & & & & & & & \\ \hline
+  ACCR1   & & & & & & &X& & & & & & & \\ \hline
+  IR1     & & & & & & & &X& & & & & & \\ \hline
+  IR2     & & & & & & & & &X& & & & & \\ \hline
+  PR1     & & & & & & & & & &X& & & & \\ \hline
+  AUR1    & & & & & & & & & & &X& & & \\ \hline
+  CUR1    & & & & & & & & & & & &X& & \\ \hline
+  LGR1    & & & & & & & & & & & & &X& \\ \hline
+  LGR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 15-28}
+  \label{Table:trace_nfr15-28}
+\end{table}
 
 \section{Unit Test Description}
 \renewcommand{\authornote}[3]{} % Remove blue text author notes
