@@ -345,23 +345,37 @@ that document.}
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+% \wss{If there is any external data that can be used for validation, you should
+%   point to it here.  If there are no plans for validation, you should state that
+%   here.}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+% \wss{You might want to use review sessions with the stakeholder to check that
+% the requirements document captures the right requirements.  Maybe task based
+% inspection?}
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+% \wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
+% be used as an opportunity to validate the requirements.  You should plan on 
+% demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
+% The feedback from your supervisor will be very useful for improving your project.}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+% \wss{For teams without an external supervisor, user testing can serve the same purpose 
+% as a Rev 0 demo for the supervisor.}
 
-\wss{This section might reference back to the SRS verification section.}
+% \wss{This section might reference back to the SRS verification section.}
+
+\subsubsection{External Data For Validation}
+The project cannot function very effectively without access to songs made available by \href{https://developers.deezer.com/api}{Deezer's API}, song snippets made available by \href{https://developer.spotify.com/documentation/web-api}{Spotify's API}, or the \href{https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features}{track audio features} offered by Spotify's API that can serve as the ground truth for us to verify \href{https://en.wikipedia.org/wiki/Probably_approximately_correct_learning#:~:text=In%20this%20framework,the%20samples.}{approximate correctness} of our featurizer.
+
+\subsubsection{Requirement Reviews \& Task-Based Inspections}
+Task-based inspections seek to verify the implementation of functional requirements and the degree to which the nonfunctional requirements are met. Requirement reviews, however, are conducted with the stakeholders to select and refine a subset of requirements.
+\begin{itemize}
+\item Requirement reviews with stakeholders can be conducted to offer assurance on the completeness of requirements documents. The goal is to survey stakeholders on the requirements to help with requirement prioritization, refinement, or omission.
+
+\item A task-based inspection can also be conducted to verify the correctness of the implementation with respect to the requirements. This would involve stakeholder being given a list of tasks designed to test functional and nonfunctional requirments. The stakeholder would document their experience carrying out these tasks. Ideally, the task-based inspection is conducted with the same stakeholder group as the one involved in the requirements review to obtain a revised opinion on the selection and granularity of requirements.
+\end{itemize}
+
+\subsubsection{Project Supervisor Demo}
+The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we should explain and justify the project requirements, followed by a demonstration of a project prototype, then a characterization of the correctness of the functional requirements implementation and adherance to the nonfunctional requirements. Unmet requirements must be revised or omitted with justification. Note that Dr. Martin V. Mohrenschildt is an expert in signals processing, thus we strive primarily to collect feedback on our signal processing components.
 
 \section{System Tests}
 
