@@ -234,9 +234,6 @@ as a Rev 0 demo for the supervisor.}
 
 \section{System Tests}
 
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
-
 \subsection{Tests for Functional Requirements}
 
 \subsubsection{User Input and Interaction Tests}
@@ -373,125 +370,6 @@ How test will be performed:
 \end{itemize}
 
 \end{enumerate}
-
-
-% \wss{Subsets of the tests may be in related, so this section is divided into
-%   different areas.  If there are no identifiable subsets for the tests, this
-%   level of document structure can be removed.}
-
-% \wss{Include a blurb here to explain why the subsections below
-%   cover the requirements.  References to the SRS would be good here.}
-
-% \wss{It would be nice to have a blurb here to explain why the subsections below
-%   cover the requirements.  References to the SRS would be good here.  If a section
-%   covers tests for input constraints, you should reference the data constraints
-%   table in the SRS.}
-		
-% \subsubsection{Client Application User Interface Elements Test}
-
-% \begin{enumerate}
-
-% \item{Test-FR1.1\\}
-% Control: Manual
-					
-% Initial State: The client application has been opened. 
-					
-% Input: Interacting with the user interface elements. 
-					
-% Output: The client application's user interface elements (such as buttons, text input, etc) respond to the user's inputs. 
-
-% Test Case Derivation: If the user interacts with an element of the user interface, they expect a appropriate response based on what they
-% interacted with. 
-
-% How test will be performed: 
-% \begin{itemize}
-%   \item Interaction Validation: The tester interacts with elements (such as buttons, dropdowns, text input fields) and sees 
-%   if the system responds as expected. 
-%   \item Outcome Documentation: The tester documents how the interface elements responds and notes the behave unexpectedly. 
-%   \item Error Handling: Verify that there are appropriate error messages if an element or portion of the system fails. 
-% \end{itemize}
-
-% \item{Test-FR1.2, 5.1 (Should this be its own section)\\}
-%   Control: Manual
-            
-%   Initial State: The client application has been opened, and the system has processed the users input
-  
-%   Input: Song/snippet references
-            
-%   Output: The client application displays the output  
-
-%   Test Case Derivation: The output to the users request should be displayed for the user to see. This allows the user to 
-%   interpret and interact with the results
-
-%   How test will be performed: The tester will  submit a song/snippet reference, and observe the client applications display (must we mention here
-%   if it needs to be accurate?)
-
-% \end{enumerate}
-
-% \subsubsection{Music Featurizer/Analyzer Module Tests}
-% \begin{enumerate}
-%   \item{test-FR3.1\\}
-%   Control: Manual
-            
-%   Initial State: The tester already knows the features of a specific song, and the client application is open. 
-            
-%   Input: Song referenecs where the features are already known. 
-            
-%   Output: Song feeatures that are the same as the ones that are already known. 
-
-%   Test Case Derivation: The output of the system should be corresponded with the features of another database, such as 
-%   spotify's. We use this known quantity in order to evaluate the correctness of the outputs of our system. 
-
-%   How test will be performed: The tester will input a list of songs where the features are already known, and compare the 
-%   results the system outputs. 
-
-% \end{enumerate}
-
-% \subsubsection{Music Recommendations Module Tests}
-% \begin{enumerate}
-%   \item{test-FR2.1\\}
-%   Control: Manual
-            
-%   Initial State: The tester has a list of songs where their features are known and verified. 
-            
-%   Input: A list of songs where the features are already known. 
-            
-%   Output: A list of songs where the features have similarities to the ones inputted. 
-
-%   Test Case Derivation: The song recommendation component should operate by generating recommendations based on the inputted 
-%   song's features and checking for other songs where the features are also similar. Through this, we are testing if the output
-%   of the generation system is correct or not by checking if there are overlapping features between the input and outputs, which 
-%   also allows us to determine how good the outputs are as opposed to only whether they are sensible or not. 
-
-%   How test will be performed: The tester will input to the recommendation module a list of songs where the features are known. 
-%   The tester then notes the generated songs, notes the features of the generated songs, after which they document which features
-%   are overlapping and then checks which outputs are matching. 
-
-% \end{enumerate}
-
-% \subsection{Input Validation Tests}
-% \begin{enumerate}
-%   \item{Test-FR4.1\\}
-%   Control: Manual
-            
-%   Initial State: The client application has been opened, the tester has a verified list of valid and invalid inputs. 
-            
-%   Input: Correct and Incorrect Song References are provided by a tester to the system. 
-            
-%   Output: The service accepts the correct references, and returns an error message(s) on invalid. 
-
-%   Test Case Derivation: The expected value in the output field is some form of an error message if the input is invalid. For valid inputs the service 
-%   should simply not return an error message and behave nomrally. We purposely test both 
-%   valid and invalid inputs in order to make sure that the service is treating valid and invalid inputs differently. 
-
-%   How test will be performed: 
-
-%   The test is performed by creating a list of valid references and invalid references, after which the 
-%   tester is expected to input them into the client application and noting the results. 
-% \end{enumerate}
-
-
-
 
 \subsection{Tests for Nonfunctional Requirements}
 
