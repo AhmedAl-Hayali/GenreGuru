@@ -394,64 +394,142 @@ The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we
 
 \section{System Tests}
 
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
-
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+\subsubsection{User Input and Interaction Tests}
 
 \begin{enumerate}
 
-\item{test-id1\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
+\item Test ID: UII-01\\
+Control: Manual\\
+Initial State: The client application is open and ready for input.\\
+Input: User pastes a valid song reference link.\\
+Output: The system displays a confirmation that the link has been accepted, and the request process is initiated.\\
+Test Case Derivation: Confirms that the user can input a song link and initiate a request (Requirement \#1).\\
 How test will be performed: 
-					
-\item{test-id2\\}
+\begin{itemize}
+    \item The tester will open the client application and input a song reference.
+    \item They will then request the system to perform an action and verify that a confirmation message appears, indicating that the reference is accepted.
+\end{itemize}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+\item Test ID: UII-02\\
+Control: Manual\\
+Initial State: The client application is running.\\
+Input: Some type of user interaction with the user interface elements (buttons, text, etc.)\\
+Output: The client application’s user interface elements respond to the user’s inputs.\\
+Test Case Derivation: Ensures that the client application is available for user interaction (Requirement \#9).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will open the client application.
+    \item They will verify that input fields, buttons, and other elements are visible and responsive.
+\end{itemize}
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Connection and Data Flow Tests}
 
-...
+\begin{enumerate}
+
+\item Test ID: CDH-01\\
+Control: Manual\\
+Initial State: Client application is connected to the server and external APIs.\\
+Input: User submits a request using a valid song link.\\
+Output: Successful data retrieval and confirmation message.\\
+Test Case Derivation: Verifies communication between client, server, and APIs (Requirement \#2).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will submit a reference as input and observe the system processing the request.
+    \item After processing, the tester will check logs confirming the request has been received.
+\end{itemize}
+
+\item Test ID: EADR-01\\
+Control: Manual\\
+Initial State: Server and client are operational.\\
+Input: A song reference link.\\
+Output: Song data is retrieved from external API.\\
+Test Case Derivation: Ensures valid links trigger API data retrieval (Requirement \#4).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will input a valid song link and check the system for API data retrieval confirmation.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{Data Processing and Feature Extraction Tests}
+
+\begin{enumerate}
+
+\item Test ID: FE-01\\
+Control: Manual\\
+Initial State: Server is running.\\
+Input: A valid song reference link.\\
+Output: Extracted song features (tempo, pitch, genre, etc.).\\
+Test Case Derivation: Confirms feature extraction occurs as intended (Requirement \#3).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will input a valid reference song and submit a request for feature extraction.
+    \item The tester will verify that the extracted features match a known expected output.
+\end{itemize}
+
+\item Test ID: AFD-01\\
+Control: Manual\\
+Initial State: Client receives analysis data.\\
+Input: None (after feature extraction).\\
+Output: Song features displayed in a readable format.\\
+Test Case Derivation: Ensures extracted features are presented clearly (Requirements \#5 and \#7).\\
+How test will be performed:
+\begin{itemize}
+    \item After feature extraction, the tester will confirm that the system returns extracted features.
+    \item The tester will check that the client displays these features clearly.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{4.1.4 Error Handling and Validation Tests}
+
+\begin{enumerate}
+
+\item Test ID: IVED-01\\
+Control: Manual\\
+Initial State: Client application open.\\
+Input: Invalid or malformed song reference.\\
+Output: Error message guiding the user.\\
+Test Case Derivation: Checks input validation and error feedback (Requirements \#6 and \#8).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester inputs an invalid reference and checks for messages and user guidance.
+\end{itemize}
+
+\item Test ID: EF-01\\
+Control: Manual\\
+Initial State: System is running.\\
+Input: Deliberate errors introduced in any component.\\
+Output: Specific error messages generated by each component.\\
+Test Case Derivation: Confirms each component provides feedback (Requirement \#6).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will introduce a failure/error scenario.
+    \item The tester will verify that there are error messages specific to the affected component.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{Output Display Test}
+
+\begin{enumerate}
+
+\item Test ID: OD-01\\
+Control: Manual\\
+Initial State: Analysis has been completed.\\
+Input: None.\\
+Output: The output is displayed to the user in the client application.\\
+Test Case Derivation: Verifies outputs are displayed for the user to see (Requirement \#7).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester ensures that all outputs from different components appear as intended on the client application.
+\end{itemize}
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
