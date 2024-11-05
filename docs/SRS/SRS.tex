@@ -862,7 +862,8 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 \subsection{Access Requirements}
 \textbf{ACR1.} The user shall only be able to access songs they upload or ones that are licensed for their use.
 \subsection{Integrity Requirements}
-\emph{N/A -- inapplicable to the scope of the project.}
+\emph{\textbf{IR1.} The server shall perform a weekly backup of its database to prevent data loss in the event of a catastrophic failure.} \\
+\emph{\textbf{IR2.} The server shall implement deduplication measures to guarantee no data redundancy.}
 \subsection{Privacy Requirements}
 \textbf{PR1.} The system shall only expose query requests to the user that made them.
 \subsection{Audit Requirements}
