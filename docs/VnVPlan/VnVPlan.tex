@@ -400,24 +400,24 @@ How test will be performed:
     \item \textbf{How test will be performed:} Manually review individual icons to confirm they are standard and inoffensive.
 \end{itemize}
 
-\subsubsection{ACR1 - Access Control Verification}
+\subsubsection{ACR1 - Accessible Fonts}
 \begin{itemize}
     \item \textbf{Test ID:} TACR1
-    \item \textbf{Type:} Dynamic, Manual
-    \item \textbf{Initial State:} User session active.
-    \item \textbf{Input/Condition:} Attempt unauthorized access to restricted data.
-    \item \textbf{Output/Result:} Unauthorized users are blocked from accessing data.
-    \item \textbf{How test will be performed:} Attempt to access restricted areas with limited privileges.
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Font-defining code is available.
+    \item \textbf{Input/Condition:} Developer reviews font-defining code.
+    \item \textbf{Output/Result:} Font-defining code is deemed to only contain accessible fonts in accordance to the \href{https://www.w3.org/TR/2023/REC-WCAG22-20231005/}{WCAG 2.2} standard.
+    \item \textbf{How test will be performed:} Perform a manual inspection of fonts available in the UI and cross-check them with the WCAG 2.2 standard.
 \end{itemize}
 
-\subsubsection{ACR2 - Data Privacy Verification}
+\subsubsection{ACR2 - Color Blind Mode}
 \begin{itemize}
     \item \textbf{Test ID:} TACR2
-    \item \textbf{Type:} Static, Manual
-    \item \textbf{Initial State:} Database access.
-    \item \textbf{Input/Condition:} Attempt to access personal data.
-    \item \textbf{Output/Result:} User data is secured and encrypted.
-    \item \textbf{How test will be performed:} Review database encryption protocols and access policies.
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface set to default visibility mode.
+    \item \textbf{Input/Condition:} Enable color blind mode.
+    \item \textbf{Output/Result:} Interface set to color blind visibility mode.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output.
 \end{itemize}
 
 \subsubsection{PAR1 - Precision of Data Analysis}
