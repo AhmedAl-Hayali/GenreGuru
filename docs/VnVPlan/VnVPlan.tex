@@ -13,6 +13,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{enumitem}
 
 \input{../Comments}
 \input{../Common}
@@ -122,19 +123,10 @@ has already been verified by its implementation team.}
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+\begin{description}[leftmargin=0cm]
+  \item[Challenge Level] As stated in the Problem Statement document, the challenge level of this project is general. In light of the revised scope of the project, i.e., omitting the generation component and delaying the recommendation component until after acceptable completion of the featurizer, as described in the hazard analysis document, we have not changed the challenge level of our project. In retrospect, perhaps it was likely the case that our project should have been labelled as a challenging project instead.
+  \item[Extras] As stated in the probelm statement document, the team plans to include user \& API documentation for reference, usability testing for easy startup, and design thinking to build an intuitive user interface. Note that the generation component is now a stretch goal instead of a core feature, as discussed in the hazard analysis document.
+\end{description}
 
 \subsection{Relevant Documentation}
 
