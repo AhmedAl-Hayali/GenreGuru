@@ -420,14 +420,14 @@ How test will be performed:
     \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output.
 \end{itemize}
 
-\subsubsection{PAR1 - Precision of Data Analysis}
+\subsubsection{PAR1 - Query Request Time Precision}
 \begin{itemize}
     \item \textbf{Test ID:} TPAR1
     \item \textbf{Type:} Dynamic, Automated
-    \item \textbf{Initial State:} Analysis function active.
-    \item \textbf{Input/Condition:} Input test data with known precision values.
-    \item \textbf{Output/Result:} Analysis output matches expected precision.
-    \item \textbf{How test will be performed:} Run automated precision tests on analysis output.
+    \item \textbf{Initial State:} Server active and client application open.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Server returns response and client application displays query request time.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output, capturing displayed time for verification.
 \end{itemize}
 
 \subsubsection{PAR2 - Rounding Accuracy}
