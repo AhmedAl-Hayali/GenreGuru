@@ -102,24 +102,21 @@ techniques, aligns the project with its technical, usability, and compliance obj
 \wss{Say what software is being tested.  Give its name and a brief overview of
   its general functions.}
 
-\subsection{Objectives}
+  \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
-
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+  The objectives of this Verification and Validation (VnV) Plan are twofold: to provide confidence that the project satisfies all specified functional and nonfunctional requirements (verification) and to confirm that the end product aligns with user expectations and project goals (validation).
+  
+\begin{description}[leftmargin=0cm]
+  \item[Verification] Ensuring the product is built correctly according to the defined requirements and specifications, i.e.,
+  \begin{itemize}
+    \item Assessing each atomic item (unit testing) to confirm it functions as intended.
+    \item Testing interactions between atomic items (integration testing) to verify that components work together seamlessly.
+    \item Performing end-to-end (system) testing to confirm that the entire system functions correctly and meets project specifications.
+    \item Applying Test-Driven Development (TDD) practices where feasible to enhance code reliability from early stages.
+    \item Refactoring code regularly to eliminate code smells and maintain clean, efficient, and maintainable code.
+  \end{itemize}
+  \item[Validation] Ensuring the project meets needs of the stakeholders within the intended environment, typically through acceptance testing. This process is often performed by individuals external to the project team.
+\end{description}
 
 \subsection{Challenge Level and Extras}
 
