@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{amssymb}
+\usepackage{enumitem}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -172,11 +173,107 @@ This is the initial SRS checklist that reviewers will use. It will be updated as
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
+The design verification will ensure that each component of the system meets the requirements outlined in the Software Requirements Specification (SRS). Verification will occur through systematic reviews, testing, and validation checklists tailored to each component.
 
-\wss{The review will include reviews by your classmates}
+\subsubsection{Client Application Design Verification}
+User-facing component for inputting track information and displaying system output.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  
+  \begin{itemize}[leftmargin=0cm]
+    \item Conduct usability testing with users to assess ease of input and clarity of output.
+    \item Review design documents to ensure UI/UX aligns with requirements.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+  
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item User can input track information without errors.
+    \item System output is clear and comprehensible.
+    \item User feedback is collected and assessed.
+  \end{itemize}
+\end{description}
 
-\wss{Create a checklists?}
+\subsubsection{Server Networking Design Verification}
+Represents communication between the server and external components, e.g., between the client application and external service APIs.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review network architecture to confirm it supports required protocols.
+    \item Test for successful data transmission between components.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All intended connections are established.
+    \item Data loss during transmission is within acceptable limits.
+    \item Network security measures are implemented and verified.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Server Compute Design Verification}
+Component responsible for processing user requests and issuing featurization and data access requests.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review processing algorithms for efficiency.
+    \item Conduct code reviews to ensure best practices are followed.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Processing time is optimized for expected load.
+    \item Code is clean and adheres to project standards.
+    \item Edge cases are handled appropriately.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Server Storage Design Verification}
+Represents the database for storing data.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review database schema against the SRS.
+    \item Test data retrieval and storage for accuracy.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if the:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item Schema supports all required data types and relationships.
+    \item Data retrieval times meet performance criteria.
+    \item Data integrity is maintained during transactions.
+  \end{itemize}
+\end{description}
+
+\subsubsection{External Service APIs Design Verification}
+Represents integration with external services like Spotify or Deezer.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review API documentation for compliance.
+    \item Test integration for successful data exchange.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All API endpoints are functional as expected.
+    \item Data that is exchanged is accurate and formatted correctly.
+    \item Error handling for API failures is in place.
+  \end{itemize}
+\end{description}
+
+\subsubsection{Featurizer Design Verification}
+Handles the featurization process.
+\begin{description}
+  \item[Verification Approach] The verification will proceed as we:
+  \begin{itemize}[leftmargin=0cm]
+    \item Review featurization algorithms for correctness.
+    \item Test output against known input cases to validate accuracy.
+  \end{itemize}
+  \item[Checklist] The design is considered verified if:
+    \begin{itemize}[label=$\square$,leftmargin=0cm]
+    \item All features are correctly extracted from input data.
+    \item Featurization time is within acceptable limits.
+    \item Results match expected outputs for test cases.
+  \end{itemize}
+\end{description}
+
+A group discussion will be held bi-weekly to review the verification process and address any outstanding issues. Feedback from classmates will be incorporated throughout the development process, especially during review sessions.
 
 \subsection{Verification and Validation Plan Verification Plan}
 
