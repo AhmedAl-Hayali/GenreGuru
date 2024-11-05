@@ -355,22 +355,42 @@ Dynamic testing is the analysis of program runtime responses during and after ex
 % \item \textcolor{red}{Ownership of code/data - likely algorithm person}
 % \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
 
-\subsection{Automated Testing and Verification Tools} \label{3.6-auto-test-verif-tools}
+\subsection{Automated Testing and Verification Tools}
+The following automated tools will be used throughout the verification and validation
+process of the system:
+\begin{itemize}
+  \item \texttt{Ruff} python linter and formatter
+  \item \texttt{Mypy} python type checker
+  \item \texttt{Pytest} unit testing framework
+  \item \texttt{Coverage} code coverage library
+  \item \texttt{Tox} orchestration tool
+  \item github actions
+\end{itemize}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+\noindent
+Our automated testing tools will be used to strictly verify the implementation of the system
+(See the previous section of this document for more details). We decided to use \texttt{Ruff}
+because it is the highest performing python linter and it also doubles as a formatter. Mypy is the most
+popular python type checker, making it an obvious choice. \texttt{Pytest} and \texttt{Coverage} are the
+most popular tools for unit testing and code coverage, respectively. \texttt{Tox} was chosen because
+it is the tool the team has the most experience with.\\
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
+\noindent
+When a pull request gets created, github actions are triggered. This invokes \texttt{Tox}. First,
+\texttt{Tox} will invoke \texttt{Pytest} and \texttt{Coverage}. This will build the project and run
+all the unit tests, and then perform code coverage analysis. Then, \texttt{Tox} will invoke \texttt{Ruff}
+to perform code linting and formatting. Finally, \texttt{Tox} will invoke \texttt{Mypy} to perform type
+checking. Every command will have its output piped to a text file to generate a full report. If no errors
+are reported by any of the tools, github will enable the ability to merge the pull request.\\
 
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\noindent
+This automated testing setup allows for every pull request to undergo thorough checks before integration
+into the main codebase. By using \texttt{Ruff} and \texttt{Mypy}, we can ensure to maintain consistent
+code quality and catch common errors early. Using \texttt{Pytest} and \texttt{Coverage} ensures that the 
+entire project is rigorously covered by unit tests. \texttt{Tox} automates this entire process, making it easier
+ to identify any failures across modules and simplifying the process of tracking test results and code behavior. 
+ GitHub Actions integrates these tools, creating a reliable CI pipeline that allows the team to focus on development
+whilst maintaining quality.
 
 \subsection{Software Validation Plan}
 
