@@ -11,6 +11,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{enumitem}
 
 \input{../Comments}
 \input{../Common}
@@ -96,7 +97,8 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
   The objectives of this Verification and Validation (VnV) Plan are twofold: to provide confidence that the project satisfies all specified functional and nonfunctional requirements (verification) and to confirm that the end product aligns with user expectations and project goals (validation).
   
-  \emph{Verification} --  ensures that we are building the product correctly according to the defined requirements and specifications. This involves:
+\begin{description}[leftmargin=0cm]
+  \item[Verification] Ensuring the product is built correctly according to the defined requirements and specifications, i.e.,
   \begin{itemize}
     \item Assessing each atomic item (unit testing) to confirm it functions as intended.
     \item Testing interactions between atomic items (integration testing) to verify that components work together seamlessly.
@@ -104,26 +106,8 @@ This document ... \wss{provide an introductory blurb and roadmap of the
     \item Applying Test-Driven Development (TDD) practices where feasible to enhance code reliability from early stages.
     \item Refactoring code regularly to eliminate code smells and maintain clean, efficient, and maintainable code.
   \end{itemize}
-  
-  \emph{Validation} -- Ensure that the project meets the needs of the customer and/or stakeholders within the intended environment, typically through acceptance testing. This process is often performed by individuals external to the project team. \textcolor{red}{``Design validation is similar to verification, except this time you should check the designed product under conditions of actual use.'' (ISO 9001:2015)}
-    
-
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
-
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+  \item[Validation] Ensureing the project meets needs of the stakeholders within the intended environment, typically through acceptance testing. This process is often performed by individuals external to the project team.
+\end{description}
 
 \subsection{Challenge Level and Extras}
 
