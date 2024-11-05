@@ -502,6 +502,16 @@ How test will be performed:
     \item \textbf{How test will be performed:} Review code structure and modularity to ensure maintainability.
 \end{itemize}
 
+\subsubsection{ACSR1 - Licensed Song Access}
+\begin{itemize}
+    \item \textbf{Test ID:} TMR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Mock database active with multiple queries from different (at least 2 unique) users already loaded.
+    \item \textbf{Input/Condition:} Issue queries to access songs requested other users, not the current user.
+    \item \textbf{Output/Result:} Database returns an empty response because the requesting user does not have access (or a license) to the songs uploaded/licensed by the other user(s).
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and entries, then issue queries, capture response, and ensure it is empty.
+\end{itemize}
+
 \subsubsection{PR1 - Data Encryption Verification}
 \begin{itemize}
     \item \textbf{Test ID:} TPR1
