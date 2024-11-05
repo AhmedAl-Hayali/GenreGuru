@@ -238,35 +238,18 @@ that document.}
 % \wss{This section might reference back to the SRS verification section.}
 
 \subsubsection{External Data For Validation}
-The main external data for validation that this project would be using would be existing labels/features from an existing 
-API service such as Spotify's. Comparing the labels/features from our featurizer and then comparing them to that of spotify's
-API is how we would validate the featurizer and recommendation components of our project.   
+The project cannot function very effectively without access to songs made available by \href{https://developers.deezer.com/api}{Deezer's API}, song snippets made available by \href{https://developer.spotify.com/documentation/web-api}{Spotify's API}, or the \href{https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features}{track audio features} offered by Spotify's API that can serve as the ground truth for us to verify \href{https://en.wikipedia.org/wiki/Probably_approximately_correct_learning#:~:text=In%20this%20framework,the%20samples.}{approximate correctness} of our featurizer.
 
-\subsubsection{Requirement Reviews \& Task based inspections}
-The main difference between the task based inspections and the requirements review is that the task based inspection seeks to 
-verify that we have properly implemented the functional requirements and test how well the nonfunctional requirements are met, whereas 
-the requirement review with the stakeholders are for selecting requirements and refining them. 
+\subsubsection{Requirement Reviews \& Task-Based Inspections}
+Task-based inspections seek to verify the implementation of functional requirements and the degree to which the nonfunctional requirements are met. Requirement reviews, however, are conducted with the stakeholders to select and refine a subset of requirements.
 \begin{itemize}
-\item Requirement reviews with stakeholders is one of the methods we wish to use in order to 
-verify how comprehensive our requirement documents is. The goal is to survey and question 
-our stakeholders on their thoughts of the current state of our requirements, in order to determine
-which requirements to prioritize, which ones to refine or to fully abandon because they are 
-not important to the success of the project. 
+\item Requirement reviews with stakeholders can be conducted to offer assurance on the completeness of requirements documents. The goal is to survey stakeholders on the requirements to help with requirement prioritization, refinement, or omission.
 
-\item We would also like to use some form of a task based inspection in order to verify the implementation of the requirements of our project. 
-This would involve a form of testing where we give a stakeholder a list of tasks that are designed to test both 
-functional and nonfunctional requirments of the project and have them document their experience carrying our these tasks. This task based 
-inspection would ideally be conducted with stakeholders who participated in the requirements review, in order to also get a potentially 
-revised opinion from them on the current selection and refined of the requirements that were produced by the requirement reviews. 
+\item A task-based inspection can also be conducted to verify the correctness of the implementation with respect to the requirements. This would involve stakeholder being given a list of tasks designed to test functional and nonfunctional requirments. The stakeholder would document their experience carrying out these tasks. Ideally, the task-based inspection is conducted with the same stakeholder group as the one involved in the requirements review to obtain a revised opinion on the selection and granularity of requirements.
 \end{itemize}
 
 \subsubsection{Project Supervisor Demo}
-Currently, we have an external supervisor for this project and that is Dr. Martin v. Mohrenschildt. During the rev 0 demo, we 
-wish to first explain and justify the requirements of our project, followed by a demonstration of how the it works, and then a justification 
-as to why we have managed to successfully implemented our functional requirements and managed to adhere to our nonfunctional requirements 
-as faithfully as possible. For the requirements we have no met we intend on performing some form of a revision or outright deleting them. 
-As Dr. Martin v. Mohrenschildt is an expert in signals processing, we wish primarily to receive feedback on our signal processing components for
-improvements.  
+The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we should explain and justify the project requirements, followed by a demonstration of a project prototype, then a characterization of the correctness of the functional requirements implementation and adherance to the nonfunctional requirements. Unmet requirements must be revised or omitted with justification. Note that Dr. Martin V. Mohrenschildt is an expert in signals processing, thus we strive primarily to collect feedback on our signal processing components.
 
 \section{System Tests}
 
