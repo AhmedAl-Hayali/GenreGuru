@@ -100,8 +100,16 @@ techniques, aligns the project with its technical, usability, and compliance obj
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+\subsection{Summary}
+
+This Verification and Validation (VnV) Plan outlines the testing strategies, tools, 
+and processes designed for \textit{Genre Guru}, a software application that enables users to analyze 
+musical tracks by extracting key features. The system aims to assist users in understanding and classifying 
+musical genres through feature analysis. In addition to core functionalities, \textit{Genre Guru} includes 
+stretch goals for generating genre-based recommendations based on the extracted features and for music generation, 
+where the application would produce new tracks inspired by selected genres. This VnV Plan is structured to 
+ensure that \textit{Genre Guru} meets all specified functional and non-functional requirements, from feature accuracy 
+to user experience.
 
   \subsection{Objectives}
 
@@ -146,9 +154,15 @@ how they relate to your VnV efforts.}
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{itemize}
+  \item \emph{Ansel Chen}: Joint responsibility for client application testing; joint featurizer algorithm testing.
+  \item \emph{Muhammad Jawad}: Joint featurizer algorithm testing.
+  \item \emph{Mohamad-Hassan Bahsoun}: Joint responsibility for client application testing; external service API interface testing; joint featurizer algorithm testing.
+  \item \emph{Matthew Baleanu}: Unit testing for compute; joint featurizer algorithm testing.
+  \item \emph{Ahmed Al-Hayali}: Establish testing infrastructure; Maintain testing infrastructure; Functional testing for server storage; Server networking interface testing; joint featurizer algorithm testing.
+  \item \emph{Supervisor/Dr. Martin v. Mohrenschildt}: Featurizer algorithms validation and limited verification runthroughs.
+  \item \emph{Stakeholders}: Participate in usability testing, acceptance testing, and offer limited design validation input.
+\end{itemize}
 
 \subsection{SRS Verification Plan}
 The following approaches will be used for SRS verification:
@@ -273,13 +287,31 @@ Handles the featurization process.
 A group discussion will be held bi-weekly to review the verification process and address any outstanding issues. Feedback from classmates will be incorporated throughout the development process, especially during review sessions.
 
 \subsection{Verification and Validation Plan Verification Plan}
+% \wss{The verification and validation plan is an artifact that should also be
+% verified.  Techniques for this include review and mutation testing.}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+% \wss{The review will include reviews by your classmates}
 
-\wss{The review will include reviews by your classmates}
+% \wss{Create a checklists?}
+The primary method of verification for the VnV plan should be reviews and mutation testing. The main goals these reviews 
+are used for is to capture how complete the test cases are and if they are correct. A checklist would be provided
+to the reviewers in order to make their job simpler. To these ends, we would like to use 
+the following methods to review the VnV plan: 
 
-\wss{Create a checklists?}
+\begin{itemize}
+  \item Classmate reviews: The VnV plan will be reviewed by another group in order to identify any gaps or inconsistencies. 
+  As we cannot expect other classmates to fully grasp the full nature of our project, we mainly expect the peer review to be 
+  convering consistency issues and sanity checking the test cases. 
+  \item TA review: The course instructors will review the VnV plan to check if it meets the rubric. The rubric would be turned into a 
+  checklist for the TA and as the course instructors would understand the project better than the peer reviewers, they could help 
+  determine whether the test cases fully cover all the requirements and if the plan is feasible within the capstone timeline. 
+  \item Mutation testing: this method would be used to test the quality of our test cases. By introducing small changes to the code 
+  of the project, we would be able to test if the resulting output would be the different under the same inputs, thus allowing us to 
+  verify whether the test cases that were derived during the VnV plan are truly capable of detecting faults or not.
+  \item Internal team review: Our current process assigns at least one reviewer for each new section before committing changes to the VnV plan.
+  This practice ensures that updates align with the overall project requirements and verifies any new test cases or methodologies introduced.
+
+\end{itemize}
 
 \subsection{Implementation Verification Plan}
 \subsubsection{Static Analysis}
@@ -324,22 +356,42 @@ Dynamic testing is the analysis of program runtime responses during and after ex
 % \item \textcolor{red}{Ownership of code/data - likely algorithm person}
 % \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
 
-\subsection{Automated Testing and Verification Tools} \label{3.6-auto-test-verif-tools}
+\subsection{Automated Testing and Verification Tools}
+The following automated tools will be used throughout the verification and validation
+process of the system:
+\begin{itemize}
+  \item \texttt{Ruff} python linter and formatter
+  \item \texttt{Mypy} python type checker
+  \item \texttt{Pytest} unit testing framework
+  \item \texttt{Coverage} code coverage library
+  \item \texttt{Tox} orchestration tool
+  \item github actions
+\end{itemize}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
+\noindent
+Our automated testing tools will be used to strictly verify the implementation of the system
+(See the previous section of this document for more details). We decided to use \texttt{Ruff}
+because it is the highest performing python linter and it also doubles as a formatter. Mypy is the most
+popular python type checker, making it an obvious choice. \texttt{Pytest} and \texttt{Coverage} are the
+most popular tools for unit testing and code coverage, respectively. \texttt{Tox} was chosen because
+it is the tool the team has the most experience with.\\
 
-\wss{If you have already done this in the development plan, you can point to
-that document.}
+\noindent
+When a pull request gets created, github actions are triggered. This invokes \texttt{Tox}. First,
+\texttt{Tox} will invoke \texttt{Pytest} and \texttt{Coverage}. This will build the project and run
+all the unit tests, and then perform code coverage analysis. Then, \texttt{Tox} will invoke \texttt{Ruff}
+to perform code linting and formatting. Finally, \texttt{Tox} will invoke \texttt{Mypy} to perform type
+checking. Every command will have its output piped to a text file to generate a full report. If no errors
+are reported by any of the tools, github will enable the ability to merge the pull request.\\
 
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+\noindent
+This automated testing setup allows for every pull request to undergo thorough checks before integration
+into the main codebase. By using \texttt{Ruff} and \texttt{Mypy}, we can ensure to maintain consistent
+code quality and catch common errors early. Using \texttt{Pytest} and \texttt{Coverage} ensures that the 
+entire project is rigorously covered by unit tests. \texttt{Tox} automates this entire process, making it easier
+ to identify any failures across modules and simplifying the process of tracking test results and code behavior. 
+ GitHub Actions integrates these tools, creating a reliable CI pipeline that allows the team to focus on development
+whilst maintaining quality.
 
 \subsection{Software Validation Plan}
 
@@ -377,64 +429,142 @@ The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we
 
 \section{System Tests}
 
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
-
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+\subsubsection{User Input and Interaction Tests}
 
 \begin{enumerate}
 
-\item{test-id1\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
+\item Test ID: UII-01\\
+Control: Manual\\
+Initial State: The client application is open and ready for input.\\
+Input: User pastes a valid song reference link.\\
+Output: The system displays a confirmation that the link has been accepted, and the request process is initiated.\\
+Test Case Derivation: Confirms that the user can input a song link and initiate a request (Requirement \#1).\\
 How test will be performed: 
-					
-\item{test-id2\\}
+\begin{itemize}
+    \item The tester will open the client application and input a song reference.
+    \item They will then request the system to perform an action and verify that a confirmation message appears, indicating that the reference is accepted.
+\end{itemize}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+\item Test ID: UII-02\\
+Control: Manual\\
+Initial State: The client application is running.\\
+Input: Some type of user interaction with the user interface elements (buttons, text, etc.)\\
+Output: The client application’s user interface elements respond to the user’s inputs.\\
+Test Case Derivation: Ensures that the client application is available for user interaction (Requirement \#9).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will open the client application.
+    \item They will verify that input fields, buttons, and other elements are visible and responsive.
+\end{itemize}
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Connection and Data Flow Tests}
 
-...
+\begin{enumerate}
+
+\item Test ID: CDH-01\\
+Control: Manual\\
+Initial State: Client application is connected to the server and external APIs.\\
+Input: User submits a request using a valid song link.\\
+Output: Successful data retrieval and confirmation message.\\
+Test Case Derivation: Verifies communication between client, server, and APIs (Requirement \#2).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will submit a reference as input and observe the system processing the request.
+    \item After processing, the tester will check logs confirming the request has been received.
+\end{itemize}
+
+\item Test ID: EADR-01\\
+Control: Manual\\
+Initial State: Server and client are operational.\\
+Input: A song reference link.\\
+Output: Song data is retrieved from external API.\\
+Test Case Derivation: Ensures valid links trigger API data retrieval (Requirement \#4).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will input a valid song link and check the system for API data retrieval confirmation.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{Data Processing and Feature Extraction Tests}
+
+\begin{enumerate}
+
+\item Test ID: FE-01\\
+Control: Manual\\
+Initial State: Server is running.\\
+Input: A valid song reference link.\\
+Output: Extracted song features (tempo, pitch, genre, etc.).\\
+Test Case Derivation: Confirms feature extraction occurs as intended (Requirement \#3).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will input a valid reference song and submit a request for feature extraction.
+    \item The tester will verify that the extracted features match a known expected output.
+\end{itemize}
+
+\item Test ID: AFD-01\\
+Control: Manual\\
+Initial State: Client receives analysis data.\\
+Input: None (after feature extraction).\\
+Output: Song features displayed in a readable format.\\
+Test Case Derivation: Ensures extracted features are presented clearly (Requirements \#5 and \#7).\\
+How test will be performed:
+\begin{itemize}
+    \item After feature extraction, the tester will confirm that the system returns extracted features.
+    \item The tester will check that the client displays these features clearly.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{4.1.4 Error Handling and Validation Tests}
+
+\begin{enumerate}
+
+\item Test ID: IVED-01\\
+Control: Manual\\
+Initial State: Client application open.\\
+Input: Invalid or malformed song reference.\\
+Output: Error message guiding the user.\\
+Test Case Derivation: Checks input validation and error feedback (Requirements \#6 and \#8).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester inputs an invalid reference and checks for messages and user guidance.
+\end{itemize}
+
+\item Test ID: EF-01\\
+Control: Manual\\
+Initial State: System is running.\\
+Input: Deliberate errors introduced in any component.\\
+Output: Specific error messages generated by each component.\\
+Test Case Derivation: Confirms each component provides feedback (Requirement \#6).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester will introduce a failure/error scenario.
+    \item The tester will verify that there are error messages specific to the affected component.
+\end{itemize}
+
+\end{enumerate}
+
+\subsubsection{Output Display Test}
+
+\begin{enumerate}
+
+\item Test ID: OD-01\\
+Control: Manual\\
+Initial State: Analysis has been completed.\\
+Input: None.\\
+Output: The output is displayed to the user in the client application.\\
+Test Case Derivation: Verifies outputs are displayed for the user to see (Requirement \#7).\\
+How test will be performed:
+\begin{itemize}
+    \item The tester ensures that all outputs from different components appear as intended on the client application.
+\end{itemize}
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -827,6 +957,7 @@ How test will be performed:
 \end{table}
 
 \section{Unit Test Description}
+\renewcommand{\authornote}[3]{} % Remove blue text author notes
 
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
@@ -958,6 +1089,7 @@ How test will be performed:
 \newpage
 
 \section{Appendix}
+\renewcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}} % add blue text author notes back in
 
 This is where you can place additional information.
 
