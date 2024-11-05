@@ -14,6 +14,7 @@
 }
 \usepackage[round]{natbib}
 \usepackage{enumitem}
+\usepackage{graphicx}
 
 \input{../Comments}
 \input{../Common}
@@ -721,38 +722,109 @@ How test will be performed:
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\begin{table}[h!]
-\centering
-\caption{Traceability Matrix for Non-Functional Requirements}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Requirement ID} & \textbf{Test Case ID(s)} \\ \hline
-Minimalist Layout & NFR-APR1 \\ \hline
-High Contrast & NFR-APR2 \\ \hline
-Intuitive Navigation & NFR-APR3 \\ \hline
-Consistent Button Styles & NFR-STR1 \\ \hline
-Tooltip Visibility & NFR-EUR1 \\ \hline
-Customizable Color Themes & NFR-PIR1 \\ \hline
-Initial Tutorial & NFR-LR1 \\ \hline
-Tutorial Completion Time & NFR-LR2 \\ \hline
-Friendly Feedback & NFR-UPR1 \\ \hline
-Access Control Verification & NFR-ACR1 \\ \hline
-Data Privacy Verification & NFR-ACR2 \\ \hline
-Precision of Data Analysis & NFR-PAR1 \\ \hline
-Rounding Accuracy & NFR-PAR2 \\ \hline
-Maximum Concurrent Users & NFR-CR1 \\ \hline
-Data Storage Capacity & NFR-CR2 \\ \hline
-Server Room Conditions & NFR-EPER1 \\ \hline
-Production Readiness Verification & NFR-PRR1 \\ \hline
-Ease of Code Updates & NFR-MR1 \\ \hline
-Data Encryption Verification & NFR-PR1 \\ \hline
-Access Logs for User Sessions & NFR-AUR1 \\ \hline
-Multilingual Support & NFR-CUR1 \\ \hline
-Compliance with Copyright Laws & NFR-LGR1 \\ \hline
-Adherence to Data Protection Regulations & NFR-LGR2 \\ \hline
-\end{tabular}
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{FR1}
+    & \rotatebox{90}{FR2}
+    & \rotatebox{90}{FR3}
+    & \rotatebox{90}{FR4}
+    & \rotatebox{90}{FR5}
+    & \rotatebox{90}{FR6}
+    & \rotatebox{90}{FR7}
+    & \rotatebox{90}{FR8}
+    & \rotatebox{90}{FR9}
+  \\ \hline
+  UII-01    &X& & & & & & & & \\ \hline
+  CDH-01    & &X& & & & & & & \\ \hline
+  FE-01     & & &X& & & & & & \\ \hline
+  EADR-01   & & & &X& & & & & \\ \hline
+  AFD-01    & & & & &X& &X& & \\ \hline
+  IVED-01   & & & & & &X& &X& \\ \hline
+  EF-01     & & & & & &X& & & \\ \hline
+  OD-01     & & & & & & &X& & \\ \hline
+  UII-02    & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Functional Requirements}
+  \label{Table:trace_fr}
 \end{table}
 
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{APR1}
+    & \rotatebox{90}{APR2}
+    & \rotatebox{90}{APR3}
+    & \rotatebox{90}{STR1}
+    & \rotatebox{90}{EUR1}
+    & \rotatebox{90}{PIR1}
+    & \rotatebox{90}{LR1}
+    & \rotatebox{90}{LR2}
+    & \rotatebox{90}{UPR1}
+    & \rotatebox{90}{UPR2}
+    & \rotatebox{90}{ACR1}
+    & \rotatebox{90}{ACR2}
+    & \rotatebox{90}{PAR1}
+    & \rotatebox{90}{PAR2}
+  \\ \hline
+  APR1    &X& & & & & & & & & & & & & \\ \hline
+  APR2    & &X& & & & & & & & & & & & \\ \hline
+  APR3    & & &X& & & & & & & & & & & \\ \hline
+  STR1    & & & &X& & & & & & & & & & \\ \hline
+  EUR1    & & & & &X& & & & & & & & & \\ \hline
+  PIR1    & & & & & &X& & & & & & & & \\ \hline
+  LR1     & & & & & & &X& & & & & & & \\ \hline
+  LR2     & & & & & & & &X& & & & & & \\ \hline
+  UPR1    & & & & & & & & &X& & & & & \\ \hline
+  UPR2    & & & & & & & & & &X& & & & \\ \hline
+  ACR1    & & & & & & & & & & &X& & & \\ \hline
+  ACR2    & & & & & & & & & & & &X& & \\ \hline
+  PAR1    & & & & & & & & & & & & &X& \\ \hline
+  PAR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 1-14}
+  \label{Table:trace_nfr1-14}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{RAR1}
+    & \rotatebox{90}{CR1}
+    & \rotatebox{90}{CR2}
+    & \rotatebox{90}{EPER1}
+    & \rotatebox{90}{PRR1}
+    & \rotatebox{90}{MR1}
+    & \rotatebox{90}{ACCR1}
+    & \rotatebox{90}{IR1}
+    & \rotatebox{90}{IR2}
+    & \rotatebox{90}{PR1}
+    & \rotatebox{90}{AUR1}
+    & \rotatebox{90}{CUR1}
+    & \rotatebox{90}{LGR1}
+    & \rotatebox{90}{LGR2}
+  \\ \hline
+  RAR1    &X& & & & & & & & & & & & & \\ \hline
+  CR1     & &X& & & & & & & & & & & & \\ \hline
+  CR2     & & &X& & & & & & & & & & & \\ \hline
+  EPER1   & & & &X& & & & & & & & & & \\ \hline
+  PRR1    & & & & &X& & & & & & & & & \\ \hline
+  MR1     & & & & & &X& & & & & & & & \\ \hline
+  ACCR1   & & & & & & &X& & & & & & & \\ \hline
+  IR1     & & & & & & & &X& & & & & & \\ \hline
+  IR2     & & & & & & & & &X& & & & & \\ \hline
+  PR1     & & & & & & & & & &X& & & & \\ \hline
+  AUR1    & & & & & & & & & & &X& & & \\ \hline
+  CUR1    & & & & & & & & & & & &X& & \\ \hline
+  LGR1    & & & & & & & & & & & & &X& \\ \hline
+  LGR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 15-28}
+  \label{Table:trace_nfr15-28}
+\end{table}
 
 \section{Unit Test Description}
 
