@@ -85,8 +85,15 @@ in.}
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document details the Verification and Validation plan, outlining the strategies, 
+tools, and processes to ensure the system meets its design specifications and quality standards. 
+Automated testing tools, including linters, unit testing frameworks, and continuous integration 
+(e.g., GitHub Actions), will maintain code quality and enable efficient verification of functionality. 
+The roadmap covers key phases: initial setup and planning to define testing tools and team responsibilities; 
+systematic unit, integration, and automated testing to validate module interactions and overall functionality; 
+structured usability assessments to gauge user satisfaction; and a final verification phase to ensure all functional 
+and non-functional requirements are met. This phased approach, combined with both automated and manual validation 
+techniques, aligns the project with its technical, usability, and compliance objectives.
 
 \section{General Information}
 
@@ -113,19 +120,10 @@ This document ... \wss{provide an introductory blurb and roadmap of the
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+\begin{description}[leftmargin=0cm]
+  \item[Challenge Level] As stated in the Problem Statement document, the challenge level of this project is general. In light of the revised scope of the project, i.e., omitting the generation component and delaying the recommendation component until after acceptable completion of the featurizer, as described in the hazard analysis document, we have not changed the challenge level of our project. In retrospect, perhaps it was likely the case that our project should have been labelled as a challenging project instead.
+  \item[Extras] As stated in the probelm statement document, the team plans to include user \& API documentation for reference, usability testing for easy startup, and design thinking to build an intuitive user interface. Note that the generation component is now a stretch goal instead of a core feature, as discussed in the hazard analysis document.
+\end{description}
 
 \subsection{Relevant Documentation}
 
@@ -161,12 +159,12 @@ The following approaches will be used for SRS verification:
   \item Ad-hoc reviews from peers and other teams in the course
 \end{itemize}
 This is the initial SRS checklist that reviewers will use. It will be updated as reviews are performed:
-\begin{enumerate}
-  \item[$\square$] Does each functional requirement have a detailed and accurate description, rationale and fit criteria?
-  \item[$\square$] Is each requirement (both functional and non-functional) relevant and necessary?
-  \item[$\square$] Are all functional requirements traceable to at least one use case?
-  \item[$\square$] Are all fit critera unambiguous and verifiable?
-  \item[$\square$] Have all issues opened by reviewers been closed? 
+\begin{enumerate}[label=$\square$]
+  \item Does each functional requirement have a detailed and accurate description, rationale and fit criteria?
+  \item Is each requirement (both functional and non-functional) relevant and necessary?
+  \item Are all functional requirements traceable to at least one use case?
+  \item Are all fit critera unambiguous and verifiable?
+  \item Have all issues opened by reviewers been closed? 
 \end{enumerate}
 
 \subsection{Design Verification Plan}
@@ -283,19 +281,49 @@ verified.  Techniques for this include review and mutation testing.}
 \wss{Create a checklists?}
 
 \subsection{Implementation Verification Plan}
+\subsubsection{Static Analysis}
+Static analysis is the analysis of program content without execution. Below is a description of static analysis techniques we plan to implement as part of our testing process.
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+\begin{description}[style=unboxed,leftmargin=0cm]
+  \item[Linting] Linters like \href{https://pylint.readthedocs.io/}{\texttt{Pylint}}, \href{https://docs.astral.sh/ruff/}{\texttt{Ruff}}, or \href{https://flake8.pycqa.org/en/stable/}{\texttt{Flake8}} check for errors, enforce a coding standard, identify \href{https://refactoring.guru/refactoring/smells}{code smells}, and can make code refactoring suggestions.
+  
+  \item[Formatting] Formatters like \href{https://black.readthedocs.io/}{\texttt{Black}} and \texttt{Ruff} (indeed, Ruff is also a formatter) standardize code appearance and adhere to style guides, allowing the code reader to focus on code content.
+  
+  \item[Type Checking] Type checkers like \href{https://mypy.readthedocs.io/}{\texttt{mypy}} ensure correct use of variables and functions in code using type hints, as outlined in \href{https://peps.python.org/pep-484/}{PEP 484}. Type hinting can also serve as documentation when publishing an API reference or developer guide.
+  
+  \item[Security Checking] Static security checkers like \href{https://bandit.readthedocs.io/}{\texttt{Bandit}} find common security vulnerabilities in code, e.g., framework misconfiguration (\texttt{B2XX}, e.g., exposing the Flask debugger in a production application, allowing \href{https://flask.palletsprojects.com/en/stable/quickstart/#debug-mode:~:text=Warning}{remote code execution}), blacklist calls (\href{https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html}{\texttt{B3XX}}, e.g., loading serialized pickle files), blacklist imports (\href{https://bandit.readthedocs.io/en/latest/blacklists/blacklist_imports.html}{\texttt{B4XX}}, e.g., importing \texttt{ftplib} for insecure file transfer), cryptography (\texttt{B5XX}, e.g., \href{https://bandit.readthedocs.io/en/latest/plugins/b501_request_with_no_cert_validation.html}{missing certificate validation}), and injection (\texttt{B6XX}, e.g., testing for \href{https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html}{SQL injection}).
+  
+  \item[Code Metrics Analysis] A code metrics analysis tool like \href{https://radon.readthedocs.io/en/stable/index.html}{\texttt{radon}} can provide insights on various aspects of the codebase:
+    \begin{description}[style=unboxed,labelindent=1cm]
+      \item[Raw metrics] Number of lines of source code (SLOC), logic (LLOC), comments, and whitespace.
+      \item[Cyclomatic complexity] Number of decisions (or linearly independent paths) in a code block.
+      \item[Halstead metrics] Statically-generated program \href{https://radon.readthedocs.io/en/stable/intro.html#halstead-metrics}{metrics}.
+    \end{description}
+  
+  \item[Composite Analysis Techniques] Tools like \href{https://radon.readthedocs.io/en/stable/index.html}{\texttt{Prospector}} combine multiple analysis techniques into one, i.e., linting via \texttt{Pylint}, \href{https://launchpad.net/pyflakes}{\texttt{Pyflakes}}, or \texttt{Ruff}, \href{https://peps.python.org/pep-8}{PEP 8} and PEP 257 formatting via \href{https://pycodestyle.pycqa.org/en/stable/}{\texttt{pycodestyle}} and \href{https://www.pydocstyle.org/en/stable/}{\texttt{pydocstyle}}, code complexity analysis via \href{https://flake8.pycqa.org/en/stable/}{\texttt{McCabe}}, simple security checking via \href{https://github.com/prospector-dev/dodgy}{\texttt{Dodgy}}, packaging quality checking via \href{https://github.com/regebro/pyroma}{\texttt{Pyroma}}, unused modules checking via \href{https://github.com/jendrikseipp/vulture}{\texttt{Vulture}}, type checking via \texttt{Mypy} or \href{https://microsoft.github.io/pyright/}{\texttt{Pyright}}, and security checking via \texttt{Bandit}.
+  
+  \item[Code Walkthroughs] Checklist-driven walkthroughs of featurization algorithms with other teammates and optionally the supervisor. Refer to the appendix section \ref{A-Code-walkthrough-checklist} for a sample checklist.
+  
+  \item[Peer Desk Checks] Changes to the codebase will require approval from at least one other group member via a pull request review before merging to the main/production branch.
+\end{description}
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+\subsubsection{Dynamic Testing}
+Dynamic testing is the analysis of program runtime responses during and after execution. Below is a description of dynamic testing techniques we plan to implement as part of our testing process. For further details about the automated components, refer to section \ref{3.6-auto-test-verif-tools}.
 
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
+\begin{description}[style=unboxed,leftmargin=0cm]
+  \item[System Testing] Tests are orchestrated via Testing orchestration tools like \href{https://tox.wiki/}{\texttt{tox}} can manage all testing, from atomic unit tests to end-to-end system tests. System tests outlined in section 4 will be run to ensure necessary requirements are met.
+  \item[Unit Testing] Unit testing frameworks like \href{https://docs.pytest.org/en/stable/}{\texttt{pytest}} or \href{https://docs.python.org/3/library/unittest}{\texttt{unittest}} can verify that the implementation matches designs described in other system documents.
+  % \href{https://realpython.com/python-testing/#testing-data-driven-applications}{Guide to testing data-driven applications}. \href{https://coderpad.io/blog/development/a-guide-to-database-unit-testing-with-pytest-and-sqlalchemy/}{Guide to testing databases with \texttt{pytest}}.
+  \item[User Interface Testing] UI components can be described as a set of discrete interactions, i.e., a transition model can capture user interactions as events then test it. Tools like the \href{https://selenium-python.readthedocs.io/}{\texttt{Selenium} Python API} automate web-based interactions, i.e., can serve as a testing framework to automate interaction sequences using the UI model.
+  % If using the MVC/PAC architecture, we can test the M/P and V/A separately using stubs/mocks.
+  \item[Integration Testing] Testing frameworks like \texttt{pytest} can be combined with modular \href{https://docs.pytest.org/explanation/fixtures.html}{fixtures} or factories via \href{https://factoryboy.readthedocs.io/}{\texttt{factoryboy}} to simulate databases or other complex objects for testing operability between various interfaces, i.e., integration testing.
+  \item[Regression Testing] Persistence of tests across iterations of the project facilitates ease of regression testing, with automation via GitHub actions.
+  \item[Coverage Testing] Code coverage libraries like \href{https://coverage.readthedocs.io/en/7.6.4/}{\texttt{coverage}} or \href{https://pypi.org/project/pytest-cov/}{\texttt{pytest-cov}} can be used to generate code coverage reports. These reports will inform developers of any possible code execution paths that have not been covered by unit tests.
+\end{description}
+% \item \textcolor{red}{Ownership of code/data - likely algorithm person}
+% \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
 
-\subsection{Automated Testing and Verification Tools}
+\subsection{Automated Testing and Verification Tools} \label{3.6-auto-test-verif-tools}
 
 \wss{What tools are you using for automated testing.  Likely a unit testing
   framework and maybe a profiling tool, like ValGrind.  Other possible tools
@@ -314,23 +342,37 @@ that document.}
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+% \wss{If there is any external data that can be used for validation, you should
+%   point to it here.  If there are no plans for validation, you should state that
+%   here.}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+% \wss{You might want to use review sessions with the stakeholder to check that
+% the requirements document captures the right requirements.  Maybe task based
+% inspection?}
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+% \wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
+% be used as an opportunity to validate the requirements.  You should plan on 
+% demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
+% The feedback from your supervisor will be very useful for improving your project.}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+% \wss{For teams without an external supervisor, user testing can serve the same purpose 
+% as a Rev 0 demo for the supervisor.}
 
-\wss{This section might reference back to the SRS verification section.}
+% \wss{This section might reference back to the SRS verification section.}
+
+\subsubsection{External Data For Validation}
+The project cannot function very effectively without access to songs made available by \href{https://developers.deezer.com/api}{Deezer's API}, song snippets made available by \href{https://developer.spotify.com/documentation/web-api}{Spotify's API}, or the \href{https://developer.spotify.com/documentation/web-api/reference/get-several-audio-features}{track audio features} offered by Spotify's API that can serve as the ground truth for us to verify \href{https://en.wikipedia.org/wiki/Probably_approximately_correct_learning#:~:text=In%20this%20framework,the%20samples.}{approximate correctness} of our featurizer.
+
+\subsubsection{Requirement Reviews \& Task-Based Inspections}
+Task-based inspections seek to verify the implementation of functional requirements and the degree to which the nonfunctional requirements are met. Requirement reviews, however, are conducted with the stakeholders to select and refine a subset of requirements.
+\begin{itemize}
+\item Requirement reviews with stakeholders can be conducted to offer assurance on the completeness of requirements documents. The goal is to survey stakeholders on the requirements to help with requirement prioritization, refinement, or omission.
+
+\item A task-based inspection can also be conducted to verify the correctness of the implementation with respect to the requirements. This would involve stakeholder being given a list of tasks designed to test functional and nonfunctional requirments. The stakeholder would document their experience carrying out these tasks. Ideally, the task-based inspection is conducted with the same stakeholder group as the one involved in the requirements review to obtain a revised opinion on the selection and granularity of requirements.
+\end{itemize}
+
+\subsubsection{Project Supervisor Demo}
+The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we should explain and justify the project requirements, followed by a demonstration of a project prototype, then a characterization of the correctness of the functional requirements implementation and adherance to the nonfunctional requirements. Unmet requirements must be revised or omitted with justification. Note that Dr. Martin V. Mohrenschildt is an expert in signals processing, thus we strive primarily to collect feedback on our signal processing components.
 
 \section{System Tests}
 
@@ -395,62 +437,287 @@ How test will be performed:
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
+\subsubsection{APR1 - Minimalist Layout}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User interface loaded.
+    \item \textbf{Input/Condition:} Visual inspection of layout.
+    \item \textbf{Output/Result:} Interface presents a minimalist layout with minimal distractions.
+    \item \textbf{How test will be performed:} Manually inspect interface layout to ensure it follows minimalist design guidelines.
+\end{itemize}
 
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
+\subsubsection{APR2 - High Contrast}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface set to default theme.
+    \item \textbf{Input/Condition:} Check for visual contrast.
+    \item \textbf{Output/Result:} All text and elements display high contrast for readability.
+    \item \textbf{How test will be performed:} Perform a manual inspection of UI contrast using WCAG contrast standards.
+\end{itemize}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
+\subsubsection{APR3 - Intuitive Navigation}
+\begin{itemize}
+    \item \textbf{Test ID:} TAPR3
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface opened.
+    \item \textbf{Input/Condition:} Navigate through different pages.
+    \item \textbf{Output/Result:} Users can easily navigate and locate functions within 3 clicks.
+    \item \textbf{How test will be performed:} Manually navigate to different features and confirm efficient accessibility.
+\end{itemize}
 
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+\subsubsection{STR1 - Consistent Button Styles}
+\begin{itemize}
+    \item \textbf{Test ID:} TSTR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Interface loaded.
+    \item \textbf{Input/Condition:} Check for style consistency in buttons.
+    \item \textbf{Output/Result:} All buttons follow a consistent color and shape style.
+    \item \textbf{How test will be performed:} Visually inspect all buttons to ensure they meet the style guidelines.
+\end{itemize}
 
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
+\subsubsection{EUR1 - Tooltip Visibility}
+\begin{itemize}
+    \item \textbf{Test ID:} TEUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface loaded with tooltips.
+    \item \textbf{Input/Condition:} Hover over interactive elements.
+    \item \textbf{Output/Result:} Tooltips display with descriptive content.
+    \item \textbf{How test will be performed:} Manually hover over elements to confirm tooltip visibility.
+\end{itemize}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{PIR1 - Customizable Color Themes}
+\begin{itemize}
+    \item \textbf{Test ID:} TPIR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface with theme options.
+    \item \textbf{Input/Condition:} User switches between themes.
+    \item \textbf{Output/Result:} All themes display correctly with no visual errors.
+    \item \textbf{How test will be performed:} Switch themes manually and verify consistent color scheme application.
+\end{itemize}
 
-\begin{enumerate}
+\subsubsection{LR1 - Initial Tutorial}
+\begin{itemize}
+    \item \textbf{Test ID:} TLR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} First-time user experience loaded.
+    \item \textbf{Input/Condition:} User accesses the system for the first time.
+    \item \textbf{Output/Result:} System displays an introductory tutorial.
+    \item \textbf{How test will be performed:} Manually confirm tutorial launches on initial access.
+\end{itemize}
 
-\item{test-id1\\}
+\subsubsection{LR2 - Tutorial Completion Time}
+\begin{itemize}
+    \item \textbf{Test ID:} TLR2
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Tutorial in progress.
+    \item \textbf{Input/Condition:} Measure time for tutorial completion.
+    \item \textbf{Output/Result:} Users complete the tutorial within 5 minutes.
+    \item \textbf{How test will be performed:} Track completion time for new users.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{UPR1 - Friendly Feedback}
+\begin{itemize}
+    \item \textbf{Test ID:} TUPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Error states are accessible.
+    \item \textbf{Input/Condition:} Trigger common errors.
+    \item \textbf{Output/Result:} System provides friendly, clear feedback.
+    \item \textbf{How test will be performed:} Manually review error messages to confirm they are polite and helpful.
+\end{itemize}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+\subsubsection{UPR2 - Standardized Iconography}
+\begin{itemize}
+    \item \textbf{Test ID:} TUPR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} A subset of complete interface iconography is available.
+    \item \textbf{Input/Condition:} Developer reviews subset of complete interface iconography.
+    \item \textbf{Output/Result:} Subset of complete interface iconography is deemed standard and inoffensive.
+    \item \textbf{How test will be performed:} Manually review individual icons to confirm they are standard and inoffensive.
+\end{itemize}
 
-\end{enumerate}
+\subsubsection{ACR1 - Accessible Fonts}
+\begin{itemize}
+    \item \textbf{Test ID:} TACR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Font-defining code is available.
+    \item \textbf{Input/Condition:} Developer reviews font-defining code.
+    \item \textbf{Output/Result:} Font-defining code is deemed to only contain accessible fonts in accordance to the \href{https://www.w3.org/TR/2023/REC-WCAG22-20231005/}{WCAG 2.2} standard.
+    \item \textbf{How test will be performed:} Perform a manual inspection of fonts available in the UI and cross-check them with the WCAG 2.2 standard.
+\end{itemize}
 
-\subsubsection{Area of Testing2}
+\subsubsection{ACR2 - Color Blind Mode}
+\begin{itemize}
+    \item \textbf{Test ID:} TACR2
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Interface set to default visibility mode.
+    \item \textbf{Input/Condition:} Enable color blind mode.
+    \item \textbf{Output/Result:} Interface set to color blind visibility mode.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output.
+\end{itemize}
 
-...
+\subsubsection{PAR1 - Query Request Time Precision}
+\begin{itemize}
+    \item \textbf{Test ID:} TPAR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Server active and client application open.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Server returns response and client application displays query request time.
+    \item \textbf{How test will be performed:} Use a web driver like \texttt{Selenium} to perform input and record output, capturing displayed time for verification.
+\end{itemize}
+
+\subsubsection{PAR2 - Rounding Accuracy}
+\begin{itemize}
+    \item \textbf{Test ID:} TPAR2
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} System loaded with rounding functions.
+    \item \textbf{Input/Condition:} Input values with decimals.
+    \item \textbf{Output/Result:} Values are rounded accurately according to specification.
+    \item \textbf{How test will be performed:} Perform automated tests on rounding functions with pre-defined decimal values.
+\end{itemize}
+
+\subsubsection{RAR1 - Fault Tolerance}
+\begin{itemize}
+    \item \textbf{Test ID:} TRAR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} Server operational with any state or load, e.g., idle, under little load (2 or fewer users interleaving requests less than once every 30 minutes), under intermediate use (2 or more users interleaving requests at least once every 30 minutes), or under strenuous use (4 or more users interleaving requests at least once every 5 minutes).
+    \item \textbf{Input/Condition:} Server operational under any sequence of state transitions, e.g., from any of idle, under little, intermediate, or strenuous load, to idle, under little, intermediate, or strenuous load.
+    \item \textbf{Output/Result:} Server operational with any state or load.
+    \item \textbf{How test will be performed:} Schedule a 3-day monitoring period and use Ubuntu Server's \href{https://manpages.ubuntu.com/manpages/xenial/man1/uptime.1.html}{\texttt{uptime}} command to find the uptime across the monitoring period, allowing assessment and extrapolation of results from 3 days to 30 days. If possible, repeat the test with a 30-day (or longer) monitoring period. \textcolor{red}{\emph{Note}: Precise uptime metrics can only be achieved by formal checking which we do not have the expertise, time, or necessity for. A simple extrapolation result suffices for the given scope.}
+\end{itemize}
+
+\subsubsection{CR1 - Minimum Concurrent Users Load}
+\begin{itemize}
+    \item \textbf{Test ID:} TCR1
+    \item \textbf{Type:} Dynamic, Load Test
+    \item \textbf{Initial State:} System idle.
+    \item \textbf{Input/Condition:} Simulate multiple user logins.
+    \item \textbf{Output/Result:} System handles expected concurrent user limit.
+    \item \textbf{How test will be performed:} Use a load testing tool to simulate concurrent users.
+\end{itemize}
+
+\subsubsection{CR2 - Data Storage}
+\begin{itemize}
+    \item \textbf{Test ID:} TCR2
+    \item \textbf{Type:} Dynamic, automated
+    \item \textbf{Initial State:} Mock database active.
+    \item \textbf{Input/Condition:} Issue any valid query.
+    \item \textbf{Output/Result:} Database stores appropriate data related to songs and query information.
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and test storage functionality.
+\end{itemize}
+
+\subsubsection{EPER1 - Server Device}
+\begin{itemize}
+    \item \textbf{Test ID:} TEPER1
+    \item \textbf{Type:} Environment, Inspection
+    \item \textbf{Initial State:} Server is available for inspection.
+    \item \textbf{Input/Condition:} Inspect server specifications and body.
+    \item \textbf{Output/Result:} Server is of make and model Dell OptiPlex 3050.
+    \item \textbf{How test will be performed:} View server using los ojos.
+\end{itemize}
+
+\subsection{Productization Requirements}
+
+\subsubsection{PRR1 - Production Readiness Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} TPRR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System deployed in staging environment.
+    \item \textbf{Input/Condition:} Perform a complete end-to-end run.
+    \item \textbf{Output/Result:} System operates without failure in a production-like setting.
+    \item \textbf{How test will be performed:} Conduct end-to-end test in staging to verify production readiness.
+\end{itemize}
+
+\subsubsection{MR1 - Ease of Code Updates}
+\begin{itemize}
+    \item \textbf{Test ID:} TMR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Source code repository active.
+    \item \textbf{Input/Condition:} Review update process.
+    \item \textbf{Output/Result:} Codebase is structured for easy updates.
+    \item \textbf{How test will be performed:} Review code structure and modularity to ensure maintainability.
+\end{itemize}
+
+\subsubsection{ACCR1 - Licensed Song Access}
+\begin{itemize}
+    \item \textbf{Test ID:} TMR1
+    \item \textbf{Type:} Dynamic, Automated
+    \item \textbf{Initial State:} Mock database active with multiple queries from different (at least 2 unique) users already loaded.
+    \item \textbf{Input/Condition:} Issue queries to access songs requested other users, not the current user.
+    \item \textbf{Output/Result:} Database returns an empty response because the requesting user does not have access (or a license) to the songs uploaded/licensed by the other user(s).
+    \item \textbf{How test will be performed:} Use frameworks like \texttt{factoryboy} and \texttt{Pytest}'s fixtures to mock a database and entries, then issue queries, capture response, and ensure it is empty.
+\end{itemize}
+
+\subsubsection{IR1 - Database Backup}
+\begin{itemize}
+    \item \textbf{Test ID:} TIR1
+    \item \textbf{Type:} Static \& Manual, Dynamic \& Automated
+    \item \textbf{Initial State:} Database layout configured \& backup code is complete.
+    \item \textbf{Input/Condition:} Conduct code review to ensure backup functionality is correct, and simulate it running (on-command as opposed to weekly) to ensure it does backup.
+    \item \textbf{Output/Result:} Database backup functionality is found to be correct, with ad-hoc generated backup artifacts to check it live.
+    \item \textbf{How test will be performed:} Conduct a code review/walkthrough and use both unit and integration testing through \texttt{Pytest} with fixtures (alongside \texttt{factoryboy}) to ensure the correct backup artifacts are generated.
+\end{itemize}
+
+\subsubsection{IR2 - Database Deduplication}
+\begin{itemize}
+    \item \textbf{Test ID:} TIR2
+    \item \textbf{Type:} Static \& Manual, Dynamic \& Automated
+    \item \textbf{Initial State:} Database layout configured \& deduplication code is complete.
+    \item \textbf{Input/Condition:} Conduct code review to ensure deduplication functionality is correct, and insert duplicate records to ensure the mechanism prevents their insertion or ``\href{https://oncodingstyle.blogspot.com/2008/10/fail-early-fail-loudly.html#:~:text=Failing%20loudly%20is%20a%20benefit,this%20is%20a%20checked%20exception.}{fails loudly}''.
+    \item \textbf{Output/Result:} Database deduplication functionality is found to be correct, with induced duplicate insertions prevented.
+    \item \textbf{How test will be performed:} Conduct a code review/walkthrough and use both unit and integration testing through \texttt{Pytest} with fixtures (alongside \texttt{factoryboy}) to ensure the correct deduplication behaviour is encountered.
+\end{itemize}
+
+\subsubsection{PR1 - Data Encryption Verification}
+\begin{itemize}
+    \item \textbf{Test ID:} TPR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Database system in use.
+    \item \textbf{Input/Condition:} Inspect database for encryption protocols.
+    \item \textbf{Output/Result:} All sensitive data is encrypted in storage.
+    \item \textbf{How test will be performed:} Review encryption settings in database configuration.
+\end{itemize}
+
+\subsubsection{AUR1 - Access Logs for User Sessions}
+\begin{itemize}
+    \item \textbf{Test ID:} TAUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System active with user sessions.
+    \item \textbf{Input/Condition:} Access user session logs.
+    \item \textbf{Output/Result:} Logs capture all user activities accurately.
+    \item \textbf{How test will be performed:} Review session logs for accuracy and completeness.
+\end{itemize}
+
+\subsubsection{CUR1 - Multilingual Support}
+\begin{itemize}
+    \item \textbf{Test ID:} TCUR1
+    \item \textbf{Type:} Dynamic, Manual
+    \item \textbf{Initial State:} System interface displayed.
+    \item \textbf{Input/Condition:} Switch to different language options.
+    \item \textbf{Output/Result:} System adapts to selected language without errors.
+    \item \textbf{How test will be performed:} Switch languages manually and verify accurate translations.
+\end{itemize}
+
+\subsubsection{LGR1 - Compliance with Copyright Laws}
+\begin{itemize}
+    \item \textbf{Test ID:} TLGR1
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} Content library loaded.
+    \item \textbf{Input/Condition:} Inspect all music content for licensing.
+    \item \textbf{Output/Result:} All content has proper copyright attributions.
+    \item \textbf{How test will be performed:} Check each music file and source for copyright compliance.
+\end{itemize}
+
+\subsubsection{LGR2 - Adherence to Data Protection Regulations}
+\begin{itemize}
+    \item \textbf{Test ID:} TLGR2
+    \item \textbf{Type:} Static, Manual
+    \item \textbf{Initial State:} User data system in place.
+    \item \textbf{Input/Condition:} Inspect data management policies.
+    \item \textbf{Output/Result:} User data management meets legal requirements.
+    \item \textbf{How test will be performed:} Review data management practices to confirm legal compliance.
+\end{itemize}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -597,9 +864,128 @@ This is where you can place additional information.
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions?}
+\subsection{Usability Survey Questions}
 
-\wss{This is a section that would be appropriate for some projects.}
+To validate the usability requirements outlined in the SRS, the following survey questions have been structured as 'check criteria', 
+allowing for quick evaluation with follow-up prompts to gather additional details if necessary.
+
+\begin{itemize}
+    \item \textbf{Tooltip Effectiveness (EUR1)}:
+    \begin{itemize}
+        \item \textit{Survey Question:} "Were the tooltips helpful in understanding the function of each feature? (Yes/No)  
+        \begin{itemize}
+            \item If No, please specify which tooltips were unclear or missing."
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Ease of Personalization (PIR1)}:
+    \begin{itemize}
+        \item \textit{Survey Question:} "Were you able to find and switch between different display color themes easily? (Yes/No)  
+        \begin{itemize}
+            \item If No, please describe any difficulties you encountered or suggestions for improvement."
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{First-Time User Guide Clarity and Timing (LR1, LR2)}:
+    \begin{itemize}
+        \item \textit{Survey Question:} "Did the first-time user guide help you understand the main features within 10 minutes? (Yes/No)  
+        \begin{itemize}
+            \item If No, please indicate what aspects were unclear or took longer than expected."
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Content Politeness and Appropriateness (UPR1, UPR2)}:
+    \begin{itemize}
+        \item \textit{Survey Question:} "Was all content and iconography appropriate and free from offensive material? (Yes/No)  
+        \begin{itemize}
+            \item If No, please specify any instances where content was found inappropriate."
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Accessibility of Font and Color Options (ACR1, ACR2)}:
+    \begin{itemize}
+        \item \textit{Survey Question:} "Did you find the font choices easy to read, and was the color-blind mode accessible if you used it? (Yes/No)  
+        \begin{itemize}
+            \item If No, please describe any accessibility challenges you faced with font readability or color options."
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\noindent
+These questions are designed to verify specific usability requirements established in the SRS.
+
+
+\subsection{Code Walkthrough Checklist}
+\label{A-Code-walkthrough-checklist}
+Here is a sample code walkthrough checklist. It will be updated as reviews are performed:\\
+
+\noindent
+Functionality
+\begin{itemize}[label=$\square$]
+  \item Does the code perform its intended task?
+  \item Can this code be traced to a requirement?
+  \item Is there redundant or unnecessary code?
+\end{itemize}
+
+\noindent
+Readability
+\begin{itemize}[label=$\square$]
+  \item Do the functions and variables have meaningful names?
+  \item Does the source code contain sufficient commenting?
+  \item Does the code follow PEP8 style guidelines
+\end{itemize}
+
+\noindent
+Modularity
+\begin{itemize}[label=$\square$]
+  \item Are there excessively long functions that can be broken down?
+  \item Is the code organized? 
+  \item Is the code easy to change or expand upon?
+\end{itemize}
+
+\noindent
+Error Handling
+\begin{itemize}[label=$\square$]
+  \item Are exceptions and errors handled gracefully?
+  \item Do exceptions and erros have useful error messages? 
+\end{itemize}
+
+\noindent
+Testing
+\begin{itemize}[label=$\square$]
+  \item Are there enough unit tests such that the code coverage tool reports 100\% code coverage?
+  \item Does \texttt{Pytest} report that 100\% of unit tests are passing? 
+  \item Are there enough system tests to cover all requirements? 
+  \item Are all system tests passing? 
+\end{itemize}
+
+\noindent
+Reliability
+\begin{itemize}[label=$\square$]
+  \item Is the code fault-tolerant? I.e., does the system continue to operate despite failures/faults?
+  \item Does the code have effective exception-handling and error recovery mechanisms?
+\end{itemize}
+
+\noindent
+Efficiency
+\begin{itemize}[label=$\square$]
+  \item How much memory or processor capacity does the program consume?
+  \item Are algorithms optimized, avoiding unnecessary operations?
+\end{itemize}
+
+\noindent
+Reusability
+\begin{itemize}[label=$\square$]
+  \item Can components be reused in other applications/other parts of the application?
+  \item Does the program have a well-partitioned, modular design with \emph{strong cohesion} and \emph{loose coupling}?
+\end{itemize}
+
+\noindent
+Scalability
+\begin{itemize}[label=$\square$]
+  \item Can the system grow to accomodate more users, servers, data or other components?
+  \item Can it do so with acceptable performance and at acceptable cost?
+\end{itemize}
 
 \newpage{}
 \section*{Appendix --- Reflection}
