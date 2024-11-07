@@ -4,6 +4,7 @@
 \restylefloat{table}
 
 \usepackage{booktabs}
+\usepackage{enumitem}
 
 \title{Team Contributions: POC\\\progname}
 
@@ -24,66 +25,58 @@ and the POC demo.
 
 \section{Demo Plans}
 
-\wss{What will you be demonstrating}
+\begin{description}[leftmargin=0cm]
+    \item[Demonstration] Our reduced-scope demonstration should illustrate the ability to acquire data programmatically, i.e., accessing \texttt{MP3} files from \href{https://developers.deezer.com/api}{Deezer} or \href{https://developer.spotify.com/documentation/web-api}{Spotify}'s APIs, and producing a single musical feature of the song, e.g., pitch, timbre, or whatever other feature is found to be representative of songs and relatively easy to implement.
+    \item[Post-demonstration] A successful demonstration will allow us to later scale up our data ingestion to satisfy multiple users' requests automatically, and provide songs' musical features on demand, expanding the available features incrementally. If the featurization/feature engineering component works correctly, a song recommendation component can later be integrated by using song features as distance metrics.
+\end{description}
 
 \section{Team Meeting Attendance}
 
-\wss{For each team member how many team meetings have they attended over the
-time period of interest.  This number should be determined from the meeting
-issues in the team's repo.  The first entry in the table should be the total
-number of team meetings held by the team.}
-
 \begin{table}[H]
 \centering
 \begin{tabular}{ll}
 \toprule
 \textbf{Student} & \textbf{Meetings}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
-Name 2 & Num\\
-Name 3 & Num\\
-Name 4 & Num\\
-Name 5 & Num\\
+Total & 12\\
+Ansel Chen & 9\\
+Muhammad Jawad & 6\\
+Mohamad-Hassan Bahsoun & 10\\
+Matthew Baleanu & 11\\
+Ahmed Al-Hayali & 12\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.}
+\begin{itemize}
+    \item The three missed meetings by Ansel Chen were: one where he was later caught up on by Ahmed (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/208}{\#208} then caught up on \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/209}{\#209}), one where Ahmed was catching Muhammad up on a missed meeting (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/205}{\#205}), and one where the rest of the team got together to discuss kicking off the VnV plan (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/188}{\#188}).
+    \item The six missed meetings by Muhammad Jawad were: one where he was later caught up on by Ahmed (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/204}{\#204} then caught up on \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/205}{\#205}), one where a work session was scheduled during his class-time (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/207}{\#207}), one where Ahmed was catching Ansel up on a missed meeting (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/209}{\#209}), one which was an ad-hoc meeting (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/189}{\#189}), one on a missed work session (preparing slides for a tutorial, hosting a tutorial, then exercising at the gym) (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/191}{\#191}), and one where he arrived after submission of the deliverable (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/194}{\#194}).
+    \item The two missed meetings by Mohamad-Hassan were: one catch-up meetings between Ahmed \& Muhammad Jawad (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/205}{\#205}) and one catch-up meeting between Ahmed \& Ansel Chen (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/209}{\#209}).
+    \item The one missed meeting by Matthew Baleanu was a catch-up meeing between Ahmed \& Muhammad Jawad (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/205}{\#205}).
+\end{itemize}
 
+\newpage
 \section{Supervisor/Stakeholder Meeting Attendance}
 
-\wss{For each team member how many supervisor/stakeholder team meetings have
-they attended over the time period of interest.  This number should be determined
-from the supervisor meeting issues in the team's repo.  The first entry in the
-table should be the total number of supervisor and team meetings held by the
-team.  If there is no supervisor, there will usually be meetings with
-stakeholders (potential users) that can serve a similar purpose.}
-
 \begin{table}[H]
 \centering
 \begin{tabular}{ll}
 \toprule
 \textbf{Student} & \textbf{Meetings}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
-Name 2 & Num\\
-Name 3 & Num\\
-Name 4 & Num\\
-Name 5 & Num\\
+Total & 0\\
+Ansel Chen & 0\\
+Muhammad Jawad & 0\\
+Mohamed-Hassan Bahsoun & 0\\
+Matthew Baleanu & 0\\
+Ahmed Al-Hayali & 0\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.}
+We have chosen not to conduct any formal supervisor or stakeholder meetings yet due to the fragile scope of the project that was shrunk during the hazard analysis. Proceeding forward, there should be more structure to and confidence in the project so stakeholder engagement will be more frequent, i.e., approximately bi-weekly.
 
 \section{Lecture Attendance}
-
-\wss{For each team member how many lectures have they attended over the time
-period of interest.  This number should be determined from the lecture issues in
-the team's repo.  The first entry in the table should be the total number of
-lectures since the beginning of the term.}
 
 \begin{table}[H]
 \centering
@@ -91,22 +84,25 @@ lectures since the beginning of the term.}
 \toprule
 \textbf{Student} & \textbf{Lectures}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
-Name 2 & Num\\
-Name 3 & Num\\
-Name 4 & Num\\
-Name 5 & Num\\
+Total & 12\\
+Ansel Chen & 10\\
+Muhammad Jawad & 9\\
+Mohamed-Hassan Bahsoun & 11\\
+Matthew Baleanu & 9\\
+Ahmed Al-Hayali & 11\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the lecture attendance can be provided here.}
+All of us except for Ansel missed the VnV lecture (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/213}{\#213}) because it coincided with a \emph{SFWRENG 4X03} midterm immediately after it.
+\begin{itemize}
+    \item Ansel Chen missed two lectures, the requirements documentation (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/11}{\#11}) and the hazard analysis (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/73}{\#73}) lectures.
+    \item Muhammad Jawad missed three lectures, the requirements documentation (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/11}{\#11}), Mark Pavlidis' guest lecture (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/33}{\#33}), and the VnV plan (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/213}{\#213}).
+    \item Mohamed-Hassan Bahsoun and Ahmed Al-Hayali both missed one lecture, the VnV plan (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/213}{\#213}).
+    \item Matthew Baleanu missed three lectures, the requirements documentation continued (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/19}{\#19}), Mark Pavlidis' guest lecture (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/33}{\#33}), and the VnV plan (\href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/213}{\#213}).
+\end{itemize}
 
 \section{TA Document Discussion Attendance}
-
-\wss{For each team member how many of the informal document discussion meetings
-with the TA were attended over the time period of interest.}
 
 \begin{table}[H]
 \centering
@@ -115,23 +111,16 @@ with the TA were attended over the time period of interest.}
 \textbf{Student} & \textbf{Lectures}\\
 \midrule
 Total & 3\\
-Ansel Chen & Num\\
+Ansel Chen & 3\\
 Muhammad Jawad & 3\\
 Mohamed-Hassan Bahsoun & 3\\
 Matthew Baleanu & 3\\
-Ahmed Al-Hayali & Num\\
+Ahmed Al-Hayali & 3\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the attendance can be provided here.}
-
 \section{Commits}
-
-\wss{For each team member how many commits to the main branch have been made
-over the time period of interest.  The total is the total number of commits for
-the entire team since the beginning of the term.  The percentage is the
-percentage of the total commits made by each team member.}
 
 \begin{table}[H]
 \centering
@@ -139,26 +128,19 @@ percentage of the total commits made by each team member.}
 \toprule
 \textbf{Student} & \textbf{Commits} & \textbf{Percent}\\
 \midrule
-Total & 318 & 100\% \\
-Ansel Chen & Num & \% \\
-Muhammad Jawad & 35 & 11\% \\
-Mohamed-Hassan Bahsoun & 38 & 12\% \\
-Matthew Baleanu & 60 & 18.9\% \\
-Ahmed Al-Hayali & Num & \% \\
+Total & 211 & 100\% \\
+Ansel Chen & 33 & 15.63\% \\
+Muhammad Jawad & 27 & 12.80\% \\
+Mohamed-Hassan Bahsoun & 31 & 14.70\% \\
+Matthew Baleanu & 43 & 20.38\% \\
+Ahmed Al-Hayali & 77 & 36.49\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.  For
-instance, if a team member has more commits to unmerged branches, these numbers
-can be provided here.  If multiple people contribute to a commit, git allows for
-multi-author commits.}
+The commits-to-main were tracked using GitHub's \href{https://github.com/AhmedAl-Hayali/GenreGuru/graphs/contributors}{Insights}. Multi-author commits were used where appropriate, so commits are representative of contribution.
 
 \section{Issue Tracker}
-
-\wss{For each team member how many issues have they authored (including open and
-closed issues (O+C)) and how many have they been assigned (only counting closed
-issues (C only)) over the time period of interest.}
 
 \begin{table}[H]
 \centering
@@ -166,16 +148,16 @@ issues (C only)) over the time period of interest.}
 \toprule
 \textbf{Student} & \textbf{Authored (O+C)} & \textbf{Assigned (C only)}\\
 \midrule
-Ansel Chen & Num & Num \\
-Muhammad Jawad & 10 & 19 \\
-Mohamed-Hassan Bahsoun & 22 & 28 \\
-Matthew Baleanu & 34 & 25 \\
-Ahmed Al-Hayali & Num & Num \\
+Ansel Chen & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+author%3Achenans1+}{1+2} & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+is%3Aclosed+assignee%3Achenans1+}{42} \\
+Muhammad Jawad & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+author%3Ajawadsalwati}{1+9} & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+is%3Aclosed+assignee%3Ajawadsalwati}{33} \\
+Mohamed-Hassan Bahsoun & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+author%3Abahsounm+}{0+15} & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+is%3Aclosed+assignee%3Abahsounm+}{47} \\
+Matthew Baleanu & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+author%3Abaleanum}{3+10} & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+is%3Aclosed+assignee%3Abaleanum}{44} \\
+Ahmed Al-Hayali & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+author%3AAhmedAl-Hayali+}{11+63} & \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues?q=is%3Aissue+is%3Aclosed+assignee%3AAhmedAl-Hayali+}{48} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.}
+All numbers were found using GitHub Issues' \href{https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests}{advanced search syntax}, and each meric is hyperlinked to the corresponding query.
 
 \section{CICD}
 For this project, CICD will be implemented through GitHub Actions. Each time a pull
@@ -187,8 +169,5 @@ a green check mark for each action that completes without errors. Once all actio
 the pull request will be allowed to be merged. This CICD pipeline ensures that code is 
 written to a high standard by only allowing code to be merged if it meets the rigorous
 style and functionality requirements enforced by the static analyzers and unit tests.
-
-%\wss{If your team has additional metrics of productivity, please feel free to
-%add them to this report.}
 
 \end{document}
