@@ -43,10 +43,6 @@
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -57,14 +53,25 @@
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  VnV & Verification and validation\\
+  TDD & Test-driven development\\
+  API & Application programming interface\\
+  SRS & Software requirements specification\\
+  MG & Module Guide\\
+  MIS & Module Interface Specification\\
+  HAD & Hazard Analysis\\
+  UI & User Interface\\
+  UX & User Experience\\
+  PEP & Python Enhancement Proposal\\
+  SLOC & Source lines of code\\
+  LLOC & Logical lines of code\\
+  CI & Continuous integration\\
+  FR & Functional requirement\\
+  NFR & Non-functional requirement\\
+  WCAG & Web Content Accessibility Guidelines\\
+  Los ojos & The eyes\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -84,20 +91,18 @@ techniques, aligns the project with its technical, usability, and compliance obj
 
 \subsection{Summary}
 
-\subsection{Summary}
-
 This Verification and Validation (VnV) Plan outlines the testing strategies, tools, 
-and processes designed for \textit{Genre Guru}, a software application that enables users to analyze 
+and processes designed for \textit{GenreGuru}, a software application that enables users to analyze 
 musical tracks by extracting key features. The system aims to assist users in understanding and classifying 
-musical genres through feature analysis. In addition to core functionalities, \textit{Genre Guru} includes 
+musical genres through feature analysis. In addition to core functionalities, \textit{GenreGuru} includes 
 stretch goals for generating genre-based recommendations based on the extracted features and for music generation, 
 where the application would produce new tracks inspired by selected genres. This VnV Plan is structured to 
-ensure that \textit{Genre Guru} meets all specified functional and non-functional requirements, from feature accuracy 
+ensure that \textit{GenreGuru} meets all specified functional and non-functional requirements, from feature accuracy 
 to user experience.
 
   \subsection{Objectives}
 
-  The objectives of this Verification and Validation (VnV) Plan are twofold: to provide confidence that the project satisfies all specified functional and nonfunctional requirements (verification) and to confirm that the end product aligns with user expectations and project goals (validation).
+  The objectives of this VnV Plan are twofold: to provide confidence that the project satisfies all specified functional and nonfunctional requirements (verification) and to confirm that the end product aligns with user expectations and project goals (validation).
   
 \begin{description}[leftmargin=0cm]
   \item[Verification] Ensuring the product is built correctly according to the defined requirements and specifications, i.e.,
@@ -115,23 +120,23 @@ to user experience.
 
 \begin{description}[leftmargin=0cm]
   \item[Challenge Level] As stated in the Problem Statement document, the challenge level of this project is general. In light of the revised scope of the project, i.e., omitting the generation component and delaying the recommendation component until after acceptable completion of the featurizer, as described in the hazard analysis document, we have not changed the challenge level of our project. In retrospect, perhaps it was likely the case that our project should have been labelled as a challenging project instead.
-  \item[Extras] As stated in the probelm statement document, the team plans to include user \& API documentation for reference, usability testing for easy startup, and design thinking to build an intuitive user interface. Note that the generation component is now a stretch goal instead of a core feature, as discussed in the hazard analysis document.
+  \item[Extras] As stated in the problem statement document, the team plans to include user \& API documentation for reference, usability testing for easy startup, and design thinking to build an intuitive user interface. Note that the generation component is now a stretch goal instead of a core feature, as discussed in the hazard analysis document.
 \end{description}
 
 \subsection{Relevant Documentation}
 
-This section lists the documents relevant to the Verification and Validation (VnV) Plan for \textit{Genre Guru}. Each document provides vital information for implementing effective testing strategies, defining specific requirements, or guiding system design.
+This section lists the documents relevant to the VnV Plan for \textit{GenreGuru}. Each document provides vital information for implementing effective testing strategies, defining specific requirements, or guiding system design.
 
 \begin{itemize}
-    \item \textbf{Software Requirements Specification (SRS)} \citep{SRS}: The SRS document outlines all functional and non-functional requirements for \textit{Genre Guru}. It serves as the primary reference for establishing test cases, as the VnV plan will verify that each requirement has been met. This document ensures that our testing covers all specified behaviors and performance expectations.
+    \item \textbf{Software Requirements Specification (SRS)} \citep{SRS}: The SRS document outlines all functional and non-functional requirements for \textit{GenreGuru}. It serves as the primary reference for establishing test cases, as the VnV plan will verify that each requirement has been met. This document ensures that our testing covers all specified behaviors and performance expectations.
 
     \item \textbf{Module Guide (MG)}: The MG defines the architecture and organization of the system into modules, detailing each module's responsibilities and dependencies. This structure is essential for integration testing, as it maps out how each component interacts within the system. By following the MG, the VnV plan will verify that module connections and data flows work as designed.
 
     \item \textbf{Module Interface Specification (MIS)}: The MIS provides detailed descriptions of module interfaces, including inputs, outputs, and expected behavior. This document is critical for interface testing, as it enables the VnV team to check that modules interact correctly. Test cases will focus on validating that modules communicate as specified, using the MIS as a guideline.
 
-    \item \textbf{Hazard Analysis Document (HAD)}: The HAD identifies potential risks and proposes mitigations for \textit{Genre Guru}. The VnV team will use this document to develop test cases targeting high-risk areas, such as data integrity and error handling. This approach ensures that the system is robust and resilient under various scenarios.
+    \item \textbf{Hazard Analysis Document (HAD)}: The HAD identifies potential risks and proposes mitigations for \textit{GenreGuru}. The VnV team will use this document to develop test cases targeting high-risk areas, such as data integrity and error handling. This approach ensures that the system is robust and resilient under various scenarios.
 
-    \item \textbf{Design Documents (DD)}: Detailed design documents include diagrams and flowcharts that describe the inner workings of each module. These documents support white-box testing, offering a basis for verifying the internal logic and efficiency of code structures. The VnV team will reference these documents to validate that each module’s implementation aligns with its design.
+    \item \textbf{Design Documents (DD)}: Detailed design documents include diagrams and flowcharts that describe the inner workings of each module. These documents support white-box testing, offering a basis for verifying the internal logic and efficiency of code structures. The VnV team will reference these documents to validate that each module's implementation aligns with its design.
 
     \item \textbf{Test Plan (TP)}: The TP outlines the overall testing strategy, methodologies, and test case responsibilities. It complements the VnV plan by providing specific instructions for executing and managing the tests, ensuring that testing aligns with project goals and requirements as defined in the SRS and MG.
 
@@ -139,8 +144,7 @@ This section lists the documents relevant to the Verification and Validation (Vn
 
 \section{Plan}
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+The subsections to follow outline, in order, VnV team members and their corresponding roles, the verification process for the SRS, the design \& its components, the VnV document and process itself, the implementation, associated automated testing \& verification tools, and software validation tools.
 
 \subsection{Verification and Validation Team}
 
@@ -150,7 +154,7 @@ This section lists the documents relevant to the Verification and Validation (Vn
   \item \emph{Mohamad-Hassan Bahsoun}: Joint responsibility for client application testing; external service API interface testing; joint featurizer algorithm testing.
   \item \emph{Matthew Baleanu}: Unit testing for compute; joint featurizer algorithm testing.
   \item \emph{Ahmed Al-Hayali}: Establish testing infrastructure; Maintain testing infrastructure; Functional testing for server storage; Server networking interface testing; joint featurizer algorithm testing.
-  \item \emph{Supervisor/Dr. Martin v. Mohrenschildt}: Featurizer algorithms validation and limited verification runthroughs.
+  \item \emph{Supervisor/Dr. Martin V. Mohrenschildt}: Featurizer algorithms validation and limited verification runthroughs.
   \item \emph{Stakeholders}: Participate in usability testing, acceptance testing, and offer limited design validation input.
 \end{itemize}
 
@@ -346,7 +350,7 @@ Dynamic testing is the analysis of program runtime responses during and after ex
 % \item \textcolor{red}{Ownership of code/data - likely algorithm person}
 % \item Regression testing w/ unit tests; \textcolor{red}{stubs/mocks in place of other classes?}; compose, don't inherit
 
-\subsection{Automated Testing and Verification Tools}
+\subsection{Automated Testing and Verification Tools} \label{3.6-auto-test-verif-tools}
 The following automated tools will be used throughout the verification and validation
 process of the system:
 \begin{itemize}
@@ -414,7 +418,7 @@ Task-based inspections seek to verify the implementation of functional requireme
 \item A task-based inspection can also be conducted to verify the correctness of the implementation with respect to the requirements. This would involve stakeholder being given a list of tasks designed to test functional and nonfunctional requirments. The stakeholder would document their experience carrying out these tasks. Ideally, the task-based inspection is conducted with the same stakeholder group as the one involved in the requirements review to obtain a revised opinion on the selection and granularity of requirements.
 \end{itemize}
 
-\subsubsection{Project Supervisor Demo}
+\subsubsection{Project Supervisor Demonstration}
 The project supervisor is Dr. Martin V. Mohrenschildt. During the rev 0 demo, we should explain and justify the project requirements, followed by a demonstration of a project prototype, then a characterization of the correctness of the functional requirements implementation and adherance to the nonfunctional requirements. Unmet requirements must be revised or omitted with justification. Note that Dr. Martin V. Mohrenschildt is an expert in signals processing, thus we strive primarily to collect feedback on our signal processing components.
 
 \section{System Tests}
@@ -1081,56 +1085,52 @@ How test will be performed:
 \section{Appendix}
 \renewcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}} % add blue text author notes back in
 
-This is where you can place additional information.
-
 \subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+No symbolic constants were used in defining the test cases.
 
 \subsection{Usability Survey Questions}
 
-To validate the usability requirements outlined in the SRS, the following survey questions have been structured as 'check criteria', 
+To validate the usability requirements outlined in the SRS, the following survey questions have been structured as `check criteria', 
 allowing for quick evaluation with follow-up prompts to gather additional details if necessary.
 
 \begin{itemize}
     \item \textbf{Tooltip Effectiveness (EUR1)}:
     \begin{itemize}
-        \item \textit{Survey Question:} "Were the tooltips helpful in understanding the function of each feature? (Yes/No)  
+        \item \textit{Survey Question:} ``Were the tooltips helpful in understanding the function of each feature? (Yes/No)  
         \begin{itemize}
-            \item If No, please specify which tooltips were unclear or missing."
+            \item If No, please specify which tooltips were unclear or missing.''
         \end{itemize}
     \end{itemize}
 
     \item \textbf{Ease of Personalization (PIR1)}:
     \begin{itemize}
-        \item \textit{Survey Question:} "Were you able to find and switch between different display color themes easily? (Yes/No)  
+        \item \textit{Survey Question:} ``Were you able to find and switch between different display color themes easily? (Yes/No)  
         \begin{itemize}
-            \item If No, please describe any difficulties you encountered or suggestions for improvement."
+            \item If No, please describe any difficulties you encountered or suggestions for improvement.''
         \end{itemize}
     \end{itemize}
 
     \item \textbf{First-Time User Guide Clarity and Timing (LR1, LR2)}:
     \begin{itemize}
-        \item \textit{Survey Question:} "Did the first-time user guide help you understand the main features within 10 minutes? (Yes/No)  
+        \item \textit{Survey Question:} ``Did the first-time user guide help you understand the main features within 10 minutes? (Yes/No)  
         \begin{itemize}
-            \item If No, please indicate what aspects were unclear or took longer than expected."
+            \item If No, please indicate what aspects were unclear or took longer than expected.''
         \end{itemize}
     \end{itemize}
 
     \item \textbf{Content Politeness and Appropriateness (UPR1, UPR2)}:
     \begin{itemize}
-        \item \textit{Survey Question:} "Was all content and iconography appropriate and free from offensive material? (Yes/No)  
+        \item \textit{Survey Question:} ``Was all content and iconography appropriate and free from offensive material? (Yes/No)  
         \begin{itemize}
-            \item If No, please specify any instances where content was found inappropriate."
+            \item If No, please specify any instances where content was found inappropriate.''
         \end{itemize}
     \end{itemize}
 
     \item \textbf{Accessibility of Font and Color Options (ACR1, ACR2)}:
     \begin{itemize}
-        \item \textit{Survey Question:} "Did you find the font choices easy to read, and was the color-blind mode accessible if you used it? (Yes/No)  
+        \item \textit{Survey Question:} ``Did you find the font choices easy to read, and was the color-blind mode accessible if you used it? (Yes/No)  
         \begin{itemize}
-            \item If No, please describe any accessibility challenges you faced with font readability or color options."
+            \item If No, please describe any accessibility challenges you faced with font readability or color options.''
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -1213,12 +1213,6 @@ Scalability
 
 \newpage{}
 \section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.
-
 \input{../Reflection.tex}
 
 \begin{enumerate}
@@ -1246,7 +1240,7 @@ graduate attribute of Lifelong Learning.
   Matthew: To conduct effective testing through static analysis methods,
   the team will also need to develop a strong understanding of static testing techniques and best practices\\
   Ansel: Ansel will have to learn how to unit testing in order to properly apply the tests that were drafted up in the VnV plan.
-
+  \emph{Ahmed}: I am fairly acquainted with most technology involved in the verification process, but will need to research and draft templates for systematic validation processes. It is imperative to make validation processes very informaion-dense without overwhelming stakeholders, but certainly not unstructured and unprepared, wasting the stakeholder's time. I cross-referenced the courses \emph{SFWRENG 3RA3} and \emph{SFWRENG 3S03}, and will continue to do so in the future.
 
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
@@ -1271,6 +1265,7 @@ graduate attribute of Lifelong Learning.
   Human computer interfaces in order to help test and design a client application that is satisfactory. 
   For the featurizer testing, it is expected that Ansel will learn about how to featurize songs and then process that data, 
   which can include reading papers or asking Dr. MvM to learn.
+  \emph{Ahmed}: Look into user validation techniques and researcher data collection practices when collection project validation data; From experience, I recognize that some validation will result in conflicts or disagreements across developers and stakeholders, stakeholders and stakeholders, or developers amongst themselves - a crucial technique to refer back to is professional negotiation through discussion; continue to cross-reference \emph{SFWRENG 3RA3} and \emph{SFWRENG 3S03} and their relevant resources, e.g., and Ammann \& Offutt's ``Introduction to Software Testing''.
 
 
 \end{enumerate}
