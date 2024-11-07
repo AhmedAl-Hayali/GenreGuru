@@ -178,10 +178,17 @@ Ahmed Al-Hayali & Num & Num \\
 \wss{If needed, an explanation for the counts can be provided here.}
 
 \section{CICD}
+For this project, CICD will be implemented through GitHub Actions. Each time a pull
+request is created (or when commits are made to an open pull request), a GitHub Actions
+workflow is triggered. This workflow will run on a virtual machine and use \texttt{Tox}
+to orchestrate the building, linting, formatting, type checking and unit testing
+of the project. The GitHub Actions page will show the progress of each action and display
+a green check mark for each action that completes without errors. Once all actions pass, 
+the pull request will be allowed to be merged. This CICD pipeline ensures that code is 
+written to a high standard by only allowing code to be merged if it meets the rigorous
+style and functionality requirements enforced by the static analyzers and unit tests.
 
-\wss{Say how CICD will be used in your project}
-
-\wss{If your team has additional metrics of productivity, please feel free to
-add them to this report.}
+%\wss{If your team has additional metrics of productivity, please feel free to
+%add them to this report.}
 
 \end{document}
