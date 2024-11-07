@@ -4,6 +4,7 @@
 \restylefloat{table}
 
 \usepackage{booktabs}
+\usepackage{enumitem}
 
 \title{Team Contributions: POC\\\progname}
 
@@ -24,7 +25,10 @@ and the POC demo.
 
 \section{Demo Plans}
 
-% \wss{What will you be demonstrating}
+\begin{description}[leftmargin=0cm]
+    \item[Demonstration] Our reduced-scope demonstration should illustrate the ability to acquire data programmatically, i.e., accessing \texttt{MP3} files from \href{https://developers.deezer.com/api}{Deezer} or \href{https://developer.spotify.com/documentation/web-api}{Spotify}'s APIs, and producing a single musical feature of the song, e.g., pitch, timbre, or whatever other feature is found to be representative of songs and relatively easy to implement.
+    \item[Post-demonstration] A successful demonstration will allow us to later scale up our data ingestion to satisfy multiple users' requests automatically, and provide songs' musical features on demand, expanding the available features incrementally. If the featurization/feature engineering component works correctly, a song recommendation component can later be integrated by using song features as distance metrics.
+\end{description}
 
 \section{Team Meeting Attendance}
 
