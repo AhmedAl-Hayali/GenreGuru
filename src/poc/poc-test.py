@@ -123,6 +123,6 @@ def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
     os.remove(wav_path)
 
 
-audio_file_path = "D:\Documents\Capstone-Project\poc-test\Au5 - Entrance  Ophelia Records_[cut_30sec].mp3"
+audio_file_path = "path_to_mp3_file"
 if __name__ == '__main__':
     find_music_tempo(audio_file_path)
