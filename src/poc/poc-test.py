@@ -4,8 +4,6 @@
 - pip install all the libraries, you need to manually install ffmpeg and add it to %PATH% otherwise pydub
 will give you file not found errors
 """
-
-
 import os
 import numpy as np
 import librosa
@@ -24,7 +22,6 @@ def generate_spectrogram(signal, window_size, hop_size):
     3. Convert to the db scale for accurate vieweing
     """
     spectrogram = librosa.stft(signal, n_fft=window_size, hop_length=hop_size, window='hann')
-
     spectrogram = librosa.power_to_db(np.abs(spectrogram)**2)
     return spectrogram
 
