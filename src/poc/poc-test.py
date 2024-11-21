@@ -21,8 +21,7 @@ def generate_spectrogram(signal, window_size, hop_size):
     2. Square the spectrogram to get the power spectrogram
     3. Convert to the db scale for accurate vieweing
     """
-    spectrogram = librosa.stft(signal, n_fft=window_size, hop_length=hop_size, window='hann')
-    spectrogram = librosa.power_to_db(np.abs(spectrogram)**2)
+    spectrogram = np.abs(librosa.stft(signal, n_fft=window_size, hop_length=hop_size, window='hann')**2)
     return spectrogram
 
 def compute_novelty_curve(spectrogram):
