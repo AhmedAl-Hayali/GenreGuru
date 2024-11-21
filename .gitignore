@@ -282,5 +282,5 @@ TSWLatexianTemp*
 src/poc/cfg.toml
 
 # Audio data files
-.mp3
-.wav
+*.mp3
+*.wav
