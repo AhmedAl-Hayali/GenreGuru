@@ -85,7 +85,7 @@ def estimate_tempo(signal, fs, window_size, hop_size):
         tempo = None
     return tempo, spectrogram, novelty_curve, autocorrelated_novelty_curve
 
-def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
+def find_music_tempo(wav_path, window_size=1024, hop_size=512):
     """
     1. Convert .mp3 file to .wav with pydub
     2. Convert the audio to a usable digital signal with librosa
@@ -94,8 +94,6 @@ def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
     5. Plot novelty curve
     6. Plot autocorrelation
     """
-    wav_path = "temp_audio.wav"
-    mp3_to_wav(mp3_path, wav_path)
     signal, fs = librosa.load(wav_path, sr=None, mono=True)
     signal = signal / np.max(np.abs(signal))
     tempo, spectrogram, novelty_curve, autocorr = estimate_tempo(signal, fs, window_size, hop_size)
@@ -135,4 +133,6 @@ def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
 
 audio_file_path = "path_to_mp3_file"
 if __name__ == '__main__':
-    find_music_tempo(audio_file_path)
+    wav_path = "temp_audio.wav"
+    mp3_to_wav(audio_file_path, wav_path)
+    find_music_tempo(wav_path)
