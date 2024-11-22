@@ -21,8 +21,7 @@ def generate_spectrogram(signal, window_size, hop_size):
     2. Square the spectrogram to get the power spectrogram
     3. Convert to the db scale for accurate vieweing
     """
-    spectrogram = librosa.stft(signal, n_fft=window_size, hop_length=hop_size, window='hann')
-    spectrogram = librosa.power_to_db(np.abs(spectrogram)**2)
+    spectrogram = np.abs(librosa.stft(signal, n_fft=window_size, hop_length=hop_size, window='hann')**2)
     return spectrogram
 
 def compute_novelty_curve(spectrogram):
@@ -31,6 +30,8 @@ def compute_novelty_curve(spectrogram):
         - Spectral flux is just the differences in the spectrogram from one time unit to the next
         - np.maximum(0, ...) takes care of the I(t, k) function 
     """
+    spectrogram = np.log(1+1000*spectrogram)
+
     flux = np.zeros(spectrogram.shape[1])
     for m in range(1, spectrogram.shape[1]):
         flux[m] = np.sum(np.maximum(0, np.abs(spectrogram[:, m]) - np.abs(spectrogram[:, m - 1])))
@@ -72,7 +73,7 @@ def estimate_tempo(signal, fs, window_size, hop_size):
         tempo = None
     return tempo, spectrogram, novelty_curve, autocorrelated_novelty_curve
 
-def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
+def find_music_tempo(wav_path, window_size=1024, hop_size=512):
     """
     1. Convert .mp3 file to .wav with pydub
     2. Convert the audio to a usable digital signal with librosa
@@ -81,8 +82,6 @@ def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
     5. Plot novelty curve
     6. Plot autocorrelation
     """
-    wav_path = "temp_audio.wav"
-    mp3_to_wav(mp3_path, wav_path)
     signal, fs = librosa.load(wav_path, sr=None, mono=True)
     signal = signal / np.max(np.abs(signal))
     tempo, spectrogram, novelty_curve, autocorr = estimate_tempo(signal, fs, window_size, hop_size)
@@ -122,4 +121,6 @@ def find_music_tempo(mp3_path, window_size=1024, hop_size=512):
 
 audio_file_path = "path_to_mp3_file"
 if __name__ == '__main__':
-    find_music_tempo(audio_file_path)
+    wav_path = "temp_audio.wav"
+    mp3_to_wav(audio_file_path, wav_path)
+    find_music_tempo(wav_path)

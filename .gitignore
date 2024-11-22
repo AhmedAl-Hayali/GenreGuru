@@ -277,3 +277,16 @@ TSWLatexianTemp*
 
 # DS_Store file from Mac computers
 .DS_Store
+
+# PoC config file w/ populated sensitive fields - `blank_cfg` is up as a skeleton
+src/poc/cfg.toml
+
+# Audio data files
+*.mp3
+*.wav
+
+# Python "bytecode"
+src/*/__pycache__/*
+
+# Spotipy cached token
+src/*/.cache
