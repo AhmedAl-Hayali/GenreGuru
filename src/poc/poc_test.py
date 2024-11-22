@@ -42,7 +42,7 @@ def compute_autocorrelation(signal):
         - if you want to map to the paper, signal[tau:] = x(t + tau)
                                            signal[N - tau:] = x(t)
     """
-    N = signal.shape[0]
+    N = len(signal)
     autocorr = np.zeros(N)
     for tau in range(N):
         autocorr[tau] = np.sum(signal[:N - tau] * signal[tau:])
