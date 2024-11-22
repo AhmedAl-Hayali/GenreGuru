@@ -121,7 +121,13 @@ details. You will need to reproduce information that is in the course outline
 for deadlines.}
 
 \section{Proof of Concept Demonstration Plan}
-There are two main risks to the project --- the song data collection and song generation.
+
+\begin{description}[leftmargin=0cm]
+  \item[Demonstration] Our reduced-scope demonstration should illustrate the ability to acquire data programmatically, i.e., accessing \texttt{MP3} files from \href{https://developers.deezer.com/api}{Deezer} or \href{https://developer.spotify.com/documentation/web-api}{Spotify}'s APIs, and producing a single musical feature of the song, e.g., pitch, timbre, or whatever other feature is found to be representative of songs and relatively easy to implement.
+  \item[Post-demonstration] A successful demonstration will allow us to later scale up our data ingestion to satisfy multiple users' requests automatically, and provide songs' musical features on demand, expanding the available features incrementally. If the featurization/feature engineering component works correctly, a song recommendation component can later be integrated by using song features as distance metrics.
+\end{description}
+
+There is one main risk to the project --- the song data collection.
 
 \subsection{Risks regarding song collection}
 \begin{itemize}
@@ -131,20 +137,10 @@ There are two main risks to the project --- the song data collection and song ge
     \item Platform providing songs may have limited API access.
   \end{itemize}
   \item Songs may be only partially accessible, e.g., song snippets from Spotify;
-  \item Songs may be available but we are prohibited from using them to train a machine learning model.
+  \item Songs may be available but we are prohibited from using them to train a machine learning model;
+  \item API rate limits may restrict the number of requests we can make within a specific time period, impacting scalability and usability for demonstration.
 \end{itemize}
 These risks can be dismissed if the project is to use different, less strict, song providers, or tailor the project to only use non-copyrighted songs.
-
-\subsection{Risks regarding song generation}
-\begin{itemize}
-  \item The generative mechanism will inherently be a machine learning model, which entails issues,
-  \begin{itemize}
-    \item The model may hallucinate and produce unexpected outputs, i.e., music of the wrong genre (particularly of concern if training data is unbalanced), or just uncomfortable nonsensical sounds. \emph{This could be a result of too little data to train a complex model (resulting in high variance), or too simplistic of a model (resulting in high bias)};
-  \end{itemize}
-  \item The model will be challenging to formulate, e.g., establishing architecture, objective function, and optimizer;
-  \item The model will be so complex, i.e., will contain many parameters, such that it requires tremendous quantities of data and training time to converge to sensical results.
-\end{itemize}
-These risks cannot be entirely dismissed, but can be remedied greatly by considering the work of previous similar works and following their process, i.e., reusing architecture, data, or training mechanism. Nonetheless, this project is doable, as a parallel of it was completed \href{https://www.reddit.com/r/MachineLearning/comments/6476kj/projectmusic_generated_using_my_rnn_some_bach/}{in 2017}.
 
 \section{Expected Technology}
 
