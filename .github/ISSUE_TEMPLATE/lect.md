@@ -1,24 +1,22 @@
 ---
 name: Lecture
 about: Track team details for lectures.
-title: 'Lecture - Date'
-labels: 'meeting'
+title: '202Y-MM-DD Lecture Attendance - (Lecture Topic) Lecture Attendance'
+labels: 'Lecture Attendance'
 assignees: ''
 
 ---
 
-**Topic**
+# Lecture Attendance
 
-**Date and Time**
+# Date and Time
+Month DD, 202Y
 
-**Attendance**
+# Attendance
+- [ ] Ahmed Al-Hayali
+- [ ] Ansel Chen
+- [ ] Matthew Baleanu
+- [ ] Mohamad-Hassan Bahsoun
+- [ ] Muhammad Jawad 
 
-- [ ] team member1
-- [ ] team member2
-- [ ] team member3
-- [ ] team member4
-- [ ] team member5
-
-**Questions to Ask**
-
--
+# Questions to Ask
