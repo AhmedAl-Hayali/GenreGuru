@@ -30,23 +30,9 @@ def compute_novelty_curve(spectrogram):
         - Spectral flux is just the differences in the spectrogram from one time unit to the next
         - np.maximum(0, ...) takes care of the I(t, k) function 
     """
-    N = spectrogram.shape[0]
-    fs = 11025
-
-    spectrogram = np.log(1+1000*spectrogram)
-    alpha = 1.76
-
-    flux = np.sum(
-        np.where(
-            (spectrogram[:, 1:] > alpha*spectrogram[:, :-1]) \
-                & ((30 <= np.arange(N)*fs/N) \
-                & (np.arange(N)*fs/N <= 720))[:, np.newaxis],
-            spectrogram[:, 1:] - spectrogram[:, :-1],
-            0
-        ),
-        axis=0 # sum across k
-    )
-
+    flux = np.zeros(spectrogram.shape[1])
+    for m in range(1, spectrogram.shape[1]):
+        flux[m] = np.sum(np.maximum(0, np.abs(spectrogram[:, m]) - np.abs(spectrogram[:, m - 1])))
     return flux
 
 def compute_autocorrelation(signal):
