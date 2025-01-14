@@ -271,6 +271,11 @@ N/A
 \end{itemize}
 
 \subsubsection{Environment Variables}
+
+\wss{This section is not necessary for all modules.  Its purpose is to capture
+  when the module has external interaction with the environment, such as for a
+  device driver, screen interface, keyboard, file, etc.}
+
 \begin{itemize}
   \item Spotify Client ID
   \item Spotify Client Secret
@@ -345,9 +350,9 @@ URL Input Request &URL &track reference(s) &Invalid URL\\
 \end{itemize}
 
 \subsubsection{Assumptions}
-\begin{itemize}
-  \item Spotify URL
-\end{itemize}
+
+\wss{Try to minimize assumptions and anticipate programmer errors via
+  exceptions, but for practical purposes assumptions are sometimes appropriate.}
 
 \subsubsection{Access Routine Semantics}
 
