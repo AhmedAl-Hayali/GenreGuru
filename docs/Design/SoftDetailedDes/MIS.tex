@@ -515,7 +515,8 @@ N/A
 
 \newpage
 
-%subinput 4
+%MIS of Feature Extraction algorithms
+%MIS-11 of Tempo(BPM) extraction
 \section{MIS of Tempo (BPM) Feature Extraction Module} 
 
 \subsection{Tempo (BPM) Feature Extraction Module}
@@ -576,7 +577,7 @@ Valid audio file with coherent song information.
 
 \newpage
 
-%subinput 4
+%MIS-12: Key and Scale Feature Extraction Module
 \section{MIS of Key and Scale Feature Extraction Module} 
 
 \subsection{Key and Scale Feature Extraction Module}
@@ -637,7 +638,7 @@ Valid audio file with coherent song information.
 
 \newpage
 
-%subinput 4
+%MIS-13 Instrument Type Feature
 \section{MIS of Instrument Type Feature Extraction Module} 
 
 \subsection{Instrument Type Feature Extraction Module}
@@ -698,11 +699,16 @@ Valid audio file with coherent song information.
 
 \newpage
 
-%subinput 4
+%MIS Vocal Gender Feature
 \section{MIS of Vocal Gender Feature Extraction Module} 
 
 \subsection{Spotify Query Search \& Select Input Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+This feature seeks to quantify whether the voices features in the inputted audio file 
+are largely more feminine or masculine sounding. This is represented by a float with a range between
+0 and 1 where 0 means only "masculine" sound signatures are contained and 1 means only "feminine" sounds,
+where values in-between represent a blend. 
+%IMO this conceptions is the easiest way to do it. If you did a 0 or 1 integer the representation wouldn't make
+%useful sense for songs where there are vocalists of different genders. 
 
 \subsection{Uses}
 N/A
@@ -719,8 +725,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Extract Vocal Gender &Audio time series (\texttt{np.ndarray}) &Vocal Gender $\in \mathbb{R}$ &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -728,18 +733,13 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+\textcolor{red}{N/A}
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
-N/A
+Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
