@@ -136,7 +136,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & \textbf{User Input Interface}\\
 & \textbf{First-Match Text Field Input Module}\\
-& \textbf{Spotify URL Input Module}\\
+& \textbf{URL Input Module}\\
 & \textbf{Audio File Input Module}\\
 & \textbf{Spotify Query Search \& Select}\\
 
@@ -174,7 +174,7 @@ The following table is taken directly from the Module Guide document for this pr
 \subsection{Uses}
 \begin{itemize}
   \item First-Match Text Field Input Module
-  \item Spotify URL Input module
+  \item URL Input module
   \item Audio File Input Module
   \item Spotify Query Search \& Select
 \end{itemize}
@@ -182,6 +182,7 @@ The following table is taken directly from the Module Guide document for this pr
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -204,6 +205,7 @@ Consolidate Inputs &Up to 4 collection(s) of reference(s) to track(s) &Merged co
 \end{itemize}
 
 \subsubsection{Environment Variables}
+N/A
 
 \subsubsection{Assumptions}
 N/A
@@ -241,10 +243,12 @@ The text field input is turned into a multi-line string where each line is a spo
 for the first match of every query. 
 
 \subsection{Uses}
+N/A
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A 
 
 \subsubsection{Exported Access Programs}
 
@@ -253,7 +257,7 @@ for the first match of every query.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Input Button Press &Text Field/Multi-line string &Collection of song references corresponding to each line in the input &N/A\\
+\textcolor{red}{Input Button Press} &Text Field/Multi-line string &Collection of song references corresponding to each line in the input &N/A\\
 
 \hline
 \end{tabular}
@@ -275,12 +279,10 @@ Input Button Press &Text Field/Multi-line string &Collection of song references 
 \begin{itemize}
   \item Spotify Client ID
   \item Spotify Client Secret
-  \item Screen Display
-  \item Keyboard (physical or digital) for text input
 \end{itemize}
 
 \subsubsection{Assumptions}
-N/A
+-
 
 \subsubsection{Access Routine Semantics}
 
@@ -308,19 +310,18 @@ N/A
 \newpage
 
 %subinput 2
-\section{MIS of Spotify URL Input Module} 
+\section{MIS of URL Input Module} 
 
-\subsection{Spotify URL Input Module}
-User inputs a spotify URL and a reference is generated through the input. 
+\subsection{URL Input Module}
+User inputs a URL and a reference is generated through the input. 
 
 \subsection{Uses}
-\begin{itemize}
-  \item
-\end{itemize}
+N/A
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A 
 
 \subsubsection{Exported Access Programs}
 
@@ -329,7 +330,7 @@ User inputs a spotify URL and a reference is generated through the input.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-On Input Button Press &Spotify URL Song &Song reference &Invalid Spotify URL\\
+URL Input Request &URL &track reference(s) &Invalid URL\\
 
 \hline
 \end{tabular}
@@ -339,14 +340,14 @@ On Input Button Press &Spotify URL Song &Song reference &Invalid Spotify URL\\
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item 
+  \item Collection of track reference(s)
 \end{itemize}
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
 
 \subsubsection{Assumptions}
 
@@ -385,13 +386,12 @@ On Input Button Press &Spotify URL Song &Song reference &Invalid Spotify URL\\
 User inputs an audio file to the system to analyze. 
 
 \subsection{Uses}
-\begin{itemize}
-  \item
-\end{itemize}
+N/A
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -400,7 +400,7 @@ User inputs an audio file to the system to analyze.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-On Input Button Press &Audio File &Song reference &Invalid File Type\\
+On Input Button Press &Audio File &Collection of song reference(s) &Invalid File Type\\
 
 \hline
 \end{tabular}
@@ -410,19 +410,17 @@ On Input Button Press &Audio File &Song reference &Invalid File Type\\
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item 
+  \item Collection of track reference(s)
 \end{itemize}
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+N/A 
 
 \subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+  \item User has a properly named Audio File.
+  \item User audio file input is actually a song. 
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
@@ -456,13 +454,12 @@ On Input Button Press &Audio File &Song reference &Invalid File Type\\
 User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
 
 \subsection{Uses}
-\begin{itemize}
-  \item
-\end{itemize}
+N/A
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -471,8 +468,8 @@ User inputs a song and that is turned into a spotify search query where the top 
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-On Input Button Press &Audio File &Song reference &Invalid File Type\\
-
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -481,19 +478,17 @@ On Input Button Press &Audio File &Song reference &Invalid File Type\\
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item 
+  \item Collection containing track reference
 \end{itemize}
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
 
 \subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+N/A
 
 \subsubsection{Access Routine Semantics}
 
