@@ -702,7 +702,7 @@ Valid audio file with coherent song information.
 %MIS Vocal Gender Feature
 \section{MIS of Vocal Gender Feature Extraction Module} 
 
-\subsection{Spotify Query Search \& Select Input Module}
+\subsection{MIS of Vocal Gender Feature Extraction Module}
 This feature seeks to quantify whether the voices features in the inputted audio file 
 are largely more feminine or masculine sounding. This is represented by a float with a range between
 0 and 1 where 0 means only "masculine" sound signatures are contained and 1 means only "feminine" sounds,
@@ -766,11 +766,11 @@ Valid audio file with coherent song information.
 
 \newpage
 
-%subinput 4
+%MIS-15 Dynamic Range Feature
 \section{MIS of Dynamic Range Feature Extraction Module} 
 
-\subsection{Spotify Query Search \& Select Input Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+\subsection{Dynamic Range Feature Extraction Module}
+Feature extracts the range of sounds (difference between peak and through) of the audio signal.
 
 \subsection{Uses}
 N/A
@@ -787,8 +787,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Extract Dynamic Range &Audio time series (\texttt{np.ndarray}) &Dynamic Range (decibels) $\in \mathbb{R}$ &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -796,18 +795,13 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+\textcolor{red}{N/A}
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
-N/A
+Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
@@ -834,11 +828,11 @@ N/A
 
 \newpage
 
-%subinput 4
+%MIS-16 Instrumentalness
 \section{MIS of Instrumentalness Feature Extraction Module} 
 
-\subsection{Spotify Query Search \& Select Input Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+\subsection{Instrumentalness Feature Extraction Module}
+Extracts the how prominent instrumental sounds are within the song.
 
 \subsection{Uses}
 N/A
@@ -855,8 +849,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Extract Instrumentalness &Audio time series (\texttt{np.ndarray}) &Instrumentalness $\in \mathbb{R}$ &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -864,18 +857,13 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+\textcolor{red}{N/A}
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
-N/A
+Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
@@ -902,11 +890,10 @@ N/A
 
 \newpage
 
-%subinput 4
+%MIS-17 Contour Extraction
 \section{MIS of Contour Feature Extraction Module} 
 
-\subsection{Spotify Query Search \& Select Input Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+\subsection{MIS of Contour Feature Extraction Module}
 
 \subsection{Uses}
 N/A
@@ -923,8 +910,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Extract Melodic Contour &Audio time series (\texttt{np.ndarray}) &output &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -932,18 +918,13 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+\textcolor{red}{N/A}
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
-N/A
+Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
@@ -970,11 +951,10 @@ N/A
 
 \newpage
 
-%subinput 4
+%MIS-18 Mood extraction
 \section{MIS of Mood Feature Extraction Module} 
 
-\subsection{Spotify Query Search \& Select Input Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+\subsection{MIS of Mood Feature Extraction Module}
 
 \subsection{Uses}
 N/A
@@ -991,8 +971,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Extract Mood &Audio time series (\texttt{np.ndarray}) &output &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -1000,18 +979,13 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+\textcolor{red}{N/A}
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
-N/A
+Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
