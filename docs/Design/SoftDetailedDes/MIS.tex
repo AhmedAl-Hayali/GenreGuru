@@ -605,13 +605,12 @@ Valid audio file with coherent song information.
 \noindent \texttt{Extract\textunderscore Key\textunderscore Scale}():
 \begin{itemize}
 \item transition: \textcolor{red}{N/A}
-\item output: \texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{Extract\textunderscore Key\textunderscore Scale}(Audio\textunderscore Time\textunderscore Series)
+\item output: \texttt{SongKey, SongScale} : = \texttt{Extract\textunderscore Key\textunderscore Scale(Audio\textunderscore Time\textunderscore Series)}
 \item exception: \textcolor{red}{N/A}
 \end{itemize}
 
 \subsubsection{Local Functions}
 N/A
-
 
 
 %MIS-13 Instrument Type Feature
@@ -655,13 +654,12 @@ Valid audio file with coherent song information.
 \noindent \texttt{Extract\textunderscore Instrument\textunderscore Type}():
 \begin{itemize}
 \item transition: \textcolor{red}{N/A} 
-\item output: Instrument\textunderscore Type : = \texttt{Extract\textunderscore Instrument\textunderscore Type}(Audio\textunderscore Time \textunderscore Series)
+\item output: \texttt{InstrumentType} : = \texttt{Extract\textunderscore Instrument\textunderscore Type(Audio\textunderscore Time\textunderscore Series)}
 \item exception: \textcolor{red}{N/A} 
 \end{itemize}
 
 \subsubsection{Local Functions}
 \textcolor{red}{N/A}
-
 
 
 %MIS Vocal Gender Feature
@@ -708,28 +706,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Vocal\textunderscore Gender}():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: \textcolor{red}{N/A}
+\item output: \texttt{VocalGender} : = \texttt{Extract\textunderscore Vocal\textunderscore Gender(Audio\textunderscore Time\textunderscore Series)}
+\item exception: \textcolor{red}{N/A}
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
+\textcolor{red}{N/A}
 
 %MIS-15 Dynamic Range Feature
 \section{MIS of Dynamic Range Feature Extraction Module} 
@@ -770,28 +755,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Dynamic\textunderscore Range}():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: N/A
+\item output: \texttt{DynamicRange} : = \texttt{Extract\textunderscore Dynamic\textunderscore Range(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
+N/A
 
 %MIS-16 Instrumentalness
 \section{MIS of Instrumentalness Feature Extraction Module} 
@@ -835,28 +807,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Instrumentalness}():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: N/A
+\item output: \texttt{Instrumentalness} : = \texttt{Extract\textunderscore Instrumentalness(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
+N/A
 
 %MIS-17 Contour Extraction
 \section{MIS of Contour Feature Extraction Module} 
@@ -896,28 +855,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Melodic\textunderscore Contour()}:
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: N/A 
+\item output: \texttt{variable name} : = \texttt{Extract\textunderscore Melodic\textunderscore Contour(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
+N/A
 
 %MIS-18 Mood extraction
 \section{MIS of Mood Feature Extraction Module} 
@@ -957,28 +903,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Mood()}:
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: N/A 
+\item output: \texttt{Mood} : = \texttt{Extract\textunderscore Mood(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
+N/A
 
 %MIS-19 Recommendation module
 \section{MIS of Recommendation Module} 
