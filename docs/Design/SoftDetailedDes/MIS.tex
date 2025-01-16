@@ -234,7 +234,6 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
 
 %subinput 1
 \section{MIS of First-Match Text Field Input Module} 
@@ -308,7 +307,6 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
 
 %subinput 2
 \section{MIS of URL Input Module} 
@@ -378,7 +376,7 @@ URL Input Request &URL &track reference(s) &Invalid URL\\
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %subinput 3
 \section{MIS of Audio File Input Module} 
@@ -446,7 +444,7 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %subinput 4
 \section{MIS of Spotify Query Search \& Select Input Module} 
@@ -514,7 +512,7 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS of Feature Extraction algorithms
 %MIS-11 of Tempo(BPM) extraction
@@ -528,7 +526,7 @@ N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-MAX\textunderscore TEMPO: A value $\mathbb{R}$ representing the maximum allowed tempo for a song. 
+\textcolor{red}{N/A} 
 
 \subsubsection{Exported Access Programs}
 
@@ -559,17 +557,13 @@ Valid audio file with coherent song information.
 \begin{itemize}
 \item transition: \textcolor{red}{N/A}
 \item output: \texttt{SongTempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}
-\item exception: \texttt{RangeError}: Output Tempo Value is out of range [0, MAX\textunderscore TEMPO]
+\item exception: \textcolor{red}{N/A}
 \end{itemize}
 
 \subsubsection{Local Functions}
+N/A
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
 
-\newpage
 
 %MIS-12: Key and Scale Feature Extraction Module
 \section{MIS of Key and Scale Feature Extraction Module} 
@@ -591,7 +585,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Key \& Scale &Audio time series (\texttt{np.ndarray}) & Song key \& scale $\in \mathbb{Z}^2$ & N/A \\
+Extract Key \& Scale &Audio time series (\texttt{np.ndarray}) & Song Key, Scale $\in \mathbb{Z}^2$ & N/A \\
 \hline
 \end{tabular}
 \end{center}
@@ -609,28 +603,17 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Key\textunderscore Scale}():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: \textcolor{red}{N/A}
+\item output: \texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{Extract\textunderscore Key\textunderscore Scale}(Audio\textunderscore Time\textunderscore Series)
+\item exception: \textcolor{red}{N/A}
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
+N/A
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
 
-\newpage
 
 %MIS-13 Instrument Type Feature
 \section{MIS of Instrument Type Feature Extraction Module} 
@@ -670,28 +653,17 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{Extract\textunderscore Instrument\textunderscore Type}():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: \textcolor{red}{N/A} 
+\item output: Instrument\textunderscore Type : = \texttt{Extract\textunderscore Instrument\textunderscore Type}(Audio\textunderscore Time \textunderscore Series)
+\item exception: \textcolor{red}{N/A} 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
+\textcolor{red}{N/A}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
 
-\newpage
 
 %MIS Vocal Gender Feature
 \section{MIS of Vocal Gender Feature Extraction Module} 
@@ -758,7 +730,7 @@ Valid audio file with coherent song information.
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-15 Dynamic Range Feature
 \section{MIS of Dynamic Range Feature Extraction Module} 
@@ -820,7 +792,7 @@ Valid audio file with coherent song information.
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-16 Instrumentalness
 \section{MIS of Instrumentalness Feature Extraction Module} 
@@ -885,7 +857,7 @@ Valid audio file with coherent song information.
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-17 Contour Extraction
 \section{MIS of Contour Feature Extraction Module} 
@@ -946,7 +918,7 @@ Valid audio file with coherent song information.
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-18 Mood extraction
 \section{MIS of Mood Feature Extraction Module} 
@@ -1007,7 +979,7 @@ Valid audio file with coherent song information.
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-19 Recommendation module
 \section{MIS of Recommendation Module} 
@@ -1082,7 +1054,7 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
-\newpage
+
 
 %MIS-20 Results Display Interface
 \section{MIS of Program Results Interface Module} 
