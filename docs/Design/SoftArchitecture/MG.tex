@@ -270,10 +270,13 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
+  %services need to be reworded - check hunter's doc
+  %https://github.com/cer-hunter/OAR-CAS741/blob/main/docs/Design/SoftArchitecture/MG.pdf
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+%master input
+\subsubsection{Master Input Module (\mref{m1})}
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
@@ -284,8 +287,174 @@ to be implemented.
   [Information to include for leaf modules in the decomposition by secrets tree.]
 \end{description}
 
-\subsubsection{Etc.}
+%input method 1
+\subsubsection{First-Match Text Field Input Module (\mref{m2})}
 
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%input method 2
+\subsubsection{URL Input Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%input method 3
+\subsubsection{Audio File Input Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%input method 4
+\subsubsection{Spotify Query Search \& Select (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%featurizers
+%f1
+\subsubsection{Tempo (BPM) Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f2
+\subsubsection{Key and Scale Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f3
+\subsubsection{Instrument Type Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f4
+\subsubsection{Vocal Gender Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f5
+\subsubsection{Dynamic Range Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f6
+\subsubsection{Instrumentalness Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f7
+\subsubsection{Contour Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%f8
+\subsubsection{Mood Feature Extraction Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%recommendation
+\subsubsection{Recommendation Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%results GUI
+\subsubsection{Program Results Interface Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
 
 \subsection{Software Decision Module}
 
@@ -300,7 +469,52 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Database (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Provides storage for generated features for pseudo-caching ?
+\item[Implemented By:] Database Service Name
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+\subsubsection{Pre-Processing Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]The format and structure of the input data.
+\item[Services:]Converts audio files and references into audio data for processing by featurizers
+\item[Implemented By:] Librosa Signal Processing Library
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Spotify API (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]Spotify API methods, credentials and metadata. 
+\item[Services:]Song Metadata
+\item[Implemented By:] Spotify
+\item[Type of Module:] API Library
+\end{description}
+
+\subsubsection{Deezer API (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]Deezer API methods, credentials and metadata. 
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] Deezer
+\item[Type of Module:] API Library
+\end{description}
+
+\subsubsection{Genre Fetcher (\mref{m2})}
+
+\begin{description}
+\item[Secrets:]Genre label for a song
+\item[Services:]Fetches a genre label for a required song
+\item[Implemented By:] Undecided
+\item[Type of Module:] Undecided (Deezer API call? User Self-label?)
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
