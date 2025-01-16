@@ -255,6 +255,47 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+  \toprule
+  \textbf{Level 1} & \textbf{Level 2}\\
+  \midrule
+  
+  {Hardware-Hiding} & ~ \\
+  \midrule
+  
+  \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & User Input Interface\\
+  & First-Match Text Field Input Module\\
+  & URL Input Module\\
+  & Audio File Input Module\\
+  & Spotify Query Search \& Select\\
+  %feature extractions
+  & Tempo (BPM) Feature Extraction Module\\
+  & Key and Scale Feature Extraction Module\\
+  & Instrument Type Feature Extraction Module\\
+  & Vocal Gender Feature Extraction Module\\
+  & Dynamic Range Feature Extraction Module\\
+  & Instrumentalness Feature Extraction Module\\
+  & Contour Feature Extraction Module\\
+  & Mood Feature Extraction Module\\
+  %final pieces
+  & Recommendation Module\\
+  & Program Results Interface Module\\
+  \midrule
+  
+  \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
+  & Pre-Processing Module\\
+  & Spotify API\\
+  & Deezer API\\
+  & Genre Fetching\\
+  \bottomrule
+  
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
+  \end{table}
+
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
