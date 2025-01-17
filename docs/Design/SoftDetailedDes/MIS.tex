@@ -583,6 +583,16 @@ The Featurizer Module is responsible for extracting 9 distinct feature values fr
 
 The module invokes sub-feature modules to compute these feature values. It consolidates the results into a single \texttt{FeatureValues} object and returns it to the Driver Module.
 
+\subsection{Uses}
+- **Driver Module**: Sends requests to the Featurizer Module and receives feature values.
+- **Sub-Feature Modules**: Each responsible for computing a specific feature (e.g., Tempo, Key and Scale).
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+
 %MIS of Feature Extraction algorithms
 %MIS of Tempo(BPM) extraction
 \section{MIS of Tempo (BPM) Feature Extraction Module} 
