@@ -269,12 +269,10 @@ to be implemented.
   & Audio File Upload Module\\
   & Search Query Module\\
   & Client Communication Module\\
-
   %server side
   & Server Communication Module\\
   & Driver Module\\
   %feature extractions
-
   & Tempo (BPM) Feature Extraction Module\\
   & Key and Scale Feature Extraction Module\\
   & Instrument Type Feature Extraction Module\\
@@ -477,22 +475,20 @@ to be implemented.
 \subsubsection{Recommendation Module (\mref{m2})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
+\item[Secrets:] The recommendation machine learning algorithm. 
 \item[Services:] Generates a list of recommended songs. 
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Implemented By:] Machine Learning Algorithm
+\item[Type of Module:] Library
 \end{description}
 
 %results GUI
 \subsubsection{Program Results Interface Module (\mref{m2})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Displays program results (recommended songs, features for requested songs? )
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] The recommended songs widget and features display element. 
+\item[Services:] Generates widget for recommended song(s) with preview snippet and UI element containting associated features for input song. 
+\item[Implemented By:] Library Calls, Spotify API calls
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
 \subsection{Software Decision Module}
