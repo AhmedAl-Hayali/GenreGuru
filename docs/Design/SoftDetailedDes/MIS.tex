@@ -321,8 +321,8 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Search Query Request &text input &top 10 matches from spotify query search &-\\
+Output result selection &user selection &Collection containing track reference &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -387,8 +387,8 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+Search Query Request &text input &top 10 matches from spotify query search &-\\
+Output result selection &user selection &Collection containing track reference &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -669,7 +669,7 @@ N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-\textcolor{red}{N/A} 
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -678,7 +678,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Tempo &Audio time series (\texttt{np.ndarray}) &Song Tempo $\in \mathbb{R}$ &N/A \\
+\texttt{Extract Tempo} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Tempo} $\in \mathbb{R}$ &- \\
 \hline
 \end{tabular}
 \end{center}
@@ -686,7 +686,7 @@ Extract Tempo &Audio time series (\texttt{np.ndarray}) &Song Tempo $\in \mathbb{
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -696,11 +696,11 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{ExtractTempo}():
+\noindent \texttt{ExtractTempo()}:
 \begin{itemize}
-\item transition: \textcolor{red}{N/A}
-\item output: \texttt{SongTempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}
-\item exception: \textcolor{red}{N/A}
+\item transition: N/A
+\item output: \texttt{Song\textunderscore Tempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
@@ -719,7 +719,7 @@ N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -728,7 +728,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Key \& Scale &Audio time series (\texttt{np.ndarray}) & Song Key, Scale $\in \mathbb{Z}^2$ & N/A \\
+\texttt{Extract Key \& Scale} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Key, Scale} $\in \mathbb{Z}^2$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -736,7 +736,7 @@ Extract Key \& Scale &Audio time series (\texttt{np.ndarray}) & Song Key, Scale 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -746,11 +746,11 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Key\textunderscore Scale}():
+\noindent \texttt{ExtractKeyScale()}:
 \begin{itemize}
-\item transition: \textcolor{red}{N/A}
-\item output: \texttt{SongKey, SongScale} : = \texttt{Extract\textunderscore Key\textunderscore Scale(Audio\textunderscore Time\textunderscore Series)}
-\item exception: \textcolor{red}{N/A}
+\item transition: N/A
+\item output: \texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{ExtractKeyScale(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
@@ -768,7 +768,7 @@ N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -777,7 +777,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Instrument Type &Audio time series (\texttt{np.ndarray}) & Instrument Type $\in \mathbb{Z}^k$ & N/A \\
+\texttt{Extract Instrument Type} &\texttt{Audio time series (np.ndarray)} &\texttt{Instrument Type} $\in \mathbb{Z}^k$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -785,7 +785,7 @@ Extract Instrument Type &Audio time series (\texttt{np.ndarray}) & Instrument Ty
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -795,15 +795,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Instrument\textunderscore Type}():
+\noindent \texttt{ExtractInstrumentType()}:
 \begin{itemize}
-\item transition: \textcolor{red}{N/A} 
-\item output: \texttt{InstrumentType} : = \texttt{Extract\textunderscore Instrument\textunderscore Type(Audio\textunderscore Time\textunderscore Series)}
-\item exception: \textcolor{red}{N/A} 
+\item transition: N/A
+\item output: \texttt{Instrument\textunderscore Type} : = \texttt{ExtractInstrumentType(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A 
 \end{itemize}
 
 \subsubsection{Local Functions}
-\textcolor{red}{N/A}
+N/A
 
 
 %MIS Vocal Gender Feature
@@ -832,7 +832,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Vocal Gender &Audio time series (\texttt{np.ndarray}) &Vocal Gender $\in \mathbb{R}$ &N/A\\
+\texttt{Extract Vocal Gender} &\texttt{Audio time series (np.ndarray)} &\texttt{Vocal Gender} $\in \mathbb{R}$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -840,7 +840,7 @@ Extract Vocal Gender &Audio time series (\texttt{np.ndarray}) &Vocal Gender $\in
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -850,15 +850,15 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Vocal\textunderscore Gender}():
+\noindent \texttt{ExtractVocalGender()}:
 \begin{itemize}
-\item transition: \textcolor{red}{N/A}
-\item output: \texttt{VocalGender} : = \texttt{Extract\textunderscore Vocal\textunderscore Gender(Audio\textunderscore Time\textunderscore Series)}
-\item exception: \textcolor{red}{N/A}
+\item transition: N/A
+\item output: \texttt{Vocal\textunderscore Gender} : = \texttt{ExtractVocalGender(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
-\textcolor{red}{N/A}
+N/A
 
 %Dynamic Range Feature
 \section{MIS of Dynamic Range Feature Extraction Module} 
@@ -881,7 +881,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Dynamic Range &Audio time series (\texttt{np.ndarray}) &Dynamic Range (decibels) $\in \mathbb{R}$ &N/A\\
+\texttt{Extract Dynamic Range} &\texttt{Audio time series (np.ndarray)} &\texttt{Dynamic Range (decibels)} $\in \mathbb{R}$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -889,7 +889,7 @@ Extract Dynamic Range &Audio time series (\texttt{np.ndarray}) &Dynamic Range (d
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -899,10 +899,10 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Dynamic\textunderscore Range}():
+\noindent \texttt{ExtractDynamicRange()}:
 \begin{itemize}
 \item transition: N/A
-\item output: \texttt{DynamicRange} : = \texttt{Extract\textunderscore Dynamic\textunderscore Range(Audio\textunderscore Time\textunderscore Series)}
+\item output: \texttt{Dynamic\textunderscore Range} : = \texttt{ExtractDynamicRange(Audio\textunderscore Time\textunderscore Series)}
 \item exception: N/A
 \end{itemize}
 
@@ -933,7 +933,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Instrumentalness &Audio time series (\texttt{np.ndarray}) &Instrumentalness $\in \mathbb{R}$ &N/A\\
+\texttt{Extract Instrumentalness} &\texttt{Audio time series \linebreak\linebreak (np.ndarray)} &\texttt{Instrumentalness} $\in \mathbb{R}$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -941,7 +941,7 @@ Extract Instrumentalness &Audio time series (\texttt{np.ndarray}) &Instrumentaln
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -951,10 +951,10 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Instrumentalness}():
+\noindent \texttt{ExtractInstrumentalness}():
 \begin{itemize}
 \item transition: N/A
-\item output: \texttt{Instrumentalness} : = \texttt{Extract\textunderscore Instrumentalness(Audio\textunderscore Time\textunderscore Series)}
+\item output: \texttt{Instrumentalness} : = \texttt{ExtractInstrumentalness(Audio\textunderscore Time\textunderscore Series)}
 \item exception: N/A
 \end{itemize}
 
@@ -981,7 +981,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Melodic Contour &Audio time series (\texttt{np.ndarray}) &output &N/A\\
+\texttt{Extract Melodic Contour} &\texttt{Audio time series (np.ndarray)} &\texttt{Contour} &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -989,7 +989,7 @@ Extract Melodic Contour &Audio time series (\texttt{np.ndarray}) &output &N/A\\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -999,10 +999,10 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Melodic\textunderscore Contour()}:
+\noindent \texttt{ExtractMelodicContour()}:
 \begin{itemize}
 \item transition: N/A 
-\item output: \texttt{variable name} : = \texttt{Extract\textunderscore Melodic\textunderscore Contour(Audio\textunderscore Time\textunderscore Series)}
+\item output: \texttt{Contour} : = \texttt{ExtractMelodicContour(Audio\textunderscore Time\textunderscore Series)}
 \item exception: N/A
 \end{itemize}
 
@@ -1029,7 +1029,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Extract Mood &Audio time series (\texttt{np.ndarray}) &Mood $\in{\mathbb{Z}}$ &N/A\\
+\texttt{Extract Mood} &\texttt{Audio time series (np.ndarray)} &\texttt{Mood} $\in{\mathbb{Z}}$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -1037,7 +1037,7 @@ Extract Mood &Audio time series (\texttt{np.ndarray}) &Mood $\in{\mathbb{Z}}$ &N
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -1047,10 +1047,10 @@ Valid audio file with coherent song information.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{Extract\textunderscore Mood()}:
+\noindent \texttt{ExtractMood()}:
 \begin{itemize}
 \item transition: N/A 
-\item output: \texttt{Mood} : = \texttt{Extract\textunderscore Mood(Audio\textunderscore Time\textunderscore Series)}
+\item output: \texttt{Mood} : = \texttt{ExtractMood(Audio\textunderscore Time\textunderscore Series)}
 \item exception: N/A
 \end{itemize}
 
@@ -1093,7 +1093,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-Generate Recommendations &Song \textunderscore Features (\texttt{np.ndarray[Features])}) &Song List &N/A\\
+\texttt{Generate Recs} &\texttt{Song\textunderscore Features (np.ndarray $\in$ Feature)} &\texttt{Rec\textunderscore Tracks \linebreak np.ndarray $\in$ Track} &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -1101,7 +1101,7 @@ Generate Recommendations &Song \textunderscore Features (\texttt{np.ndarray[Feat
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -1111,7 +1111,7 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent GenerateRecommendations():
 \begin{itemize}
 \item transition: N/A
 \item output: \texttt{Recommended\textunderscore Songs} : = \texttt{GenerateRecommendations(Song\textunderscore Features)} 
@@ -1119,15 +1119,12 @@ N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
+N/A
+% \begin{itemize}
+%   \item \texttt{Generate_Embeds()}
+% \end{itemize}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
-
-%MIS-20 Results Display Interface
+%Results Display Interface
 \section{MIS of Program Results Interface Module} 
 
 \subsection{Program Results Interface Module}
@@ -1136,7 +1133,7 @@ N/A
 
 \subsection{Uses}
 \begin{itemize}
-  \item Recommendation Module
+  \item Spotify API
 \end{itemize}
 
 \subsection{Syntax}
@@ -1151,7 +1148,8 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-Display Results &input &output &N/A\\
+\texttt{Generate Spotify Embed} &\texttt{Rec\textunderscore Track \linebreak (np.ndarray $\in$ Track)} &\texttt{Tracks\textunderscore Embed} (Spotify Embed Element) &-\\
+\texttt{Display Features} &\texttt{Song Features\linebreak (np.ndarray $\in$ Feature)} &\texttt{Features\textunderscore Display} (UI Image) &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -1159,7 +1157,7 @@ Display Results &input &output &N/A\\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -1169,26 +1167,22 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{GenerateSpotifyEmbed()}:
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: N/A
+\item output: \texttt{Tracks\textunderscore Embed\textunderscore Widget}: = \texttt{GenerateSpotifyEmbed(Tracks)}
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent \texttt{DisplayFeatures()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Features\textunderscore Display}: = \texttt{DisplayFeatures(Song\textunderscore Features)}
+\item exception: N/A
+\end{itemize}
 
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
 
 \newpage
 
