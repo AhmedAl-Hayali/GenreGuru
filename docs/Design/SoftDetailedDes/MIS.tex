@@ -617,6 +617,31 @@ None.
 - Input audio files are in supported formats (e.g., WAV, MP3).
 - All sub-feature modules are functional and return valid outputs for their respective features.
 
+\subsubsection{Access Routine Semantics}
+\textbf{extractFeatures}:
+\begin{itemize}
+    \item \textbf{Precondition:} 
+    \begin{itemize}
+        \item \texttt{audioFile} is a valid audio file in a supported format.
+    \end{itemize}
+    \item \textbf{Postcondition:}
+    \begin{itemize}
+        \item \texttt{featureValues} contains valid results for all 9 features:
+            \begin{itemize}
+                \item Tempo
+                \item Key and Scale
+                \item Instrument Type
+                \item Vocal Gender
+                \item Dynamic Range
+                \item Instrumentalness
+                \item Contour
+                \item Mood
+                \item Genre
+            \end{itemize}
+        \item If the input file format is unsupported, an \texttt{UnsupportedFileFormatException} is raised.
+    \end{itemize}
+\end{itemize}
+
 
 %MIS of Feature Extraction algorithms
 %MIS of Tempo(BPM) extraction
