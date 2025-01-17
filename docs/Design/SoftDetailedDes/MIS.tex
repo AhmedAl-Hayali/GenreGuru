@@ -1000,7 +1000,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-Generate Recommendations &Song \textunderscore Features (\texttt{np.ndarray[Features])}) &Song List &N/A\\
+Generate Recommendations &Song\textunderscore Features \texttt{np.ndarray[Features]} &Rec\textunderscore Tracks \linebreak\texttt{np.ndarray[Tracks]} &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -1008,7 +1008,7 @@ Generate Recommendations &Song \textunderscore Features (\texttt{np.ndarray[Feat
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textcolor{red}{N/A}
+N/A
 
 \subsubsection{Environment Variables}
 N/A
@@ -1018,7 +1018,7 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent GenerateRecommendations():
 \begin{itemize}
 \item transition: N/A
 \item output: \texttt{Recommended\textunderscore Songs} : = \texttt{GenerateRecommendations(Song\textunderscore Features)} 
@@ -1026,15 +1026,12 @@ N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
+N/A
+% \begin{itemize}
+%   \item \texttt{Generate_Embeds()}
+% \end{itemize}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
-
-%MIS-20 Results Display Interface
+%Results Display Interface
 \section{MIS of Program Results Interface Module} 
 
 \subsection{Program Results Interface Module}
@@ -1058,7 +1055,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline
-Display Results &input &output &N/A\\
+Generate Spotify Embed &Rec\textunderscore Tracks \linebreak\texttt{np.ndarray[Tracks]} &Tracks\textunderscore Embed &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -1083,19 +1080,8 @@ N/A
 \item exception: \wss{if appropriate} 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
 
 \newpage
 
