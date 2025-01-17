@@ -591,6 +591,21 @@ getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFail
 \end{tabular}
 \end{center}
 
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
+- \texttt{authToken}: The authentication token used for accessing the Deezer API.
+- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
+
+\subsubsection{Environment Variables}
+- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
+
+\subsubsection{Assumptions}
+- The ISRC provided by the Driver Module is valid and corresponds to an existing song.
+- The authentication token for the Deezer API is valid and not expired.
+- The Deezer API is available and operational at the time of the request.
+
 % MIS of Featurizer Module
 \section{MIS of Featurizer Module}
 
