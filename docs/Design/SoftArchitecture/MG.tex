@@ -265,10 +265,16 @@ to be implemented.
   {Hardware-Hiding} & ~ \\
   \midrule
   
-  \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & User Input Interface\\
-  & Audio File Input Module\\
-  & Spotify Query Search \& Select Input Module\\
+  \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
+  & Audio File Upload Module\\
+  & Search Query Module\\
+  & Client Communication Module\\
+
+  %server side
+  & Server Communication Module\\
+  & Driver Module\\
   %feature extractions
+
   & Tempo (BPM) Feature Extraction Module\\
   & Key and Scale Feature Extraction Module\\
   & Instrument Type Feature Extraction Module\\
@@ -283,10 +289,9 @@ to be implemented.
   \midrule
   
   \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
-  & Pre-Processing Module\\
   & Spotify API\\
   & Deezer API\\
-  & Genre Fetching\\
+  & Genre Feature Module\\
   \bottomrule
   
   \end{tabular}
@@ -316,7 +321,7 @@ to be implemented.
 
 %master input - might need to break this down more? seems like GUI should actually be
 %software decision. Refer to hunter's OAR for example
-\subsubsection{Master User Interface Input Module (\mref{m1})}
+\subsubsection{GUI Module (\mref{m1})}
 
 \begin{description}
 \item[Secrets:] The format and structure of the input data.
@@ -327,7 +332,7 @@ to be implemented.
 \end{description}
 
 %input method 1
-\subsubsection{Audio File Input Module (\mref{m2})}
+\subsubsection{Audio File Upload Module (\mref{m2})}
 
 \begin{description}
 \item[Secrets:] The format and structure of the input data.
@@ -338,7 +343,38 @@ to be implemented.
 \end{description}
 
 %input method 2
-\subsubsection{Spotify Query Search \& Select Input Module(\mref{m2})}
+\subsubsection{Search Query Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+%client-server comms
+\subsubsection{Client Communication Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+\subsubsection{Server Communication Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
+\end{description}
+
+\subsubsection{Driver Module (\mref{m2})}
 
 \begin{description}
 \item[Secrets:] The format and structure of the input data.
@@ -472,7 +508,7 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Database (\mref{m2})}
+\subsubsection{Database Module (\mref{m2})}
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
@@ -482,14 +518,14 @@ to be implemented.
   [Information to include for leaf modules in the decomposition by secrets tree.]
 \end{description}
 
-\subsubsection{Pre-Processing Module (\mref{m2})}
+% \subsubsection{Pre-Processing Module (\mref{m2})}
 
-\begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts audio files and references into audio data for processing by featurizers
-\item[Implemented By:] Librosa Signal Processing Library
-\item[Type of Module:] Library
-\end{description}
+% \begin{description}
+% \item[Secrets:]The format and structure of the input data.
+% \item[Services:]Converts audio files and references into audio data for processing by featurizers
+% \item[Implemented By:] Librosa Signal Processing Library
+% \item[Type of Module:] Library
+% \end{description}
 
 \subsubsection{Spotify API (\mref{m2})}
 
@@ -510,12 +546,12 @@ to be implemented.
 \item[Type of Module:] API Library
 \end{description}
 
-\subsubsection{Genre Fetcher (\mref{m2})}
+\subsubsection{Genre Feature Module (\mref{m2})}
 
 \begin{description}
 \item[Secrets:]Genre label for a song
 \item[Services:]Fetches a genre label for a required song
-\item[Implemented By:] Undecided
+\item[Implemented By:] Deezer API
 \item[Type of Module:] Undecided (Deezer API call? User Self-label?)
 \end{description}
 
