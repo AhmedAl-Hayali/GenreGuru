@@ -1169,6 +1169,17 @@ extractGenre & metadata: Metadata & genre: String & MissingGenreException, Inval
 \end{tabular}
 \end{center}
 
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+- \texttt{metadata}: The metadata provided by the Featurizer Module, which contains the genre attribute.
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+- The metadata provided by the Featurizer Module is valid and includes the genre attribute.
+- The genre attribute in the metadata is correctly formatted and accessible.
 
 %Recommendation module
 \section{MIS of Recommendation Module} 
