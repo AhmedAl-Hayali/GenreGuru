@@ -134,11 +134,13 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & User Input Interface\\
-& First-Match Text Field Input Module\\
-& URL Input Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
 & Audio File Input Module\\
-& Spotify Query Search \& Select\\
+& Search Query Module\\
+%server compute elements
+& Client Communication Module\\
+& Server Communication Module\\
+& Driver Module\\
 %feature extractions
 & Tempo (BPM) Feature Extraction Module\\
 & Key and Scale Feature Extraction Module\\
@@ -148,16 +150,15 @@ The following table is taken directly from the Module Guide document for this pr
 & Instrumentalness Feature Extraction Module\\
 & Contour Feature Extraction Module\\
 & Mood Feature Extraction Module\\
-%final pieces
+%Results and display
 & Recommendation Module\\
 & Program Results Interface\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
-& Pre-Processing Module\\
 & Spotify API\\
 & Deezer API\\
-& Genre Fetching\\
+& Genre Feature Module\\
 \bottomrule
 
 \end{tabular}
@@ -168,9 +169,9 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of User Input Interface} \label{Module}
+\section{GUI Module} \label{Module}
 
-\subsection{User Input Interface}
+\subsection{GUI Module}
 
 \subsection{Uses}
 \begin{itemize}
@@ -233,151 +234,7 @@ N/A
   \end{itemize}
 \end{itemize}
 
-
 %subinput 1
-\section{MIS of First-Match Text Field Input Module} 
-
-\subsection{First-Match Text Field Input Module}
-The text field input is turned into a multi-line string where each line is a spotify search query and a reference is generated
-for the first match of every query. 
-
-\subsection{Uses}
-N/A
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-N/A 
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\textcolor{red}{Input Button Press} &Text Field/Multi-line string &Collection of song references corresponding to each line in the input &N/A\\
-
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-\begin{itemize}
-  \item Collection of reference(s) to track(s)
-\end{itemize}
-
-\subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
-
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
-
-\subsubsection{Assumptions}
--
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \wss{accessProg}():
-\begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
-\end{itemize}
-
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
-\subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
-%subinput 2
-\section{MIS of URL Input Module} 
-
-\subsection{URL Input Module}
-User inputs a URL and a reference is generated through the input. 
-
-\subsection{Uses}
-N/A
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-N/A 
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-URL Input Request &URL &track reference(s) &Invalid URL\\
-
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-\begin{itemize}
-  \item Collection of track reference(s)
-\end{itemize}
-
-\subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \wss{accessProg}():
-\begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
-\end{itemize}
-
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
-\subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
-
-
-
-%subinput 3
 \section{MIS of Audio File Input Module} 
 
 \subsection{Audio File Input Module}
@@ -443,12 +300,10 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
+%subinput 2
+\section{MIS of Search Query Module} 
 
-
-%subinput 4
-\section{MIS of Spotify Query Search \& Select Input Module} 
-
-\subsection{Spotify Query Search \& Select Input Module}
+\subsection{Search Query Module}
 User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
 
 \subsection{Uses}
@@ -511,10 +366,206 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
+%server compute
+\section{MIS of Client Communication Module} 
 
+\subsection{Client Communication Module}
+User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item Collection containing track reference
+\end{itemize}
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \wss{accessProg}():
+\begin{itemize}
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
+\end{itemize}
+
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
+
+\subsubsection{Local Functions}
+
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.}
+
+%separator
+\section{MIS of Server Communication Module} 
+
+\subsection{Server Communication Module}
+User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item Collection containing track reference
+\end{itemize}
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \wss{accessProg}():
+\begin{itemize}
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
+\end{itemize}
+
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
+
+\subsubsection{Local Functions}
+
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.}
+
+%separator
+\section{MIS of Driver Module} 
+
+\subsection{Driver Module}
+User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item Collection containing track reference
+\end{itemize}
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \wss{accessProg}():
+\begin{itemize}
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
+\end{itemize}
+
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
+
+\subsubsection{Local Functions}
+
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.} 
 
 %MIS of Feature Extraction algorithms
-%MIS-11 of Tempo(BPM) extraction
+%MIS of Tempo(BPM) extraction
 \section{MIS of Tempo (BPM) Feature Extraction Module} 
 
 \subsection{Tempo (BPM) Feature Extraction Module}
