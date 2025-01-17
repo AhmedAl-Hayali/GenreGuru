@@ -1152,6 +1152,23 @@ Genre Feature Extraction Module
 - Featurizer Module: Receives metadata from the Featurizer Module and extracts the genre attribute from it.
 - Metadata Structure: Utilizes the metadata structure to locate and retrieve the genre attribute.
 
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+extractGenre & metadata: Metadata & genre: String & MissingGenreException, InvalidMetadataException \\
+\hline
+\end{tabular}
+\end{center}
+
 
 %Recommendation module
 \section{MIS of Recommendation Module} 
