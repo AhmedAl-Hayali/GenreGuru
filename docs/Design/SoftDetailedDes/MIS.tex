@@ -1181,6 +1181,20 @@ None.
 - The metadata provided by the Featurizer Module is valid and includes the genre attribute.
 - The genre attribute in the metadata is correctly formatted and accessible.
 
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{extractGenre}(metadata: Metadata):
+\begin{itemize}
+\item \textbf{Transition:} 
+    - Extracts the genre attribute from the provided metadata.
+\item \textbf{Output:} 
+    - Returns the extracted genre as a string.
+\item \textbf{Exceptions:} 
+    - \texttt{MissingGenreException}: Raised if the genre attribute is not found in the metadata.
+    - \texttt{InvalidMetadataException}: Raised if the provided metadata is improperly formatted or invalid.
+\end{itemize}
+
+
 %Recommendation module
 \section{MIS of Recommendation Module} 
 
