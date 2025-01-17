@@ -625,6 +625,29 @@ getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFail
     - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
 \end{itemize}
 
+\subsubsection{Local Functions}
+
+\textbf{authenticateWithDeezer}:
+\begin{itemize}
+\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
+\item Input: None.
+\item Output: \texttt{authToken}.
+\end{itemize}
+
+\textbf{fetchAudioFile}:
+\begin{itemize}
+\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{audioFile}.
+\end{itemize}
+
+\textbf{fetchGenreAndMetadata}:
+\begin{itemize}
+\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{genre}, \texttt{metadata}.
+\end{itemize}
+
 % MIS of Featurizer Module
 \section{MIS of Featurizer Module}
 
