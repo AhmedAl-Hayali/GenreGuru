@@ -606,6 +606,25 @@ getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFail
 - The authentication token for the Deezer API is valid and not expired.
 - The Deezer API is available and operational at the time of the request.
 
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{getAudioDetails}(isrc: String):
+\begin{itemize}
+\item \textbf{Transition:} 
+    - Authenticates with the Deezer API using \texttt{authToken}.
+    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
+\item \textbf{Output:} 
+    - Returns the \texttt{audioDetails} structure, which includes:
+      \begin{itemize}
+        \item \texttt{audioFile}: The retrieved audio file.
+        \item \texttt{genre}: The genre of the song.
+        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
+      \end{itemize}
+\item \textbf{Exceptions:} 
+    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
+    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
+\end{itemize}
+
 % MIS of Featurizer Module
 \section{MIS of Featurizer Module}
 
