@@ -481,10 +481,15 @@ N/A
 \section{MIS of Driver Module} 
 
 \subsection{Driver Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
-
+Controls all the functions of the server
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item Featurizer Module
+  \item Server Communication Module
+  \item Database Module
+  \item Recommendation Module
+  \item Deezer API Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -498,8 +503,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+- &- &- &-\\ 
 \hline
 \end{tabular}
 \end{center}
@@ -507,14 +511,12 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+N/A
 
 \subsubsection{Environment Variables}
 \begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
+  \item Deezer App ID
+  \item Deezer Secret
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -522,26 +524,13 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent main():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: Connects all server-side modules together 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.} 
+N/A  
 
 % MIS of Audio Lookup Module
 \section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
