@@ -449,7 +449,7 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{3cm} p{3cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
@@ -475,6 +475,10 @@ N/A
 \noindent send\_response():
 \begin{itemize}
 \item transition: sends the response to the client, where it is received by the Client Communication module 
+\end{itemize}
+\noindent await\_request():
+\begin{itemize} 
+  \item output: gets the request from the Client Communication module and sends it to the Server Driver Module  
 \end{itemize}
 
 \subsubsection{Local Functions}
