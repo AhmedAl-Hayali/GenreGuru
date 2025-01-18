@@ -309,44 +309,47 @@ to be implemented.
 
 \section{Traceability Matrix} \label{SecTM}
 
-This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+This section shows the traceability matrix between the requirements and the modules.
 
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
-\textbf{Req.} & \textbf{Modules}\\
+\textbf{Requirement} & \textbf{Modules}\\
 \midrule
-R1 & GUI Module, Search Query Module, Client-Side Communication Module \\
-R2 & Client-Side Communication Module, Server-Side Communication Module, Driver Module, Audio Lookup Module \\
-R3 & Featurizer Module, Driver Module \\
-R4 & Audio Lookup Module, Driver Module, Spotify Module \\
-R5 & Featurizer Module, Genre Feature Module, Driver Module \\
-R6 & Driver Module, Database Module, Client-Side Communication Module \\
-R7 & Results Display Module, GUI Module, Client-Side Communication Module \\
-R8 & GUI Module, Client-Side Communication Module \\
-R9 & GUI Module, Client-Side Communication Module \\
+R1 (Input queries) & GUI Module, Audio File Module, Client-Side Communication Module \\
+R2 (Display search results) & GUI Module, Results Display Module, Client-Side Communication Module \\
+R3 (Play previews) & GUI Module, Results Display Module, Spotify Module \\
+R4 (Validate audio files) & Audio File Module, Client-Side Communication Module \\
+R5 (Convert audio to WAV) & Audio File Module, Featurizer Module \\
+R6 (Construct Spotify query) & Search Query Module, Spotify Module, Client-Side Communication Module \\
+R7 (Extract features) & Featurizer Module, Driver Module, Genre Feature Module \\
+R8 (Support 8 features) & Featurizer Module, Genre Feature Module \\
+R9 (Generate recommendations) & Recommendation Module, Driver Module \\
+R10 (Transmit user input) & Client-Side Communication Module, Server-Side Communication Module \\
+R11 (Receive recommendations) & Server-Side Communication Module, Results Display Module, GUI Module \\
 \bottomrule
 \end{tabular}
-
-\begin{itemize}
-  \item \textbf{R1 (Submit song link):} Linked to the GUI Module, Search Query Module, and Client-Side Communication Module, as these facilitate input submission and processing.
-  \item \textbf{R2 (Establish connections):} Requires Client-Side Communication Module, Server-Side Communication Module, Driver Module, and Audio Lookup Module to handle data flow.
-  \item \textbf{R3 (Feature extraction):} Associated with the Featurizer Module and Driver Module, which handle feature processing.
-  \item \textbf{R4 (External API retrieval):} Linked to Audio Lookup Module, Driver Module, and Spotify Module for retrieving song data via APIs.
-  \item \textbf{R5 (Analyze and extract features):} Involves the Featurizer Module, Genre Feature Module, and Driver Module to process and return extracted features.
-  \item \textbf{R6 (Error feedback):} Handled by the Driver Module, Database Module, and Client-Side Communication Module to generate and display error messages.
-  \item \textbf{R7 (Display results):} Linked to the Results Display Module, GUI Module, and Client-Side Communication Module for output visualization.
-  \item \textbf{R8 (Validate user input):} Managed by the GUI Module and Client-Side Communication Module to ensure valid input.
-  \item \textbf{R9 (Client application for interaction):} Primarily handled by the GUI Module and Client-Side Communication Module, as they manage user interactions and requests.
-\end{itemize}
-
 \caption{Trace Between Requirements and Modules}
 \label{TblRT}
 \end{table}
+
+\subsection{Explanation of Traceability}
+
+\begin{itemize}
+    \item \textbf{R1 (Input queries):} Linked to the GUI Module, Audio File Module, and Client-Side Communication Module for managing user inputs.
+    \item \textbf{R2 (Display search results):} Connected to the GUI Module, Results Display Module, and Client-Side Communication Module to display song information.
+    \item \textbf{R3 (Play previews):} Associated with the GUI Module, Results Display Module, and Spotify Module to enable audio playback.
+    \item \textbf{R4 (Validate audio files):} Linked to the Audio File Module and Client-Side Communication Module to ensure only valid files are processed.
+    \item \textbf{R5 (Convert audio to WAV):} Handled by the Audio File Module and Featurizer Module to standardize inputs.
+    \item \textbf{R6 (Construct Spotify query):} Involves the Search Query Module, Spotify Module, and Client-Side Communication Module to generate and send API requests.
+    \item \textbf{R7 (Extract features):} Requires the Featurizer Module, Driver Module, and Genre Feature Module to process audio files and extract features.
+    \item \textbf{R8 (Support 8 features):} Ensures the Featurizer Module and Genre Feature Module handle all required features.
+    \item \textbf{R9 (Generate recommendations):} Relies on the Recommendation Module and Driver Module to compute and return suggestions.
+    \item \textbf{R10 (Transmit user input):} Linked to the Client-Side Communication Module and Server-Side Communication Module for transmitting data.
+    \item \textbf{R11 (Receive recommendations):} Managed by the Server-Side Communication Module, Results Display Module, and GUI Module for displaying results to the user.
+\end{itemize}
+
 
 \begin{table}[H]
 \centering
