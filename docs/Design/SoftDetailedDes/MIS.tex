@@ -1381,6 +1381,12 @@ graduate attribute of Problem Analysis and Design.
   are the benefits and tradeoffs of those other designs compared with the chosen
   design?  From all the potential options, why did you select the documented design?
   (LO\_Explores)
+
+  We considered a few alternative design solutions during the initial phases of the project. One option was to use a monolithic design where all the modules were tightly integrated into a single system. While this approach would have simplified communication between modules, it would have reduced modularity and made the system harder to maintain, test, and scale.
+
+Another option was to use a distributed system with separate microservices for each feature extraction module. This design would have offered excellent scalability and flexibility but introduced significant complexity in terms of managing inter-module communication and dependencies.
+
+We ultimately selected the documented design because it balances modularity and simplicity. By organizing the system into clearly defined modules with specific responsibilities, we can maintain a clear structure while minimizing complexity. This approach also allows us to allocate tasks efficiently among team members, ensure modular testing, and accommodate future changes or additions with minimal disruption.
 \end{enumerate}
 
 
