@@ -172,13 +172,13 @@ The following table is taken directly from the Module Guide document for this pr
 \section{GUI Module} \label{Module}
 
 \subsection{GUI Module}
+\textbf{gui}
 
 \subsection{Uses}
 \begin{itemize}
-  \item First-Match Text Field Input Module
-  \item URL Input module
   \item Audio File Input Module
-  \item Spotify Query Search \& Select
+  \item Search Query Module
+  \item Spotify API Module
 \end{itemize}
 
 \subsection{Syntax}
@@ -193,7 +193,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Consolidate Inputs &Up to 4 collection(s) of reference(s) to track(s) &Merged collection of track references &-\\
+gui &N/A &N/A &-\\
 
 \hline
 \end{tabular}
@@ -203,36 +203,30 @@ Consolidate Inputs &Up to 4 collection(s) of reference(s) to track(s) &Merged co
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item Data type of the collection of track reference(s)
+  \item user\_selection: Stores the track or audio file chosen by the user
+  \item spotify\_results: Stores the top 10 songs that best fit the search query
+  \item recommendations: Stores the list of the recommended songs after feature extraction
 \end{itemize}
 
 \subsubsection{Environment Variables}
-N/A
+\begin{itemize}
+  \item Keyboard
+  \item Mouse
+  \item Screen
+\end{itemize}
 
 \subsubsection{Assumptions}
-N/A
+\begin{itemize}
+  \item User inputs are valid
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
-
-\noindent consolidate\_inputs():
+\noindent gui
 \begin{itemize}
-  \item output: parses the user input and returns the songs that are sent to be processed
+  \item transition: provides methods to build and deploy the GUI to the user
 \end{itemize}
 \subsubsection{Local Functions}
-\begin{itemize}
-  \item parse\_wav\_file(file)
-  \begin{itemize}
-    \item
-  \end{itemize}
-  \item parse\_url(url)
-  \begin{itemize}
-    \item 
-  \end{itemize}
-  \item parse\_text(text)
-  \begin{itemize}
-    \item 
-  \end{itemize}
-\end{itemize}
+N/A
 
 %subinput 1
 \section{MIS of Audio File Input Module} 
