@@ -502,8 +502,7 @@ N/A
 \section{MIS of Driver Module} 
 
 \subsection{Driver Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
-
+Controls all the functions of the server
 \subsection{Uses}
 N/A
 
@@ -515,12 +514,16 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+get\_features &text input &song\_features (ADT) &-\\
+generate\_deezer\_connection &- &connection (ADT) &-\\
+unpack\_request &request (ADT) &song (ADT) &-\\
+get\_recommendations &song\_features (ADT) &recommendations (ADT)&-\\
+query\_database &- &song\_features(ADT) &-\\
+package\_response &recommendations (ADT) &response (ADT) &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -528,14 +531,12 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+N/A
 
 \subsubsection{Environment Variables}
 \begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
+  \item Deezer App ID
+  \item Deezer Secret
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -543,26 +544,38 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent get\_features():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item output: Invokes the Featurizer Module to get the features for the requested song 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent generate\_deezer\_connection():
+\begin{itemize}
+\item output: Creates a connection to the deezer api that can be called be used in other modules 
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent unpack\_request():
+\begin{itemize}
+\item output: Converts the request from the Server Communication Module into a song object that can be passed to the Featurizer Module 
+\end{itemize}
+
+\noindent get\_recommendations():
+\begin{itemize} 
+\item output: Invokes the Recommendation Module to get the song recommendations 
+\end{itemize}
+
+\noindent query\_database():
+\begin{itemize}
+\item output: Asks the database if the song in the request already exists in the databse, preventing the re-computation of song features 
+\end{itemize}
+
+\noindent package\_response():
+\begin{itemize} 
+\item output: Converts the song recommendations into a response object that the Server Communication Module can send back to the Client Communication Module 
+\end{itemize}
 
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.} 
+N/A  
 
 % MIS of Audio Lookup Module
 \section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
