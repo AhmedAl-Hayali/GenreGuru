@@ -524,34 +524,9 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent get\_features():
+\noindent main():
 \begin{itemize}
-\item output: Invokes the Featurizer Module to get the features for the requested song 
-\end{itemize}
-
-\noindent generate\_deezer\_connection():
-\begin{itemize}
-\item output: Creates a connection to the deezer api that can be called be used in other modules 
-\end{itemize}
-
-\noindent unpack\_request():
-\begin{itemize}
-\item output: Converts the request from the Server Communication Module into a song object that can be passed to the Featurizer Module 
-\end{itemize}
-
-\noindent get\_recommendations():
-\begin{itemize} 
-\item output: Invokes the Recommendation Module to get the song recommendations 
-\end{itemize}
-
-\noindent query\_database():
-\begin{itemize}
-\item output: Asks the database if the song in the request already exists in the databse, preventing the re-computation of song features 
-\end{itemize}
-
-\noindent package\_response():
-\begin{itemize} 
-\item output: Converts the song recommendations into a response object that the Server Communication Module can send back to the Client Communication Module 
+\item transition: Connects all server-side modules together 
 \end{itemize}
 
 \subsubsection{Local Functions}
