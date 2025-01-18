@@ -370,7 +370,7 @@ N/A
 \section{MIS of Client Communication Module} 
 
 \subsection{Client Communication Module}
-Sends requests to the server and receives responses from the server
+User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
 
 \subsection{Uses}
 N/A
@@ -383,12 +383,12 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3cm} p{5cm} p{3cm} p{2cm}}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-send\_request & request (ADT) &- &-\\
-await\_response &- &response (ADT) &-\\
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -396,31 +396,45 @@ await\_response &- &response (ADT) &-\\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-N/A
+\begin{itemize}
+  \item Collection containing track reference
+\end{itemize}
 
 \subsubsection{Environment Variables}
-N/A
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
 
 \subsubsection{Assumptions}
 N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent send\_request():
+\noindent \wss{accessProg}():
 \begin{itemize}
-\item transition: sends the request to the server, where it is received by the server communication module 
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
 \end{itemize}
 
-\noindent await\_response():
-\begin{itemize} 
-  \item output: gets the response from the server communication module and sends it to the Program Results Interface Module  
-\end{itemize}
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
 
 \subsubsection{Local Functions}
-N/A
+
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.}
 
 %separator
 \section{MIS of Server Communication Module} 
+
 \subsection{Server Communication Module}
 User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
 
@@ -484,182 +498,19 @@ N/A
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
 
+%separator
 \section{MIS of Driver Module} 
 
-  \subsection{Driver Module}
-  User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
-  
-  \subsection{Uses}
-  N/A
-  
-  \subsection{Syntax}
-  
-  \subsubsection{Exported Constants}
-  N/A
-  
-  \subsubsection{Exported Access Programs}
-  
-  \begin{center}
-  \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-  \hline
-  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-  \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-  Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-  Output result selection &user selection &Collection containing track reference &N/A\\
-  \hline
-  \end{tabular}
-  \end{center}
-  
-  \subsection{Semantics}
-  
-  \subsubsection{State Variables}
-  \begin{itemize}
-    \item Collection containing track reference
-  \end{itemize}
-  
-  \subsubsection{Environment Variables}
-  \begin{itemize}
-    \item Spotify Client ID
-    \item Spotify Client Secret
-  \end{itemize}
-  
-  \subsubsection{Assumptions}
-  N/A
-  
-  \subsubsection{Access Routine Semantics}
-  
-  \noindent \wss{accessProg}():
-  \begin{itemize}
-  \item transition: \wss{if appropriate} 
-  \item output: \wss{if appropriate} 
-  \item exception: \wss{if appropriate} 
-  \end{itemize}
-  
-  \wss{A module without environment variables or state variables is unlikely to
-    have a state transition.  In this case a state transition can only occur if
-    the module is changing the state of another module.}
-  
-  \wss{Modules rarely have both a transition and an output.  In most cases you
-    will have one or the other.}
-  
-  \subsubsection{Local Functions}
-  
-  \wss{As appropriate} \wss{These functions are for the purpose of specification.
-    They are not necessarily something that is going to be implemented
-    explicitly.  Even if they are implemented, they are not exported; they only
-    have local scope.} 
-
-% MIS of Audio Lookup Module
-\section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
-
-\subsection{Module}
-Audio Lookup Module
+\subsection{Driver Module}
+User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
 
 \subsection{Uses}
-- Driver Module: Receives the International Standard Recording Code (ISRC) from the Driver Module.
-- Deezer API: Responsible for retrieving the audio file, genre, and associated metadata for the provided ISRC.
+N/A
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-None.
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFailure, APIRequestError \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
-- \texttt{authToken}: The authentication token used for accessing the Deezer API.
-- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
-
-\subsubsection{Environment Variables}
-- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
-
-\subsubsection{Assumptions}
-- The ISRC provided by the Driver Module is valid and corresponds to an existing song.
-- The authentication token for the Deezer API is valid and not expired.
-- The Deezer API is available and operational at the time of the request.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \textbf{getAudioDetails}(isrc: String):
-\begin{itemize}
-\item \textbf{Transition:} 
-    - Authenticates with the Deezer API using \texttt{authToken}.
-    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
-\item \textbf{Output:} 
-    - Returns the \texttt{audioDetails} structure, which includes:
-      \begin{itemize}
-        \item \texttt{audioFile}: The retrieved audio file.
-        \item \texttt{genre}: The genre of the song.
-        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
-      \end{itemize}
-\item \textbf{Exceptions:} 
-    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
-    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\textbf{authenticateWithDeezer}:
-\begin{itemize}
-\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
-\item Input: None.
-\item Output: \texttt{authToken}.
-\end{itemize}
-
-\textbf{fetchAudioFile}:
-\begin{itemize}
-\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{audioFile}.
-\end{itemize}
-
-\textbf{fetchGenreAndMetadata}:
-\begin{itemize}
-\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{genre}, \texttt{metadata}.
-\end{itemize}
-
-% MIS of Featurizer Module
-\section{MIS of Featurizer Module}
-
-\subsection{Featurizer Module}
-The Featurizer Module is responsible for extracting 9 distinct feature values from audio files:
-\begin{itemize}
-    \item Tempo
-    \item Key and Scale
-    \item Instrument Type
-    \item Vocal Gender
-    \item Dynamic Range
-    \item Instrumentalness
-    \item Contour
-    \item Mood
-    \item Genre
-\end{itemize}
-
-The module invokes sub-feature modules to compute these feature values. It consolidates the results into a single \texttt{FeatureValues} object and returns it to the Driver Module.
-
-\subsection{Uses}
-- **Driver Module**: Sends requests to the Featurizer Module and receives feature values.
-- **Sub-Feature Modules**: Each responsible for computing a specific feature (e.g., Tempo, Key and Scale).
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None.
+N/A
 
 \subsubsection{Exported Access Programs}
 
@@ -667,88 +518,9 @@ None.
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline
-extractFeatures & audioFile: AudioFile & featureValues: FeatureValues & UnsupportedFileFormatException \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-- \texttt{audioFile}: The input audio file provided for feature extraction.
-- \texttt{featureValues}: An object containing the extracted values for all 9 features.
-
-\subsubsection{Environment Variables}
-None.
-
-\subsubsection{Assumptions}
-- Input audio files are in supported formats (e.g., WAV, MP3).
-- All sub-feature modules are functional and return valid outputs for their respective features.
-
-\subsubsection{Access Routine Semantics}
-\textbf{extractFeatures}:
-\begin{itemize}
-    \item \textbf{Precondition:} 
-    \begin{itemize}
-        \item \texttt{audioFile} is a valid audio file in a supported format.
-    \end{itemize}
-    \item \textbf{Postcondition:}
-    \begin{itemize}
-        \item \texttt{featureValues} contains valid results for all 9 features:
-            \begin{itemize}
-                \item Tempo
-                \item Key and Scale
-                \item Instrument Type
-                \item Vocal Gender
-                \item Dynamic Range
-                \item Instrumentalness
-                \item Contour
-                \item Mood
-                \item Genre
-            \end{itemize}
-        \item If the input file format is unsupported, an \texttt{UnsupportedFileFormatException} is raised.
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Local Functions}
-\textbf{invokeSubFeatureModule}:
-\begin{itemize}
-    \item Purpose: Calls a specific sub-feature module (e.g., for Tempo, Genre) and retrieves its computed value.
-    \item Input: \texttt{audioFile}, \texttt{featureType}
-    \item Output: Value of the requested feature.
-\end{itemize}
-
-\textbf{aggregateFeatureValues}:
-\begin{itemize}
-    \item Purpose: Consolidates all feature values into a \texttt{FeatureValues} object.
-    \item Input: A list of feature values retrieved from sub-feature modules.
-    \item Output: \texttt{FeatureValues} object.
-\end{itemize}
-
-% MIS of Audio Lookup Module
-\section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
-
-\subsection{Module}
-Audio Lookup Module
-
-\subsection{Uses}
-- Driver Module: Receives the International Standard Recording Code (ISRC) from the Driver Module.
-- Deezer API: Responsible for retrieving the audio file, genre, and associated metadata for the provided ISRC.
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None.
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFailure, APIRequestError \\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+Search Query Request &text input &top 10 matches from spotify query search &N/A\\
+Output result selection &user selection &Collection containing track reference &N/A\\
 \hline
 \end{tabular}
 \end{center}
@@ -756,152 +528,41 @@ getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFail
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
-- \texttt{authToken}: The authentication token used for accessing the Deezer API.
-- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
+\begin{itemize}
+  \item Collection containing track reference
+\end{itemize}
 
 \subsubsection{Environment Variables}
-- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
 
 \subsubsection{Assumptions}
-- The ISRC provided by the Driver Module is valid and corresponds to an existing song.
-- The authentication token for the Deezer API is valid and not expired.
-- The Deezer API is available and operational at the time of the request.
+N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \textbf{getAudioDetails}(isrc: String):
+\noindent \wss{accessProg}():
 \begin{itemize}
-\item \textbf{Transition:} 
-    - Authenticates with the Deezer API using \texttt{authToken}.
-    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
-\item \textbf{Output:} 
-    - Returns the \texttt{audioDetails} structure, which includes:
-      \begin{itemize}
-        \item \texttt{audioFile}: The retrieved audio file.
-        \item \texttt{genre}: The genre of the song.
-        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
-      \end{itemize}
-\item \textbf{Exceptions:} 
-    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
-    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
 \end{itemize}
+
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
 
 \subsubsection{Local Functions}
 
-\textbf{authenticateWithDeezer}:
-\begin{itemize}
-\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
-\item Input: None.
-\item Output: \texttt{authToken}.
-\end{itemize}
-
-\textbf{fetchAudioFile}:
-\begin{itemize}
-\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{audioFile}.
-\end{itemize}
-
-\textbf{fetchGenreAndMetadata}:
-\begin{itemize}
-\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{genre}, \texttt{metadata}.
-\end{itemize}
-
-% MIS of Featurizer Module
-\section{MIS of Featurizer Module}
-
-\subsection{Featurizer Module}
-The Featurizer Module is responsible for extracting 9 distinct feature values from audio files:
-\begin{itemize}
-    \item Tempo
-    \item Key and Scale
-    \item Instrument Type
-    \item Vocal Gender
-    \item Dynamic Range
-    \item Instrumentalness
-    \item Contour
-    \item Mood
-    \item Genre
-\end{itemize}
-
-The module invokes sub-feature modules to compute these feature values. It consolidates the results into a single \texttt{FeatureValues} object and returns it to the Driver Module.
-
-\subsection{Uses}
-- **Driver Module**: Sends requests to the Featurizer Module and receives feature values.
-- **Sub-Feature Modules**: Each responsible for computing a specific feature (e.g., Tempo, Key and Scale).
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None.
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline
-extractFeatures & audioFile: AudioFile & featureValues: FeatureValues & UnsupportedFileFormatException \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-- \texttt{audioFile}: The input audio file provided for feature extraction.
-- \texttt{featureValues}: An object containing the extracted values for all 9 features.
-
-\subsubsection{Environment Variables}
-None.
-
-\subsubsection{Assumptions}
-- Input audio files are in supported formats (e.g., WAV, MP3).
-- All sub-feature modules are functional and return valid outputs for their respective features.
-
-\subsubsection{Access Routine Semantics}
-\textbf{extractFeatures}:
-\begin{itemize}
-    \item \textbf{Precondition:} 
-    \begin{itemize}
-        \item \texttt{audioFile} is a valid audio file in a supported format.
-    \end{itemize}
-    \item \textbf{Postcondition:}
-    \begin{itemize}
-        \item \texttt{featureValues} contains valid results for all 9 features:
-            \begin{itemize}
-                \item Tempo
-                \item Key and Scale
-                \item Instrument Type
-                \item Vocal Gender
-                \item Dynamic Range
-                \item Instrumentalness
-                \item Contour
-                \item Mood
-                \item Genre
-            \end{itemize}
-        \item If the input file format is unsupported, an \texttt{UnsupportedFileFormatException} is raised.
-    \end{itemize}
-\end{itemize}
-
-\subsubsection{Local Functions}
-\textbf{invokeSubFeatureModule}:
-\begin{itemize}
-    \item Purpose: Calls a specific sub-feature module (e.g., for Tempo, Genre) and retrieves its computed value.
-    \item Input: \texttt{audioFile}, \texttt{featureType}
-    \item Output: Value of the requested feature.
-\end{itemize}
-
-\textbf{aggregateFeatureValues}:
-\begin{itemize}
-    \item Purpose: Consolidates all feature values into a \texttt{FeatureValues} object.
-    \item Input: A list of feature values retrieved from sub-feature modules.
-    \item Output: \texttt{FeatureValues} object.
-\end{itemize}
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.} 
 
 %MIS of Feature Extraction algorithms
 %MIS of Tempo(BPM) extraction
