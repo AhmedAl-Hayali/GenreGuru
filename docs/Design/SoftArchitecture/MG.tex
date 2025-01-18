@@ -331,6 +331,19 @@ R8 & GUI Module, Client-Side Communication Module \\
 R9 & GUI Module, Client-Side Communication Module \\
 \bottomrule
 \end{tabular}
+
+\begin{itemize}
+  \item \textbf{R1 (Submit song link):} Linked to the GUI Module, Search Query Module, and Client-Side Communication Module, as these facilitate input submission and processing.
+  \item \textbf{R2 (Establish connections):} Requires Client-Side Communication Module, Server-Side Communication Module, Driver Module, and Audio Lookup Module to handle data flow.
+  \item \textbf{R3 (Feature extraction):} Associated with the Featurizer Module and Driver Module, which handle feature processing.
+  \item \textbf{R4 (External API retrieval):} Linked to Audio Lookup Module, Driver Module, and Spotify Module for retrieving song data via APIs.
+  \item \textbf{R5 (Analyze and extract features):} Involves the Featurizer Module, Genre Feature Module, and Driver Module to process and return extracted features.
+  \item \textbf{R6 (Error feedback):} Handled by the Driver Module, Database Module, and Client-Side Communication Module to generate and display error messages.
+  \item \textbf{R7 (Display results):} Linked to the Results Display Module, GUI Module, and Client-Side Communication Module for output visualization.
+  \item \textbf{R8 (Validate user input):} Managed by the GUI Module and Client-Side Communication Module to ensure valid input.
+  \item \textbf{R9 (Client application for interaction):} Primarily handled by the GUI Module and Client-Side Communication Module, as they manage user interactions and requests.
+\end{itemize}
+
 \caption{Trace Between Requirements and Modules}
 \label{TblRT}
 \end{table}
