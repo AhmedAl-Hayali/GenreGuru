@@ -77,16 +77,13 @@ See SRS Documentation at \wss{give url}
 \section{Introduction}
 
 The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The GenreGuru music recommendation project. 
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+found at \url{https://github.com/AhmedAl-Hayali/GenreGuru}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -234,29 +231,29 @@ N/A
   \end{itemize}
 \end{itemize}
 
-%subinput 1
-\section{MIS of Audio File Input Module} 
+% MIS of Audio Lookup Module
+\section{MIS of Audio File Input Module} \label{Module:AudioFileInputModule}
 
 \subsection{Audio File Input Module}
-User inputs an audio file to the system to analyze. 
+Audio Lookup Module
 
 \subsection{Uses}
-N/A
+- Driver Module: Receives the International Standard Recording Code (ISRC) from the Driver Module.
+- Deezer API: Responsible for retrieving the audio file, genre, and associated metadata for the provided ISRC.
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-N/A
+None.
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-On Input Button Press &Audio File &Collection of song reference(s) &Invalid File Type\\
-
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFailure, APIRequestError \\
 \hline
 \end{tabular}
 \end{center}
@@ -264,41 +261,62 @@ On Input Button Press &Audio File &Collection of song reference(s) &Invalid File
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection of track reference(s)
-\end{itemize}
+- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
+- \texttt{authToken}: The authentication token used for accessing the Deezer API.
+- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
 
 \subsubsection{Environment Variables}
-N/A 
+- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
 
 \subsubsection{Assumptions}
 \begin{itemize}
-  \item User has a properly named Audio File.
-  \item User audio file input is actually a song. 
+  \item The ISRC provided by the Driver Module is valid and corresponds to an existing song.
+  \item The authentication token for the Deezer API is valid and not expired.
+  \item The Deezer API is available and operational at the time of the request.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \textbf{getAudioDetails}(isrc: String):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item \textbf{Transition:} 
+    - Authenticates with the Deezer API using \texttt{authToken}.
+    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
+\item \textbf{Output:} 
+    - Returns the \texttt{audioDetails} structure, which includes:
+      \begin{itemize}
+        \item \texttt{audioFile}: The retrieved audio file.
+        \item \texttt{genre}: The genre of the song.
+        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
+      \end{itemize}
+\item \textbf{Exceptions:} 
+    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
+    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
 \end{itemize}
-
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\textbf{authenticateWithDeezer}:
+\begin{itemize}
+\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
+\item Input: None.
+\item Output: \texttt{authToken}.
+\end{itemize}
+
+\textbf{fetchAudioFile}:
+\begin{itemize}
+\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{audioFile}.
+\end{itemize}
+
+\textbf{fetchGenreAndMetadata}:
+\begin{itemize}
+\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{genre}, \texttt{metadata}.
+\end{itemize}
+
 
 %subinput 2
 \section{MIS of Search Query Module} 
@@ -563,90 +581,6 @@ N/A
   They are not necessarily something that is going to be implemented
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.} 
-
-% MIS of Audio Lookup Module
-\section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
-
-\subsection{Module}
-Audio Lookup Module
-
-\subsection{Uses}
-- Driver Module: Receives the International Standard Recording Code (ISRC) from the Driver Module.
-- Deezer API: Responsible for retrieving the audio file, genre, and associated metadata for the provided ISRC.
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None.
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFailure, APIRequestError \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
-- \texttt{authToken}: The authentication token used for accessing the Deezer API.
-- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
-
-\subsubsection{Environment Variables}
-- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
-
-\subsubsection{Assumptions}
-- The ISRC provided by the Driver Module is valid and corresponds to an existing song.
-- The authentication token for the Deezer API is valid and not expired.
-- The Deezer API is available and operational at the time of the request.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \textbf{getAudioDetails}(isrc: String):
-\begin{itemize}
-\item \textbf{Transition:} 
-    - Authenticates with the Deezer API using \texttt{authToken}.
-    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
-\item \textbf{Output:} 
-    - Returns the \texttt{audioDetails} structure, which includes:
-      \begin{itemize}
-        \item \texttt{audioFile}: The retrieved audio file.
-        \item \texttt{genre}: The genre of the song.
-        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
-      \end{itemize}
-\item \textbf{Exceptions:} 
-    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
-    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\textbf{authenticateWithDeezer}:
-\begin{itemize}
-\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
-\item Input: None.
-\item Output: \texttt{authToken}.
-\end{itemize}
-
-\textbf{fetchAudioFile}:
-\begin{itemize}
-\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{audioFile}.
-\end{itemize}
-
-\textbf{fetchGenreAndMetadata}:
-\begin{itemize}
-\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
-\item Input: \texttt{isrc}.
-\item Output: \texttt{genre}, \texttt{metadata}.
-\end{itemize}
 
 % MIS of Featurizer Module
 \section{MIS of Featurizer Module}
