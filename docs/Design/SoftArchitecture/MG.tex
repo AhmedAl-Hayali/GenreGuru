@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{caption}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -232,12 +233,13 @@ The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+
+% \wss{The intention of this section is to document decisions that are made
+%   ``between'' the requirements and the design.  To satisfy some requirements,
+%   design decisions need to be made.  Rather than make these decisions implicit,
+%   they are explicitly recorded here.  For instance, if a program has security
+%   requirements, a specific design decision may be made to satisfy those
+%   requirements with a password.}
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -549,17 +551,17 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & M1 \\
+R2 & M1 \\
+R3 & M1 \\
+R4 & M2 \\
+R5 & M2 \\
+R6 & M3, M4 \\
+R7 & M6, M7, M8, M9, M10, M11, M13, M14 \\
+R8 & M6, M7, M8, M9, M10, M11, M13, M14 \\
+R9 & M15\\
+R10 & M4, M5\\
+R11 & M4, M16\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -623,8 +625,49 @@ arrows in the diagram typically correspond to the presence of import statement.}
 
 \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+
+% Home Page Screenshot
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UI_Images/Home_Page.png}
+    \caption{Home Page - The initial screen where users start their interaction.}
+    \label{fig:home_page}
+\end{figure}
+
+% Search Results Screenshot
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UI_Images/Search_Results.png}
+    \caption{Search Results - Shows the top matches for a user’s search query.}
+    \label{fig:search_results}
+\end{figure}
+
+% Select Genre Screenshot
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UI_Images/Select_Genre.png}
+    \caption{Select Genre - Allows users to specify the genre for uploaded audio files.}
+    \label{fig:select_genre}
+\end{figure}
+
+% Loading Page Screenshot
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{UI_Images/Loading_Page.png}
+  \caption{Loading Page - Indicates that the application is processing a request.}
+  \label{fig:loading_page}
+\end{figure}
+
+% Results Page Screenshot
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{UI_Images/Results_Page.png}
+  \caption{Results Page - Displays the recommendation results.}
+  \label{fig:results_page}
+\end{figure}
+
+
+%\wss{Design of user interface for software and hardware.  Attach an appendix if needed. Drawings, Sketches, Figma}
 
 \section{Design of Communication Protocols}
 
@@ -632,9 +675,20 @@ needed. Drawings, Sketches, Figma}
 
 \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
+The following timeline outlines the key milestones and activities planned for the development and refinement process:
 
-\wss{You can point to GitHub if this information is included there}
+\begin{itemize}
+    \item \textbf{January 6th - January 17th:} Finalize the design document, decide on features and finalize on software architecture.
+    \item \textbf{January 18th - January 20th:} Focus on refining the SRS, Hazard Analysis, and VnV documents.
+    \item \textbf{January 20th - January 21st:} Conduct a meeting with Dr. MvM with a well-defined agenda to review progress and receive feedback.
+    \item \textbf{January 22nd - January 23rd:} Engage with user groups to gather additional insights and validate design decisions.
+    \item \textbf{January 23rd onwards:} Begin work on Rev 0 of the project deliverables, incorporating feedback from user groups and the advisor meeting.
+\end{itemize}
+
+All team members are responsible for the tasks described in this timeline breakdown. (These were agreed upon in the [Post-Winter break Check-in](https://github.com/AhmedAl-Hayali/GenreGuru/issues/278))
+%\wss{Schedule of tasks and who is responsible}
+
+%\wss{You can point to GitHub if this information is included there}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
