@@ -257,15 +257,52 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+  \toprule
+  \textbf{Level 1} & \textbf{Level 2}\\
+  \midrule
+  
+  {Hardware-Hiding} & ~ \\
+  \midrule
+  
+  \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
+  & Audio File Upload Module\\
+  & Search Query Module\\
+  & Client Communication Module\\
+  %server side
+  & Server Communication Module\\
+  & Driver Module\\
+  %feature extractions
+  & Tempo (BPM) Feature Extraction Module\\
+  & Key and Scale Feature Extraction Module\\
+  & Instrument Type Feature Extraction Module\\
+  & Vocal Gender Feature Extraction Module\\
+  & Dynamic Range Feature Extraction Module\\
+  & Instrumentalness Feature Extraction Module\\
+  & Contour Feature Extraction Module\\
+  & Mood Feature Extraction Module\\
+  %final pieces
+  & Recommendation Module\\
+  & Program Results Interface Module\\
+  \midrule
+  
+  \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
+  & Spotify API\\
+  & Deezer API\\
+  & Genre Feature Module\\
+  \bottomrule
+  
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
+  \end{table}
+
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item[N/A]
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
@@ -277,22 +314,170 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
+  %services need to be reworded - check hunter's doc
+  %https://github.com/cer-hunter/OAR-CAS741/blob/main/docs/Design/SoftArchitecture/MG.pdf
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+%master input - might need to break this down more? seems like GUI should actually be
+%software decision. Refer to hunter's OAR for example
+\subsubsection{GUI Module (\mref{m1})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Handles user interaction, calling of the sub-input modules. 
+\item[Implemented By:] Frontend UI development framework
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%input method 1
+\subsubsection{Audio File Upload Module (\mref{m2})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in an audiofile and grabs metadata from the user. 
+\item[Implemented By:] Frontend framework file upload widget
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%input method 2
+\subsubsection{Search Query Module (\mref{m3})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] Frontend Framework text input widget
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%client-server comms
+\subsubsection{Client Communication Module (\mref{m4})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] Python File
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Server Communication Module (\mref{m5})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] Python File
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Driver Module (\mref{m6})}
+
+\begin{description}
+\item[Secrets:] The format and structure of the input data.
+\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
+\item[Implemented By:] Python File
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%featurizers
+%f1
+\subsubsection{Tempo (BPM) Feature Extraction Module (\mref{m7})}
+
+\begin{description}
+\item[Secrets:] The algorithm for calculating the tempo of the track. 
+\item[Services:] Extracts the Tempo (BPM) from the audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f2
+\subsubsection{Key and Scale Feature Extraction Module (\mref{m8})}
+
+\begin{description}
+\item[Secrets:] The algorithm for calculating the key and scale of the track. 
+\item[Services:]Extracts the \textbf{key} and \textbf{scale} from the audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f3
+\subsubsection{Instrument Type Feature Extraction Module (\mref{m9})}
+
+\begin{description}
+\item[Secrets:] The algorithm(s) for detecting the type(s) of instruments present within the track. 
+\item[Services:]Detects the presence of different instrument types within the input audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f4
+\subsubsection{Vocal Gender Feature Extraction Module (\mref{m10})}
+
+\begin{description}
+\item[Secrets:] The algorithm for detecting the overall vocal gender of the track. 
+\item[Services:]Extracts the overall vocal gender of the input audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f5
+\subsubsection{Dynamic Range Feature Extraction Module (\mref{m11})}
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Services:]Extracts the Dynamic Range (difference between peak and trough in decibels) of the input audio signal.
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+%f6
+\subsubsection{Instrumentalness Feature Extraction Module (\mref{m12})}
 
+\begin{description}
+\item[Secrets:] The algorithm for detecting the instrumentalness of the track. 
+\item[Services:] Detects the presence level of instrumentals from the input audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f7
+\subsubsection{Contour Feature Extraction Module (\mref{m13})}
+
+\begin{description}
+\item[Secrets:] The algorithm to detect the musical contour of the track. 
+\item[Services:] Extracts the musical contour of the input audio signal.  
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%f8
+\subsubsection{Mood Feature Extraction Module (\mref{m14})}
+
+\begin{description}
+\item[Secrets:] The algorithm for detecting the mood of the track. 
+\item[Services:] Extracts the mood of the input audio signal. 
+\item[Implemented By:] Python Function
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+%recommendation
+\subsubsection{Recommendation Module (\mref{m15})}
+
+\begin{description}
+\item[Secrets:] The recommendation machine learning algorithm. 
+\item[Services:] Generates a list of recommended songs. 
+\item[Implemented By:] Machine Learning Algorithm
+\item[Type of Module:] Library
+\end{description}
+
+%results GUI
+\subsubsection{Program Results Interface Module (\mref{m16})}
+
+\begin{description}
+\item[Secrets:] The recommended songs widget and features display element. 
+\item[Services:] Generates widget for recommended song(s) with preview snippet and UI element containting associated features for input song. 
+\item[Implemented By:] Spotify API Calls, 
+\item[Type of Module:] Abstract Data Type
+\end{description}
 
 \subsection{Software Decision Module}
 
@@ -307,7 +492,51 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Database Module (\mref{m17})}
+
+\begin{description}
+\item[Secrets:] The data contained in the tables. 
+\item[Services:] Storages for generated features. 
+\item[Implemented By:] Database Service
+\item[Type of Module:] Abstract Data Object
+\end{description}
+
+% \subsubsection{Pre-Processing Module (\mref{m2})}
+
+% \begin{description}
+% \item[Secrets:]The format and structure of the input data.
+% \item[Services:]Converts audio files and references into audio data for processing by featurizers
+% \item[Implemented By:] Librosa Signal Processing Library
+% \item[Type of Module:] Library
+% \end{description}
+
+\subsubsection{Spotify API (\mref{m18})}
+
+\begin{description}
+\item[Secrets:]Spotify API methods, credentials and metadata. 
+\item[Services:]Song Metadata
+\item[Implemented By:] Spotify
+\item[Type of Module:] API Library
+\end{description}
+
+\subsubsection{Deezer API (\mref{m19})}
+
+\begin{description}
+\item[Secrets:]Deezer API methods, credentials and metadata. 
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] Deezer
+\item[Type of Module:] API Library
+\end{description}
+
+\subsubsection{Genre Feature Module (\mref{m20})}
+
+\begin{description}
+\item[Secrets:]Genre label for a song
+\item[Services:]Fetches a genre label for a required song
+\item[Implemented By:] Deezer API
+\item[Type of Module:] Abstract Data Type
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
