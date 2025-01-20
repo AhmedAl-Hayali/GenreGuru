@@ -668,10 +668,16 @@ arrows in the diagram typically correspond to the presence of import statement.}
 
 
 %\wss{Design of user interface for software and hardware.  Attach an appendix if needed. Drawings, Sketches, Figma}
-
 \section{Design of Communication Protocols}
-
-\wss{If appropriate}
+Our design features 2 modules that have to do communication. They are listed as such: 
+\begin{itemize}
+  \item Client communication module
+  \item Server communication module
+\end{itemize}
+The communication between the frontend systems is done simply through funtion calls. In order to send data (input type, audio data, song ID) from the frontend the user 
+interacts with to the backend (the server) this will be done through encrypted data sent to the hosted server. This would be done by using
+a RESTFUL interface as this is currently the most common method. Using standard REST API, the payload passed is a regular JSON object with 
+a label for search or file input (the type of input) as that changes the behavior of the backend and the actual song ID itself. 
 
 \section{Timeline}
 
