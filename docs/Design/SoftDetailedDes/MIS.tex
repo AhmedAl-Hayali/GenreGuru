@@ -172,13 +172,13 @@ The following table is taken directly from the Module Guide document for this pr
 \section{GUI Module} \label{Module}
 
 \subsection{GUI Module}
+\textbf{gui}
 
 \subsection{Uses}
 \begin{itemize}
-  \item First-Match Text Field Input Module
-  \item URL Input module
   \item Audio File Input Module
-  \item Spotify Query Search \& Select
+  \item Search Query Module
+  \item Spotify API Module
 \end{itemize}
 
 \subsection{Syntax}
@@ -193,7 +193,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Consolidate Inputs &Up to 4 collection(s) of reference(s) to track(s) &Merged collection of track references &-\\
+gui &N/A &N/A &-\\
 
 \hline
 \end{tabular}
@@ -203,45 +203,42 @@ Consolidate Inputs &Up to 4 collection(s) of reference(s) to track(s) &Merged co
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item Data type of the collection of track reference(s)
+  \item user\_selection: Stores the track or audio file chosen by the user
+  \item spotify\_results: Stores the top 10 songs that best fit the search query
+  \item recommendations: Stores the list of the recommended songs after feature extraction
 \end{itemize}
 
 \subsubsection{Environment Variables}
-N/A
+\begin{itemize}
+  \item Keyboard
+  \item Mouse
+  \item Screen
+\end{itemize}
 
 \subsubsection{Assumptions}
-N/A
+\begin{itemize}
+  \item User inputs are valid
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
-
-\noindent consolidate\_inputs():
+\noindent gui
 \begin{itemize}
-  \item output: parses the user input and returns the songs that are sent to be processed
+  \item transition: provides methods to build and deploy the GUI to the user
 \end{itemize}
 \subsubsection{Local Functions}
-\begin{itemize}
-  \item parse\_wav\_file(file)
-  \begin{itemize}
-    \item
-  \end{itemize}
-  \item parse\_url(url)
-  \begin{itemize}
-    \item 
-  \end{itemize}
-  \item parse\_text(text)
-  \begin{itemize}
-    \item 
-  \end{itemize}
-\end{itemize}
+N/A
 
 %subinput 1
 \section{MIS of Audio File Input Module} 
 
 \subsection{Audio File Input Module}
-User inputs an audio file to the system to analyze. 
+\textbf{audioFileIM}
 
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item GUI Module
+  \item Client Communication Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -255,7 +252,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-On Input Button Press &Audio File &Collection of song reference(s) &Invalid File Type\\
+audioFileIM &Audio File &Track reference &Invalid File Type\\
 
 \hline
 \end{tabular}
@@ -265,7 +262,7 @@ On Input Button Press &Audio File &Collection of song reference(s) &Invalid File
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item Collection of track reference(s)
+  \item user\_af\_input: path to the audio file currently being processed
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -279,35 +276,36 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent audioFileIM
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
-\end{itemize}
+  \item transition: if the provided file is not in the .wav, then after it is converted, the file is sent to the Client Communication Module 
+  \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
 
 \subsubsection{Local Functions}
+N/A
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
 
 %subinput 2
 \section{MIS of Search Query Module} 
 
 \subsection{Search Query Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
-
+\textbf{searchQuery}
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item GUI Module
+  \item Client Communication Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -321,8 +319,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &-\\
-Output result selection &user selection &Collection containing track reference &-\\
+searchQuery &input\_text &Spotify Query &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -331,7 +328,7 @@ Output result selection &user selection &Collection containing track reference &
 
 \subsubsection{State Variables}
 \begin{itemize}
-  \item Collection containing track reference
+  \item user\_sq\_input: stores the query being processed 
 \end{itemize}
 
 \subsubsection{Environment Variables}
@@ -345,35 +342,40 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent searchQuery
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: Takes the text input and/or Spotify ID from the GUI Module, and builds 
+the query to be sent to the Client Communication Module
+% \item output: \wss{if appropriate} 
+% \item exception: \wss{if appropriate} 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
 
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
 
 %server compute
 \section{MIS of Client Communication Module} 
 
 \subsection{Client Communication Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+The module that sends request to and receives responses from the server
 
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item Audio File Input Module
+  \item Search Query Module
+  \item Server Communication Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -383,12 +385,12 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &-\\
-Output result selection &user selection &Collection containing track reference &-\\
+send\_request & request (ADT) &- &-\\
+await\_response &- &response (ADT) &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -396,50 +398,39 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+N/A
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
 N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent send\_request():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: sends the request to the server, where it is received by the server communication module 
+\end{itemize}
+\noindent await\_response():
+\begin{itemize} 
+  \item output: gets the response from the server communication module and sends it to the Program Results Interface Module  
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
 
 %separator
 \section{MIS of Server Communication Module} 
 
 \subsection{Server Communication Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
+Sends requests to the server and receives responses from the server
 
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item Server Driver Module
+  \item Client Communication Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -449,12 +440,12 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{3cm} p{3cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+send\_response & response (ADT) &- &-\\
+await\_request &- &request (ADT) &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -462,50 +453,41 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+N/A
 
 \subsubsection{Environment Variables}
-\begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
-\end{itemize}
+N/A
 
 \subsubsection{Assumptions}
 N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent send\_response():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: sends the response to the client, where it is received by the Client Communication module 
+\end{itemize}
+\noindent await\_request():
+\begin{itemize} 
+  \item output: gets the request from the Client Communication module and sends it to the Server Driver Module  
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
 
 %separator
 \section{MIS of Driver Module} 
 
 \subsection{Driver Module}
-User inputs a song and that is turned into a spotify search query where the top 10 matches are available for user to select
-
+Controls all the functions of the server
 \subsection{Uses}
-N/A
+\begin{itemize}
+  \item Featurizer Module
+  \item Server Communication Module
+  \item Database Module
+  \item Recommendation Module
+  \item Deezer API Module
+\end{itemize}
 
 \subsection{Syntax}
 
@@ -519,8 +501,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-Search Query Request &text input &top 10 matches from spotify query search &N/A\\
-Output result selection &user selection &Collection containing track reference &N/A\\
+- &- &- &-\\ 
 \hline
 \end{tabular}
 \end{center}
@@ -528,14 +509,12 @@ Output result selection &user selection &Collection containing track reference &
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\begin{itemize}
-  \item Collection containing track reference
-\end{itemize}
+N/A
 
 \subsubsection{Environment Variables}
 \begin{itemize}
-  \item Spotify Client ID
-  \item Spotify Client Secret
+  \item Deezer App ID
+  \item Deezer Secret
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -543,26 +522,13 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent main():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: Connects all server-side modules together 
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
-
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.} 
+N/A  
 
 % MIS of Audio Lookup Module
 \section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
