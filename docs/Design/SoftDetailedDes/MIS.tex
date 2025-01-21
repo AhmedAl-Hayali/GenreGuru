@@ -1305,6 +1305,77 @@ N/A
 
 \newpage
 
+\section{MIS of Database Module} 
+
+\subsection{Database Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+\texttt{fetch\_sptf\_song\_info} & \texttt{track\_ref} & \texttt{song\_feats} & \texttt{SongNotFoundError} \\
+\texttt{fetch\_file\_song\_info} & \texttt{track\_ref} & \texttt{song\_feats} & \texttt{SongNotFoundError} \\
+\texttt{deposit\_song\_info} & \texttt{track\_ref}, \texttt{song\_feats} & --- & \texttt{SongAlreadyExistsError}, \\
+& & & \texttt{InvalidFeatError} \\
+\texttt{update\_song\_info} & \texttt{track\_ref}, \texttt{song\_feats} & --- & \texttt{SongNotFoundError}, \\
+& & & \texttt{InvalidFeatError} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{fetch\_sptf\_song\_info}(\texttt{track\_ref}):
+\begin{itemize}
+\item output: \texttt{song\_feats} := a tuple of song features, including genre.
+\item exception: \texttt{SongNotFoundError} if song does not exist in the database.
+\end{itemize}
+
+\noindent \texttt{fetch\_file\_song\_info}(\texttt{track\_ref}):
+\begin{itemize}
+\item output: \texttt{song\_feats} := a tuple of song features, excluding (currently only) genre.
+\item exception: \texttt{SongNotFoundError} if song does not exist in the database.
+\end{itemize}
+
+\noindent \texttt{deposit\_song\_info}(\texttt{track\_ref}, \texttt{song\_feats}):
+\begin{itemize}
+\item transition: update database to include \emph{new} song and its corresponding tuple of features.
+\item exception: \texttt{SongAlreadyExistsError} if song already exists in the database, so its information must be \emph{updated} not \emph{deposited}. \\ \texttt{InvalidFeatError} if input features are incompatible with constraints set in the database.
+\end{itemize}
+
+\noindent \texttt{update\_song\_info}(\texttt{track\_ref}, \texttt{song\_feats}):
+\begin{itemize}
+\item transition: update database to change and \emph{existing} song's tuple of features.
+\item exception: \texttt{SongNotFoundError} if song does not exist in the database. \\ \texttt{InvalidFeatError} if input features are incompatible with constraints set in the database.
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+
 \section{MIS of Spotify API Module} 
 
 \subsection{Spotify API Module}
