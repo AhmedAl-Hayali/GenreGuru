@@ -1305,6 +1305,55 @@ N/A
 
 \newpage
 
+\section{MIS of Spotify API Module} 
+
+\subsection{Spotify API Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\texttt{spotify\_conn}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+\texttt{get\_conn} & --- & \texttt{spotify\_conn} & \texttt{InvalidCredentialsError} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+Spotify credentials: \texttt{client\_id} and \texttt{client\_secret}.
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{get\_conn}():
+\begin{itemize}
+  \item transition: instantiate a spotify connection if none already exists, otherwise return the existing connection. This follows the singleton design pattern.
+  \item output: \texttt{spotify\_conn} := a spotify connection object.
+\item exception: \texttt{InvalidCredentialsError} if Spotify credentials are not authenticated.
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
 
