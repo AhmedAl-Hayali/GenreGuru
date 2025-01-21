@@ -317,17 +317,17 @@ This section shows the traceability matrix between the requirements and the modu
 \toprule
 \textbf{Requirement} & \textbf{Modules}\\
 \midrule
-R1 (Input queries) & GUI Module, Audio File Module, Client-Side Communication Module \\
-R2 (Display search results) & GUI Module, Results Display Module, Client-Side Communication Module \\
+R1 (Input queries) & GUI Module, Search Query Module, Audio File Module \\
+R2 (Display search results) & GUI Module, Results Display Module \\
 R3 (Play previews) & GUI Module, Results Display Module, Spotify Module \\
-R4 (Validate audio files) & Audio File Module, Client-Side Communication Module \\
+R4 (Validate audio files) & Audio File Module \\
 R5 (Convert audio to WAV) & Audio File Module, Featurizer Module \\
-R6 (Construct Spotify query) & Search Query Module, Spotify Module, Client-Side Communication Module \\
+R6 (Construct Spotify query) & Search Query Module \\
 R7 (Extract features) & Featurizer Module, Driver Module, Genre Feature Module \\
 R8 (Support 8 features) & Featurizer Module, Genre Feature Module \\
 R9 (Generate recommendations) & Recommendation Module, Driver Module \\
 R10 (Transmit user input) & Client-Side Communication Module, Server-Side Communication Module \\
-R11 (Receive recommendations) & Server-Side Communication Module, Results Display Module, GUI Module \\
+R11 (Receive recommendations) & Client-Side Communication Module, Server-Side Communication Module \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -337,17 +337,17 @@ R11 (Receive recommendations) & Server-Side Communication Module, Results Displa
 \subsection{Explanation of Traceability}
 
 \begin{itemize}
-    \item \textbf{R1 (Input queries):} Linked to the GUI Module, Audio File Module, and Client-Side Communication Module for managing user inputs.
-    \item \textbf{R2 (Display search results):} Connected to the GUI Module, Results Display Module, and Client-Side Communication Module to display song information.
+    \item \textbf{R1 (Input queries):} Linked to the GUI Module, Search Query Module, and Audio File Module to handle user inputs efficiently.
+    \item \textbf{R2 (Display search results):} Connected to the GUI Module and Results Display Module to display song information accurately.
     \item \textbf{R3 (Play previews):} Associated with the GUI Module, Results Display Module, and Spotify Module to enable audio playback.
-    \item \textbf{R4 (Validate audio files):} Linked to the Audio File Module and Client-Side Communication Module to ensure only valid files are processed.
+    \item \textbf{R4 (Validate audio files):} Linked to the Audio File Module to ensure only valid files are processed.
     \item \textbf{R5 (Convert audio to WAV):} Handled by the Audio File Module and Featurizer Module to standardize inputs.
-    \item \textbf{R6 (Construct Spotify query):} Involves the Search Query Module, Spotify Module, and Client-Side Communication Module to generate and send API requests.
+    \item \textbf{R6 (Construct Spotify query):} Involves the Search Query Module to generate and send API requests.
     \item \textbf{R7 (Extract features):} Requires the Featurizer Module, Driver Module, and Genre Feature Module to process audio files and extract features.
     \item \textbf{R8 (Support 8 features):} Ensures the Featurizer Module and Genre Feature Module handle all required features.
     \item \textbf{R9 (Generate recommendations):} Relies on the Recommendation Module and Driver Module to compute and return suggestions.
     \item \textbf{R10 (Transmit user input):} Linked to the Client-Side Communication Module and Server-Side Communication Module for transmitting data.
-    \item \textbf{R11 (Receive recommendations):} Managed by the Server-Side Communication Module, Results Display Module, and GUI Module for displaying results to the user.
+    \item \textbf{R11 (Receive recommendations):} Managed by the Client-Side Communication Module and Server-Side Communication Module for receiving processed results.
 \end{itemize}
 
 
