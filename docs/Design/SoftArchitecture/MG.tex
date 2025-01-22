@@ -8,7 +8,6 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
-\usepackage{caption}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -158,18 +157,16 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] Format and constraints of the initial input data
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The APIs used to fetch data
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Feature extraction algorithms
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Song Recommendation algorithm
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Database Strucutre and Content
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] GUI Implementation
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] Addition of new features
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
+  hardware on which the software is running.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+  initial input data.
+\item ...
 \end{description}
 
-% \wss{Anticipated changes relate to changes that would be made in requirements,
-% design or implementation choices.  They are not related to changes that are made
-% at run-time, like the values of parameters.}
+\wss{Anticipated changes relate to changes that would be made in requirements,
+design or implementation choices.  They are not related to changes that are made
+at run-time, like the values of parameters.}
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
@@ -181,9 +178,9 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Source of the input is always from the user
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] the usse of Spotify and Deezer as data sources
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] the goal of the system is to extract features and recommend songs
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
+  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+\item ...
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -235,13 +232,12 @@ The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
 between requirements and modules is listed in Table~\ref{TblRT}.
 
-
-% \wss{The intention of this section is to document decisions that are made
-%   ``between'' the requirements and the design.  To satisfy some requirements,
-%   design decisions need to be made.  Rather than make these decisions implicit,
-%   they are explicitly recorded here.  For instance, if a program has security
-%   requirements, a specific design decision may be made to satisfy those
-%   requirements with a password.}
+\wss{The intention of this section is to document decisions that are made
+  ``between'' the requirements and the design.  To satisfy some requirements,
+  design decisions need to be made.  Rather than make these decisions implicit,
+  they are explicitly recorded here.  For instance, if a program has security
+  requirements, a specific design decision may be made to satisfy those
+  requirements with a password.}
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -259,52 +255,15 @@ Only the leaf modules in the hierarchy have to be implemented. If a dash
 (\emph{--}) is shown, this means that the module is not a leaf and will not have
 to be implemented.
 
-\begin{table}[h!]
-  \centering
-  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-  \toprule
-  \textbf{Level 1} & \textbf{Level 2}\\
-  \midrule
-  
-  {Hardware-Hiding} & ~ \\
-  \midrule
-  
-  \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
-  & Audio File Upload Module\\
-  & Search Query Module\\
-  & Client Communication Module\\
-  %server side
-  & Server Communication Module\\
-  & Driver Module\\
-  %feature extractions
-  & Tempo (BPM) Feature Extraction Module\\
-  & Key and Scale Feature Extraction Module\\
-  & Instrument Type Feature Extraction Module\\
-  & Vocal Gender Feature Extraction Module\\
-  & Dynamic Range Feature Extraction Module\\
-  & Instrumentalness Feature Extraction Module\\
-  & Contour Feature Extraction Module\\
-  & Mood Feature Extraction Module\\
-  %final pieces
-  & Recommendation Module\\
-  & Program Results Interface Module\\
-  \midrule
-  
-  \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
-  & Spotify API\\
-  & Deezer API\\
-  & Genre Feature Module\\
-  \bottomrule
-  
-  \end{tabular}
-  \caption{Module Hierarchy}
-  \label{TblMH}
-  \end{table}
-
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[N/A]
+\item[Secrets:]The data structure and algorithm used to implement the virtual
+  hardware.
+\item[Services:]Serves as a virtual hardware used by the rest of the
+  system. This module provides the interface between the hardware and the
+  software. So, the system can use it to display outputs or to accept inputs.
+\item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
@@ -316,170 +275,22 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
-  %services need to be reworded - check hunter's doc
-  %https://github.com/cer-hunter/OAR-CAS741/blob/main/docs/Design/SoftArchitecture/MG.pdf
 \item[Implemented By:] --
 \end{description}
 
-%master input - might need to break this down more? seems like GUI should actually be
-%software decision. Refer to hunter's OAR for example
-\subsubsection{GUI Module (\mref{m1})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Handles user interaction, calling of the sub-input modules. 
-\item[Implemented By:] Frontend UI development framework
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%input method 1
-\subsubsection{Audio File Upload Module (\mref{m2})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Takes in an audiofile and grabs metadata from the user. 
-\item[Implemented By:] Frontend framework file upload widget
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%input method 2
-\subsubsection{Search Query Module (\mref{m3})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] Frontend Framework text input widget
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%client-server comms
-\subsubsection{Client Communication Module (\mref{m4})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] Python File
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-\subsubsection{Server Communication Module (\mref{m5})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] Python File
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-\subsubsection{Driver Module (\mref{m6})}
-
-\begin{description}
-\item[Secrets:] The format and structure of the input data.
-\item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] Python File
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%featurizers
-%f1
-\subsubsection{Tempo (BPM) Feature Extraction Module (\mref{m7})}
-
-\begin{description}
-\item[Secrets:] The algorithm for calculating the tempo of the track. 
-\item[Services:] Extracts the Tempo (BPM) from the audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f2
-\subsubsection{Key and Scale Feature Extraction Module (\mref{m8})}
-
-\begin{description}
-\item[Secrets:] The algorithm for calculating the key and scale of the track. 
-\item[Services:]Extracts the \textbf{key} and \textbf{scale} from the audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f3
-\subsubsection{Instrument Type Feature Extraction Module (\mref{m9})}
-
-\begin{description}
-\item[Secrets:] The algorithm(s) for detecting the type(s) of instruments present within the track. 
-\item[Services:]Detects the presence of different instrument types within the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f4
-\subsubsection{Vocal Gender Feature Extraction Module (\mref{m10})}
-
-\begin{description}
-\item[Secrets:] The algorithm for detecting the overall vocal gender of the track. 
-\item[Services:]Extracts the overall vocal gender of the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f5
-\subsubsection{Dynamic Range Feature Extraction Module (\mref{m11})}
+\subsubsection{Input Format Module (\mref{mInput})}
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Extracts the Dynamic Range (difference between peak and trough in decibels) of the input audio signal.
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
+\item[Services:]Converts the input data into the data structure used by the
+  input parameters module.
+\item[Implemented By:] [Your Program Name Here]
+\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
+  [Information to include for leaf modules in the decomposition by secrets tree.]
 \end{description}
 
-%f6
-\subsubsection{Instrumentalness Feature Extraction Module (\mref{m12})}
+\subsubsection{Etc.}
 
-\begin{description}
-\item[Secrets:] The algorithm for detecting the instrumentalness of the track. 
-\item[Services:] Detects the presence level of instrumentals from the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f7
-\subsubsection{Contour Feature Extraction Module (\mref{m13})}
-
-\begin{description}
-\item[Secrets:] The algorithm to detect the musical contour of the track. 
-\item[Services:] Extracts the musical contour of the input audio signal.  
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%f8
-\subsubsection{Mood Feature Extraction Module (\mref{m14})}
-
-\begin{description}
-\item[Secrets:] The algorithm for detecting the mood of the track. 
-\item[Services:] Extracts the mood of the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
-\end{description}
-
-%recommendation
-\subsubsection{Recommendation Module (\mref{m15})}
-
-\begin{description}
-\item[Secrets:] The recommendation machine learning algorithm. 
-\item[Services:] Generates a list of recommended songs. 
-\item[Implemented By:] Machine Learning Algorithm
-\item[Type of Module:] Library
-\end{description}
-
-%results GUI
-\subsubsection{Program Results Interface Module (\mref{m16})}
-
-\begin{description}
-\item[Secrets:] The recommended songs widget and features display element. 
-\item[Services:] Generates widget for recommended song(s) with preview snippet and UI element containting associated features for input song. 
-\item[Implemented By:] Spotify API Calls, 
-\item[Type of Module:] Abstract Data Type
-\end{description}
 
 \subsection{Software Decision Module}
 
@@ -494,81 +305,51 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Database Module (\mref{m17})}
-
-\begin{description}
-\item[Secrets:] The data contained in the tables. 
-\item[Services:] Storages for generated features. 
-\item[Implemented By:] Database Service
-\item[Type of Module:] Abstract Data Object
-\end{description}
-
-% \subsubsection{Pre-Processing Module (\mref{m2})}
-
-% \begin{description}
-% \item[Secrets:]The format and structure of the input data.
-% \item[Services:]Converts audio files and references into audio data for processing by featurizers
-% \item[Implemented By:] Librosa Signal Processing Library
-% \item[Type of Module:] Library
-% \end{description}
-
-\subsubsection{Spotify API (\mref{m18})}
-
-\begin{description}
-\item[Secrets:]Spotify API methods, credentials and metadata. 
-\item[Services:]Song Metadata
-\item[Implemented By:] Spotify
-\item[Type of Module:] API Library
-\end{description}
-
-\subsubsection{Deezer API (\mref{m19})}
-
-\begin{description}
-\item[Secrets:]Deezer API methods, credentials and metadata. 
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] Deezer
-\item[Type of Module:] API Library
-\end{description}
-
-\subsubsection{Genre Feature Module (\mref{m20})}
-
-\begin{description}
-\item[Secrets:]Genre label for a song
-\item[Services:]Fetches a genre label for a required song
-\item[Implemented By:] Deezer API
-\item[Type of Module:] Abstract Data Type
-\end{description}
+\subsubsection{Etc.}
 
 \section{Traceability Matrix} \label{SecTM}
 
-This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+This section shows the traceability matrix between the requirements and the modules.
 
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
-\textbf{Req.} & \textbf{Modules}\\
+\textbf{Requirement} & \textbf{Modules}\\
 \midrule
-R1 & M1 \\
-R2 & M1 \\
-R3 & M1 \\
-R4 & M2 \\
-R5 & M2 \\
-R6 & M3, M4 \\
-R7 & M6, M7, M8, M9, M10, M11, M13, M14 \\
-R8 & M6, M7, M8, M9, M10, M11, M13, M14 \\
-R9 & M15\\
-R10 & M4, M5\\
-R11 & M4, M16\\
+R1 (Input queries) & GUI Module, Search Query Module, Audio File Module \\
+R2 (Display search results) & GUI Module, Results Display Module \\
+R3 (Play previews) & GUI Module, Results Display Module, Spotify Module \\
+R4 (Validate audio files) & Audio File Module \\
+R5 (Convert audio to WAV) & Audio File Module, Featurizer Module \\
+R6 (Construct Spotify query) & Search Query Module \\
+R7 (Extract features) & Featurizer Module, Driver Module, Genre Feature Module \\
+R8 (Support 8 features) & Featurizer Module, Genre Feature Module \\
+R9 (Generate recommendations) & Recommendation Module, Driver Module \\
+R10 (Transmit user input) & Client-Side Communication Module, Server-Side Communication Module \\
+R11 (Receive recommendations) & Client-Side Communication Module, Server-Side Communication Module \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
 \label{TblRT}
 \end{table}
+
+\subsection{Explanation of Traceability}
+
+\begin{itemize}
+    \item \textbf{R1 (Input queries):} Linked to the GUI Module, Search Query Module, and Audio File Module to handle user inputs efficiently.
+    \item \textbf{R2 (Display search results):} Connected to the GUI Module and Results Display Module to display song information accurately.
+    \item \textbf{R3 (Play previews):} Associated with the GUI Module, Results Display Module, and Spotify Module to enable audio playback.
+    \item \textbf{R4 (Validate audio files):} Linked to the Audio File Module to ensure only valid files are processed.
+    \item \textbf{R5 (Convert audio to WAV):} Handled by the Audio File Module and Featurizer Module to standardize inputs.
+    \item \textbf{R6 (Construct Spotify query):} Involves the Search Query Module to generate and send API requests.
+    \item \textbf{R7 (Extract features):} Requires the Featurizer Module, Driver Module, and Genre Feature Module to process audio files and extract features.
+    \item \textbf{R8 (Support 8 features):} Ensures the Featurizer Module and Genre Feature Module handle all required features.
+    \item \textbf{R9 (Generate recommendations):} Relies on the Recommendation Module and Driver Module to compute and return suggestions.
+    \item \textbf{R10 (Transmit user input):} Linked to the Client-Side Communication Module and Server-Side Communication Module for transmitting data.
+    \item \textbf{R11 (Receive recommendations):} Managed by the Client-Side Communication Module and Server-Side Communication Module for receiving processed results.
+\end{itemize}
+
 
 \begin{table}[H]
 \centering
@@ -627,76 +408,18 @@ arrows in the diagram typically correspond to the presence of import statement.}
 
 \section{User Interfaces}
 
+\wss{Design of user interface for software and hardware.  Attach an appendix if
+needed. Drawings, Sketches, Figma}
 
-% Home Page Screenshot
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{UI_Images/Home_Page.png}
-    \caption{Home Page - The initial screen where users start their interaction.}
-    \label{fig:home_page}
-\end{figure}
-
-% Search Results Screenshot
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{UI_Images/Search_Results.png}
-    \caption{Search Results - Shows the top matches for a user’s search query.}
-    \label{fig:search_results}
-\end{figure}
-
-% Select Genre Screenshot
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{UI_Images/Select_Genre.png}
-    \caption{Select Genre - Allows users to specify the genre for uploaded audio files.}
-    \label{fig:select_genre}
-\end{figure}
-
-% Loading Page Screenshot
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{UI_Images/Loading_Page.png}
-  \caption{Loading Page - Indicates that the application is processing a request.}
-  \label{fig:loading_page}
-\end{figure}
-
-% Results Page Screenshot
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{UI_Images/Results_Page.png}
-  \caption{Results Page - Displays the recommendation results.}
-  \label{fig:results_page}
-\end{figure}
-
-
-%\wss{Design of user interface for software and hardware.  Attach an appendix if needed. Drawings, Sketches, Figma}
 \section{Design of Communication Protocols}
-Our design features 2 modules that have to do communication. They are listed as such: 
-\begin{itemize}
-  \item Client communication module
-  \item Server communication module
-\end{itemize}
-The communication between the frontend systems is done simply through funtion calls. In order to send data (input type, audio data, song ID) from the frontend the user 
-interacts with to the backend (the server) this will be done through encrypted data sent to the hosted server. This would be done by using
-a RESTFUL interface as this is currently the most common method. Using standard REST API, the payload passed is a regular JSON object with 
-a label for search or file input (the type of input) as that changes the behavior of the backend and the actual song ID itself. 
+
+\wss{If appropriate}
 
 \section{Timeline}
 
-The following timeline outlines the key milestones and activities planned for the development and refinement process:
+\wss{Schedule of tasks and who is responsible}
 
-\begin{itemize}
-    \item \textbf{January 6th - January 17th:} Finalize the design document, decide on features and finalize on software architecture.
-    \item \textbf{January 18th - January 20th:} Focus on refining the SRS, Hazard Analysis, and VnV documents.
-    \item \textbf{January 20th - January 21st:} Conduct a meeting with Dr. MvM with a well-defined agenda to review progress and receive feedback.
-    \item \textbf{January 22nd - January 23rd:} Engage with user groups to gather additional insights and validate design decisions.
-    \item \textbf{January 23rd onwards:} Begin work on Rev 0 of the project deliverables, incorporating feedback from user groups and the advisor meeting.
-\end{itemize}
-
-All team members are responsible for the tasks described in this timeline breakdown. (These were agreed upon in the [Post-Winter break Check-in](https://github.com/AhmedAl-Hayali/GenreGuru/issues/278))
-%\wss{Schedule of tasks and who is responsible}
-
-%\wss{You can point to GitHub if this information is included there}
+\wss{You can point to GitHub if this information is included there}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
