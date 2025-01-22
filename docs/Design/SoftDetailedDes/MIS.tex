@@ -134,18 +134,31 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
+& Audio File Input Module\\
+& Search Query Module\\
+%server compute elements
+& Client Communication Module\\
+& Server Communication Module\\
+& Driver Module\\
+%feature extractions
+& Tempo (BPM) Feature Extraction Module\\
+& Key and Scale Feature Extraction Module\\
+& Instrument Type Feature Extraction Module\\
+& Vocal Gender Feature Extraction Module\\
+& Dynamic Range Feature Extraction Module\\
+& Instrumentalness Feature Extraction Module\\
+& Contour Feature Extraction Module\\
+& Mood Feature Extraction Module\\
+%Results and display
+& Recommendation Module\\
+& Program Results Interface\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision} & Database\\
+& Spotify API\\
+& Deezer API\\
+& Genre Feature Module\\
 \bottomrule
 
 \end{tabular}
@@ -156,23 +169,381 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{GUI Module} \label{Module}
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
-
-\subsection{Module}
-
-\wss{Short name for the module}
+\subsection{GUI Module}
+\textbf{gui}
 
 \subsection{Uses}
-
+\begin{itemize}
+  \item Audio File Input Module
+  \item Search Query Module
+  \item Spotify API Module
+\end{itemize}
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+gui &N/A &N/A &-\\
+
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item user\_selection: Stores the track or audio file chosen by the user
+  \item spotify\_results: Stores the top 10 songs that best fit the search query
+  \item recommendations: Stores the list of the recommended songs after feature extraction
+\end{itemize}
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Keyboard
+  \item Mouse
+  \item Screen
+\end{itemize}
+
+\subsubsection{Assumptions}
+\begin{itemize}
+  \item User inputs are valid
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+\noindent gui
+\begin{itemize}
+  \item transition: provides methods to build and deploy the GUI to the user
+\end{itemize}
+\subsubsection{Local Functions}
+N/A
+
+%subinput 1
+\section{MIS of Audio File Input Module} 
+
+\subsection{Audio File Input Module}
+\textbf{audioFileIM}
+
+\subsection{Uses}
+\begin{itemize}
+  \item GUI Module
+  \item Client Communication Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+audioFileIM &Audio File &Track reference &Invalid File Type\\
+
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item user\_af\_input: path to the audio file currently being processed
+\end{itemize}
+
+\subsubsection{Environment Variables}
+N/A 
+
+\subsubsection{Assumptions}
+\begin{itemize}
+  \item User has a properly named Audio File.
+  \item User audio file input is actually a song. 
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent audioFileIM
+\begin{itemize}
+  \item transition: if the provided file is not in the .wav, then after it is converted, the file is sent to the Client Communication Module 
+  \end{itemize}
+
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
+
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
+
+\subsubsection{Local Functions}
+N/A
+
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
+
+%subinput 2
+\section{MIS of Search Query Module} 
+
+\subsection{Search Query Module}
+\textbf{searchQuery}
+\subsection{Uses}
+\begin{itemize}
+  \item GUI Module
+  \item Client Communication Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+searchQuery &input\_text &Spotify Query &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+\begin{itemize}
+  \item user\_sq\_input: stores the query being processed 
+\end{itemize}
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Spotify Client ID
+  \item Spotify Client Secret
+\end{itemize}
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent searchQuery
+\begin{itemize}
+\item transition: Takes the text input and/or Spotify ID from the GUI Module, and builds 
+the query to be sent to the Client Communication Module
+% \item output: \wss{if appropriate} 
+% \item exception: \wss{if appropriate} 
+\end{itemize}
+
+% \wss{A module without environment variables or state variables is unlikely to
+%   have a state transition.  In this case a state transition can only occur if
+%   the module is changing the state of another module.}
+
+% \wss{Modules rarely have both a transition and an output.  In most cases you
+%   will have one or the other.}
+
+\subsubsection{Local Functions}
+N/A
+% \wss{As appropriate} \wss{These functions are for the purpose of specification.
+%   They are not necessarily something that is going to be implemented
+%   explicitly.  Even if they are implemented, they are not exported; they only
+%   have local scope.}
+
+%server compute
+\section{MIS of Client Communication Module} 
+
+\subsection{Client Communication Module}
+The module that sends request to and receives responses from the server
+
+\subsection{Uses}
+\begin{itemize}
+  \item Audio File Input Module
+  \item Search Query Module
+  \item Server Communication Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+send\_request & request (ADT) &- &-\\
+await\_response &- &response (ADT) &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent send\_request():
+\begin{itemize}
+\item transition: sends the request to the server, where it is received by the server communication module 
+\end{itemize}
+\noindent await\_response():
+\begin{itemize} 
+  \item output: gets the response from the server communication module and sends it to the Program Results Interface Module  
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%separator
+\section{MIS of Server Communication Module} 
+
+\subsection{Server Communication Module}
+Sends requests to the server and receives responses from the server
+
+\subsection{Uses}
+\begin{itemize}
+  \item Server Driver Module
+  \item Client Communication Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3cm} p{3cm} p{3cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+send\_response & response (ADT) &- &-\\
+await\_request &- &request (ADT) &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent send\_response():
+\begin{itemize}
+\item transition: sends the response to the client, where it is received by the Client Communication module 
+\end{itemize}
+\noindent await\_request():
+\begin{itemize} 
+  \item output: gets the request from the Client Communication module and sends it to the Server Driver Module  
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%separator
+\section{MIS of Driver Module} 
+
+\subsection{Driver Module}
+Controls all the functions of the server
+\subsection{Uses}
+\begin{itemize}
+  \item Featurizer Module
+  \item Server Communication Module
+  \item Database Module
+  \item Recommendation Module
+  \item Deezer API Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+- &- &- &-\\ 
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+\begin{itemize}
+  \item Deezer App ID
+  \item Deezer Secret
+\end{itemize}
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent main():
+\begin{itemize}
+\item transition: Connects all server-side modules together 
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A  
+
+% MIS of Audio Lookup Module
+\section{MIS of Audio Lookup Module} \label{Module:AudioLookupModule}
+
+\subsection{Module}
+Audio Lookup Module
+
+\subsection{Uses}
+- Driver Module: Receives the International Standard Recording Code (ISRC) from the Driver Module.
+- Deezer API: Responsible for retrieving the audio file, genre, and associated metadata for the provided ISRC.
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
 
 \subsubsection{Exported Access Programs}
 
@@ -181,7 +552,7 @@ The following table is taken directly from the Module Guide document for this pr
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+getAudioDetails & isrc: String & audioDetails: AudioDetails & AuthenticationFailure, APIRequestError \\
 \hline
 \end{tabular}
 \end{center}
@@ -189,43 +560,748 @@ The following table is taken directly from the Module Guide document for this pr
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+- \texttt{isrc}: The International Standard Recording Code for identifying the requested song.
+- \texttt{authToken}: The authentication token used for accessing the Deezer API.
+- \texttt{audioDetails}: A structure containing the audio file, genre, and other metadata.
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+- The Audio Lookup Module interacts with the Deezer API over the internet to fetch the requested audio file, genre, and metadata.
 
 \subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+- The ISRC provided by the Driver Module is valid and corresponds to an existing song.
+- The authentication token for the Deezer API is valid and not expired.
+- The Deezer API is available and operational at the time of the request.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \textbf{getAudioDetails}(isrc: String):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item \textbf{Transition:} 
+    - Authenticates with the Deezer API using \texttt{authToken}.
+    - Sends a request to the Deezer API with the provided ISRC to retrieve the audio file, genre, and metadata.
+\item \textbf{Output:} 
+    - Returns the \texttt{audioDetails} structure, which includes:
+      \begin{itemize}
+        \item \texttt{audioFile}: The retrieved audio file.
+        \item \texttt{genre}: The genre of the song.
+        \item \texttt{metadata}: Additional metadata such as song title, artist, and album information.
+      \end{itemize}
+\item \textbf{Exceptions:} 
+    - \texttt{AuthenticationFailure}: Raised if the API authentication fails (e.g., invalid or expired token).
+    - \texttt{APIRequestError}: Raised if there is an issue with the API request, such as a network error or invalid ISRC.
 \end{itemize}
-
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\textbf{authenticateWithDeezer}:
+\begin{itemize}
+\item Purpose: Handles authentication with the Deezer API and retrieves a valid \texttt{authToken}.
+\item Input: None.
+\item Output: \texttt{authToken}.
+\end{itemize}
+
+\textbf{fetchAudioFile}:
+\begin{itemize}
+\item Purpose: Sends the ISRC to the Deezer API and retrieves the corresponding audio file.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{audioFile}.
+\end{itemize}
+
+\textbf{fetchGenreAndMetadata}:
+\begin{itemize}
+\item Purpose: Retrieves the genre and metadata associated with the song from the Deezer API.
+\item Input: \texttt{isrc}.
+\item Output: \texttt{genre}, \texttt{metadata}.
+\end{itemize}
+
+% MIS of Featurizer Module
+\section{MIS of Featurizer Module}
+
+\subsection{Featurizer Module}
+The Featurizer Module is responsible for extracting 9 distinct feature values from audio files:
+\begin{itemize}
+    \item Tempo
+    \item Key and Scale
+    \item Instrument Type
+    \item Vocal Gender
+    \item Dynamic Range
+    \item Instrumentalness
+    \item Contour
+    \item Mood
+    \item Genre
+\end{itemize}
+
+The module invokes sub-feature modules to compute these feature values. It consolidates the results into a single \texttt{FeatureValues} object and returns it to the Driver Module.
+
+\subsection{Uses}
+- **Driver Module**: Sends requests to the Featurizer Module and receives feature values.
+- **Sub-Feature Modules**: Each responsible for computing a specific feature (e.g., Tempo, Key and Scale).
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+extractFeatures & audioFile: AudioFile & featureValues: FeatureValues & UnsupportedFileFormatException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+- \texttt{audioFile}: The input audio file provided for feature extraction.
+- \texttt{featureValues}: An object containing the extracted values for all 9 features.
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+- Input audio files are in supported formats (e.g., WAV, MP3).
+- All sub-feature modules are functional and return valid outputs for their respective features.
+
+\subsubsection{Access Routine Semantics}
+\textbf{extractFeatures}:
+\begin{itemize}
+    \item \textbf{Precondition:} 
+    \begin{itemize}
+        \item \texttt{audioFile} is a valid audio file in a supported format.
+    \end{itemize}
+    \item \textbf{Postcondition:}
+    \begin{itemize}
+        \item \texttt{featureValues} contains valid results for all 9 features:
+            \begin{itemize}
+                \item Tempo
+                \item Key and Scale
+                \item Instrument Type
+                \item Vocal Gender
+                \item Dynamic Range
+                \item Instrumentalness
+                \item Contour
+                \item Mood
+                \item Genre
+            \end{itemize}
+        \item If the input file format is unsupported, an \texttt{UnsupportedFileFormatException} is raised.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+\textbf{invokeSubFeatureModule}:
+\begin{itemize}
+    \item Purpose: Calls a specific sub-feature module (e.g., for Tempo, Genre) and retrieves its computed value.
+    \item Input: \texttt{audioFile}, \texttt{featureType}
+    \item Output: Value of the requested feature.
+\end{itemize}
+
+\textbf{aggregateFeatureValues}:
+\begin{itemize}
+    \item Purpose: Consolidates all feature values into a \texttt{FeatureValues} object.
+    \item Input: A list of feature values retrieved from sub-feature modules.
+    \item Output: \texttt{FeatureValues} object.
+\end{itemize}
+
+%MIS of Feature Extraction algorithms
+%MIS of Tempo(BPM) extraction
+\section{MIS of Tempo (BPM) Feature Extraction Module} 
+
+\subsection{Tempo (BPM) Feature Extraction Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Tempo} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Tempo} $\in \mathbb{R}$ &- \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractTempo()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Song\textunderscore Tempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+
+
+%Key and Scale Feature Extraction Module
+\section{MIS of Key and Scale Feature Extraction Module} 
+
+\subsection{Key and Scale Feature Extraction Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Key \& Scale} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Key, Scale} $\in \mathbb{Z}^2$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractKeyScale()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{ExtractKeyScale(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+
+%Instrument Type Feature
+\section{MIS of Instrument Type Feature Extraction Module} 
+
+\subsection{Instrument Type Feature Extraction Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Instrument Type} &\texttt{Audio time series (np.ndarray)} &\texttt{Instrument Type} $\in \mathbb{Z}^k$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractInstrumentType()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Instrument\textunderscore Type} : = \texttt{ExtractInstrumentType(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A 
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+
+%MIS Vocal Gender Feature
+\section{MIS of Vocal Gender Feature Extraction Module} 
+
+\subsection{MIS of Vocal Gender Feature Extraction Module}
+This feature seeks to quantify whether the voices features in the inputted audio file 
+are largely more feminine or masculine sounding. This is represented by a float with a range between
+0 and 1 where 0 means only "masculine" sound signatures are contained and 1 means only "feminine" sounds,
+where values in-between represent a blend. 
+%IMO this conceptions is the easiest way to do it. If you did a 0 or 1 integer the representation wouldn't make
+%useful sense for songs where there are vocalists of different genders. 
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Vocal Gender} &\texttt{Audio time series (np.ndarray)} &\texttt{Vocal Gender} $\in \mathbb{R}$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractVocalGender()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Vocal\textunderscore Gender} : = \texttt{ExtractVocalGender(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%Dynamic Range Feature
+\section{MIS of Dynamic Range Feature Extraction Module} 
+
+\subsection{Dynamic Range Feature Extraction Module}
+Feature extracts the range of sounds (difference between peak and through) of the audio signal.
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Dynamic Range} &\texttt{Audio time series (np.ndarray)} &\texttt{Dynamic Range (decibels)} $\in \mathbb{R}$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractDynamicRange()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Dynamic\textunderscore Range} : = \texttt{ExtractDynamicRange(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%Instrumentalness
+\section{MIS of Instrumentalness Feature Extraction Module} 
+
+\subsection{Instrumentalness Feature Extraction Module}
+Extracts the how prominent instrumental sounds are within the song. Represented by a float
+variable where the range is between 0 and 1, where higher values mean more instrumental sounds
+and lower means less. Eg, 0 would mean an acapella piece of music, 1 would be something that purely
+features instruments.  
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Instrumentalness} &\texttt{Audio time series \linebreak\linebreak (np.ndarray)} &\texttt{Instrumentalness} $\in \mathbb{R}$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractInstrumentalness}():
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Instrumentalness} : = \texttt{ExtractInstrumentalness(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%Contour Extraction
+\section{MIS of Contour Feature Extraction Module} 
+
+\subsection{Contour Feature Extraction Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Melodic Contour} &\texttt{Audio time series (np.ndarray)} &\texttt{Contour} &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractMelodicContour()}:
+\begin{itemize}
+\item transition: N/A 
+\item output: \texttt{Contour} : = \texttt{ExtractMelodicContour(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+%Mood extraction
+\section{MIS of Mood Feature Extraction Module} 
+
+\subsection{Mood Feature Extraction Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+\texttt{Extract Mood} &\texttt{Audio time series (np.ndarray)} &\texttt{Mood} $\in{\mathbb{Z}}$ &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+Valid audio file with coherent song information.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ExtractMood()}:
+\begin{itemize}
+\item transition: N/A 
+\item output: \texttt{Mood} : = \texttt{ExtractMood(Audio\textunderscore Time\textunderscore Series)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+% MIS of Genre Feature Module
+
+\section{MIS of Genre Feature Extraction Module} \label{Module:GenreFeatureExtraction}
+
+\subsection{Module}
+Genre Feature Extraction Module
+
+\subsection{Uses}
+- Featurizer Module: Receives metadata from the Featurizer Module and extracts the genre attribute from it.
+- Metadata Structure: Utilizes the metadata structure to locate and retrieve the genre attribute.
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+extractGenre & metadata: Metadata & genre: String & MissingGenreException, InvalidMetadataException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+- \texttt{metadata}: The metadata provided by the Featurizer Module, which contains the genre attribute.
+
+\subsubsection{Environment Variables}
+None.
+
+\subsubsection{Assumptions}
+- The metadata provided by the Featurizer Module is valid and includes the genre attribute.
+- The genre attribute in the metadata is correctly formatted and accessible.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{extractGenre}(metadata: Metadata):
+\begin{itemize}
+\item \textbf{Transition:} 
+    - Extracts the genre attribute from the provided metadata.
+\item \textbf{Output:} 
+    - Returns the extracted genre as a string.
+\item \textbf{Exceptions:} 
+    - \texttt{MissingGenreException}: Raised if the genre attribute is not found in the metadata.
+    - \texttt{InvalidMetadataException}: Raised if the provided metadata is improperly formatted or invalid.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\textbf{validateMetadata}:
+\begin{itemize}
+\item Purpose: Ensures the provided metadata is valid and contains the necessary attributes.
+\item Input: \texttt{metadata}.
+\item Output: Boolean (true if valid, false otherwise).
+\end{itemize}
+
+\textbf{retrieveGenre}:
+\begin{itemize}
+\item Purpose: Locates and retrieves the genre attribute from the metadata.
+\item Input: \texttt{metadata}.
+\item Output: \texttt{genre} (String).
+\end{itemize}
+
+%Recommendation module
+\section{MIS of Recommendation Module} 
+
+\subsection{Recommendation Module}
+%for features input I assume it is an array of features (which is an array itself) and then the 
+%recs are generated this way. I'm not 100% certain this is how, just placeholder for now. 
+
+%also, we need to determine how the song recommendations are represented. Should they just be names? or spotify url links? etc. 
+%i've currently left this as abstract as I think it is possible - just as a set of songs where the type is nebulous
+
+\subsection{Uses}
+\begin{itemize}
+  \item Tempo (BPM) Feature Extraction Module
+  \item Key and Scale Feature Extraction Module
+  \item Instrument Type Feature Extraction Module
+  \item Vocal Gender Feature Extraction Module
+  \item Dynamic Range Feature Extraction Module
+  \item Instrumentalness Feature Extraction Module
+  \item Contour Feature Extraction Module
+  \item Mood Feature Extraction Module
+  \item Driver Module
+  \item Spotify API
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+\texttt{Generate Recs} &\texttt{Song\textunderscore Features (np.ndarray $\in$ Feature)} &\texttt{Rec\textunderscore Tracks \linebreak np.ndarray $\in$ Track} &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent GenerateRecommendations():
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Recommended\textunderscore Songs} : = \texttt{GenerateRecommendations(Song\textunderscore Features)} 
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+% \begin{itemize}
+%   \item \texttt{Generate_Embeds()}
+% \end{itemize}
+
+%Results Display Interface
+\section{MIS of Program Results Interface Module} 
+
+\subsection{Program Results Interface Module}
+%should just be used to display the generated recommendations. need to decide how that is represented, is it links? do we show 
+%the features? etc. 
+
+\subsection{Uses}
+\begin{itemize}
+  \item Spotify API
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+\texttt{Generate Spotify Embed} &\texttt{Rec\textunderscore Track \linebreak (np.ndarray $\in$ Track)} &\texttt{Tracks\textunderscore Embed} (Spotify Embed Element) &-\\
+\texttt{Display Features} &\texttt{Song Features\linebreak (np.ndarray $\in$ Feature)} &\texttt{Features\textunderscore Display} (UI Image) &-\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{GenerateSpotifyEmbed()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Tracks\textunderscore Embed\textunderscore Widget}: = \texttt{GenerateSpotifyEmbed(Tracks)}
+\item exception: N/A
+\end{itemize}
+
+\noindent \texttt{DisplayFeatures()}:
+\begin{itemize}
+\item transition: N/A
+\item output: \texttt{Features\textunderscore Display}: = \texttt{DisplayFeatures(Song\textunderscore Features)}
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
 
 \newpage
 
@@ -250,20 +1326,33 @@ graduate attribute of Problem Analysis and Design.
 \input{../../Reflection.tex}
 
 \begin{enumerate}
-  \item What went well while writing this deliverable? 
+  \item What went well while writing this deliverable?
+  Writing this deliverable allowed us to develop a comprehensive understanding of our system's overall structure. We successfully broke the system down into its individual components, which clarified the responsibilities of each module and how they interact with one another. Additionally, designing the UI helped us visualize the user experience, ensuring alignment with the system's functionality. This process also provided us with a clearer idea of the workload required for implementation, enabling better planning and resource allocation for the upcoming phases.
+
   \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+    One major pain point was syncing as a team on what the system should look like. Initially, there were differing opinions and ideas about the core functionalities and structure of the system. To address this, we held a team meeting where we collaboratively broke down the core functionalities of the system modules. During the meeting, we used a whiteboard to diagram the system structure, which helped us align our understanding and reach a consensus. This collaborative effort ensured everyone was on the same page moving forward.
   \item Which of your design decisions stemmed from speaking to your client(s)
   or a proxy (e.g. your peers, stakeholders, potential users)? For those that
   were not, why, and where did they come from?
+  Currently, none of our design decisions have stemmed from speaking to our stakeholders or potential users, as we have not yet consulted them. Our plan is to present the design to stakeholders in the near future to gather their feedback and ensure alignment with their expectations. In the meantime, our design decisions have been based on internal team discussions and brainstorming sessions, where we leveraged our collective understanding of the system requirements and potential user needs.
   \item While creating the design doc, what parts of your other documents (e.g.
   requirements, hazard analysis, etc), it any, needed to be changed, and why?
+  While creating the design document, we needed to modify SRS. Specifically, we talked about refining the requirements related to feature extraction as part of the system’s core functionality. This involved finalizing the set of features to be extracted, which we determined to be nine key features. These changes were necessary to ensure that the design document aligned with the system’s requirements and provided clarity for implementation.
+
   \item What are the limitations of your solution?  Put another way, given
   unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+  The primary limitations of our solution stem from constraints in time, resources, and access to advanced tools. For example, the accuracy of our feature extraction algorithms could be improved with access to more sophisticated machine learning models or advanced computational resources for real-time processing. Additionally, the user interface could be enhanced to include more dynamic and interactive elements, improving the overall user experience. Given unlimited resources, we would also invest in conducting extensive usability testing and obtaining feedback from a diverse group of stakeholders to ensure our system meets the needs of all potential users. Furthermore, integrating additional features such as real-time genre detection and support for multiple audio formats could significantly enhance the system’s versatility and appeal.
   \item Give a brief overview of other design solutions you considered.  What
   are the benefits and tradeoffs of those other designs compared with the chosen
   design?  From all the potential options, why did you select the documented design?
   (LO\_Explores)
+
+  We considered a few alternative design solutions during the initial phases of the project. One option was to use a monolithic design where all the modules were tightly integrated into a single system. While this approach would have simplified communication between modules, it would have reduced modularity and made the system harder to maintain, test, and scale.
+
+Another option was to use a distributed system with separate microservices for each feature extraction module. This design would have offered excellent scalability and flexibility but introduced significant complexity in terms of managing inter-module communication and dependencies.
+
+We ultimately selected the documented design because it balances modularity and simplicity. By organizing the system into clearly defined modules with specific responsibilities, we can maintain a clear structure while minimizing complexity. This approach also allows us to allocate tasks efficiently among team members, ensure modular testing, and accommodate future changes or additions with minimal disruption.
 \end{enumerate}
 
 
