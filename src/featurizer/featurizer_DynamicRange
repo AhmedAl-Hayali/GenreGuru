@@ -1,0 +1,16 @@
+#Imports
+import librosa
+import numpy as np
+
+def computeDynamicRange(audio_file_path):
+    # Load the audio file
+    signal, sr = librosa.load(audio_file_path, sr=None)  # y: waveform, sr: sampling rate
+    
+    #We need to get the max, and min non-zero of the signal. 
+    max_level = np.max(np.abs(signal))
+    min_level = np.min(np.abs(signal[np.nonzero(signal)]))
+    
+    #mathematical formulation from: https://en.wikipedia.org/wiki/Dynamic_range#Music
+    #convert to decibels
+    dynamic_range = 20 * np.log10(max_level/min_level)
+    return dynamic_range
