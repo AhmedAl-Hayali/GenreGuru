@@ -10,7 +10,7 @@
 **Date of project start**
 2024-09-08
 
-This project is ...
+This project is GenreGuru Music Featurizer & Recommendation
 
 The folders and files for this project are as follows:
 
