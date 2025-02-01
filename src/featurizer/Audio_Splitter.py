@@ -36,14 +36,12 @@ def separate_vocals(input_path, output_path):
     #     mono=False  # Preserve stereo if available
     # )
 
-    signal, sample_rate = librosa.load(input_path,
-        sr=44100,  # Required for Spleeter models
-    )
+    signal, sample_rate = librosa.load(input_path, sr=44100)
+
     #normalize amplitude
     signal = signal / np.max(np.abs(signal))
 
     #ensure proper shapes for spleeter to function. Reshape the audio to stereo
-    # signal = signal.T 
     signal = signal.reshape(-1, 1) #reshape necesssary because of mono input
 
     #perform separation. This returns a dictionary containing the data for the two signals
@@ -54,7 +52,14 @@ def separate_vocals(input_path, output_path):
         out = os.path.join(output_path, f"{file_name}_{stem}.wav")
         sf.write(out, data, sample_rate)
         print(f"Saved {stem} to: {out}")
-        
+
+# def output_audio(results, output_path = "src/split_output/"):
+#     for stem, data in result.items():
+#     out = os.path.join(output_path, f"{file_name}_{stem}.wav")
+#     sf.write(out, data, sample_rate)
+#     print(f"Saved {stem} to: {out}")
+
+
 """splitting function but this time, we accept the signal directly instead."""
 def separate_audio(signal):
     """uses spleeter to separate the vocal waveform from the non-vocal waveform. 
@@ -74,19 +79,19 @@ def separate_audio(signal):
     #now reconstruct our waveforms and flatten them.
     vocal_signal = result['vocals'].mean(axis=1) 
     non_vocal_signal = result['accompaniment'].mean(axis=1)
-    print(f"vocal_signal shape is: {vocal_signal.shape}")
-    print(f"non_vocal_signal shape is: {non_vocal_signal.shape}")
+    # print(f"vocal_signal shape is: {vocal_signal.shape}")
+    # print(f"non_vocal_signal shape is: {non_vocal_signal.shape}")
     return vocal_signal, non_vocal_signal
 
 """test splitting"""
 def main():
-    input = "src/audio/The Weeknd - Out of Time.wav"
-    #output = "src/split_output/"
-    #separate_vocals(input, output)
+    input = "src/audio/Time.wav"
+    output = "src/split_output/"
+    separate_vocals(input, output)
 
-    signal, stft_signal, sr = process_audio(input, 44100)
-    print(f"original signal shape is: {signal.shape}")
-    separate_audio(signal)
+    # signal, stft_signal, sr = process_audio(input, 44100)
+    # print(f"original signal shape is: {signal.shape}")
+    # separate_audio(signal)
 
 
 if __name__=="__main__": main()
