@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const UploadFile = ({ onUpload }) => {
-  const [file, setFile] = useState(null);
-
+const UploadFile = ({ onFileSelected }) => {
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
-  const handleUpload = () => {
+    const file = e.target.files[0];
     if (file) {
-      onUpload(file);
-    } else {
-      alert('Please select a file to upload');
+      console.log("File selected in UploadFile component:", file);
+      onFileSelected(file); // Pass the file to SearchBar.js
     }
   };
 
   return (
-    <div className="upload-file">
-      <input type="file" accept=".wav" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-    </div>
+    <input
+      type="file"
+      accept=".wav"
+      id="hidden-file-input"
+      style={{ display: 'none' }}
+      onChange={handleFileChange}
+    />
   );
 };
 
