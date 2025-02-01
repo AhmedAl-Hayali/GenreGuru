@@ -1,7 +1,16 @@
 import numpy as np
 
-def computeSubbandPeak(sub_band_magnitudes, alpha=0.02):
-    """Compute the subband peak"""
+def compute_subband_peak(sub_band_magnitudes, alpha=0.02):
+    """
+    Computes the peak value of a subband by averaging the top alpha-percent of its magnitudes.
+    
+    Parameters:
+        sub_band_magnitudes (ndarray): 2D ndarray containing the subband magnitudes.
+        alpha (float): Fraction of highest magnitudes to average (default is 0.02).
+    
+    Returns:
+        peak (ndarray): Peak values in dB scale for each frame.
+    """
     # sort subband in descending order
     sorted_magnitudes = np.sort(sub_band_magnitudes, axis=0)[::-1]
     # find how many bins we need for this subband (how many peak values)
@@ -11,8 +20,17 @@ def computeSubbandPeak(sub_band_magnitudes, alpha=0.02):
     # Convert to dB scale
     return 20 * np.log10(peak + 1e-6)
 
-def computeSubbandValley(sub_band_magnitudes, alpha=0.02):
-    """Compute the subband valley"""
+def compute_subband_valley(sub_band_magnitudes, alpha=0.02):
+    """
+    Computes the valley value of a subband by averaging the lowest alpha-percent of its magnitudes.
+    
+    Parameters:
+        sub_band_magnitudes (ndarray): 2D ndarray containing the subband magnitudes.
+        alpha (float): Fraction of lowest magnitudes to average (default is 0.02).
+    
+    Returns:
+        valley (ndarray): Valley values in dB scale for each frame.
+    """
     # sort subband in ascending  order
     sorted_magnitudes = np.sort(sub_band_magnitudes, axis=0)
     # find how many bins we need for this subband (how many valley values)
@@ -22,14 +40,33 @@ def computeSubbandValley(sub_band_magnitudes, alpha=0.02):
     # Convert to dB scale
     return 20 * np.log10(valley + 1e-6)
 
-def computeSpectralContrast(sub_band):
-    """Calculate contrast subband (peak - valley)"""
-    peak_db = computeSubbandPeak(sub_band)
-    valley_db = computeSubbandValley(sub_band)
+def compute_spectral_contrast(sub_band):
+    """
+    Computes the spectral contrast of a subband as the difference between peak and valley values.
+    
+    Parameters:
+        sub_band (ndarray): 2D ndarray containing the subband magnitudes.
+    
+    Returns:
+        spectral_contrast (ndarray): Spectral contrast values for each frame.
+    """
+    peak_db = compute_subband_peak(sub_band)
+    valley_db = compute_subband_valley(sub_band)
     return peak_db - valley_db
 
-"""This is where we will compute the mean spectral flux"""
-def computeSpectralContrastMean(divided_stft_magnitudes, n_bands=7):
+def compute_spectral_contrast_mean(divided_stft_magnitudes, n_bands=7):
+    """
+    Computes the spectral contrast over multiple windows of a signal, dividing the frequency range into bands.
+    
+    Parameters:
+        divided_stft_magnitudes (ndarray): 3D ndarray of STFT magnitude values.
+        n_bands (int): Number of frequency bands to divide into (default is 7).
+    
+    Returns:
+        spectral_contrast (ndarray): Spectral contrast values for each window and band.
+        total_mean_spectral_contrast (float): Average spectral contrast over all windows and bands.
+        mean_spectral_contrast (ndarray): Mean spectral contrast per window and band.
+    """
     num_windows, num_bins, num_frames = divided_stft_magnitudes.shape
     # Divide frequency bins into equal parts (n_bands) allows us to have the start and end indicie for each band
     bin_ranges = np.linspace(0, num_bins, num=n_bands + 1, dtype=int)
@@ -47,7 +84,7 @@ def computeSpectralContrastMean(divided_stft_magnitudes, n_bands=7):
             if sub_band.shape[0] == 0:
                 continue
 
-            contrast = computeSpectralContrast(sub_band)
+            contrast = compute_spectral_contrast(sub_band)
             spectral_contrast[i, band_idx, :] = contrast
             mean_spectral_contrast[i, band_idx] = np.mean(contrast)
 
