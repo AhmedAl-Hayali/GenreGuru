@@ -15,7 +15,7 @@ def compute_spectral_flux(stft_magnitude):
 
 """This is where we will compute the mean spectral flux"""
 def compute_spectral_flux_mean(divided_stft_magnitudes):
-    spectral_flux = np.zeros_like((divided_stft_magnitudes.shape[0], divided_stft_magnitudes.shape[2]))
+    spectral_flux = np.zeros((divided_stft_magnitudes.shape[0], divided_stft_magnitudes.shape[2]))
     total_mean_spectral_flux = 0
     mean_spectral_flux = np.zeros((divided_stft_magnitudes.shape[0],1))
     
