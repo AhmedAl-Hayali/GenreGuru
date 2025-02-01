@@ -1,7 +1,7 @@
 import librosa
 import numpy as np
 
-"""main featurizer module"""
+"""main featurizer module. Handles preparing the input, passing into the signal into the other modules"""
 
 """audio processor
 taken from matthew baleanu and Mohamad-Hassan Bahsoun
@@ -60,3 +60,5 @@ def divide_stft(divided_signal):
         divided_stft_magnitudes[i] = np.abs(stft_slice)
 
     return divided_stft_signal, divided_stft_magnitudes
+
+"""test"""
