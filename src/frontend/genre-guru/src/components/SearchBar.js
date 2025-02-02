@@ -1,29 +1,38 @@
 import React, { useState, useRef } from 'react';
 import { FaSearch, FaUpload } from 'react-icons/fa';
 import '../styles/components.css';
+import { searchSong } from '../services/api';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearchResults, onFileUpload }) => {
   const [query, setQuery] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
-  const fileInputRef = useRef(null); // Reference to hidden file input
+  const fileInputRef = useRef(null);
 
-  const handleSearch = () => {
+  // Handle search query submission
+  const handleSearch = async () => {
     if (query.trim() !== '') {
-      onSearch(query);
+      try {
+        const results = await searchSong(query);
+        console.log("Search Results:", results);
+        onSearchResults(results); // Pass search results to parent
+      } catch (error) {
+        console.error("Search failed:", error);
+      }
     }
   };
 
+  // Handle file selection for upload
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedFile(file);
       console.log("Uploaded file:", file);
       alert(`File "${file.name}" selected successfully!`);
+      onFileUpload(file);
     }
   };
 
+  // Trigger file input
   const triggerFileSelect = () => {
-    fileInputRef.current.click(); // Opens file selector when Upload button is clicked
+    fileInputRef.current.click();
   };
 
   return (
@@ -35,6 +44,7 @@ const SearchBar = ({ onSearch }) => {
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
         />
         <input
           type="file"
