@@ -1,8 +1,8 @@
 import numpy as np
-import librosa
 
 """module for the computation of the instrumentalness of the song.
-we do so by comparing the rms of the vocal, instrumental and 
+we do so by comparing the rms of the vocals to original, in order to avoid 
+extra computation on the non-vocal output. 
 """
 
 def compute_instrumentalness(original_rms, vocal_rms, espilon = 1e-10):
