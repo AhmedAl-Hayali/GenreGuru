@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FaSearch, FaUpload } from 'react-icons/fa';
-import '../styles/components.css';
+import '../styles/searchbar.css';
 import { searchSong } from '../services/api';
 
 const SearchBar = ({ onSearchResults, onFileUpload }) => {

@@ -1,0 +1,44 @@
+/* Play Card Styling */
+.play-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    border-radius: 12px;
+    padding: 10px;
+    width: 250px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Album art inside play card */
+.album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+/* Track info inside play card */
+.track-info {
+    flex: 1;
+    margin-left: 10px;
+    text-align: left;
+}
+
+/* Play button in play card */
+.play-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Limit text to one line and truncate */
+.track-name, .artist-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}

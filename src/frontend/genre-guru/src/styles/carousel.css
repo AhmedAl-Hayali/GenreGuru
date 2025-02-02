@@ -1,0 +1,21 @@
+/* Horizontal scrolling container */
+.results-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    scrollbar-width: thin;
+    white-space: nowrap;
+    max-width: 90vw;
+}
+
+.results-carousel::-webkit-scrollbar {
+    height: 5px;
+    background: #102a33;
+}
+
+.results-carousel::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 10px;
+}

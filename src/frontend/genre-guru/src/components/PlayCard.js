@@ -1,27 +1,26 @@
 import React from 'react';
-import { FaPlay } from 'react-icons/fa';
+import '../styles/playcard.css';
 
 const PlayCard = ({ track }) => {
   const { name, artists, album, preview_url } = track;
+  const artistNames = artists.map(artist => artist.name).join(', ');
 
-  const handlePlayPreview = () => {
-    if (!preview_url) return;
-    const audio = new Audio(preview_url);
-    audio.play();
+  const handlePlayClick = () => {
+    if (preview_url) {
+      new Audio(preview_url).play();
+    } else {
+      alert('Preview not available for this track.');
+    }
   };
 
   return (
     <div className="play-card">
-      <img className="album-art" src={album.images[0]?.url} alt="Album Art" />
+      <img className="album-art" src={album.images[0]?.url || ''} alt={name} />
       <div className="track-info">
-        <p className="track-name">{name}</p>
-        <p className="artist-name">{artists.map((artist) => artist.name).join(', ')}</p>
+        <div className="track-name">{name}</div>
+        <div className="artist-name">{artistNames}</div>
       </div>
-      {preview_url && (
-        <button className="play-btn" onClick={handlePlayPreview}>
-          <FaPlay />
-        </button>
-      )}
+      <button className="play-btn" onClick={handlePlayClick}>▶</button>
     </div>
   );
 };
