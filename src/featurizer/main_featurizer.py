@@ -7,7 +7,7 @@ import numpy as np
 taken from matthew baleanu and Mohamad-Hassan Bahsoun
 16khz downsample (default 22.05khz, spotify audio is 44.1khz.)
 default sampling rate set to 16khz as per @bahsoun"""
-def process_audio(audio_file_path, target_sample_rate=16000):
+def process_audio(audio_file_path, target_sample_rate=44100):
     """load the audio and sample it at the target rate. 
     librosa.load converts the audio file into a time series at the desired sampling rate """
     signal, sampling_rate = librosa.load(audio_file_path, sr=target_sample_rate, mono=True)
@@ -20,7 +20,7 @@ def process_audio(audio_file_path, target_sample_rate=16000):
 """Signal Divider Based on BPM
     as suggested by MVM, the signal we divide up the signal into bins and compute a window size in order to get
     variance for our feature, this way we can determine how relevant they would be for classification/recommendation."""
-def divide_signal(signal, bpm, sampling_rate, beats_per_win = 4):
+def divide_signal(signal, bpm, sampling_rate, windows_per_beat = 4):
     """process is as such:
     1. get global tempo (bpm)
     2. convert that to beat segments
@@ -29,11 +29,10 @@ def divide_signal(signal, bpm, sampling_rate, beats_per_win = 4):
     song_length_seconds = len(signal)/sampling_rate
     beat_count = song_length_seconds/beat_duration
     
-    """once beat count is computed, compute the window size as a fixed multiple of the beat count
-    Round up division on beat_count/beats_per_win to compute the window count. 
-    To calculate the window size: the length of the signal is seconds * samples, as that is an audio time series. The window size would 
-    therefore be the sample length of len(signal)/window_count rounded up, in order to contain all samples."""
-    window_count = int(np.ceil(beat_count/beats_per_win))
+    """once beat count is computed, we can compute the number of windows: windows_per_beat * beat_Count
+    To calculate the window size: the length of the signal is seconds * samples, as that is an audio time series.
+    The window size would therefore be the sample length of len(signal)/window_count rounded up, in order to contain all samples."""
+    window_count = beat_count * windows_per_beat
     window_size = int(np.ceil(len(signal)/window_count))
     
     """to divide the signal we pad the original signal with zeroes at the end until it is of the proper length
@@ -61,4 +60,4 @@ def divide_stft(divided_signal):
 
     return divided_stft_signal, divided_stft_magnitudes
 
-"""test"""
+
