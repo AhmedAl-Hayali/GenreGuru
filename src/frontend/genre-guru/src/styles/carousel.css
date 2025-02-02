@@ -1,21 +1,33 @@
-/* Horizontal scrolling container */
+/* Results Carousel */
 .results-carousel {
     display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px;
-    margin-top: 20px;
-    scrollbar-width: thin;
+    flex-wrap: nowrap; /* Prevents wrapping */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: 20px; /* Adds spacing between playcards */
+    padding: 20px; /* Provides padding around the carousel */
+    margin: 20px auto; /* Centers the container */
+    max-width: 90vw; /* Prevents excessive stretching */
+    scrollbar-width: thin; /* Firefox: makes scrollbar less intrusive */
     white-space: nowrap;
-    max-width: 90vw;
 }
 
+/* Scrollbar Styling (for Webkit browsers like Chrome & Safari) */
 .results-carousel::-webkit-scrollbar {
-    height: 5px;
-    background: #102a33;
+    height: 8px; /* Adjust scrollbar thickness */
 }
 
 .results-carousel::-webkit-scrollbar-thumb {
-    background: #4CAF50;
+    background: #4CAF50; /* Green scrollbar */
     border-radius: 10px;
+}
+
+.results-carousel::-webkit-scrollbar-track {
+    background: #102a33; /* Dark background for scrollbar */
+}
+
+/* Play Cards in Carousel */
+.play-card {
+    flex: 0 0 auto; /* Ensures playcards retain width */
+    width: 400px; /* Ensures playcards don't shrink */
+    height: 150px; /* Adjusted for better spacing */
 }

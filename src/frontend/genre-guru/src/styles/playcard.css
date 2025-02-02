@@ -1,44 +1,68 @@
-/* Play Card Styling */
+/* Play Card Container */
 .play-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: black;
-    border-radius: 12px;
-    padding: 10px;
-    width: 250px;
+    border-radius: 16px;
+    padding: 15px;
+    width: 300px; /* Increased width */
+    height: 100px; /* Increased height */
     color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Album art inside play card */
+.play-card:hover {
+    transform: scale(1.05);
+}
+
+/* Album Art */
 .album-art {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+    width: 65px;
+    height: 65px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
-/* Track info inside play card */
+/* Track Info */
 .track-info {
     flex: 1;
-    margin-left: 10px;
+    margin-left: 15px;
     text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Play button in play card */
+/* Track Name */
+.track-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px; /* Adjusted to fit better */
+}
+
+/* Artist Name */
+.artist-name {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* Play Button */
 .play-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: pointer;
-}
-
-/* Limit text to one line and truncate */
-.track-name, .artist-name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150px;
+    margin-left: 10px;
 }
