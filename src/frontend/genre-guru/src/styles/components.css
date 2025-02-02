@@ -4,16 +4,17 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-  }
-  
-  .search-bar {
+}
+
+/* Search bar styling */
+.search-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 60vw; /* Adjusted width */
     max-width: 700px; /* Ensures it doesn't get too wide */
     padding: 12px 20px;
-    
+
     background-color: #102a33; /* Correct background color */
     border-radius: 40px; /* Smooth rounded edges */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
@@ -25,16 +26,15 @@
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-  
-  /* Search icon */
-  .search-icon {
+/* Search icon */
+.search-icon {
     color: white;
     margin-right: 12px;
     font-size: 1.3rem;
-  }
-  
-  /* Input field */
-  .search-bar input {
+}
+
+/* Input field */
+.search-bar input {
     flex: 1;
     border: none;
     background: none;
@@ -42,16 +42,16 @@
     font-size: 1.4rem;
     outline: none;
     padding: 6px 12px;
-  }
-  
-  /* Improve visibility of placeholder text */
-  .search-bar input::placeholder {
+}
+
+/* Improve visibility of placeholder text */
+.search-bar input::placeholder {
     color: rgba(255, 255, 255, 0.75);
     font-size: 1.2rem;
-  }
-  
-  /* Upload button should be properly aligned */
-  .upload-btn {
+}
+
+/* Upload button styling (inside search bar) */
+.upload-btn {
     background: none;
     border: none;
     color: white;
@@ -62,10 +62,76 @@
     gap: 10px; /* Increased spacing */
     margin-left: 20px; /* Adds space between input & button */
     padding: 6px 12px;
-  }
-  
-  /* Upload button hover effect */
-  .upload-btn:hover {
+}
+
+.upload-btn:hover {
     color: #4CAF50;
-  }
-  
+}
+
+/* Horizontal scrolling container */
+.results-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    scrollbar-width: thin; /* Keeps scrollbar visible but unobtrusive */
+    white-space: nowrap;
+    max-width: 90vw;
+}
+
+.results-carousel::-webkit-scrollbar {
+    height: 5px;
+    background: #102a33;
+}
+
+.results-carousel::-webkit-scrollbar-thumb {
+    background: #4CAF50;
+    border-radius: 10px;
+}
+
+
+/* Play Card Styling */
+.play-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    border-radius: 12px;
+    padding: 10px;
+    width: 250px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Album art inside play card */
+.album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+/* Track info inside play card */
+.track-info {
+    flex: 1;
+    margin-left: 10px;
+    text-align: left;
+}
+
+/* Play button in play card */
+.play-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Limit text to one line and truncate */
+.track-name, .artist-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
