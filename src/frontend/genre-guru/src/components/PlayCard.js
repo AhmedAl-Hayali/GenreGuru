@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/playcard.css';
 import axios from 'axios';
-import { FaPlay, FaStop } from 'react-icons/fa'; // Importing play/stop icons
+import { FaPlay, FaStop } from 'react-icons/fa';
 
-const PlayCard = ({ track }) => {
+const PlayCard = ({ track, onPlay, isPlaying }) => {
   const { name, artists, album, preview_url, external_ids } = track;
   const artistNames = artists.map(artist => artist.name).join(', ');
 
   const [audio, setAudio] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [itunesPreviewUrl, setItunesPreviewUrl] = useState(null);
 
   const fetchItunesPreview = async (isrc) => {
     try {
@@ -23,9 +21,7 @@ const PlayCard = ({ track }) => {
       });
 
       if (response.data.results.length > 0) {
-        const preview = response.data.results[0].previewUrl;
-        setItunesPreviewUrl(preview);
-        return preview;
+        return response.data.results[0].previewUrl;
       }
     } catch (error) {
       console.error("iTunes API fetch failed:", error);
@@ -34,7 +30,15 @@ const PlayCard = ({ track }) => {
   };
 
   const handlePlayClick = async () => {
-    console.log("Preview URL:", preview_url);
+    if (isPlaying) {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0; // Reset playback position
+        setAudio(null);
+        onPlay(null, null); // Reset the playing state globally
+      }
+      return;
+    }
 
     let trackUrl = preview_url;
     if (!trackUrl) {
@@ -43,21 +47,15 @@ const PlayCard = ({ track }) => {
     }
 
     if (trackUrl) {
-      if (audio) {
-        audio.pause();
+      const newAudio = new Audio(trackUrl);
+      newAudio.play();
+      setAudio(newAudio);
+      onPlay(newAudio, track.id);
+
+      newAudio.onended = () => {
         setAudio(null);
-        setIsPlaying(false);
-      } else {
-        const newAudio = new Audio(trackUrl);
-        newAudio.play();
-        setAudio(newAudio);
-        setIsPlaying(true);
-        
-        newAudio.onended = () => {
-          setAudio(null);
-          setIsPlaying(false);
-        };
-      }
+        onPlay(null, null); // Reset state when playback ends
+      };
     } else {
       alert('Preview not available for this track.');
     }

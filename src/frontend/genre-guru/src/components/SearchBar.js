@@ -1,38 +1,20 @@
-import React, { useState, useRef } from 'react';
-import { FaSearch, FaUpload } from 'react-icons/fa';
-import '../styles/searchbar.css';
-import { searchSong } from '../services/api';
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import "../styles/searchbar.css";
+import { searchSong } from "../services/api";
+import UploadFile from "./UploadFile";  
 
-const SearchBar = ({ onSearchResults, onFileUpload }) => {
-  const [query, setQuery] = useState('');
-  const fileInputRef = useRef(null);
+const SearchBar = ({ onSearchResults, onFileUpload }) => { 
+  const [query, setQuery] = useState("");
 
-  // Handle search query submission
   const handleSearch = async () => {
-    if (query.trim() !== '') {
-      try {
-        const results = await searchSong(query);
-        console.log("Search Results:", results);
-        onSearchResults(results); // Pass search results to parent
-      } catch (error) {
-        console.error("Search failed:", error);
-      }
+    if (query.trim() === "") return;
+    try {
+      const results = await searchSong(query);
+      onSearchResults(results);
+    } catch (error) {
+      console.error("Search failed:", error);
     }
-  };
-
-  // Handle file selection for upload
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      console.log("Uploaded file:", file);
-      alert(`File "${file.name}" selected successfully!`);
-      onFileUpload(file);
-    }
-  };
-
-  // Trigger file input
-  const triggerFileSelect = () => {
-    fileInputRef.current.click();
   };
 
   return (
@@ -44,18 +26,10 @@ const SearchBar = ({ onSearchResults, onFileUpload }) => {
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+          onKeyPress={(e) => e.key === "Enter" && handleSearch()}
         />
-        <input
-          type="file"
-          accept=".wav"
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        <button className="upload-btn" onClick={triggerFileSelect}>
-          <FaUpload /> Upload
-        </button>
+
+        <UploadFile onFileUpload={onFileUpload} />
       </div>
     </div>
   );
