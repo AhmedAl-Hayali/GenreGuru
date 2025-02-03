@@ -1,68 +1,47 @@
-/* Play Card Container */
 .play-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #141414;
-    border-radius: 20px;
-    padding: 15px;
-    width: 300px; /* Increased width */
-    height: 100px; /* Increased height */
-    color: white;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-
-.play-card:hover {
-    transform: scale(1.05);
-}
-
-/* Album Art */
-.album-art {
-    width: 65px;
-    height: 65px;
+    background-color: #1e1e1e;
+    padding: 10px;
     border-radius: 8px;
-    object-fit: cover;
-}
-
-/* Track Info */
-.track-info {
-    flex: 1;
-    margin-left: 15px;
-    text-align: left;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Track Name */
-.track-name {
-    font-size: 1.1rem;
+    width: 80%;
+    max-width: 600px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .play-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+  
+  .track-info {
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+  
+  .track-name {
+    font-size: 16px;
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px; /* Adjusted to fit better */
-}
-
-/* Artist Name */
-.artist-name {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.75);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
-}
-
-/* Play Button */
-.play-btn {
+    color: #ffffff;
+  }
+  
+  .artist-name {
+    font-size: 14px;
+    color: #b0b0b0;
+  }
+  
+  .play-btn {
     background: none;
     border: none;
     color: white;
-    font-size: 1.3rem;
     cursor: pointer;
-    margin-left: 10px;
-}
+    font-size: 16px;
+  }
+  
