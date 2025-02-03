@@ -89,3 +89,28 @@ export const uploadFile = async (file) => {
     throw error;
   }
 };
+
+// Fetch track details from Spotify
+export const fetchTrackDetails = async (spotifyIds) => {
+    try {
+      const token = await getSpotifyToken(); // Ensure authentication
+      const trackRequests = spotifyIds.map((spotifyId) =>
+        axios.get(`https://api.spotify.com/v1/tracks/${spotifyId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      );
+  
+      const trackResponses = await Promise.all(trackRequests);
+      return trackResponses.map((res) => res.data);
+    } catch (error) {
+      console.error("Error fetching track details:", error);
+      throw error;
+    }
+  };
+  
+  
+  
+  
+  

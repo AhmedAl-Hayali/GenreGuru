@@ -1,0 +1,15 @@
+.results-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .results-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 500px;
+    padding: 10px;
+  }
+  
