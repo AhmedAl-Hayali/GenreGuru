@@ -9,8 +9,8 @@ from Spectral_Flux_Featurizer import SpectralFlux
 from RMS_Featurizer import RMSComputation
 from Dynamic_Range_Featurizer import DynamicRangeComputation
 from Instrumentalness_Featurizer import InstrumentalnessComputation
-# need to add BPM
-# need to add audio splitter
+from BPM_Featurizer import *
+from Audio_Splitter import Audio_Splitter
 
 
 class Featurizer:
@@ -63,10 +63,14 @@ class Featurizer:
         # Normalize the amplitude of the signal
         signal = signal / np.max(np.abs(signal))
         
+        #split the audio into vocal and non-vocal
+        AudioSplitter = Audio_Splitter()
+        vocal_signal, non_vocal_signal = AudioSplitter.separate(signal)
+
         # Compute STFT for feature extraction
         stft_signal = librosa.stft(signal, window='hann')
 
-        return signal, stft_signal, sampling_rate
+        return signal, stft_signal, sampling_rate, vocal_signal, non_vocal_signal
 
     """Signal Divider Based on BPM
     As suggested by MVM, the signal is divided into bins, and a window size is computed
@@ -129,7 +133,7 @@ class Featurizer:
         return divided_stft_signal, divided_stft_magnitudes
     
     """Compute All Features"""
-    def compute_features(self, divided_stft_magnitudes, divided_signal, bpm):
+    def compute_features(self, divided_stft_magnitudes, divided_signal, div_stft_vocal, div_stft_non_vocal_mag):
         """
         Computes all features from the processed STFT magnitudes and divided signal.
 
@@ -143,7 +147,6 @@ class Featurizer:
         """
         # Compute each feature
         # need to add BPM
-        # need to add aduio splitter
         spectral_rolloff, mean_rolloff = self.spectral_rolloff.compute_frequency_range(divided_stft_magnitudes)
         spectral_centroid, mean_centroid, _ = self.spectral_centroid.compute_spectral_centroids_mean(divided_stft_magnitudes)
         spectral_bandwidth, mean_bandwidth, _ = self.spectral_bandwidth.compute_spectral_bandwidth_mean(divided_stft_magnitudes, spectral_centroid)
@@ -171,3 +174,39 @@ class Featurizer:
         }
         
         return features
+
+
+def main(audio_file):
+    feat = Featurizer()
+
+    # process the audio
+    signal, whole_stft, sr, vocal_signal, non_vocal_signal = feat.process_audio(audio_file)
+    #compute the bpmn
+    bpm = compute_bpm(signal, sr)
+
+    div_s, win_size, win_count = feat.divide_signal(signal, bpm)
+    div_stft_s, div_stft_mag = feat.divide_stft(div_s)
+
+    #divide signals of the vocal and non-vocal
+    div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
+    _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
+
+    div_non_vocal, _, _ = feat.divide_signal(non_vocal_signal, bpm)
+    _, div_stft_non_vocal_mag = feat.divide_stft(div_non_vocal)
+
+
+
+    features = feat.compute_features(div_stft_mag,div_stft_s, div_stft_vocal_mag, div_stft_non_vocal_mag)
+
+
+    print("") #spacer
+    for key, value in features.items():
+        if type(value) == float:
+            print(f"{key}: ({type(value).__name__})\n")
+        else:
+            print(f"{key}: ({type(value).__name__}) ({value.shape})\n")
+
+
+if __name__ == "__main__":
+    main("../audio/katy.mp3")
+
