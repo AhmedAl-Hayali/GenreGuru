@@ -7,36 +7,27 @@ class RMSComputation:
 
     def __init__(self):
         """Initialize the RMSComputation class."""
-        self.epsilon = 1e-10  # Small value to prevent log(0) errors
+        self.epsilon = 1e-9  # Small value to prevent log(0) errors
 
-    """RMS compute, operates over divided signal
-    computes RMS over each window, returns vector of RMS values and average RMS"""
+    """vectorized RMS computation, much faster performance and correctly caculates the values by not using mean across
+    time_samples and only the localized frequency bin."""
     def compute_rms(self, divided_stft_signal_mag):
         """
         Computes the Root Mean Square (RMS) energy of an STFT magnitude signal.
-
         Parameters:
             divided_stft_signal_mag (3D ndarray): Magnitudes of the STFT signal.
-        
         Returns:
             rms (ndarray): RMS values for each window.
             rms_mean (float): Average RMS value over all windows.
         """
-        rms = np.zeros((divided_stft_signal_mag.shape[0], 1))
-        rms_mean = 0
+        stft_power = np.square(divided_stft_signal_mag)
 
-        for i in range(divided_stft_signal_mag.shape[0]):
-            # Square the STFT magnitude values
-            squared_signal = np.square(divided_stft_signal_mag[i])
-            mean_squared = np.mean(squared_signal)
-            root_mean_squared = np.sqrt(mean_squared)
+        mean_power = np.mean(stft_power, axis=-1)
 
-            "Decibel conversion of the RMS portion"
-            # Avoid log(0) by clamping to epsilon
-            root_mean_squared_db = 20 * np.log10(np.maximum(root_mean_squared, self.epsilon))
+        rms = np.sqrt(mean_power)
 
-            rms_mean += root_mean_squared_db
-            rms[i] = root_mean_squared_db
-        
-        rms_mean /= divided_stft_signal_mag.shape[0]
+        # Decibel conversion of the RMS portionAvoid log(0) by clamping to epsilon
+
+        rms = 20 * np.log10(np.maximum(rms, self.epsilon))
+        rms_mean = np.mean(rms)
         return rms, rms_mean
