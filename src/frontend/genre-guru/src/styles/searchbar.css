@@ -14,7 +14,6 @@
     width: 80%;
     max-width: 800px;
     padding: 12px 20px;
-
     background-color: #102a33;
     border-radius: 40px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -47,22 +46,4 @@
 .search-bar input::placeholder {
     color: rgba(255, 255, 255, 0.75);
     font-size: 1.2rem;
-}
-
-/* Upload button styling */
-.upload-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 10px;
-    margin-left: 20px;
-    padding: 6px 12px;
-}
-
-.upload-btn:hover {
-    color: #4CAF50;
 }
