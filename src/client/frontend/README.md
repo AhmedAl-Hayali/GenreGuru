@@ -1,3 +1,23 @@
+# Add Spotify Credentials for FrontEnd React App
+
+## Overview
+This project requires a Spotify API Client ID and Client Secret to function properly. You will need to create a `.env.local` file to store these credentials securely.
+
+## Steps to Set Up the Environment File
+
+1. **Get Spotify API Credentials**
+   - Visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+   - Log in and create a new application
+   - Copy your **Client ID** and **Client Secret**
+
+2. **Create a `.env.local` File**
+   - In the root directory of this project, create a new file named `.env.local`
+   - Add the following lines to the file:
+
+   ```ini
+   REACT_APP_SPOTIFY_CLIENT_ID=<your_client_id>
+   REACT_APP_SPOTIFY_CLIENT_SECRET=<your_client_secret>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
