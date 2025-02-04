@@ -1,5 +1,7 @@
 import librosa
 import numpy as np
+import csv
+import os
 
 from Spectral_Rolloff_Featurizer import SpectralRolloff
 from Spectral_Centroid_Featurizer import SpectralCentroid
@@ -163,28 +165,78 @@ class Featurizer:
         instrumentalness, mean_instrumentalness = self.instrumentalness.compute_instrumentalness(rms_values, rms_vocal)
 
         # Store features in
+        # features = {
+        #     "spectral_rolloff": spectral_rolloff,
+        #     "mean_spectral_rolloff": mean_rolloff,
+        #     "spectral_centroid": spectral_centroid,
+        #     "mean_spectral_centroid": mean_centroid,
+        #     "spectral_bandwidth": spectral_bandwidth,
+        #     "mean_spectral_bandwidth": mean_bandwidth,
+        #     "spectral_contrast": spectral_contrast,
+        #     "mean_spectral_contrast": mean_contrast,
+        #     "rms": rms_values,
+        #     "mean_rms": mean_rms,
+        #     "dynamic_range": dynamic_range,
+        #     "mean_dynamic_range": mean_dynamic_range,
+        #     "instrumentalness": instrumentalness,
+        #     "mean_instrumentalness": mean_instrumentalness,
+        #     "major_key": major_key,
+        #     "minor_key": minor_key,
+        #     "bmp": round(bpm)
+        # }
+
         features = {
-            "spectral_rolloff": spectral_rolloff,
             "mean_spectral_rolloff": mean_rolloff,
-            "spectral_centroid": spectral_centroid,
             "mean_spectral_centroid": mean_centroid,
-            "spectral_bandwidth": spectral_bandwidth,
             "mean_spectral_bandwidth": mean_bandwidth,
-            "spectral_contrast": spectral_contrast,
             "mean_spectral_contrast": mean_contrast,
-            "rms": rms_values,
             "mean_rms": mean_rms,
-            "dynamic_range": dynamic_range,
             "mean_dynamic_range": mean_dynamic_range,
-            "instrumentalness": instrumentalness,
             "mean_instrumentalness": mean_instrumentalness,
             "major_key": major_key,
             "minor_key": minor_key,
             "bmp": round(bpm)
-        }
+        }   
         
         return features
 
+    def write_to_csv(self, track_features, csv_filepath="src/featurizer/featurized_music.csv"):
+        "writes audio features to a .csv file"
+
+        # check if we need to create the file, and then check if we need to create fieldnames
+        os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
+        file_exists = os.path.exists(csv_filepath)
+        with open(csv_filepath, mode='a', newline='', encoding='utf-8') as csvfile:
+            fieldnames = [
+                'track_name',
+                'mean_spectral_rolloff',
+                'mean_spectral_centroid', 
+                'mean_spectral_bandwidth',
+                'mean_spectral_contrast',
+                'mean_rms',
+                'mean_dynamic_range',
+                'mean_instrumentalness',
+                'major_key',
+                'minor_key',
+                'bmp'
+            ]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            if not file_exists:
+                writer.writeheader()
+            writer.writerow({
+                'track_name': track_features['track_name'],
+                'mean_spectral_rolloff': round(track_features['mean_spectral_rolloff'], 6),
+                'mean_spectral_centroid': round(track_features['mean_spectral_centroid'], 6),
+                'mean_spectral_bandwidth': round(track_features['mean_spectral_bandwidth'], 6),
+                'mean_spectral_contrast': round(track_features['mean_spectral_contrast'], 6),
+                'mean_rms': round(track_features['mean_rms'], 6),
+                'mean_dynamic_range': round(track_features['mean_dynamic_range'], 6),
+                'mean_instrumentalness': round(track_features['mean_instrumentalness'], 6),
+                'major_key': track_features['major_key'],
+                'minor_key': track_features['minor_key'],
+                'bmp': track_features['bmp']
+            })
 
 def main(audio_file):
     # process the audio
@@ -192,7 +244,7 @@ def main(audio_file):
     signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
 
     #compute the bpmn
-    tempo = Tempo_Estimator(sr = 44100)
+    tempo = Tempo_Estimator(sr = sr)
     bpm = tempo.estimate_tempo(signal)
     
     #divide the signal
@@ -205,12 +257,15 @@ def main(audio_file):
 
     features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
+    #split audio file
+    _name = audio_file.split("/")[2].split(".")[0].split("(")[0]
+    song_name = {"track_name": _name}
 
-    print("") #spacer
-    for key, value in features.items():
-        print(f"{key}: ({type(value).__name__}) ({value})\n")
-
-
+    line = song_name | features
+    feat.write_to_csv(line)
+    # print("") #spacer
+    # for key, value in features.items():
+    #     print(f"{key}: ({type(value).__name__}) ({value})\n")
+    
 if __name__ == "__main__":
-    main("src/audio/Divinorum.wav")
-
+    main("src/audio/The Weeknd - Out of Time.wav")
