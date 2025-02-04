@@ -65,12 +65,12 @@ class Featurizer:
         
         #split the audio into vocal and non-vocal
         AudioSplitter = Audio_Splitter()
-        vocal_signal, non_vocal_signal = AudioSplitter.separate(signal)
+        vocal_signal, non_vocal_signal = AudioSplitter.split_audio(signal)
 
         # Compute STFT for feature extraction
-        stft_signal = librosa.stft(signal, window='hann')
+        # stft_signal = librosa.stft(signal, window='hann')
 
-        return signal, stft_signal, sampling_rate, vocal_signal, non_vocal_signal
+        return signal, sampling_rate, vocal_signal, non_vocal_signal
 
     """Signal Divider Based on BPM
     As suggested by MVM, the signal is divided into bins, and a window size is computed
@@ -133,7 +133,7 @@ class Featurizer:
         return divided_stft_signal, divided_stft_magnitudes
     
     """Compute All Features"""
-    def compute_features(self, divided_stft_magnitudes, divided_signal, div_stft_vocal, div_stft_non_vocal_mag):
+    def compute_features(self, divided_stft_magnitudes, divided_signal, div_stft_vocal_mag):
         """
         Computes all features from the processed STFT magnitudes and divided signal.
 
@@ -153,7 +153,10 @@ class Featurizer:
         spectral_contrast, mean_contrast, _ = self.spectral_contrast.compute_spectral_contrast_mean(divided_stft_magnitudes)
         rms_values, mean_rms = self.rms_computation.compute_rms(divided_stft_magnitudes)
         dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_signal, rms_values)
-        instrumentalness, mean_instrumentalness = self.instrumentalness.compute_instrumentalness(rms_values, rms_values)
+
+        #for instrumentalness we need the RMS of vocal
+        rms_vocal, _ = self.rms_computation.compute_rms(div_stft_vocal_mag)
+        instrumentalness, mean_instrumentalness = self.instrumentalness.compute_instrumentalness(rms_values, rms_vocal)
 
         # Store features in
         features = {
@@ -180,23 +183,20 @@ def main(audio_file):
     feat = Featurizer()
 
     # process the audio
-    signal, whole_stft, sr, vocal_signal, non_vocal_signal = feat.process_audio(audio_file)
+    signal, sr, vocal_signal, _ = feat.process_audio(audio_file)
+
     #compute the bpmn
     bpm = compute_bpm(signal, sr)
 
-    div_s, win_size, win_count = feat.divide_signal(signal, bpm)
-    div_stft_s, div_stft_mag = feat.divide_stft(div_s)
+    #divide the signal
+    div_signal, _, _ = feat.divide_signal(signal, bpm)
+    div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
 
-    #divide signals of the vocal and non-vocal
+    #divide signals of the vocal for instrumentalness
     div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
     _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
 
-    div_non_vocal, _, _ = feat.divide_signal(non_vocal_signal, bpm)
-    _, div_stft_non_vocal_mag = feat.divide_stft(div_non_vocal)
-
-
-
-    features = feat.compute_features(div_stft_mag,div_stft_s, div_stft_vocal_mag, div_stft_non_vocal_mag)
+    features = feat.compute_features(div_stft_mag, div_stft_signal, div_stft_vocal_mag)
 
 
     print("") #spacer
@@ -208,5 +208,5 @@ def main(audio_file):
 
 
 if __name__ == "__main__":
-    main("../audio/katy.mp3")
+    main("src/audio/Time.wav")
 
