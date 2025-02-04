@@ -2,6 +2,7 @@ import librosa
 import numpy as np
 import csv
 import os
+import sys
 
 from Spectral_Rolloff_Featurizer import SpectralRolloff
 from Spectral_Centroid_Featurizer import SpectralCentroid
@@ -238,34 +239,43 @@ class Featurizer:
                 'bmp': track_features['bmp']
             })
 
-def main(audio_file):
-    # process the audio
+# def main(audio_file):
+def main(directory):
+    # init featurizer
     feat = Featurizer()
-    signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
 
-    #compute the bpmn
-    tempo = Tempo_Estimator(sr = sr)
-    bpm = tempo.estimate_tempo(signal)
-    
-    #divide the signal
-    div_signal, _, _ = feat.divide_signal(signal, bpm)
-    div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
+    #modified to operate over a directory instead of input file
+    for  audio_file in os.scandir(directory):
+        #extract name
+        _name = f"{audio_file.path}".split("/")[2].split(".")[0].split("(")[0]
+        _name = _name.split("preview_")[1]
+        song_name = {"track_name": _name}
+        print(f"Currently Featurizing: {_name}")
 
-    #divide signals of the vocal for instrumentalness
-    div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
-    _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
+        signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
 
-    features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
+        #compute the bpmn
+        tempo = Tempo_Estimator(sr = sr)
+        bpm = tempo.estimate_tempo(signal)
+        
+        #divide the signal
+        div_signal, _, _ = feat.divide_signal(signal, bpm)
+        div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
 
-    #split audio file
-    _name = audio_file.split("/")[2].split(".")[0].split("(")[0]
-    song_name = {"track_name": _name}
+        #divide signals of the vocal for instrumentalness
+        div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
+        _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
 
-    line = song_name | features
-    feat.write_to_csv(line)
+        features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
+
+        line = song_name | features
+        feat.write_to_csv(line)
     # print("") #spacer
     # for key, value in features.items():
     #     print(f"{key}: ({type(value).__name__}) ({value})\n")
     
+# if __name__ == "__main__":
+#     main("src/audio/The Weeknd - Out of Time.wav")
+
 if __name__ == "__main__":
-    main("src/audio/The Weeknd - Out of Time.wav")
+    main("src/trimmed_previews/")

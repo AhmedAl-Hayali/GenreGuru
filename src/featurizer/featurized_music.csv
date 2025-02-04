@@ -1,2 +1,4 @@
 track_name,mean_spectral_rolloff,mean_spectral_centroid,mean_spectral_bandwidth,mean_spectral_contrast,mean_rms,mean_dynamic_range,mean_instrumentalness,major_key,minor_key,bmp
 The Weeknd - Out of Time,9893.803182,2878.732252,3806.258308,42.432618,-6.55929,6.885281,0.761783,D#/Eb Major,C Minor,93
+a-ha - Take On Me ,14128.799402,3485.361558,3199.419298,37.850257,-23.532501,4.528891,0.889875,A Major,F#/Gb Minor,84
+Adele - Easy On Me ,6873.647857,2009.21584,1771.865954,47.809567,-18.924089,12.92481,0.633408,C Major,C Minor,18
