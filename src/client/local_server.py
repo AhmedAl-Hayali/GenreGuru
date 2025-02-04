@@ -41,12 +41,12 @@ def process_request():
         is_wav_file = data.get("is_wav_file", False)
 
         if is_wav_file:
-            # Deserialize Base64 WAV file
-            wav_data = base64.b64decode(data["file"])
-            response = send_to_backend(wav_data.decode("utf-8"))  # Ensure it's UTF-8 encoded
+            # Forward the base64 string to the backend without decoding
+            base64_wav = data["file"]
+            response = send_to_backend(f"WAV_FILE:{base64_wav}")
         else:
             spotify_id = data["spotify_id"]
-            response = send_to_backend(spotify_id)  # Send Spotify ID directly
+            response = send_to_backend(f"SPOTIFY_ID:{spotify_id}")  # Send Spotify ID directly
 
         return jsonify({"spotify_ids": response})
     except Exception as e:
