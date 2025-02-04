@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom'; // Import navigation
 import '../styles/playcard.css';
 import axios from 'axios';
 import { FaPlay, FaStop } from 'react-icons/fa';
+import { fetchRecommendations } from "../services/local_api";
+
 
 const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
-  const { name, artists, album, preview_url, external_ids, id } = track;
+  const { name, artists, album, preview_url, external_ids} = track;
   const artistNames = artists.map(artist => artist.name).join(', ');
   const [audio, setAudio] = useState(null);
   const navigate = useNavigate(); // Initialize navigation
@@ -60,8 +62,14 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
   };
 
   // Handle clicking on the playcard itself
-  const handleCardClick = () => {
-    navigate(`/results/${id}`); // Navigate to the results page with track ID
+  const handleCardClick = async () => {
+    try {
+      console.log("Sending Spotify ID:", track.id);
+      const spotifyIds = await fetchRecommendations(track.id);
+      navigate(`/results`, { state: { spotifyIds } });
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    }
   };
 
   return (

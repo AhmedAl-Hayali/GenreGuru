@@ -1,34 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PlayCard from "../components/PlayCard";
 import { fetchTrackDetails } from "../services/api"; // Use centralized API logic
 import "../styles/results.css";
 
 const ResultsPage = () => {
-  const { id } = useParams(); // Get the selected track ID from URL
+  const location = useLocation();
+  const { spotifyIds } = location.state || {};
   const [recommendations, setRecommendations] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
 
-  // Hardcoded Spotify IDs for testing (Replace later with API response)
-  const hardcodedSpotifyIds = [
-    "2dBwB667LHQkLhdYlwLUZK",
-    "1Yk0cQdMLx5RzzFTYwmuld",
-    "22FniXvTKV9IC6IhxCpYve",
-    "7qwt4xUIqQWCu1DJf96g2k"
-  ];
-
   useEffect(() => {
-    const getRecommendations = async () => {
-      try {
-        const tracks = await fetchTrackDetails(hardcodedSpotifyIds);
-        setRecommendations(tracks);
-      } catch (error) {
-        console.error("Failed to load recommendations:", error);
-      }
-    };
+    if (spotifyIds && spotifyIds.length > 0) {
+      const getRecommendations = async () => {
+        try {
+          const tracks = await fetchTrackDetails(spotifyIds);
+          setRecommendations(tracks);
+        } catch (error) {
+          console.error("Failed to load recommendations:", error);
+        }
+      };
 
-    getRecommendations();
-  }, []);
+      getRecommendations();
+    }
+  }, [spotifyIds]);
 
   // Handle play/stop logic
   const handlePlay = (audio, trackId) => {
