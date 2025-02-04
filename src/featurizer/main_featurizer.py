@@ -133,7 +133,7 @@ class Featurizer:
         return divided_stft_signal, divided_stft_magnitudes
     
     """Compute All Features"""
-    def compute_features(self, divided_stft_magnitudes, divided_signal, div_stft_vocal_mag):
+    def compute_features(self, divided_stft_magnitudes, div_stft_vocal_mag):
         """
         Computes all features from the processed STFT magnitudes and divided signal.
 
@@ -152,7 +152,7 @@ class Featurizer:
         spectral_bandwidth, mean_bandwidth, _ = self.spectral_bandwidth.compute_spectral_bandwidth_mean(divided_stft_magnitudes, spectral_centroid)
         spectral_contrast, mean_contrast, _ = self.spectral_contrast.compute_spectral_contrast_mean(divided_stft_magnitudes)
         rms_values, mean_rms = self.rms_computation.compute_rms(divided_stft_magnitudes)
-        dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_signal, rms_values)
+        dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_stft_magnitudes, rms_values)
 
         #for instrumentalness we need the RMS of vocal
         rms_vocal, _ = self.rms_computation.compute_rms(div_stft_vocal_mag)
