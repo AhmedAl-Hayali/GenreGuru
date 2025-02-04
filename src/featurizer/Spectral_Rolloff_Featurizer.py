@@ -5,7 +5,7 @@ class SpectralRolloff:
     A class for computing spectral roll-off frequencies and frequency range.
     """
 
-    def __init__(self, sampling_rate, percentile=0.05):
+    def __init__(self, sampling_rate=44100, percentile=0.05):
         """
         Initialize the SpectralRolloff class.
 

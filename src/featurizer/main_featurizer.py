@@ -11,6 +11,8 @@ from Dynamic_Range_Featurizer import DynamicRangeComputation
 from Instrumentalness_Featurizer import InstrumentalnessComputation
 from BPM_Featurizer import *
 from Audio_Splitter import Audio_Splitter
+from Beats_Per_Minute_Featurizer import Tempo_Estimator
+from Key_and_Scale_Featurizer import Key_Estimator
 
 
 class Featurizer:
@@ -39,13 +41,14 @@ class Featurizer:
         self.rms_computation = RMSComputation()
         self.dynamic_range = DynamicRangeComputation()
         self.instrumentalness = InstrumentalnessComputation()
+        self.key_estimator = Key_Estimator()
 
     """Audio Processor
     Taken from Matthew Baleanu and Mohamad-Hassan Bahsoun
     16kHz downsample (default 22.05kHz, Spotify audio is 44.1kHz.)
     Default sampling rate set to 16kHz as per @bahsoun.
     """
-    def process_audio(self, audio_file_path):
+    def process_audio(self, audio_file_path, sampling_rate=44100):
         """
         Loads the audio file, normalizes it, and computes the STFT.
         
@@ -133,7 +136,7 @@ class Featurizer:
         return divided_stft_signal, divided_stft_magnitudes
     
     """Compute All Features"""
-    def compute_features(self, divided_stft_magnitudes, div_stft_vocal_mag):
+    def compute_features(self, divided_stft_magnitudes, div_stft_vocal_mag, signal, bpm):
         """
         Computes all features from the processed STFT magnitudes and divided signal.
 
@@ -143,7 +146,7 @@ class Featurizer:
             bpm (float): Beats per minute of the track.
 
         Returns:
-            features (dict): Dictionary containing all extracted features.
+            features (dict): Dictionary containing all extracted features. 
         """
         # Compute each feature
         # need to add BPM
@@ -153,6 +156,7 @@ class Featurizer:
         spectral_contrast, mean_contrast, _ = self.spectral_contrast.compute_spectral_contrast_mean(divided_stft_magnitudes)
         rms_values, mean_rms = self.rms_computation.compute_rms(divided_stft_magnitudes)
         dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_stft_magnitudes, rms_values)
+        major_key, minor_key = self.key_estimator.estimate_keys(signal)
 
         #for instrumentalness we need the RMS of vocal
         rms_vocal, _ = self.rms_computation.compute_rms(div_stft_vocal_mag)
@@ -173,21 +177,24 @@ class Featurizer:
             "dynamic_range": dynamic_range,
             "mean_dynamic_range": mean_dynamic_range,
             "instrumentalness": instrumentalness,
-            "mean_instrumentalness": mean_instrumentalness
+            "mean_instrumentalness": mean_instrumentalness,
+            "major_key": major_key,
+            "minor_key": minor_key,
+            "bmp": round(bpm)
         }
         
         return features
 
 
 def main(audio_file):
-    feat = Featurizer()
-
     # process the audio
-    signal, sr, vocal_signal, _ = feat.process_audio(audio_file)
+    feat = Featurizer()
+    signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
 
     #compute the bpmn
-    bpm = compute_bpm(signal, sr)
-
+    tempo = Tempo_Estimator(sr = 44100)
+    bpm = tempo.estimate_tempo(signal)
+    
     #divide the signal
     div_signal, _, _ = feat.divide_signal(signal, bpm)
     div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
@@ -196,17 +203,14 @@ def main(audio_file):
     div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
     _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
 
-    features = feat.compute_features(div_stft_mag, div_stft_signal, div_stft_vocal_mag)
+    features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
 
     print("") #spacer
     for key, value in features.items():
-        if type(value) == float:
-            print(f"{key}: ({type(value).__name__})\n")
-        else:
-            print(f"{key}: ({type(value).__name__}) ({value.shape})\n")
+        print(f"{key}: ({type(value).__name__}) ({value})\n")
 
 
 if __name__ == "__main__":
-    main("src/audio/Time.wav")
+    main("src/audio/Divinorum.wav")
 

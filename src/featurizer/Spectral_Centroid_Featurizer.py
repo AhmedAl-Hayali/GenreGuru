@@ -5,7 +5,7 @@ class SpectralCentroid:
     A class for computing spectral centroid and mean spectral centroid over multiple windows.
     """
 
-    def __init__(self, sampling_rate):
+    def __init__(self, sampling_rate=44100):
         """
         Initialize the SpectralCentroid class.
 

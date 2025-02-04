@@ -5,7 +5,7 @@ class SpectralBandwidth:
     A class for computing spectral bandwidth and mean spectral bandwidth over multiple windows.
     """
 
-    def __init__(self, sampling_rate):
+    def __init__(self, sampling_rate=44100):
         """
         Initialize the SpectralBandwidth class.
 
