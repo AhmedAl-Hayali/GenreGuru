@@ -8,7 +8,6 @@ import tensorflow as tf
 tf.get_logger().setLevel('ERROR')
 
 from spleeter.separator import Separator
-import librosa
 import soundfile as sf 
 import numpy as np
 

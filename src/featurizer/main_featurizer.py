@@ -240,15 +240,43 @@ class Featurizer:
             })
 
 # def main(audio_file):
+#     # init featurizer
+#     feat = Featurizer()
+#     #extract name
+#     _name = f"{audio_file}".split("/")[2].split(".")[0].split("(")[0]
+#     # _name = _name.split("preview_")[1]
+#     song_name = {"track_name": _name}
+#     print(f"Currently Featurizing: {_name}")
+
+#     signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
+
+#     #compute the bpmn
+#     tempo = Tempo_Estimator(sr = sr)
+#     bpm = tempo.estimate_tempo(signal)
+    
+#     #divide the signal
+#     div_signal, _, _ = feat.divide_signal(signal, bpm)
+#     div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
+
+#     #divide signals of the vocal for instrumentalness
+#     div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
+#     _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
+
+#     features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
+    
+#     #mash the dictionaries together
+#     line = song_name | features
+#     feat.write_to_csv(line)
+
 def main(directory):
     # init featurizer
     feat = Featurizer()
 
     #modified to operate over a directory instead of input file
-    for  audio_file in os.scandir(directory):
+    for audio_file in os.scandir(directory):
         #extract name
         _name = f"{audio_file.path}".split("/")[2].split(".")[0].split("(")[0]
-        _name = _name.split("preview_")[1]
+        # _name = _name.split("preview_")[1]
         song_name = {"track_name": _name}
         print(f"Currently Featurizing: {_name}")
 
@@ -270,12 +298,9 @@ def main(directory):
 
         line = song_name | features
         feat.write_to_csv(line)
-    # print("") #spacer
-    # for key, value in features.items():
-    #     print(f"{key}: ({type(value).__name__}) ({value})\n")
     
 # if __name__ == "__main__":
-#     main("src/audio/The Weeknd - Out of Time.wav")
+#     main("src/audio/Adele - Hello (Official Music Video).wav")
 
 if __name__ == "__main__":
-    main("src/trimmed_previews/")
+    main("src/deezer_previews/")
