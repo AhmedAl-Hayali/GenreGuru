@@ -3,6 +3,7 @@ import numpy as np
 import csv
 import os
 import sys
+from multiprocessing import Pool
 
 from Spectral_Rolloff_Featurizer import SpectralRolloff
 from Spectral_Centroid_Featurizer import SpectralCentroid
@@ -45,6 +46,7 @@ class Featurizer:
         self.dynamic_range = DynamicRangeComputation()
         self.instrumentalness = InstrumentalnessComputation()
         self.key_estimator = Key_Estimator()
+        self.audio_splitter = Audio_Splitter()
 
     """Audio Processor
     Taken from Matthew Baleanu and Mohamad-Hassan Bahsoun
@@ -70,8 +72,7 @@ class Featurizer:
         signal = signal / np.max(np.abs(signal))
         
         #split the audio into vocal and non-vocal
-        AudioSplitter = Audio_Splitter()
-        vocal_signal, non_vocal_signal = AudioSplitter.split_audio(signal)
+        vocal_signal, non_vocal_signal = self.audio_splitter.split_audio(signal)
 
         # Compute STFT for feature extraction
         # stft_signal = librosa.stft(signal, window='hann')
@@ -239,43 +240,13 @@ class Featurizer:
                 'bmp': track_features['bmp']
             })
 
-# def main(audio_file):
-#     # init featurizer
-#     feat = Featurizer()
-#     #extract name
-#     _name = f"{audio_file}".split("/")[2].split(".")[0].split("(")[0]
-#     # _name = _name.split("preview_")[1]
-#     song_name = {"track_name": _name}
-#     print(f"Currently Featurizing: {_name}")
-
-#     signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
-
-#     #compute the bpmn
-#     tempo = Tempo_Estimator(sr = sr)
-#     bpm = tempo.estimate_tempo(signal)
-    
-#     #divide the signal
-#     div_signal, _, _ = feat.divide_signal(signal, bpm)
-#     div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
-
-#     #divide signals of the vocal for instrumentalness
-#     div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
-#     _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
-
-#     features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
-    
-#     #mash the dictionaries together
-#     line = song_name | features
-#     feat.write_to_csv(line)
-
-def main(directory):
-    # init featurizer
+def main_directory(directory = "src/deezer_previews/"):
     feat = Featurizer()
-
-    #modified to operate over a directory instead of input file
     for audio_file in os.scandir(directory):
         #extract name
-        _name = f"{audio_file.path}".split("/")[2].split(".")[0].split("(")[0]
+        # _name = f"{audio_file.path}".split("/")[2].split(".")[0].split("(")[0]
+        _name = f"{audio_file.path}".split("/")[2]
+
         # _name = _name.split("preview_")[1]
         song_name = {"track_name": _name}
         print(f"Currently Featurizing: {_name}")
@@ -298,9 +269,35 @@ def main(directory):
 
         line = song_name | features
         feat.write_to_csv(line)
+
+def main_audio_file(audio_file_path = "src/audio/"):
+    # init featurizer
+    feat = Featurizer()
+    #extract name
+    _name = f"{audio_file_path}".split("/")[2].split(".")[0].split("(")[0]
+    # _name = _name.split("preview_")[1]
+    song_name = {"track_name": _name}
+    print(f"Currently Featurizing: {_name}")
+
+    signal, sr, vocal_signal, _ = feat.process_audio(audio_file_path, sampling_rate=44100)
+
+    #compute the bpmn
+    tempo = Tempo_Estimator(sr = sr)
+    bpm = tempo.estimate_tempo(signal)
     
-# if __name__ == "__main__":
-#     main("src/audio/Adele - Hello (Official Music Video).wav")
+    #divide the signal
+    div_signal, _, _ = feat.divide_signal(signal, bpm)
+    div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
+
+    #divide signals of the vocal for instrumentalness
+    div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
+    _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
+
+    features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
+    
+    #mash the dictionaries together
+    line = song_name | features
+    feat.write_to_csv(line)
 
 if __name__ == "__main__":
-    main("src/deezer_previews/")
+    main_directory("src/test_directory/")
