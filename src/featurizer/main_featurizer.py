@@ -139,6 +139,37 @@ class Featurizer:
 
         return divided_stft_signal, divided_stft_magnitudes
     
+    """Collapse the features into n sections for recommendation"""
+    def collapse_into_sections(self, feature, n_sections=8):
+        """
+        Collapses a feature into `n_sections` by computing the mean
+
+        Parameters:
+            feature_array (ndarray): The input feature array.
+            n_sections (int): Number of sections to divide the array into.
+
+        Returns:
+            collapsed_array (ndarray): The reduced array where each section is represented by its mean.
+        """
+        num_rows = feature.shape[0]
+        section_size = num_rows // n_sections
+
+        collapsed_array = []
+        start = 0
+
+        for i in range(n_sections):
+            if i == n_sections - 1:
+                end = num_rows
+            else:
+                end = start + section_size
+
+            section_mean = np.mean(feature[start:end])
+            collapsed_array.append([section_mean])
+            start = end
+
+        return np.array(collapsed_array)
+
+    
     """Compute All Features"""
     def compute_features(self, divided_stft_magnitudes, div_stft_vocal_mag, signal, bpm):
         """
@@ -155,16 +186,29 @@ class Featurizer:
         # Compute each feature
         # need to add BPM
         spectral_rolloff, mean_rolloff = self.spectral_rolloff.compute_frequency_range(divided_stft_magnitudes)
+        collapsed_rolloff = self.collapse_into_sections(spectral_rolloff)
+
         spectral_centroid, mean_centroid, _ = self.spectral_centroid.compute_spectral_centroids_mean(divided_stft_magnitudes)
+        collapsed_centroid = self.collapse_into_sections(spectral_centroid)
+
         spectral_bandwidth, mean_bandwidth, _ = self.spectral_bandwidth.compute_spectral_bandwidth_mean(divided_stft_magnitudes, spectral_centroid)
+        collapsed_bandwidth = self.collapse_into_sections(spectral_bandwidth)
+
         spectral_contrast, mean_contrast, _ = self.spectral_contrast.compute_spectral_contrast_mean(divided_stft_magnitudes)
+        collapsed_contrast = self.collapse_into_sections(spectral_contrast)
+
         rms_values, mean_rms = self.rms_computation.compute_rms(divided_stft_magnitudes)
+        collapsed_rms = self.collapse_into_sections(rms_values)
+
         dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_stft_magnitudes, rms_values)
+        collapsed_dynamic_range = self.collapse_into_sections(dynamic_range)
+
         major_key, minor_key = self.key_estimator.estimate_keys(signal)
 
         #for instrumentalness we need the RMS of vocal
         rms_vocal, _ = self.rms_computation.compute_rms(div_stft_vocal_mag)
         instrumentalness, mean_instrumentalness = self.instrumentalness.compute_instrumentalness(rms_values, rms_vocal)
+        collapsed_instrumentalness = self.collapse_into_sections(instrumentalness)
 
         # Store features in
         # features = {
@@ -186,6 +230,19 @@ class Featurizer:
         #     "minor_key": minor_key,
         #     "bmp": round(bpm)
         # }
+
+        collaped_features = {
+            "collapsed_rolloff": collapsed_rolloff,
+            "collapsed_centroid": collapsed_centroid,
+            "collapsed_bandwidth": collapsed_bandwidth,
+            "collapsed_contrast": collapsed_contrast,
+            "collapsed_rms": collapsed_rms,
+            "collapsed_dynamic_range": collapsed_dynamic_range,
+            "collapsed_instrumentalness": collapsed_instrumentalness,
+            "major_key": major_key,
+            "minor_key": minor_key,
+            "bpm": round(bpm)
+        } 
 
         features = {
             "mean_spectral_rolloff": mean_rolloff,
@@ -239,6 +296,53 @@ class Featurizer:
                 'minor_key': track_features['minor_key'],
                 'bmp': track_features['bmp']
             })
+
+    def write_features_to_csv(self, track_name, features, csv_filepath="src/featurizer/test.csv"):
+        """
+        Writes feature dictionary data into a CSV file, and seperates the data by section for the recommendation algo
+
+        Parameters:
+            track_name (str): The name of the track (not included in the features dictionary).
+            features (dict): Dictionary containing track features.
+            csv_filepath (str): Path to the CSV file.
+        """
+
+        # Extract feature names and expand list-based features
+        expanded_fieldnames = ["track_name"]  # Start with track name as the first column
+
+        # Iterate through the dictionary keys and dynamically create column names
+        for key, value in features.items():
+            if isinstance(value, np.ndarray) and value.shape[0] == 8:  # If the feature has 8 sections
+                expanded_fieldnames.extend([f"{key}_{i+1}" for i in range(8)])
+            else:  # Non-array features like BPM, key, etc.
+                expanded_fieldnames.append(key)
+
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
+
+        # Open CSV file in append mode ('a' means add new rows)
+        file_exists = os.path.exists(csv_filepath)
+        with open(csv_filepath, mode="a", newline='', encoding="utf-8") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=expanded_fieldnames)
+
+            # If the file is new, write the headers first
+            if not file_exists:
+                writer.writeheader()
+
+            # Convert NumPy arrays to lists before writing
+            expanded_features = {"track_name": track_name}  # Store the track name
+
+            for key, value in features.items():
+                if isinstance(value, np.ndarray) and value.shape[0] == 8:  # If it's an array with 8 sections
+                    for i in range(8):
+                        expanded_features[f"{key}_{i+1}"] = value[i][0]  # Extract each value
+                else:  # Directly store non-array features
+                    expanded_features[key] = value
+
+            # Write the features dictionary as a row
+            writer.writerow(expanded_features)
+
+        print(f"Features for '{track_name}' successfully written to {csv_filepath}")
 
 def main_directory(directory = "src/deezer_previews/"):
     feat = Featurizer()
