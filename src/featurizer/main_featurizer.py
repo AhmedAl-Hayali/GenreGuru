@@ -5,18 +5,18 @@ import os
 import sys
 from multiprocessing import Pool
 
-from Spectral_Rolloff_Featurizer import SpectralRolloff
-from Spectral_Centroid_Featurizer import SpectralCentroid
-from Spectral_Bandwidth_Featurizer import SpectralBandwidth
-from Spectral_Contrast_Featurizer import SpectralContrast
-from Spectral_Flux_Featurizer import SpectralFlux
-from RMS_Featurizer import RMSComputation
-from Dynamic_Range_Featurizer import DynamicRangeComputation
-from Instrumentalness_Featurizer import InstrumentalnessComputation
-from BPM_Featurizer import *
-from Audio_Splitter import Audio_Splitter
-from Beats_Per_Minute_Featurizer import Tempo_Estimator
-from Key_and_Scale_Featurizer import Key_Estimator
+from featurizer.Spectral_Rolloff_Featurizer import SpectralRolloff
+from featurizer.Spectral_Centroid_Featurizer import SpectralCentroid
+from featurizer.Spectral_Bandwidth_Featurizer import SpectralBandwidth
+from featurizer.Spectral_Contrast_Featurizer import SpectralContrast
+from featurizer.Spectral_Flux_Featurizer import SpectralFlux
+from featurizer.RMS_Featurizer import RMSComputation
+from featurizer.Dynamic_Range_Featurizer import DynamicRangeComputation
+from featurizer.Instrumentalness_Featurizer import InstrumentalnessComputation
+from featurizer.BPM_Featurizer import *
+from featurizer.Audio_Splitter import Audio_Splitter
+from featurizer.Beats_Per_Minute_Featurizer import Tempo_Estimator
+from featurizer.Key_and_Scale_Featurizer import Key_Estimator
 
 
 class Featurizer:
@@ -203,6 +203,9 @@ class Featurizer:
         dynamic_range, mean_dynamic_range = self.dynamic_range.compute_dynamic_range(divided_stft_magnitudes, rms_values)
         collapsed_dynamic_range = self.collapse_into_sections(dynamic_range)
 
+        spectral_flux, mean_spectral_flux = self.spectral_flux.compute_spectral_flux_mean(divided_stft_magnitudes)
+        collapsed_spectral_flux = self.collapse_into_sections(spectral_flux)
+
         major_key, minor_key = self.key_estimator.estimate_keys(signal)
 
         #for instrumentalness we need the RMS of vocal
@@ -237,6 +240,7 @@ class Featurizer:
             "collapsed_bandwidth": collapsed_bandwidth,
             "collapsed_contrast": collapsed_contrast,
             "collapsed_rms": collapsed_rms,
+            "collapsed_flux": collapsed_spectral_flux,
             "collapsed_dynamic_range": collapsed_dynamic_range,
             "collapsed_instrumentalness": collapsed_instrumentalness,
             "major_key": major_key,
@@ -252,12 +256,13 @@ class Featurizer:
             "mean_rms": mean_rms,
             "mean_dynamic_range": mean_dynamic_range,
             "mean_instrumentalness": mean_instrumentalness,
+            "mean_spectral_flux": spectral_flux,
             "major_key": major_key,
             "minor_key": minor_key,
             "bmp": round(bpm)
         }   
         
-        return features
+        return collaped_features
 
     def write_to_csv(self, track_features, csv_filepath="src/featurizer/featurized_music.csv"):
         "writes audio features to a .csv file"

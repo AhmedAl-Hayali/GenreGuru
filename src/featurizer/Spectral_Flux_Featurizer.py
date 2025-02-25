@@ -49,5 +49,5 @@ class SpectralFlux:
             mean_spectral_flux[i] = mean_spectral_flux_piece
         
         total_mean_spectral_flux /= divided_stft_magnitudes.shape[0]
-        return spectral_flux, total_mean_spectral_flux, mean_spectral_flux
+        return spectral_flux, mean_spectral_flux
     
