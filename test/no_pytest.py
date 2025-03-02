@@ -48,15 +48,15 @@ def extract_features(audio_file):
     librosa_dynamic_range_db = 20 * np.log10(peak_amplitude + 1e-6) - librosa_rms_db  # Convert Librosa Dynamic Range to dB
 
     # Print Results
-    print(f"\n🔹 Processing: {os.path.basename(audio_file)}")
-    print(f"🎵 **BPM**: Ours: {bpm:.2f} | Librosa: {librosa_bpm:.2f}")
-    print(f"🎵 **Mean RMS (dB)**: Ours: {np.mean(collapsed_features.get('collapsed_rms', [0])):.5f} | Librosa: {librosa_rms_db:.5f}")
-    print(f"🎵 **Spectral Centroid**: Ours: {np.mean(collapsed_features.get('collapsed_centroid', [0])):.2f} | Librosa: {librosa_centroid:.2f}")
-    print(f"🎵 **Spectral Rolloff**: Ours: {np.mean(collapsed_features.get('collapsed_rolloff', [0])):.2f} | Librosa: {librosa_rolloff:.2f}")
-    print(f"🎵 **Spectral Flux**: Ours: {np.mean(collapsed_features.get('collapsed_flux', [0])):.5f} | Librosa: {librosa_flux:.5f}")
-    print(f"🎵 **Spectral Bandwidth**: Ours: {np.mean(collapsed_features.get('collapsed_bandwidth', [0])):.2f} | Librosa: {librosa_bandwidth:.2f}")
-    print(f"🎵 **Spectral Contrast**: Ours: {np.mean(collapsed_features.get('collapsed_contrast', [0])):.2f} | Librosa: {librosa_contrast:.2f}")
-    print(f"🎵 **Dynamic Range (dB)**: Ours: {np.mean(collapsed_features.get('collapsed_dynamic_range', [0])):.2f} | Librosa (estimated): {librosa_dynamic_range_db:.2f}")
+    print(f"\nProcessing: {os.path.basename(audio_file)}")
+    print(f"**BPM**: Ours: {bpm:.2f} | Librosa: {librosa_bpm:.2f}")
+    print(f"**Mean RMS (dB)**: Ours: {np.mean(collapsed_features.get('collapsed_rms', [0])):.5f} | Librosa: {librosa_rms_db:.5f}")
+    print(f"**Spectral Centroid**: Ours: {np.mean(collapsed_features.get('collapsed_centroid', [0])):.2f} | Librosa: {librosa_centroid:.2f}")
+    print(f"**Spectral Rolloff**: Ours: {np.mean(collapsed_features.get('collapsed_rolloff', [0])):.2f} | Librosa: {librosa_rolloff:.2f}")
+    print(f"**Spectral Flux**: Ours: {np.mean(collapsed_features.get('collapsed_flux', [0])):.5f} | Librosa: {librosa_flux:.5f}")
+    print(f"**Spectral Bandwidth**: Ours: {np.mean(collapsed_features.get('collapsed_bandwidth', [0])):.2f} | Librosa: {librosa_bandwidth:.2f}")
+    print(f"**Spectral Contrast**: Ours: {np.mean(collapsed_features.get('collapsed_contrast', [0])):.2f} | Librosa: {librosa_contrast:.2f}")
+    print(f"**Dynamic Range (dB)**: Ours: {np.mean(collapsed_features.get('collapsed_dynamic_range', [0])):.2f} | Librosa (estimated): {librosa_dynamic_range_db:.2f}")
 
 # Process all audio files in the folder
 if __name__ == "__main__":
