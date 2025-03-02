@@ -279,3 +279,10 @@ TSWLatexianTemp*
 .DS_Store
 src/cfg.toml
 /src/audio
+/src/deezer_gooner
+/src/deezer_harvest
+/src/deezer_previews
+/src/previews
+/src/split_output
+/src/trimmed_previews
+/src/featurizer/__pycache__
