@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GenreGuru"
+version = "1.0.0"
+authors = [
+    {name = "Matthew Baleanu", email = "baleanum@mcmaster.ca"},
+    {name = "a", email = "b@"},
+    {name = "a", email = "b@"},
+    {name = "a", email = "b@"},
+    {name = "a", email = "b@"}
+]
+description = ""
+readme = "REAMDE.md"
+license = ""
+keywords = ["music"]
