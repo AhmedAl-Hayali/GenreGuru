@@ -277,3 +277,12 @@ TSWLatexianTemp*
 
 # DS_Store file from Mac computers
 .DS_Store
+/src/deezer_gooner
+/src/audio
+/src/deezer_harvest
+/src/deezer_previews
+/src/featurizer/__pycache__
+/src/previews
+src/cfg.toml
+/src/split_output
+/src/trimmed_previews
