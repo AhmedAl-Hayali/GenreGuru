@@ -286,3 +286,5 @@ TSWLatexianTemp*
 src/cfg.toml
 /src/split_output
 /src/trimmed_previews
+/env
+/GenreGuru.egg-info

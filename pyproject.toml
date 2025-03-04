@@ -5,14 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "GenreGuru"
 version = "1.0.0"
+description = "A recommendation system based on spectral features"
 authors = [
     {name = "Matthew Baleanu", email = "baleanum@mcmaster.ca"},
-    {name = "a", email = "b@"},
-    {name = "a", email = "b@"},
-    {name = "a", email = "b@"},
-    {name = "a", email = "b@"}
 ]
-description = ""
-readme = "REAMDE.md"
-license = ""
-keywords = ["music"]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9, <=3.11"
+
+dependencies = [
+    "numpy",
+    "librosa",
+    "tensorflow",
+    "scipy",
+    "pytest",
+    "spleeter >= 2.4.0"
+]
+
+[tool.setuptools]
+packages = ["src.featurizer", "src.recommendation"]
