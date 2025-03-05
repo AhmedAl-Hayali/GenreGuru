@@ -281,10 +281,12 @@ TSWLatexianTemp*
 /src/audio
 /src/deezer_harvest
 /src/deezer_previews
-/src/featurizer/__pycache__
 /src/previews
 src/cfg.toml
 /src/split_output
 /src/trimmed_previews
 /env
 /GenreGuru.egg-info
+*/__pycache__
+*.pyc
+.coverage
