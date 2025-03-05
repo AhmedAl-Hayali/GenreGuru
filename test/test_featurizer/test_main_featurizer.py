@@ -10,7 +10,7 @@ Returns:
     vocal_signal (ndarray): floating point time series representation of vocal portion
     non_vocal_signal (ndarray):floating point time series representation of instrumental portion
 """
-
+import pytest
 import random
 import wave
 import numpy as np
@@ -18,7 +18,23 @@ import os
 from src.featurizer.main_featurizer import Featurizer
 
 AUDIO_DIR = "src/deezer_previews"
-X = 1
+
+#grab random audio file path
+AUDIO_FILE_PATH = random.sample(
+    [os.path.join(AUDIO_DIR, f) for f in os.listdir(AUDIO_DIR) if f.endswith(".wav")], 
+    1)[0]
+
+SAMPLING_RATE = 44100
+
+@pytest.fixture
+def featurizer():
+    return Featurizer()
+
+def test_init(featurizer):
+    assert featurizer.sampling_rate == SAMPLING_RATE
+
+def process_audio(featurizer):
+    return featurizer.process_audio(AUDIO_FILE_PATH, SAMPLING_RATE)
 
 #compute the duration of the song in seconds in order to assertain the length of signal
 def compute_expected_size(file_path, sampling_rate):
@@ -26,26 +42,18 @@ def compute_expected_size(file_path, sampling_rate):
         frames = wav_file.getnframes()  #Total number of audio frames
         framerate = wav_file.getframerate()  #Sample rate (frames per second)
         duration = frames / framerate
-        
         return int(duration*sampling_rate) #typecast for typematching, return the expected size
 
-
-def test_init():
+def test_process_audio(process_audio):
     #random sampling of an audio file
-    audio_files = random.sample(
-    [os.path.join(AUDIO_DIR, f) for f in os.listdir(AUDIO_DIR) if f.endswith(".wav")], 
-    X)
-    
-    input = audio_files[0]
     sampling_rate = 44100
-    featurizer = Featurizer()
-    signal, sampling_rate_after, vocal_signal, non_vocal_signal = featurizer.process_audio(input, sampling_rate)
+    signal, sampling_rate_after, vocal_signal, non_vocal_signal = featurizer.process_audio(AUDIO_FILE_PATH, SAMPLING_RATE)
     
     #compute the length of the audio file to assert ndarray shape. Vocal and non-vocal signal share the same duration
     expected_size = compute_expected_size(input, sampling_rate)
 
     #for input, it is just an audio file path, so we check for string type.
-    assert isinstance(input, str), f"Expected str, got {type(input)}"
+    assert isinstance(AUDIO_FILE_PATH, str), f"Expected str, got {type(AUDIO_FILE_PATH)}"
 
     """for signal, we need to check for ndarray, contains floats, and shape. """
     #first, check for ndarray that contains floats:
@@ -58,6 +66,7 @@ def test_init():
 
     """sampling_rate we check for type, and for no change between smapling_rate before and after."""
     assert isinstance(sampling_rate, int), f"Expected int, got {type(sampling_rate)}"
+    assert sampling_rate_after == SAMPLING_RATE
 
     """vocal signal we check for ndarray, contains flats, and shape."""
     #first, check for ndarray that contains floats:

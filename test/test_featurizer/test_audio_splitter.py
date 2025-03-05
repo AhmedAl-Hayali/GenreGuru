@@ -6,7 +6,6 @@ output:
 - non_vocal_signal (ndarray):floating point time series representation of instrumental portion"""
 
 import random
-import 
 from featurizer.Audio_Splitter import *
 AUDIO_DIR = "src/deezer_previews"
 X = 1
