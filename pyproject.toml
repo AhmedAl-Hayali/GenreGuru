@@ -19,6 +19,7 @@ dependencies = [
     "tensorflow",
     "scipy",
     "pytest",
+    "pytest-cov",
     "spleeter >= 2.4.0",
     "tox"
 ]
