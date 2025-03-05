@@ -290,3 +290,4 @@ src/cfg.toml
 */__pycache__
 *.pyc
 .coverage
+.tox
