@@ -19,7 +19,8 @@ dependencies = [
     "tensorflow",
     "scipy",
     "pytest",
-    "spleeter >= 2.4.0"
+    "spleeter >= 2.4.0",
+    "tox"
 ]
 
 [tool.setuptools]
