@@ -37,7 +37,7 @@ def test_dynamic_range(dynamic_range_computation):
     """test divided signal is an ndarray """
     #check that it is an numpy array
     assert isinstance(DIVIDED_STFT_MAG, np.ndarray), (
-        f"Expected numpy array of floats, got {type(DIVIDED_STFT_MAG)}"
+        f"DIVIDED_STFT_MAG Expected numpy array of floats, got {type(DIVIDED_STFT_MAG)}"
         f"{getattr(DIVIDED_STFT_MAG, 'dtype', 'N/A')}")  #print type if not array
 
     #check that it is 3 dimensional:
@@ -46,7 +46,7 @@ def test_dynamic_range(dynamic_range_computation):
 
     #check that it contains magnitudes (non-negative floats for STFT magnitudes)
     assert np.issubdtype(DIVIDED_STFT_MAG.dtype, np.floating) and np.all(DIVIDED_STFT_MAG >= 0), (
-        f"divided_signal must contain non-negative floats (STFT magnitudes), "
+        f"DIVIDED_STFT_MAG must contain non-negative floats (STFT magnitudes), "
         f"got dtype={DIVIDED_STFT_MAG.dtype} with min={np.min(DIVIDED_STFT_MAG):.2f}")
 
     """test divided_rms is an numpy array of floats"""

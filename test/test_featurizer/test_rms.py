@@ -72,3 +72,4 @@ def test_rms(Compute_RMS):
 
     """test rms_mean"""
     assert isinstance(rms_mean, float), f"Expected float, got {type(rms_mean)}"
+    
