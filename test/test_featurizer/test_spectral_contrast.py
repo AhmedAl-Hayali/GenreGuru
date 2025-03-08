@@ -17,3 +17,12 @@ def test_compute_spectral_contrast_mean(spectral_contrast):
     assert contrast.shape == (171, 7, 16)
     assert mean_contrast.shape == (171, 7)
     assert isinstance(total_mean, float)
+
+def test_compute_spectral_contrast_mean_with_empty_subband(spectral_contrast):
+    divided_stft_magnitudes = np.random.rand(10, 0, 5)
+
+    contrast, total_mean, mean_contrast = spectral_contrast.compute_spectral_contrast_mean(divided_stft_magnitudes)
+
+    assert contrast.shape == (10, 7, 5)
+    assert mean_contrast.shape == (10, 7)
+    assert np.all(mean_contrast == 0)
