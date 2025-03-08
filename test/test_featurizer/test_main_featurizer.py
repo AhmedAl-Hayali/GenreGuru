@@ -31,7 +31,7 @@ def featurizer():
     return Featurizer()
 
 def test_init(featurizer):
-    assert featurizer.sampling_rate == SAMPLING_RATE
+    assert featurizer.target_sample_rate == SAMPLING_RATE
 
 def process_audio(featurizer):
     return featurizer.process_audio(AUDIO_FILE_PATH, SAMPLING_RATE)
@@ -44,13 +44,13 @@ def compute_expected_size(file_path, sampling_rate):
         duration = frames / framerate
         return int(duration*sampling_rate) #typecast for typematching, return the expected size
 
-def test_process_audio(process_audio):
+def test_process_audio(featurizer):
     #random sampling of an audio file
     sampling_rate = 44100
     signal, sampling_rate_after, vocal_signal, non_vocal_signal = featurizer.process_audio(AUDIO_FILE_PATH, SAMPLING_RATE)
     
     #compute the length of the audio file to assert ndarray shape. Vocal and non-vocal signal share the same duration
-    expected_size = compute_expected_size(input, sampling_rate)
+    expected_size = compute_expected_size(AUDIO_FILE_PATH, sampling_rate)
 
     #for input, it is just an audio file path, so we check for string type.
     assert isinstance(AUDIO_FILE_PATH, str), f"Expected str, got {type(AUDIO_FILE_PATH)}"

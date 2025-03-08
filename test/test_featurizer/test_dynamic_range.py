@@ -10,38 +10,50 @@ Returns:
     dynamic_range (ndarray): Dynamic range values for each window.
     dynamic_range_mean (float): Average dynamic range over all windows.
 """
-
+import pytest
 import random
 import numpy as np
 from src.featurizer.Dynamic_Range_Featurizer import DynamicRangeComputation
+WINDOWS = 100
+FREQUENCY_BINS = 1025
+TIME_FRAMES = 512
 
-AUDIO_DIR = "src/deezer_previews"
-X = 1
+DIVIDED_STFT_MAG = np.abs(np.random.randn(WINDOWS, FREQUENCY_BINS, TIME_FRAMES))
+DIVIDED_RMS = 20 * np.log10(np.abs(np.random.randn(WINDOWS, FREQUENCY_BINS)) + 1e-12)
 
-def test_dynamic_range(divided_stft_signal_mag, divided_rms):
-    DRcompute = DynamicRangeComputation()
-    dynamic_range, dynamic_range_mean = DRcompute.compute_dynamic_range(divided_stft_signal_mag, divided_rms)
+@pytest.fixture
+def dynamic_range_computation():
+    return DynamicRangeComputation()
+
+def test_init(dynamic_range_computation):
+    assert dynamic_range_computation
+
+def compute_dynamic_range(dynamic_range_computation):
+    return dynamic_range_computation.compute_dynamic_range(DIVIDED_STFT_MAG, DIVIDED_RMS)
+
+def test_dynamic_range(dynamic_range_computation):
+    dynamic_range, dynamic_range_mean = dynamic_range_computation.compute_dynamic_range(DIVIDED_STFT_MAG, DIVIDED_RMS)
 
     """test divided signal is an ndarray """
     #check that it is an numpy array
-    assert isinstance(divided_stft_signal_mag, np.ndarray), (
-        f"Expected numpy array of floats, got {type(divided_stft_signal_mag)}"
-        f"{getattr(divided_stft_signal_mag, 'dtype', 'N/A')}")  #print type if not array
+    assert isinstance(DIVIDED_STFT_MAG, np.ndarray), (
+        f"Expected numpy array of floats, got {type(DIVIDED_STFT_MAG)}"
+        f"{getattr(DIVIDED_STFT_MAG, 'dtype', 'N/A')}")  #print type if not array
 
     #check that it is 3 dimensional:
-    assert len(divided_stft_signal_mag.shape) == 3, (
-        f"divided_stft_signal_mag must be 3D, got {len(divided_stft_signal_mag.shape)}D")
+    assert len(DIVIDED_STFT_MAG.shape) == 3, (
+        f"divided_stft_signal_mag must be 3D, got {len(DIVIDED_STFT_MAG.shape)}D")
 
     #check that it contains magnitudes (non-negative floats for STFT magnitudes)
-    assert np.issubdtype(divided_stft_signal_mag.dtype, np.floating) and np.all(divided_stft_signal_mag >= 0), (
+    assert np.issubdtype(DIVIDED_STFT_MAG.dtype, np.floating) and np.all(DIVIDED_STFT_MAG >= 0), (
         f"divided_signal must contain non-negative floats (STFT magnitudes), "
-        f"got dtype={divided_stft_signal_mag.dtype} with min={np.min(divided_stft_signal_mag):.2f}")
+        f"got dtype={DIVIDED_STFT_MAG.dtype} with min={np.min(DIVIDED_STFT_MAG):.2f}")
 
     """test divided_rms is an numpy array of floats"""
     #first test for nupmy array of floats
-    assert isinstance(divided_rms, np.ndarray) and np.issubdtype(divided_rms.dtype, np.floating), (
-        f"Expected numpy array of floats, got {type(divided_rms)} with dtype "
-        f"{getattr(divided_rms, 'dtype', 'N/A')}")  #print type if not array
+    assert isinstance(DIVIDED_RMS, np.ndarray) and np.issubdtype(DIVIDED_RMS.dtype, np.floating), (
+        f"Expected numpy array of floats, got {type(DIVIDED_RMS)} with dtype "
+        f"{getattr(DIVIDED_RMS, 'dtype', 'N/A')}")  #print type if not array
     
     """test dynamic_range is numpy array of floats"""
     #first test for nupmy array of floats
@@ -50,8 +62,8 @@ def test_dynamic_range(divided_stft_signal_mag, divided_rms):
         f"{getattr(dynamic_range, 'dtype', 'N/A')}")  #print type if not array
     
     #test for same size as dynamic_range
-    assert divided_rms.shape == dynamic_range.shape, (
-        f"Shape mismatch: dynamic_range {dynamic_range.shape} vs divided_rms {divided_rms.shape}")
+    assert DIVIDED_RMS.shape == dynamic_range.shape, (
+        f"Shape mismatch: dynamic_range {dynamic_range.shape} vs divided_rms {DIVIDED_RMS.shape}")
 
     """test for dynamic_range_mean: check it is a float"""
     assert isinstance(dynamic_range_mean, float), f"Expected float, got {type(dynamic_range_mean)}"
