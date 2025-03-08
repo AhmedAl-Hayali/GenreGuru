@@ -28,16 +28,16 @@ DIVIDED_STFT_MAG /= np.max(DIVIDED_STFT_MAG)
 #     return raw / np.max(raw)
 
 @pytest.fixture
-def RMS_computation():
+def Compute_RMS():
     return RMSComputation()
 
-def test_init(RMS_computation):
-    assert RMS_computation
+def test_init(Compute_RMS):
+    assert Compute_RMS
 
-def compute_rms(RMS_computation):
-    return RMS_computation.compute_rms(DIVIDED_STFT_MAG)
+def compute_rms(Compute_RMS):
+    return Compute_RMS.compute_rms(DIVIDED_STFT_MAG)
 
-def test_rms(RMS_computation):
+def test_rms(Compute_RMS):
     """testing of the input? reused?"""
     """test divided signal is an ndarray """
     #check that it is an numpy array
@@ -54,7 +54,7 @@ def test_rms(RMS_computation):
         f"divided_signal must contain non-negative floats (STFT magnitudes), "
         f"got dtype={DIVIDED_STFT_MAG.dtype} with min={np.min(DIVIDED_STFT_MAG):.2f}")
     
-    rms, rms_mean = RMS_computation.compute_rms(DIVIDED_STFT_MAG)
+    rms, rms_mean = Compute_RMS.compute_rms(DIVIDED_STFT_MAG)
     """test RMS""" 
     #test that RMS is ndarray of floats:
     assert isinstance(rms, np.ndarray) and np.issubdtype(rms.dtype, np.floating), (
