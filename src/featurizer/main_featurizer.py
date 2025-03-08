@@ -5,18 +5,18 @@ import os
 import sys
 from multiprocessing import Pool
 
-from featurizer.Spectral_Rolloff_Featurizer import SpectralRolloff
-from featurizer.Spectral_Centroid_Featurizer import SpectralCentroid
-from featurizer.Spectral_Bandwidth_Featurizer import SpectralBandwidth
-from featurizer.Spectral_Contrast_Featurizer import SpectralContrast
-from featurizer.Spectral_Flux_Featurizer import SpectralFlux
-from featurizer.RMS_Featurizer import RMSComputation
-from featurizer.Dynamic_Range_Featurizer import DynamicRangeComputation
-from featurizer.Instrumentalness_Featurizer import InstrumentalnessComputation
-from featurizer.BPM_Featurizer import *
-from featurizer.Audio_Splitter import Audio_Splitter
-from featurizer.Beats_Per_Minute_Featurizer import Tempo_Estimator
-from featurizer.Key_and_Scale_Featurizer import Key_Estimator
+from src.featurizer.Spectral_Rolloff_Featurizer import SpectralRolloff
+from src.featurizer.Spectral_Centroid_Featurizer import SpectralCentroid
+from src.featurizer.Spectral_Bandwidth_Featurizer import SpectralBandwidth
+from src.featurizer.Spectral_Contrast_Featurizer import SpectralContrast
+from src.featurizer.Spectral_Flux_Featurizer import SpectralFlux
+from src.featurizer.RMS_Featurizer import RMSComputation
+from src.featurizer.Dynamic_Range_Featurizer import DynamicRangeComputation
+from src.featurizer.Instrumentalness_Featurizer import InstrumentalnessComputation
+from src.featurizer.BPM_Featurizer import *
+from src.featurizer.Audio_Splitter import Audio_Splitter
+from src.featurizer.Beats_Per_Minute_Featurizer import Tempo_Estimator
+from src.featurizer.Key_and_Scale_Featurizer import Key_Estimator
 
 
 class Featurizer:
@@ -142,34 +142,29 @@ class Featurizer:
     """Collapse the features into n sections for recommendation"""
     def collapse_into_sections(self, feature, n_sections=8):
         """
-        Collapses a feature into `n_sections` by computing the mean
+        Collapses a feature into `n_sections` by computing the mean.
 
         Parameters:
-            feature_array (ndarray): The input feature array.
+            feature (ndarray): The input feature array (num_rows, num_features).
             n_sections (int): Number of sections to divide the array into.
 
         Returns:
-            collapsed_array (ndarray): The reduced array where each section is represented by its mean.
+            collapsed_array (ndarray): (n_sections, 1), each section represented by its mean.
         """
         num_rows = feature.shape[0]
-        section_size = num_rows // n_sections
+        section_size = num_rows // n_sections 
 
         collapsed_array = []
-        start = 0
 
         for i in range(n_sections):
-            if i == n_sections - 1:
-                end = num_rows
-            else:
-                end = start + section_size
+            start = i * section_size
+            end = num_rows if i == n_sections - 1 else start + section_size
 
-            section_mean = np.mean(feature[start:end])
-            collapsed_array.append([section_mean])
-            start = end
+            section_mean = np.mean(feature[start:end], axis=0)
+            collapsed_array.append(np.mean(section_mean))
 
-        return np.array(collapsed_array)
+        return np.array(collapsed_array).reshape(n_sections, 1)
 
-    
     """Compute All Features"""
     def compute_features(self, divided_stft_magnitudes, div_stft_vocal_mag, signal, bpm):
         """
@@ -377,7 +372,7 @@ def main_directory(directory = "src/deezer_previews/"):
         features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
         line = song_name | features
-        feat.write_to_csv(line)
+        # feat.write_features_to_csv(line)
 
 def main_audio_file(audio_file_path = "src/audio/"):
     # init featurizer
@@ -406,7 +401,7 @@ def main_audio_file(audio_file_path = "src/audio/"):
     
     #mash the dictionaries together
     line = song_name | features
-    feat.write_to_csv(line)
+    # feat.write_features_to_csv(line)
 
 if __name__ == "__main__":
-    main_directory("src/test_directory/")
+    main_directory("src/deezer_gooner/")

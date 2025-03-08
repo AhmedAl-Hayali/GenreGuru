@@ -201,6 +201,25 @@ def test_divide_stft(featurizer):
     # check the magnitudes roughly align:
     assert np.allclose(np.abs(divided_stft_signal), divided_stft_magnitudes), f"Magnitudes do not match absolute values of complex STFT"
 
+
+def test_collapse_into_sections(featurizer):
+    """Test collapse_into_sections with a known input."""
+    spectral_centroid = np.random.rand(171, 16)
+
+    collapsed = featurizer.collapse_into_sections(spectral_centroid)
+
+    assert collapsed.shape == (8, 1), "Collapsed output shape is incorrect"
+    assert np.isfinite(collapsed).all(), "Output contains NaN or infinite values"
+
+    section_size = 171 // 8
+    for i in range(8):
+        start = i * section_size
+        end = (i + 1) * section_size if i < 7 else 171
+        expected_mean = np.mean(spectral_centroid[start:end])
+
+        np.testing.assert_allclose(collapsed[i, 0], expected_mean, rtol=1e-5), \
+            f"Collapsed section {i} does not match expected mean"
+
 DIV_STFT_MAGS = np.abs(np.random.randn(WINDOWS, FREQUENCY_BINS, TIME_FRAMES))
 DIV_STFT_MAGS /= np.max(DIV_STFT_MAGS)
 DIV_STFT_VOCAL_MAG = np.abs(np.random.randn(WINDOWS, FREQUENCY_BINS, TIME_FRAMES))
@@ -208,5 +227,123 @@ DIV_STFT_VOCAL_MAG /= np.max(DIV_STFT_VOCAL_MAG)
 def compute_features(featurizer): 
     return featurizer.compute_features(DIV_STFT_MAGS, DIV_STFT_VOCAL_MAG, SIGNAL, BPM)
 
-# def test_compute_features(featurizer):
-#     collapse_into_sections
+"""computes all the features for the input song after preprocessing has been complete.
+input:
+    DIV_STFT_MAGS (ndarray, complex type, 3D with shape (WINDOWS, FREQUENCY_BINS, TIME_FRAMES))
+    DIV_STFT_VOCAL_MAG (ndarray, non-negative values, 3D with shape (WINDOWS, FREQUENCY_BINS, TIME_FRAMES))
+    SIGNAL (ndarray, floats, 1 dimensional)
+    BPM (Float)
+returns:
+    collapsed_features, dictionary which contains:
+        - collapsed_rolloff: float
+        - collapsed_centroid: float
+        - collapsed_bandwidth: float
+        - collapsed_contrast: float
+        - collapsed_rms: float, decibels range [<=0]
+        - collapsed_spectral_flux: float
+        - collapsed_dynamic_range: float, decibels range [<=0]
+        - collapsed_instrumentalness: float, range [0-1]
+        - major_key: string
+        - minor_key: string
+        - BPM: float, rounded"""
+def test_compute_features(featurizer):
+    collapsed_features = featurizer.compute_features(DIV_STFT_MAGS, DIV_STFT_VOCAL_MAG, SIGNAL, BPM) 
+
+    """test DIV_STFT_MAGS is an ndarray """
+    #check that it is an numpy array
+    assert isinstance(DIV_STFT_MAGS, np.ndarray), (
+        f"DIVIDED_STFT_MAG Expected numpy array of floats, got {type(DIV_STFT_MAGS)}"
+        f"{getattr(DIV_STFT_MAGS, 'dtype', 'N/A')}")  #print type if not array
+    #check that it is 3 dimensional:
+    assert len(DIV_STFT_MAGS.shape) == 3, (
+        f"divided_stft_signal_mag must be 3D, got {len(DIV_STFT_MAGS.shape)}D")
+    #check that it contains magnitudes (non-negative floats for STFT magnitudes)
+    assert np.issubdtype(DIV_STFT_MAGS.dtype, np.floating) and np.all(DIV_STFT_MAGS >= 0), (
+        f"DIVIDED_STFT_MAG must contain non-negative floats (STFT magnitudes), "
+        f"got dtype={DIV_STFT_MAGS.dtype} with min={np.min(DIV_STFT_MAGS):.2f}")
+    
+    """test DIV_STFT_VOCAL_MAG is an ndarray """
+    #check that it is an numpy array
+    assert isinstance(DIV_STFT_VOCAL_MAG, np.ndarray), (
+        f"DIVIDED_STFT_MAG Expected numpy array of floats, got {type(DIV_STFT_VOCAL_MAG)}"
+        f"{getattr(DIV_STFT_VOCAL_MAG, 'dtype', 'N/A')}")  #print type if not array
+    #check that it is 3 dimensional:
+    assert len(DIV_STFT_VOCAL_MAG.shape) == 3, (
+        f"divided_stft_signal_mag must be 3D, got {len(DIV_STFT_VOCAL_MAG.shape)}D")
+    #check that it contains magnitudes (non-negative floats for STFT magnitudes)
+    assert np.issubdtype(DIV_STFT_VOCAL_MAG.dtype, np.floating) and np.all(DIV_STFT_VOCAL_MAG >= 0), (
+        f"DIVIDED_STFT_MAG must contain non-negative floats (STFT magnitudes), "
+        f"got dtype={DIV_STFT_VOCAL_MAG.dtype} with min={np.min(DIV_STFT_VOCAL_MAG):.2f}")
+    
+    """repurpose the signal checks (already done probably not necessary)"""
+    assert isinstance(SIGNAL, np.ndarray) and np.issubdtype(SIGNAL.dtype, np.floating), (
+        f"SIGNAL Expected numpy array of floats, got {type(SIGNAL)} with dtype "
+        f"{getattr(SIGNAL, 'dtype', 'N/A')}")  #print type if not array
+    #check for SIGNAL being flat, and therefore monochannel:
+    assert len(SIGNAL.shape) == 1, (f"SIGNAL has the wrong shape, is not flat: {SIGNAL.shape}")
+    assert isinstance(BPM, float), f"BPM Expected float, got {type(BPM)}" #check BPM
+
+    """test the outputs of collapsed_features"""
+    # Validate the Keys---
+    expected_keys = {
+        "collapsed_rolloff", 
+        "collapsed_centroid", 
+        "collapsed_bandwidth",
+        "collapsed_contrast", 
+        "collapsed_rms", 
+        "collapsed_flux", 
+        "collapsed_dynamic_range", 
+        "collapsed_instrumentalness",
+        "major_key", 
+        "minor_key", 
+        "bpm"}
+    
+    assert set(collapsed_features.keys()) == expected_keys, "Missing/extra keys"
+
+    #Type and Range Checks for the float features---
+    float_features = [
+        "collapsed_rolloff", 
+        "collapsed_centroid", 
+        "collapsed_bandwidth",
+        "collapsed_contrast", 
+        "collapsed_flux"]
+    for key in float_features:
+        assert isinstance(collapsed_features[key], np.ndarray) and np.issubdtype(collapsed_features[key].dtype, np.floating), (
+        f"Expected numpy array of floats, got {type(collapsed_features[key])} with dtype "
+        f"{getattr(collapsed_features[key], 'dtype', 'N/A')}")  #print type if not array
+
+        assert np.all(collapsed_features[key] >= 0), f"{key} = {collapsed_features[key]}, cannot be negative"
+
+    # test for collapsed_rms, ndarray of floats, negative due to normalized signal:
+    assert isinstance(collapsed_features['collapsed_rms'], np.ndarray) and np.issubdtype(collapsed_features['collapsed_rms'].dtype, np.floating), (
+        f"collapsed_rms expectets ndarray of floats, got {type(collapsed_features['collapsed_rms'])} with dtype "
+        f"{getattr(collapsed_features['collapsed_rms'], 'dtype', 'N/A')}")  #print type if not array
+    assert np.all(collapsed_features['collapsed_rms'] <= 0), f"max of collapsed_rms = {np.max(collapsed_features['collapsed_rms'])}, all values must be ≤0 dB"
+
+    # test for collapsed_dynamic_range, which is float, and positive, as it is max-average:
+    assert isinstance(collapsed_features['collapsed_dynamic_range'], np.ndarray) and np.issubdtype(collapsed_features['collapsed_dynamic_range'].dtype, np.floating), (
+        f"collapsecollapsed_dynamic_ranged_rms expectets ndarray of floats, got {type(collapsed_features['collapsed_dynamic_range'])} with dtype "
+        f"{getattr(collapsed_features['collapsed_dynamic_range'], 'dtype', 'N/A')}")  #print type if not array
+    assert np.all(collapsed_features['collapsed_dynamic_range'] >= 0), \
+        f"max of collapsed_dynamic_range = {np.max(collapsed_features['collapsed_dynamic_range'])}, all values must be >= 0 dB"
+
+    # Instrumentalness
+    assert np.all(0 <= collapsed_features["collapsed_instrumentalness"]) and np.all(collapsed_features["collapsed_instrumentalness"] <= 1), (
+        f"instrumentalness = {collapsed_features['collapsed_instrumentalness']} is not in [0,1]")
+
+    # key and scale:
+    valid_keys = {"C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab",  "A", "A#/Bb", "B"}
+    valid_keys_major = {f"{key} Major" for key in valid_keys}
+    valid_keys_minor = {f"{key} Minor" for key in valid_keys}
+    assert collapsed_features["major_key"] in valid_keys_major, f"Major Key = {collapsed_features['major_key']}, Invalid major key"
+    assert collapsed_features["minor_key"] in valid_keys_minor, f"Minor Key = {collapsed_features['minor_key']}, Invalid minor key"
+
+    # BPM, simply check for integrity
+    assert isinstance(collapsed_features["bpm"], int), f"collapsed_features[bpm] Expected int, got {type(collapsed_features['bpm'])}"
+    assert collapsed_features["bpm"] > 0, f"collapsed_features[bpm] is must be > 0"
+
+    # Spectral centroid < rolloff
+    assert np.all(collapsed_features["collapsed_centroid"] < collapsed_features["collapsed_rolloff"]), (
+        f"centroid = {collapsed_features['collapsed_centroid']}," 
+        f"rolloff = {collapsed_features['collapsed_rolloff']}",
+        "Spectral centroid should be < rolloff")
