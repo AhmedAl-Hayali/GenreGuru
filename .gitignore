@@ -291,3 +291,5 @@ src/cfg.toml
 *.pyc
 .coverage
 .tox
+/src/featurizer/__pycache__
+/src/featurizer/__pycache__
