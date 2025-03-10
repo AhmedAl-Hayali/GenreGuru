@@ -3,7 +3,6 @@ import numpy as np
 import csv
 import os
 import sys
-from multiprocessing import Pool
 
 from src.featurizer.Spectral_Rolloff_Featurizer import SpectralRolloff
 from src.featurizer.Spectral_Centroid_Featurizer import SpectralCentroid
@@ -372,6 +371,7 @@ def main_directory(directory = "src/deezer_previews/"):
         features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
         line = song_name | features
+        print(line)
         # feat.write_features_to_csv(line)
 
 def main_audio_file(audio_file_path = "src/audio/"):
