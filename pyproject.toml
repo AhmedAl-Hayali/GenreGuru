@@ -14,7 +14,7 @@ readme = "README.md"
 requires-python = ">=3.9, <=3.11"
 
 dependencies = [
-    "numpy",
+    "numpy==1.26.4",
     "librosa",
     "tensorflow",
     "scipy",
