@@ -12,7 +12,6 @@ from src.featurizer.Spectral_Flux_Featurizer import SpectralFlux
 from src.featurizer.RMS_Featurizer import RMSComputation
 from src.featurizer.Dynamic_Range_Featurizer import DynamicRangeComputation
 from src.featurizer.Instrumentalness_Featurizer import InstrumentalnessComputation
-from src.featurizer.BPM_Featurizer import *
 from src.featurizer.Audio_Splitter import Audio_Splitter
 from src.featurizer.Beats_Per_Minute_Featurizer import Tempo_Estimator
 from src.featurizer.Key_and_Scale_Featurizer import Key_Estimator
