@@ -3,6 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{rotating} 
+\usepackage{placeins}
+\usepackage{graphicx} 
+\usepackage{float}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -17,7 +21,7 @@
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname} 
+\title{Verification and Validation Report: \progname{}} 
 \author{\authname}
 \date{\today}
 	
@@ -45,10 +49,12 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  UT & Unit Test \\
+  VnV & Verification and Validation \\
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+% \wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -62,38 +68,742 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+This document reports the results of executing the Verification and Validation Plan. \href{https://github.com/AhmedAl-Hayali/GenreGuru/blob/main/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}
 
 \section{Functional Requirements Evaluation}
+This section details the results of the manual tests conducted for functional
+requirements, as outlined in the Verification and Validation (VnV) Plan. The
+results include expected vs. actual outcomes, and any issues encountered.
+
+\subsection{User Input and Interaction Tests}
+\textbf{Test ID: UII-01}\\
+\textbf{Description:} Ensures that users can interact with the system by inputting data through wav file upload.\\
+\textbf{Test Steps Part 1:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Upload a wav file.
+    \item Observe the system's response.
+\end{enumerate}
+\textbf{Expected Result:} The system displays a confirmation that the file has been accepted, and the request process is initiated.\\
+\textbf{Actual Result:} The system displays a confirmation that the file has been accepted, and the request process is initiated.\\
+
+\textbf{Test Steps Part 2:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Search for song.
+    \item Select song for recommendations.
+    \item Observe the system's response.
+\end{enumerate}
+\textbf{Expected Result:} The system displays search results according to the user search query. Upon song selection, the system displays song recommendations.\\
+\textbf{Actual Result:} System accepts search query input and responds by displaying Spotify search results (normal behavior). Some UI elements have overflowing text (abnormal behaviour).
+\\ \\
+\textbf{Test ID: UII-02}\\
+\textbf{Description:} Ensures that UI elements are interactive and respond to user actions.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Click buttons and interact with text fields.
+    \item Observe system responsiveness.
+\end{enumerate}
+\textbf{Expected Result:} All UI elements function correctly and provide feedback.\\
+\textbf{Actual Result:} Preview play button switches to stop button as expected. All UI elements function correctly and provide feedback.
+
+\subsection{Output Display Test}
+\textbf{Test ID: OD-01}\\
+\textbf{Description:} Verifies that output is displayed correctly to users.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Perform an analysis on an input song.
+    \item Check the output display in the client application.
+    \item Ensure recommended songs are correctly presented.
+\end{enumerate}
+\textbf{Expected Result:} The analysis results should be clearly visible and formatted properly.\\
+\textbf{Actual Result:} Recommendation results not displayed correctly. Blank page displayed (implementation error).
+
+\subsection{Data Processing and Feature Extraction Tests}
+\textbf{Test ID: FE-01}\\
+\textbf{Description:} Confirms feature extraction occurs as intended (Requirement \#3).\\
+\textbf{Input:} A valid song reference link.\\
+\textbf{Output:} Extracted song features (tempo, pitch, genre, etc.).\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Input a valid reference song link.
+    \item Submit a request for feature extraction.
+    \item Observe and compare the extracted features with a known expected output.
+\end{enumerate}
+\textbf{Expected Result:} The system successfully extracts correct song features (tempo, pitch, genre, etc.) that match the known expected output.\\
+\textbf{Actual Result:} As this test requires for the full system integration to work, this test fails as the client application and the server are not integrated yet.
+\\ \\
+\textbf{Test ID: AFD-01}\\
+\textbf{Description:} Ensures extracted features are presented clearly (Requirements \#5 and \#7).\\
+\textbf{Input:} (None, occurs after feature extraction)\\
+\textbf{Output:} Song features displayed in a readable format.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Perform the feature extraction for a valid reference song.
+    \item Wait for the system to display extracted features.
+    \item Check that the displayed features are clear, correctly labeled, and readable.
+\end{enumerate}
+\textbf{Expected Result:} The client application displays all extracted features (tempo, pitch, genre, etc.) in a clearly formatted and understandable layout.\\
+\textbf{Actual Result:} We are no longer returning features to the users. We are now only focused on returning the recommended songs to the user. So this is no longer being tested.
+
+\subsection{Error Handling and Validation Tests}
+\textbf{Test ID: IVED-01}\\
+\textbf{Description:} Checks input validation and error feedback (Requirements \#6 and \#8).\\
+\textbf{Input:} Invalid or malformed song reference.\\
+\textbf{Output:} Error message guiding the user.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Input an invalid or malformed song reference link.
+    \item Observe the system's response.
+\end{enumerate}
+\textbf{Expected Result:} The system displays a clear error message indicating the input is invalid and provides guidance on how to correct it.\\
+\textbf{Actual Result:} Not implemented yet.
+\\ \\
+\textbf{Test ID: EF-01}\\
+\textbf{Description:} Confirms each component provides feedback when errors occur (Requirement \#6).\\
+\textbf{Input:} Deliberate errors introduced in any component.\\
+\textbf{Output:} Specific error messages generated by each component.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Introduce a deliberate error in one of the system components (e.g., corrupted data or forced exception).
+    \item Attempt to use the functionality related to that component.
+    \item Observe the displayed error messages.
+\end{enumerate}
+\textbf{Expected Result:} The system displays a clear, component-specific error message indicating which part failed and why.\\
+\textbf{Actual Result:} This is no longer a test that is required as the only errors that could be introduced are from the user end which is covered in test EF-01.
+
+\subsection{Connection and Data Flow Tests}
+
+\textbf{Test ID: CDH-01}\\
+\textbf{Control:} Manual\\
+\textbf{Initial State:} Client application is connected to the server and external APIs.\\
+\textbf{Input:} User submits a request using a valid song link.\\
+\textbf{Output:} Successful data retrieval and confirmation message.\\
+\textbf{Test Case Derivation:} Verifies communication between client, server, and APIs (Requirement \#2).\\
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item The tester will submit a reference as input and observe the system processing the request.
+  \item After processing, the tester will check logs confirming the request has been received.
+\end{itemize}
+\textbf{Expected Result:} The client receives a confirmation of successful retrieval, and logs show the incoming request from the client to the server.\\
+\textbf{Actual Result:} Not implemented yet.\\[1em]
+\\
+\textbf{Test ID: EADR-01}\\
+\textbf{Control:} Manual\\
+\textbf{Initial State:} Server and client are operational.\\
+\textbf{Input:} A song reference link.\\
+\textbf{Output:} Song data is retrieved from external API.\\
+\textbf{Test Case Derivation:} Ensures valid links trigger API data retrieval (Requirement \#4).\\
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item The tester will input a valid song link and check the system for API data retrieval confirmation.
+\end{itemize}
+\textbf{Expected Result:} The client application displays a success message, and external API data appears in the system logs or interface.\\
+\textbf{Actual Result:} Not implemented yet.
 
 \section{Nonfunctional Requirements Evaluation}
+This section details the results of the manual tests conducted for nonfunctional
+requirements, as outlined in the Verification and Validation (VnV) Plan. The
+results include expected vs. actual outcomes, and any issues encountered.
 
-\subsection{Usability}
-		
-\subsection{Performance}
+\subsection{Minimalist Layout}
+\textbf{Test ID: TAPR1}\\
+\textbf{Description:} Ensures that the interface follows a minimalist layout design.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application.
+    \item Visually inspect the layout for clutter and distractions.
+\end{enumerate}
+\textbf{Expected Result:} The layout is clean and minimalistic.\\
+\textbf{Actual Result:} The layout is clean and minimalistic and there is no clutter.
 
-\subsection{etc.}
+\subsection{High Contrast}
+\textbf{Test ID: TAPR2}\\
+\textbf{Description:} Ensures that UI contrast meets readability standards.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application.
+    \item Verify that all text and UI elements have sufficient contrast using WCAG guidelines.
+\end{enumerate}
+\textbf{Expected Result:} Text and elements should be readable against the background.\\
+\textbf{Actual Result:} Text and UI elements have sufficient contrast using WCAG guidelines.
+
+\subsection{Intuitive Navigation}
+\textbf{Test ID: TAPR3}\\
+\textbf{Description:} Verifies that users can easily navigate the interface.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application.
+    \item Attempt to access all major features within three clicks.
+\end{enumerate}
+\textbf{Expected Result:} Users can reach important functions quickly.\\
+\textbf{Actual Result:} Users can access all major functions within three clicks (search, upload, request).
+
+\subsection{Consistent Button Styles}
+\textbf{Test ID: TSTR1}\\
+\textbf{Description:} Ensures that button styles are consistent.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application.
+    \item Visually inspect all buttons for uniform design.
+\end{enumerate}
+\textbf{Expected Result:} All buttons have the same size, shape, and color scheme.\\
+\textbf{Actual Result:} All buttons have the same size, shape, and color scheme.
+
+\subsection{Tooltip Visibility}
+\textbf{Test ID: TEUR1}\\
+\textbf{Description:} Ensures that tooltips appear when hovering over interactive elements.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Hover over all interactive elements.
+    \item Verify that tooltips appear with relevant descriptions.
+\end{enumerate}
+\textbf{Expected Result:} Tooltips should be visible and contain helpful information.\\
+\textbf{Actual Result:} Not implemented.
+
+\subsection{Customizable Color Themes}
+\textbf{Test ID: TPIR1}\\
+\textbf{Description:} Ensures that users can change color themes without issues.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application settings.
+    \item Change to different color themes.
+    \item Verify that all UI elements update accordingly.
+\end{enumerate}
+\textbf{Expected Result:} The color theme updates correctly without graphical glitches.\\
+\textbf{Actual Result:} Not implemented.
+
+\subsection{Initial Tutorial}
+\textbf{Test ID: TLR1}\\
+\textbf{Description:} Verifies that a tutorial is displayed for first-time users.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the application for the first time.
+    \item Observe if a tutorial appears.
+\end{enumerate}
+\textbf{Expected Result:} The tutorial should guide the user through the main features.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Query Request Time Precision}
+\textbf{Test ID: TPAR1}\\
+\textbf{Description:} Verifies that the system accurately displays the query request time for any valid query.\\
+\textbf{Input/Condition:} Issue any valid query.\\
+\textbf{Output/Result:} Server returns response, and the client application displays the precise query request time.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Use a web driver (e.g., Selenium) or open the client application directly.
+    \item Input a valid query and submit it.
+    \item Record the displayed query request time for verification.
+\end{enumerate}
+\textbf{Expected Result:} The displayed query request time is accurate and precise (no significant deviation from actual request time).\\
+\textbf{Actual Result:} We cannot test this yet as the system integration is not yet complete, so this test Fails.
+
+\subsection{Rounding Accuracy}
+\textbf{Test ID: TPAR2}\\
+\textbf{Description:} Ensures values with decimals are rounded accurately according to the specification.\\
+\textbf{Input/Condition:} Input values with decimals.\\
+\textbf{Output/Result:} Values are rounded accurately.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Provide pre-defined decimal values (via the relevant input fields or tests).
+    \item Trigger the system's rounding function.
+    \item Observe the resulting rounded values.
+\end{enumerate}
+\textbf{Expected Result:} The values are rounded precisely according to the specified rounding rules (e.g., 2 decimal places).\\
+\textbf{Actual Result:} We are no longer testing rounding accuracy as our feature extraction needs to be as accurate as possible. Thus the system will use as many digits as it can.
+
+\subsection{Fault Tolerance}
+\textbf{Test ID: TRAR1}\\
+\textbf{Description:} Verifies the server's ability to remain operational under any load state (idle, little load, intermediate, or strenuous), including transitions between these states.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Ensure the server is operational in any initial load state (idle, little, intermediate, or strenuous).
+    \item Transition the server through various load states over a 3-day monitoring period (e.g., from idle to little load, then from little to intermediate, and so on).
+    \item Use the \texttt{uptime} command on Ubuntu Server periodically to track server availability.
+    \item (Optional) Extend monitoring to 30 days or more if feasible.
+\end{enumerate}
+\textbf{Expected Result:}
+\begin{itemize}
+    \item The server remains fully operational during and after state transitions (idle, little, intermediate, or strenuous).
+    \item Observed \texttt{uptime} indicates stable performance with minimal or no downtime.
+\end{itemize}
+\textbf{Actual Result:} Fail. Server has not been completed yet, thus cannot be tested.
+
+\subsection{Minimum Concurrent Users Load}
+\textbf{Test ID: TCR1}\\
+\textbf{Description:} Ensures the system can handle the expected number of concurrent users without performance degradation.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Start the system in an idle state.
+    \item Use a load testing tool (e.g., JMeter) to simulate multiple users logging in and performing actions simultaneously.
+    \item Gradually increase the number of concurrent users to the expected limit (and potentially beyond it to test the upper threshold).
+    \item Observe system response times, error rates, and resource utilization.
+\end{enumerate}
+\textbf{Expected Result:} The system successfully handles the predefined concurrent user limit without critical errors or significant performance degradation (e.g., no timeouts or crashes).\\
+\textbf{Actual Result:} We are no longer supporting concurrent users. thus, we are no longer testing this.
+
+\subsection{Server Device}
+\textbf{Test ID: TEPER1}\\
+\textbf{Description:} Confirms that the physical server hardware matches the specified make and model (Dell OptiPlex 3050).\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Ensure the server is available for inspection.
+    \item Visually inspect the server hardware (using ``los ojos'').
+    \item Verify that the make and model are Dell OptiPlex 3050.
+\end{enumerate}
+\textbf{Expected Result:} Server is confirmed to be a Dell OptiPlex 3050 based on visual inspection and any accompanying documentation.\\
+\textbf{Actual Result:} Pass. The server is confirmed to be a Dell OptiPlex 3050 based on visual inspection.
+
+\subsection{Tutorial Completion Time}
+\textbf{Test ID: TLR2}\\
+\textbf{Description:} Ensures that users can complete the tutorial within five minutes.\\
+\textbf{Type:} Dynamic, Manual\\
+\textbf{Initial State:} Tutorial in progress.\\
+\textbf{Input/Condition:} Measure time for tutorial completion.\\
+\textbf{Output/Result:} Users complete the tutorial within 5 minutes.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Begin the tutorial as a new user.
+    \item Track the time taken to finish all tutorial steps.
+\end{enumerate}
+\textbf{Expected Result:} Completion of the tutorial in 5 minutes or less.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Friendly Feedback}
+\textbf{Test ID: TUPR1}\\
+\textbf{Description:} Ensures that the system provides friendly, clear feedback in error states.\\
+\textbf{Type:} Static, Manual\\
+\textbf{Initial State:} Error states are accessible.\\
+\textbf{Input/Condition:} Trigger common errors.\\
+\textbf{Output/Result:} System provides friendly, clear feedback.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Manually trigger typical error conditions in the application.
+    \item Observe the content and tone of the error messages.
+\end{enumerate}
+\textbf{Expected Result:} Polite and helpful error messages that guide the user to resolve the issue.\\
+\textbf{Actual Result:} ?
+
+\subsection{Standardized Iconography}
+\textbf{Test ID: TUPR2}\\
+\textbf{Description:} Verifies that interface iconography is standardized and inoffensive.\\
+\textbf{Type:} Static, Manual\\
+\textbf{Initial State:} A subset of complete interface iconography is available.\\
+\textbf{Input/Condition:} Developer reviews subset of complete interface iconography.\\
+\textbf{Output/Result:} Subset of complete interface iconography is deemed standard and inoffensive.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Manually review each icon in the subset.
+    \item Confirm consistency and clarity of the iconography.
+\end{enumerate}
+\textbf{Expected Result:} All icons follow a consistent style and contain no offensive or confusing imagery.\\
+\textbf{Actual Result:} ?
+
+\subsection{Accessible Fonts}
+\textbf{Test ID: TACR1}\\
+\textbf{Description:} Ensures font choices meet WCAG 2.2 accessibility guidelines.\\
+\textbf{Type:} Static, Manual\\
+\textbf{Initial State:} Font-defining code is available.\\
+\textbf{Input/Condition:} Developer reviews font-defining code.\\
+\textbf{Output/Result:} Font-defining code is deemed to only contain accessible fonts in accordance with WCAG 2.2.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Manually inspect the code for font definitions.
+    \item Compare chosen fonts against WCAG 2.2 recommendations.
+\end{enumerate}
+\textbf{Expected Result:} All fonts meet or exceed minimum accessibility standards, ensuring readability.\\
+\textbf{Actual Result:} ?
+
+\subsection{Color Blind Mode}
+\textbf{Test ID: TACR2}\\
+\textbf{Description:} Confirms that the system supports a color blind visibility mode.\\
+\textbf{Type:} Dynamic, Manual\\
+\textbf{Initial State:} Interface set to default visibility mode.\\
+\textbf{Input/Condition:} Enable color blind mode.\\
+\textbf{Output/Result:} Interface set to color blind visibility mode.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Use the application’s settings to enable color blind mode.
+    \item Observe all interface elements to confirm consistent color adjustments.
+\end{enumerate}
+\textbf{Expected Result:} The color scheme updates accurately for color blind accessibility.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Data Storage}
+\textbf{Test ID: TCR2}\\
+\textbf{Description:} Verifies the database stores the necessary data related to songs and queries.\\
+\textbf{Type:} Dynamic, Automated\\
+\textbf{Initial State:} Mock database active.\\
+\textbf{Input/Condition:} Issue any valid query.\\
+\textbf{Output/Result:} Database stores appropriate data related to songs and query information.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Use frameworks like \texttt{factoryboy} and Pytest fixtures to mock a database instance.
+    \item Submit a valid query, capturing how the system processes and stores the data.
+    \item Verify that the stored records match expected fields and content.
+\end{enumerate}
+\textbf{Expected Result:} The system reliably populates the database with accurate song and query data.\\
+\textbf{Actual Result:} Not implemented yet
+
+\section{Productization Requirements Evaluation}
+This section details the results of the manual tests conducted for productization
+requirements, as outlined in the Verification and Validation (VnV) Plan. The
+results include expected vs. actual outcomes, and any issues encountered.
+
+\subsection{Production Readiness Verification}
+\textbf{Test ID: PRR1}\\
+\textbf{Description:} Verifies production readiness by running the system end to end.\\
+\textbf{Input/Condition:} Perform a complete end-to-end run of all critical functionalities.\\
+\textbf{Output/Result:} Confirms system stability and readiness for production.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the client application.
+    \item Perform major functionalities (e.g., referencing a song, extracting features, handling error scenarios).
+    \item Observe whether the system runs without critical errors from start to finish.
+\end{enumerate}
+\textbf{Expected Result:} The system runs all processes end to end smoothly, indicating it is production-ready.\\
+\textbf{Actual Result:} We cannot test this yet as the system integration is not yet complete, so this test Fails.
+
+\subsection{Ease of Code Updates}
+\textbf{Test ID: TMR1}\\
+\textbf{Description:} Reviews the codebase structure for easy updates (Requirements \#X -- fill as needed).\\
+\textbf{Input/Condition:} Review of the code structure and modular design.\\
+\textbf{Output/Result:} Codebase is structured and documented for maintainability.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Examine the project's folder structure and modular design.
+    \item Evaluate documentation and comments for clarity and ease of updates.
+    \item Note any obstacles that might complicate future changes.
+\end{enumerate}
+\textbf{Expected Result:} The codebase is modular, well-documented, and easily maintainable.\\
+\textbf{Actual Result:}
+\begin{itemize}
+    \item Overall Fail
+    \item Codebase is Modular (\textbf{pass}) \\
+          There is file separation in folders for each major section (recommend, server, featurizer). Testing documentation and files are in their own dedicated folders as well. There are no hanging plots.
+    \item Evaluate documentation (\textbf{FAIL}) due to being incomplete and is currently outdated. Will test this again once all documentation has been evaluated/updated.
+    \item Easily Maintainable (\textbf{pass}) because our codebase is modular it is easily maintainable. Also, with the use of GitHub, branches, issues etc. we have been able to keep things good? (update this last sentence)
+\end{itemize}
+
+\subsection{Access Logs for User Sessions}
+\textbf{Test ID: TAUR1}\\
+\textbf{Description:} Ensures all user session activities are accurately captured in the access logs.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Confirm the system is active with at least one or more user sessions running.
+    \item Access the user session logs (e.g., via server logs or application log interface).
+    \item Compare the log entries against actual user actions (logins, file uploads, queries, etc.).
+\end{enumerate}
+\textbf{Expected Result:} All user activities (start session, actions taken, logout) appear correctly in the logs, with accurate timestamps and details.\\
+\textbf{Actual Result:} We are no longer supporting concurrent users and as such have no need to capture user session activities. thus, we are no longer testing this.
+
+\subsection{Multilingual Support}
+\textbf{Test ID: TCUR1}\\
+\textbf{Description:} Verifies that the system can adapt to different languages without errors.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the system interface.
+    \item Switch the display language to various available language options (e.g., English, Spanish, French).
+    \item Observe interface text, menus, and labels for correct translations and layout.
+\end{enumerate}
+\textbf{Expected Result:} The user interface correctly updates all relevant text to the selected language, with no formatting issues or missing translations.\\
+\textbf{Actual Result:} No longer being tested as the system will only be available in english.
+
+\subsection{Compliance with Copyright Laws}
+\textbf{Test ID: TLGR1}\\
+\textbf{Description:} Ensures all music content adheres to copyright requirements.\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Open the content library (music files, metadata, etc.).
+    \item Inspect each file and confirm that it has the proper licensing and copyright attributions.
+    \item Verify that any usage terms (e.g., Creative Commons, royalty-free licensing) are properly documented.
+\end{enumerate}
+\textbf{Expected Result:} All music content includes valid copyright attributions, matching the requirements of relevant laws and licensing agreements.\\
+\textbf{Actual Result:} Pass. we have verified that we comply with the developer regulations for Deezer, Spotify and Apple Music for how we are allowed to use their music.
+
+\subsection{Adherence to Data Protection Regulations}
+\textbf{Test ID: TLGR2}\\
+\textbf{Description:} Verifies that the system's user data management complies with applicable data protection regulations (e.g., GDPR, CCPA).\\
+\textbf{Test Steps:}
+\begin{enumerate}
+    \item Review the system's data management policies and documentation.
+    \item Inspect any data storage and access control mechanisms (e.g., encryption, restricted access).
+    \item Confirm that the collection and handling of user data follow legal regulations (e.g., consent, right to be forgotten, data retention limits).
+\end{enumerate}
+\textbf{Expected Result:} User data is handled in accordance with all relevant data protection laws (proper consent obtained, secure storage, compliance with user rights, etc.).\\
+\textbf{Actual Result:} Pass. We are not collecting user data as the song name is part of Spotify, Deezer,, and Apple Music and we follow their developer regulations. As for audio files uploaded by the user, we do not store that audio file or the features associated with it.
 	
+
+\subsection{Database Backup}
+
+\textbf{Test ID: TIR1}\\
+\textbf{Type:} Static \& Manual, Dynamic \& Automated\\
+\textbf{Initial State:} Database layout configured \& backup code is complete.\\
+\textbf{Input/Condition:} Conduct code review to ensure backup functionality is correct, and simulate it running (on-command rather than weekly) to confirm backup success.\\
+\textbf{Output/Result:} Database backup functionality is found to be correct, with ad-hoc generated backup artifacts to confirm it live.\\
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item Conduct a code review/walkthrough.
+  \item Use both unit and integration testing through Pytest with fixtures (alongside \texttt{factoryboy}) to ensure correct backup artifacts are generated.
+\end{itemize}
+\textbf{Expected Result:} Backup artifacts are produced successfully, matching the current database state with no data loss.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Database Deduplication}
+
+\textbf{Test ID: TIR2}\\
+\textbf{Type:} Static \& Manual, Dynamic \& Automated\\
+\textbf{Initial State:} Database layout configured \& deduplication code is complete.\\
+\textbf{Input/Condition:} Conduct code review to ensure deduplication functionality is correct, and insert duplicate records to ensure the mechanism prevents insertion or “fails loudly.”\\
+\textbf{Output/Result:} Database deduplication functionality is found to be correct, with induced duplicate insertions prevented.\\
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item Conduct a code review/walkthrough.
+  \item Use both unit and integration testing through Pytest with fixtures (alongside \texttt{factoryboy}) to ensure correct deduplication behavior.
+\end{itemize}
+\textbf{Expected Result:} Duplicate records are either blocked or promptly flagged, with no persistent duplicates.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Data Encryption Verification}
+
+\textbf{Test ID: TPR1}\\
+\textbf{Type:} Static, Manual\\
+\textbf{Initial State:} Database system in use.\\
+\textbf{Input/Condition:} Inspect database for encryption protocols.\\
+\textbf{Output/Result:} All sensitive data is encrypted in storage.\\
+\textbf{How test will be performed:}
+\begin{itemize}
+  \item Review encryption settings in the database configuration.
+\end{itemize}
+\textbf{Expected Result:} Sensitive records (e.g., user data) are encrypted at rest, and no plain-text sensitive data is stored.\\
+\textbf{Actual Result:} Not implemented yet.
+
+\subsection{Licensed Song Access}
+
+\textbf{Test ID: TMR1}\\
+\textbf{Type:} Dynamic, Automated\\
+\textbf{Initial State:} Mock database active with multiple queries from different (at least 2 unique) users already loaded.\\
+\textbf{Input/Condition:} Issue queries to access songs requested by other users, not the current user.\\
+\textbf{Output/Result:} Database returns an empty response because the requesting user does not have access (or a license) to the songs uploaded/licensed by the other user(s).\\
+\textbf{How test will be performed:}
+\begin{itemize}
+    \item Use frameworks like \texttt{factoryboy} and Pytest's fixtures to mock a database and entries.
+    \item Issue queries, capture the response, and verify that it is empty.
+\end{itemize}
+\textbf{Expected Result:} The system should return an empty response when a user attempts to access songs licensed to another user.\\
+\textbf{Actual Result:} Not implemented yet.
+
 \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+(This section does not apply to our project, so this section will be left empty).
 
 \section{Unit Testing}
+Most files—excluding the third-party library, top-level, and GUI modules—had dedicated unit test files. 
+We use tox to run all these tests as a single suite. 
+The coverage report confirms that all tests have passed successfully. 
+See Code Coverage Metrics Section~\ref{sec:code-coverage}.
 
 \section{Changes Due to Testing}
-
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
+There were a few bugs that were caught as a result of testing, most of the issues came from module imports or pytest configuration issues. For feedback from users and supervisor, we will make changes after the system has been fully integrated
+% \wss{This section should highlight how feedback from the users and from 
+% the supervisor (when one exists) shaped the final product.  In particular 
+% the feedback from the Rev 0 demo to the supervisor (or to potential users) 
+% should be highlighted.}
 
 \section{Automated Testing}
+Automated testing has not yet been set up, but we hope to have that set up before Rev 1.
 		
 \section{Trace to Requirements}
-		
+See Table 1 for trace to functional requirements and Table 2 and 3 for trace to nonfunctional requirements
+\subsection{Traceability Between Test Cases and Requirements}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{FR1}
+    & \rotatebox{90}{FR2}
+    & \rotatebox{90}{FR3}
+    & \rotatebox{90}{FR4}
+    & \rotatebox{90}{FR5}
+    & \rotatebox{90}{FR6}
+    & \rotatebox{90}{FR7}
+    & \rotatebox{90}{FR8}
+    & \rotatebox{90}{FR9}
+  \\ \hline
+  UII-01    &X& & & & & & & & \\ \hline
+  CDH-01    & &X& & & & & & & \\ \hline
+  FE-01     & & &X& & & & & & \\ \hline
+  EADR-01   & & & &X& & & & & \\ \hline
+  AFD-01    & & & & &X& &X& & \\ \hline
+  IVED-01   & & & & & &X& &X& \\ \hline
+  EF-01     & & & & & &X& & & \\ \hline
+  OD-01     & & & & & & &X& & \\ \hline
+  UII-02    & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Functional Requirements}
+  \label{Table:trace_fr}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+    & \rotatebox{90}{APR1}
+    & \rotatebox{90}{APR2}
+    & \rotatebox{90}{APR3}
+    & \rotatebox{90}{STR1}
+    & \rotatebox{90}{EUR1}
+    & \rotatebox{90}{PIR1}
+    & \rotatebox{90}{LR1}
+    & \rotatebox{90}{LR2}
+    & \rotatebox{90}{UPR1}
+    & \rotatebox{90}{UPR2}
+    & \rotatebox{90}{ACR1}
+    & \rotatebox{90}{ACR2}
+    & \rotatebox{90}{PAR1}
+    & \rotatebox{90}{PAR2}
+  \\ \hline
+  APR1    &X& & & & & & & & & & & & & \\ \hline
+  APR2    & &X& & & & & & & & & & & & \\ \hline
+  APR3    & & &X& & & & & & & & & & & \\ \hline
+  STR1    & & & &X& & & & & & & & & & \\ \hline
+  EUR1    & & & & &X& & & & & & & & & \\ \hline
+  PIR1    & & & & & &X& & & & & & & & \\ \hline
+  LR1     & & & & & & &X& & & & & & & \\ \hline
+  LR2     & & & & & & & &X& & & & & & \\ \hline
+  UPR1    & & & & & & & & &X& & & & & \\ \hline
+  UPR2    & & & & & & & & & &X& & & & \\ \hline
+  ACR1    & & & & & & & & & & &X& & & \\ \hline
+  ACR2    & & & & & & & & & & & &X& & \\ \hline
+  PAR1    & & & & & & & & & & & & &X& \\ \hline
+  PAR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 1-14}
+  \label{Table:trace_nfr1-14}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    & \rotatebox{90}{RAR1}
+    & \rotatebox{90}{CR1}
+    & \rotatebox{90}{CR2}
+    & \rotatebox{90}{EPER1}
+    & \rotatebox{90}{PRR1}
+    & \rotatebox{90}{MR1}
+    & \rotatebox{90}{ACCR1}
+    & \rotatebox{90}{IR1}
+    & \rotatebox{90}{IR2}
+    & \rotatebox{90}{PR1}
+    & \rotatebox{90}{AUR1}
+    & \rotatebox{90}{CUR1}
+    & \rotatebox{90}{LGR1}
+    & \rotatebox{90}{LGR2}
+  \\ \hline
+  RAR1    &X& & & & & & & & & & & & & \\ \hline
+  CR1     & &X& & & & & & & & & & & & \\ \hline
+  CR2     & & &X& & & & & & & & & & & \\ \hline
+  EPER1   & & & &X& & & & & & & & & & \\ \hline
+  PRR1    & & & & &X& & & & & & & & & \\ \hline
+  MR1     & & & & & &X& & & & & & & & \\ \hline
+  ACCR1   & & & & & & &X& & & & & & & \\ \hline
+  IR1     & & & & & & & &X& & & & & & \\ \hline
+  IR2     & & & & & & & & &X& & & & & \\ \hline
+  PR1     & & & & & & & & & &X& & & & \\ \hline
+  AUR1    & & & & & & & & & & &X& & & \\ \hline
+  CUR1    & & & & & & & & & & & &X& & \\ \hline
+  LGR1    & & & & & & & & & & & & &X& \\ \hline
+  LGR2    & & & & & & & & & & & & & &X\\ \hline
+    \end{tabular}
+  \caption{Traceability Matrix Showing the Connections Between the Tests and Non-Functional Requirements 15-28}
+  \label{Table:trace_nfr15-28}
+\end{table}
 \section{Trace to Modules}		
 
-\section{Code Coverage Metrics}
+\subsection{Traceability Between Test Cases and Modules}
+Table 4 maps each test case to its corresponding module(s) from the system architecture.
+
+\begin{table}[H]
+  \centering
+  \renewcommand{\arraystretch}{1.2} % Improve spacing for readability
+  \begin{tabularx}{\textwidth}{|c|X|} % X allows automatic column width
+      \hline
+      \textbf{Test Case} & \textbf{Module(s) Tested} \\
+      \hline
+      UII-01 & GUI Module, Client Communication Module \\ 
+      UII-02 & GUI Module, Search Query Module \\
+      CDH-01 & Driver Module \\
+      FE-01 & Feature Extraction Modules (All) \\
+      EADR-01 & Server Communication Module, Client Communication Module \\
+      AFD-01 & Audio File Input Module \\
+      IVED-01 & Instrument Type Feature Extraction Module, Vocal Gender Feature Extraction Module \\
+      EF-01 & Dynamic Range Feature Extraction Module \\
+      OD-01 & Program Results Interface, GUI Module \\
+      APR1 & GUI Module \\
+      APR2 & GUI Module \\
+      APR3 & GUI Module, Recommendation Module \\
+      STR1 & GUI Module \\
+      EUR1 & GUI Module \\
+      PIR1 & GUI Module, Settings Module \\
+      LR1 & GUI Module, Program Results Interface \\
+      LR2 & GUI Module, Program Results Interface \\
+      UPR1 & GUI Module, Program Results Interface \\
+      UPR2 & GUI Module \\
+      ACR1 & GUI Module, Settings Module \\
+      ACR2 & GUI Module, Settings Module \\
+      PAR1 & Database, Spotify API, Deezer API \\
+      PAR2 & Genre Feature Module, Recommendation Module \\
+      RAR1 & Recommendation Module, Genre Feature Module \\
+      CR1 & Recommendation Module, Genre Feature Module \\
+      CR2 & Recommendation Module, Genre Feature Module \\
+      EPER1 & Recommendation Module \\
+      PRR1 & Recommendation Module \\
+      MR1 & Recommendation Module \\
+      ACCR1 & Recommendation Module \\
+      IR1 & Genre Feature Module, Recommendation Module \\
+      IR2 & Genre Feature Module, Recommendation Module \\
+      PR1 & Genre Feature Module, Recommendation Module \\
+      AUR1 & Recommendation Module \\
+      CUR1 & Client Communication Module, Server Communication Module \\
+      LGR1 & Genre Feature Module, Recommendation Module \\
+      LGR2 & Genre Feature Module, Recommendation Module \\
+      \hline
+  \end{tabularx}
+  \caption{Traceability Matrix Mapping Test Cases to Modules}
+  \label{tab:trace_to_modules}
+\end{table}
+
+\section{Code Coverage Metrics} \label{sec:code-coverage}
+The code coverage was given by pytest-cov:
+\begin{small} 
+  \begin{verbatim} 
+---------- coverage: platform win32, python 3.10.11-final-0 ----------
+Name                                              Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------
+src\featurizer\Audio_Splitter.py                     20      0   100%
+src\featurizer\Beats_Per_Minute_Featurizer.py        29      0   100%
+src\featurizer\Dynamic_Range_Featurizer.py           12      0   100%
+src\featurizer\Instrumentalness_Featurizer.py        11      0   100%
+src\featurizer\Key_and_Scale_Featurizer.py           37      0   100%
+src\featurizer\RMS_Featurizer.py                     12      0   100%
+src\featurizer\Spectral_Bandwidth_Featurizer.py      24      0   100%
+src\featurizer\Spectral_Centroid_Featurizer.py       28      0   100%
+src\featurizer\Spectral_Contrast_Featurizer.py       35      0   100%
+src\featurizer\Spectral_Flux_Featurizer.py           22      0   100%
+src\featurizer\Spectral_Rolloff_Featurizer.py        37      0   100%
+src\featurizer\__init__.py                            0      0   100%
+src\featurizer\main_featurizer.py                    90      0   100%
+src\recommendation\__init__.py                        0      0   100%
+src\recommendation\recommend.py                      24      0   100%   
+-------------------------------------------------------------------------------
+TOTAL                                               381      0   100%
+  \end{verbatim}
+\end{small}
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
@@ -101,25 +811,28 @@ should be highlighted.}
 \newpage{}
 \section*{Appendix --- Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Reflection.
-
-\input{../Reflection.tex}
+The information in this section will be used to evaluate the team members on the graduate attribute of Reflection.
 
 \begin{enumerate}
-  \item What went well while writing this deliverable? 
-  \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
-  \item Which parts of this document stemmed from speaking to your client(s) or
-  a proxy (e.g. your peers)? Which ones were not, and why?
-  \item In what ways was the Verification and Validation (VnV) Plan different
-  from the activities that were actually conducted for VnV?  If there were
-  differences, what changes required the modification in the plan?  Why did
-  these changes occur?  Would you be able to anticipate these changes in future
-  projects?  If there weren't any differences, how was your team able to clearly
-  predict a feasible amount of effort and the right tasks needed to build the
-  evidence that demonstrates the required quality?  (It is expected that most
-  teams will have had to deviate from their original VnV Plan.)
+  \item \textbf{What went well while writing this deliverable?}  
+
+  The structure of the VnV Report closely followed the VnV Plan, which made it easier to organize and document the tests systematically. Since many of the tests were manually conducted, this reduced the complexity of setting up automated test scripts. Additionally, having well-defined requirements and a structured approach helped in systematically evaluating functional and nonfunctional aspects. Collaboration within the team also went smoothly, as members were clear on their assigned sections.
+
+  \item \textbf{What pain points did you experience during this deliverable, and how did you resolve them?}  
+
+  One major challenge was ensuring that the tests were properly mapped to the correct functional and nonfunctional requirements, as the original VnV Plan did not anticipate all the nuances of implementation. Some tests had to be modified or removed due to changes in the project scope. Another challenge was handling LaTeX formatting issues, particularly in structuring tables and ensuring they fit within the page. These were resolved by adjusting column widths, reducing text size, and restructuring tables for better readability.
+
+  \item \textbf{Which parts of this document stemmed from speaking to your client(s) or a proxy (e.g., your peers)? Which ones were not, and why?}  
+
+  The test cases and evaluation methods were largely derived from discussions with peers and feedback from the client (or proxy). Specifically, the evaluation criteria for usability-related tests (e.g., UI consistency, accessibility features, and user interaction feedback) were refined based on input from potential users. However, the documentation of actual test results and the refinement of the VnV Report structure were mostly internally decided by the team. This was because execution of the tests was an internal process, and modifications had to be made based on practical constraints rather than external input.
+
+  \item \textbf{In what ways was the Verification and Validation (VnV) Plan different from the activities that were actually conducted for VnV? If there were differences, what changes required the modification in the plan? Why did these changes occur? Would you be able to anticipate these changes in future projects? If there weren't any differences, how was your team able to clearly predict a feasible amount of effort and the right tasks needed to build the evidence that demonstrates the required quality?}  
+
+  The VnV Plan initially assumed a higher level of automated testing and unit test coverage. However, during implementation, it became clear that many of the usability and UI-based tests were better suited for manual evaluation. This led to modifications in the plan, where some unit tests were omitted in favor of structured manual testing. Additionally, some tests became irrelevant due to changes in project scope, requiring updates to the test suite. 
+
+  These changes occurred because certain features evolved during development, making some planned tests obsolete or requiring new test criteria. Anticipating such changes in future projects would involve incorporating a degree of flexibility in the VnV Plan, ensuring that it accommodates evolving requirements and implementation constraints. A more iterative approach, where validation strategies are reassessed at each milestone, would help mitigate these deviations in future projects.
+  
 \end{enumerate}
+
 
 \end{document}
