@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GenreGuru"
+version = "1.0.0"
+description = "A recommendation system based on spectral features"
+authors = [
+    {name = "Matthew Baleanu", email = "baleanum@mcmaster.ca"},
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9, <=3.11"
+
+dependencies = [
+    "numpy==1.26.4",
+    "librosa",
+    "tensorflow",
+    "scipy",
+    "spleeter >= 2.4.0",
+]
+
+[tool.setuptools]
+packages = ["src.featurizer", "src.recommendation"]
