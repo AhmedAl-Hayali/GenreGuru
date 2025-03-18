@@ -257,44 +257,6 @@ class Featurizer:
         
         return collaped_features
 
-    def write_to_csv(self, track_features, csv_filepath="src/featurizer/featurized_music.csv"):
-        "writes audio features to a .csv file"
-
-        # check if we need to create the file, and then check if we need to create fieldnames
-        os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
-        file_exists = os.path.exists(csv_filepath)
-        with open(csv_filepath, mode='a', newline='', encoding='utf-8') as csvfile:
-            fieldnames = [
-                'track_name',
-                'mean_spectral_rolloff',
-                'mean_spectral_centroid', 
-                'mean_spectral_bandwidth',
-                'mean_spectral_contrast',
-                'mean_rms',
-                'mean_dynamic_range',
-                'mean_instrumentalness',
-                'major_key',
-                'minor_key',
-                'bmp'
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-            if not file_exists:
-                writer.writeheader()
-            writer.writerow({
-                'track_name': track_features['track_name'],
-                'mean_spectral_rolloff': round(track_features['mean_spectral_rolloff'], 6),
-                'mean_spectral_centroid': round(track_features['mean_spectral_centroid'], 6),
-                'mean_spectral_bandwidth': round(track_features['mean_spectral_bandwidth'], 6),
-                'mean_spectral_contrast': round(track_features['mean_spectral_contrast'], 6),
-                'mean_rms': round(track_features['mean_rms'], 6),
-                'mean_dynamic_range': round(track_features['mean_dynamic_range'], 6),
-                'mean_instrumentalness': round(track_features['mean_instrumentalness'], 6),
-                'major_key': track_features['major_key'],
-                'minor_key': track_features['minor_key'],
-                'bmp': track_features['bmp']
-            })
-
     def write_features_to_csv(self, track_name, features, csv_filepath="src/featurizer/test.csv"):
         """
         Writes feature dictionary data into a CSV file, and seperates the data by section for the recommendation algo
@@ -371,7 +333,7 @@ def main_directory(directory = "src/deezer_previews/"):
 
         line = song_name | features
         print(line)
-        # feat.write_features_to_csv(line)
+        feat.write_features_to_csv(line)
 
 def main_audio_file(audio_file_path = "src/audio/"):
     # init featurizer
