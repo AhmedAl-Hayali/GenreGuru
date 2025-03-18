@@ -241,21 +241,25 @@ class Featurizer:
             "bpm": round(bpm)
         } 
 
-        features = {
-            "mean_spectral_rolloff": mean_rolloff,
-            "mean_spectral_centroid": mean_centroid,
-            "mean_spectral_bandwidth": mean_bandwidth,
-            "mean_spectral_contrast": mean_contrast,
-            "mean_rms": mean_rms,
-            "mean_dynamic_range": mean_dynamic_range,
-            "mean_instrumentalness": mean_instrumentalness,
-            "mean_spectral_flux": spectral_flux,
-            "major_key": major_key,
-            "minor_key": minor_key,
-            "bmp": round(bpm)
-        }   
+        # features = {
+        #     "mean_spectral_rolloff": mean_rolloff,
+        #     "mean_spectral_centroid": mean_centroid,
+        #     "mean_spectral_bandwidth": mean_bandwidth,
+        #     "mean_spectral_contrast": mean_contrast,
+        #     "mean_rms": mean_rms,
+        #     "mean_dynamic_range": mean_dynamic_range,
+        #     "mean_instrumentalness": mean_instrumentalness,
+        #     "mean_spectral_flux": spectral_flux,
+        #     "major_key": major_key,
+        #     "minor_key": minor_key,
+        #     "bmp": round(bpm)
+        # }   
         
         return collaped_features
+
+
+    def query_spotify_trackids(self, track_name):
+        """queries the track name in order to get the spotify trackID"""
 
     def write_features_to_csv(self, track_name, features, csv_filepath="src/featurizer/test.csv"):
         """
@@ -312,7 +316,6 @@ def main_directory(directory = "src/deezer_previews/"):
         _name = f"{audio_file.path}".split("/")[2]
 
         # _name = _name.split("preview_")[1]
-        song_name = {"track_name": _name}
         print(f"Currently Featurizing: {_name}")
 
         signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
@@ -331,9 +334,8 @@ def main_directory(directory = "src/deezer_previews/"):
 
         features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
-        line = song_name | features
-        print(line)
-        feat.write_features_to_csv(line)
+        # print(_name | features)
+        feat.write_features_to_csv(_name, features)
 
 def main_audio_file(audio_file_path = "src/audio/"):
     # init featurizer
