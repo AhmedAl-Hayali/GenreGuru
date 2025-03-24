@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import navigation
 import '../styles/playcard.css';
-import axios from 'axios';
 import { FaPlay, FaStop } from 'react-icons/fa';
 import { fetchRecommendations } from "../services/local_api";
+import { getDeezerPreview } from "../services/api";
 
 
 const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
@@ -11,21 +11,6 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
   const artistNames = artists.map(artist => artist.name).join(', ');
   const [audio, setAudio] = useState(null);
   const navigate = useNavigate(); // Initialize navigation
-
-  const fetchItunesPreview = async (isrc) => {
-    try {
-      const response = await axios.get(`https://itunes.apple.com/search`, {
-        params: { term: name, media: 'music', entity: 'musicTrack', limit: 1 }
-      });
-
-      if (response.data.results.length > 0) {
-        return response.data.results[0].previewUrl;
-      }
-    } catch (error) {
-      console.error("iTunes API fetch failed:", error);
-    }
-    return null;
-  };
 
   const handlePlayClick = async (e) => {
     e.stopPropagation(); // Prevent triggering the card click event
@@ -43,7 +28,7 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
     let trackUrl = preview_url;
     if (!trackUrl) {
       console.log("Fetching iTunes preview...");
-      trackUrl = await fetchItunesPreview(external_ids?.isrc);
+      trackUrl = await getDeezerPreview(external_ids?.isrc);
     }
 
     if (trackUrl) {

@@ -21,20 +21,16 @@ const getSpotifyToken = async () => {
   return response.data.access_token;
 };
 
-// Function to fetch preview URL from iTunes using ISRC code
-const getiTunesPreview = async (isrc) => {
+// Function to fetch preview URL from Deezer using ISRC code
+export const getDeezerPreview = async (isrc) => {
   try {
-    const response = await axios.get('https://itunes.apple.com/lookup', {
-      params: {
-        isrc: isrc,
-      },
-    });
+    const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://api.deezer.com/track/isrc:${isrc}`);
 
-    if (response.data.results.length > 0) {
-      return response.data.results[0].previewUrl; // iTunes preview URL
+    if (response.data && response.data.preview) {
+      return response.data.preview; // Deezer preview URL (30s mp3)
     }
   } catch (error) {
-    console.error('iTunes API search failed:', error);
+    console.error('Deezer API search failed:', error);
   }
 
   return null; // Return null if no preview found
@@ -61,9 +57,10 @@ export const searchSong = async (query) => {
     const updatedTracks = await Promise.all(
       tracks.map(async (track) => {
         if (!track.preview_url && track.external_ids?.isrc) {
-          const itunesPreview = await getiTunesPreview(track.external_ids.isrc);
-          if (itunesPreview) {
-            return { ...track, preview_url: itunesPreview }; // Add iTunes preview URL
+          console.log(track.external_ids.isrc)
+          const deezerPreview = await getDeezerPreview(track.external_ids.isrc);
+          if (deezerPreview) {
+            return { ...track, preview_url: deezerPreview }; // Add iTunes preview URL
           }
         }
         return track;
