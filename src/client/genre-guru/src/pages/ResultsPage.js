@@ -10,11 +10,19 @@ const ResultsPage = () => {
   const [recommendations, setRecommendations] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
 
+   // Hardcoded Spotify IDs for testing (Replace later with API response)
+  const hardcodedSpotifyIds = [
+    "2dBwB667LHQkLhdYlwLUZK",
+    "1Yk0cQdMLx5RzzFTYwmuld",
+    "22FniXvTKV9IC6IhxCpYve",
+    "7qwt4xUIqQWCu1DJf96g2k"
+  ];
+
   useEffect(() => {
     if (spotifyIds && spotifyIds.length > 0) {
       const getRecommendations = async () => {
         try {
-          const tracks = await fetchTrackDetails(spotifyIds);
+          const tracks = await fetchTrackDetails(hardcodedSpotifyIds);
           setRecommendations(tracks);
         } catch (error) {
           console.error("Failed to load recommendations:", error);

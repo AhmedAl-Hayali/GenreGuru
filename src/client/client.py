@@ -1,31 +1,38 @@
 import socket
 
-def run_client():
-    # create a socket object
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+class Client:
+    def __init__(self, server_ip, server_port):
+        self.server_ip = server_ip
+        self.server_port = server_port
+        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    server_ip = ""  # replace with the server's IP address
-    server_port = ""  # replace with the server's port number
-    # establish connection with server
-    client.connect((server_ip, server_port))
+    def connect(self):
+        """
+        Establish connection with the backend server.
+        """
+        try:
+            self.client_socket.connect((self.server_ip, self.server_port))
+            print(f"Connected to backend server at {self.server_ip}:{self.server_port}")
+            return True
+        except socket.error as e:
+            print(f"Connection error: {e}")
+            return False
 
-    while True:
-        # input message and send it to the server
-        msg = input("Enter message: ")
-        client.send(msg.encode("utf-8")[:1024])
+    def send_message(self, message):
+        """
+        Send message to the backend and receive response.
+        """
+        try:
+            self.client_socket.sendall(message.encode("utf-8"))  # Send entire message
+            response = self.client_socket.recv(4096).decode("utf-8")
+            return response
+        except socket.error as e:
+            print(f"Communication error: {e}")
+            return None
 
-        # receive message from the server
-        response = client.recv(1024)
-        response = response.decode("utf-8")
-
-        # if server sent us "closed" in the payload, we break out of the loop and close our socket
-        if response.lower() == "closed":
-            break
-
-        print(f"Received: {response}")
-
-    # close client socket (connection to the server)
-    client.close()
-    print("Connection to server closed")
-
-run_client()
+    def close(self):
+        """
+        Close the connection.
+        """
+        self.client_socket.close()
+        print("Connection closed.")
