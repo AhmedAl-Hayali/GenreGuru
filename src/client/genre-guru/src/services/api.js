@@ -53,14 +53,14 @@ export const searchSong = async (query) => {
 
     let tracks = response.data.tracks.items;
 
-    // Enrich tracks with iTunes preview URLs if Spotify preview_url is null
+    // Enrich tracks with preview URLs if Spotify preview_url is null
     const updatedTracks = await Promise.all(
       tracks.map(async (track) => {
         if (!track.preview_url && track.external_ids?.isrc) {
           console.log(track.external_ids.isrc)
           const deezerPreview = await getDeezerPreview(track.external_ids.isrc);
           if (deezerPreview) {
-            return { ...track, preview_url: deezerPreview }; // Add iTunes preview URL
+            return { ...track, preview_url: deezerPreview }; // Add preview URL
           }
         }
         return track;

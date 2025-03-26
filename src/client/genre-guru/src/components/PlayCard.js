@@ -27,7 +27,7 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
 
     let trackUrl = preview_url;
     if (!trackUrl) {
-      console.log("Fetching iTunes preview...");
+      console.log("Fetching Deezer preview...");
       trackUrl = await getDeezerPreview(external_ids?.isrc);
     }
 
