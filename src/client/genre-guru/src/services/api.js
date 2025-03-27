@@ -1,25 +1,16 @@
 import axios from 'axios';
 
-// Function to get Spotify API token
 const getSpotifyToken = async () => {
-  const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-  const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
-
-  const response = await axios.post(
-    'https://accounts.spotify.com/api/token',
-    new URLSearchParams({
-      grant_type: 'client_credentials',
-    }),
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-      },
-    }
-  );
-
-  return response.data.access_token;
+  try {
+    const response = await fetch("http://localhost:5000/get_spotify_token");
+    const data = await response.json();
+    return data.access_token;
+  } catch (error) {
+    console.error("Error fetching token from Flask server:", error);
+    throw error;
+  }
 };
+
 
 // Function to fetch preview URL from Deezer using ISRC code
 export const getDeezerPreview = async (isrc) => {
