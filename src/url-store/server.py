@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # <-- Add this import
 import os
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})  # <-- Allow all origins (or restrict to localhost if you prefer)
+
 latest_url = None
 
 @app.route("/update-url", methods=["POST"])
