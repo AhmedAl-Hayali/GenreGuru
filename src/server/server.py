@@ -1,12 +1,16 @@
-# server.py (replaces socket-based backend with Flask API)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import base64
 import os
-
+import subprocess
+import time
+import requests
+import json
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
+
+URL_STORE_ENDPOINT = "https://url-store.onrender.com/update-url"
 
 def save_wav_file(encoded_wav, output_path="received_audio.wav"):
     try:
@@ -34,7 +38,6 @@ def process_request():
             spotify_id = data["spotify_id"]
             print(f"Received Spotify ID: {spotify_id}")
 
-        # Simulated output
         recommended_ids = [
             "6rqhFgbbKwnb9MLmUQDhG6",
             "0VjIjW4GlUZAMYd2vXMi3b",
@@ -46,6 +49,35 @@ def process_request():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return jsonify({"status": "Backend is alive!"}), 200
+
+def start_ngrok_and_post_url():
+    # Start ngrok in background
+    subprocess.Popen(["ngrok", "http", "5000"])
+    print("Started ngrok... waiting for public URL")
+
+    # Give ngrok time to initialize
+    time.sleep(5)
+
+    try:
+        # Fetch public ngrok URL
+        tunnels_info = requests.get("http://127.0.0.1:4040/api/tunnels").json()
+        public_url = tunnels_info["tunnels"][0]["public_url"]
+        print(f"Ngrok URL: {public_url}")
+
+        # Send to URL store
+        payload = {"url": public_url}
+        res = requests.post(URL_STORE_ENDPOINT, json=payload)
+        if res.status_code == 200:
+            print("Ngrok URL shared with frontend successfully.")
+        else:
+            print("Failed to update Render URL store.")
+
+    except Exception as e:
+        print(f"Error setting up ngrok tunnel: {e}")
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    start_ngrok_and_post_url()
+    app.run(host="0.0.0.0", port=5000)
