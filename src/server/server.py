@@ -11,17 +11,6 @@ CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 URL_STORE_ENDPOINT = "https://genreguru.onrender.com/update-url"
 
-# Dummy Deezer Tracks List
-deezer_tracks = [
-    {
-        "id": 3135556,
-        "title": "Harder, Better, Faster, Stronger",
-        "isrc": "GBDUW0000059",
-        "duration": 226,
-        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103632~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=4de88944ce5d1788662d9a9983f9bf52411d0821c7bd5b93bc92d8e58bcd3011"
-    }
-]
-
 
 def save_wav_file(encoded_wav, output_path="received_audio.wav"):
     try:
@@ -51,7 +40,23 @@ def process_request():
             if not deezer_track:
                 raise ValueError("Missing deezer_track in request")
 
-            return jsonify({"deezer_tracks": [deezer_track]})
+            return jsonify({
+    "deezer_tracks": [
+        {
+            "id": 3135556,
+            "title": "Harder, Better, Faster, Stronger",
+            "isrc": "GBDUW0000059",
+            "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
+        },
+        {
+            "id": 2582901922,
+            "title": "Happier (feat. Clementine Douglas)",
+            "isrc": "GBAHT2301515",
+            "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
+        }
+    ]
+})
+
     except Exception as e:
         print("Error in /process:", str(e))
         return jsonify({"error": str(e)}), 500
