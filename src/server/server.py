@@ -5,6 +5,7 @@ import subprocess
 import time
 import requests
 import threading
+import uuid
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
@@ -12,7 +13,7 @@ CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 URL_STORE_ENDPOINT = "https://genreguru.onrender.com/update-url"
 
 
-def save_wav_file(encoded_wav, output_path="received_audio.wav"):
+def save_wav_file(encoded_wav, output_path=f"received_{uuid.uuid4().hex}.wav"):
     try:
         wav_data = base64.b64decode(encoded_wav)
         with open(output_path, "wb") as wav_file:
@@ -32,7 +33,33 @@ def process_request():
         is_wav_file = data.get("is_wav_file", False)
 
         if is_wav_file:
-            ...
+            encoded_wav = data.get("file")
+            if not encoded_wav:
+                raise ValueError("Missing encoded WAV file")
+
+            file_path = save_wav_file(encoded_wav)
+            if not file_path:
+                raise ValueError("Failed to save WAV file")
+
+            # This is a stub for future model predictions
+            print(f"Saved WAV to: {file_path}")
+            return jsonify({
+                "deezer_tracks": [
+                    {
+                        "id": 3135556,
+                        "title": "Harder, Better, Faster, Stronger",
+                        "isrc": "GBDUW0000059",
+                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
+                    },
+                    {
+                        "id": 2582901922,
+                        "title": "Happier (feat. Clementine Douglas)",
+                        "isrc": "GBAHT2301515",
+                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
+                    }
+                ]
+            })
+        
         else:
             deezer_track = data.get("deezer_track")
             print("Received Deezer Track:", deezer_track)
@@ -41,21 +68,21 @@ def process_request():
                 raise ValueError("Missing deezer_track in request")
 
             return jsonify({
-    "deezer_tracks": [
-        {
-            "id": 3135556,
-            "title": "Harder, Better, Faster, Stronger",
-            "isrc": "GBDUW0000059",
-            "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
-        },
-        {
-            "id": 2582901922,
-            "title": "Happier (feat. Clementine Douglas)",
-            "isrc": "GBAHT2301515",
-            "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
-        }
-    ]
-})
+                "deezer_tracks": [
+                    {
+                        "id": 3135556,
+                        "title": "Harder, Better, Faster, Stronger",
+                        "isrc": "GBDUW0000059",
+                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
+                    },
+                    {
+                        "id": 2582901922,
+                        "title": "Happier (feat. Clementine Douglas)",
+                        "isrc": "GBAHT2301515",
+                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
+                    }
+                ]
+            })
 
     except Exception as e:
         print("Error in /process:", str(e))
