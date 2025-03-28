@@ -1,10 +1,16 @@
 import axios from "axios";
 
 let cachedBaseUrl = null;
+let lastFetched = 0;
+const TTL = 60 * 1000; // 1 minute in milliseconds
 
-// Fetch the dynamic backend URL from the URL store
 export const getBaseURL = async () => {
-  if (cachedBaseUrl) return cachedBaseUrl;
+  const now = Date.now();
+  
+  // Only use cached URL if it's fresh
+  if (cachedBaseUrl && (now - lastFetched < TTL)) {
+    return cachedBaseUrl;
+  }
 
   try {
     const response = await axios.get("https://genreguru.onrender.com/get-url");
@@ -15,12 +21,14 @@ export const getBaseURL = async () => {
     }
 
     cachedBaseUrl = url;
+    lastFetched = now;
     return url;
   } catch (error) {
     console.error("Error fetching backend URL from URL store:", error);
     throw error;
   }
 };
+
 
 // Upload a WAV file for recommendations
 export const uploadWavFile = async (file) => {
