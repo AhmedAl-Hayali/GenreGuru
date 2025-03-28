@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PlayCard from "../components/PlayCard";
-import { fetchTrackDetails } from "../services/api"; // Use centralized API logic
 import "../styles/results.css";
+import { getSpotifyTrackFromISRC } from "../services/api";
 
 const ResultsPage = () => {
   const location = useLocation();
-  const { spotifyIds } = location.state || {};
+  const { deezerTracks } = location.state || {};
   const [recommendations, setRecommendations] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
 
-   // Hardcoded Spotify IDs for testing (Replace later with API response)
-  const hardcodedSpotifyIds = [
-    "2dBwB667LHQkLhdYlwLUZK",
-    "1Yk0cQdMLx5RzzFTYwmuld",
-    "22FniXvTKV9IC6IhxCpYve",
-    "7qwt4xUIqQWCu1DJf96g2k"
-  ];
-
   useEffect(() => {
-    if (spotifyIds && spotifyIds.length > 0) {
-      const getRecommendations = async () => {
-        try {
-          const tracks = await fetchTrackDetails(hardcodedSpotifyIds);
-          setRecommendations(tracks);
-        } catch (error) {
-          console.error("Failed to load recommendations:", error);
-        }
-      };
+    const fetchSpotifyTracks = async () => {
+      if (!deezerTracks || deezerTracks.length === 0) return;
 
-      getRecommendations();
-    }
-  }, [spotifyIds]);
+      try {
+        const promises = deezerTracks.map(async (deezerTrack) => {
+          const isrc = deezerTrack?.isrc;
+          if (!isrc) return null;
+          return await getSpotifyTrackFromISRC(isrc);
+        });
+
+        const resolvedTracks = await Promise.all(promises);
+        const filteredTracks = resolvedTracks.filter((track) => track !== null);
+        setRecommendations(filteredTracks);
+      } catch (err) {
+        console.error("Error fetching Spotify tracks:", err);
+      }
+    };
+
+    fetchSpotifyTracks();
+  }, [deezerTracks]);
 
   // Handle play/stop logic
   const handlePlay = (audio, trackId) => {
