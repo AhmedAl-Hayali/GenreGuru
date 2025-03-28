@@ -1,6 +1,6 @@
 import { FaUpload } from "react-icons/fa";
 import "../styles/uploadfile.css";
-import { uploadWavFile } from "../services/local_api";
+import { uploadWavFile } from "../services/backend_api";
 import { useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 

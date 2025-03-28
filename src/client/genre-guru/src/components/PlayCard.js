@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import navigation
 import '../styles/playcard.css';
 import { FaPlay, FaStop } from 'react-icons/fa';
-import { fetchRecommendations } from "../services/local_api";
+import { fetchRecommendations } from "../services/backend_api";
 import { getDeezerPreview } from "../services/api";
+import { getDeezerTrackFromISRC } from "../services/api";
+
 
 
 const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
@@ -49,13 +51,22 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
   // Handle clicking on the playcard itself
   const handleCardClick = async () => {
     try {
-      console.log("Sending Spotify ID:", track.id);
-      const spotifyIds = await fetchRecommendations(track.id);
-      navigate(`/results`, { state: { spotifyIds } });
+      const isrc = track?.external_ids.isrc;
+      if (!isrc) throw new Error("No ISRC available for this track");
+  
+      const deezerTrack = await getDeezerTrackFromISRC(isrc);
+      if (!deezerTrack) throw new Error("Failed to get Deezer track");
+  
+      const recommendations = await fetchRecommendations(deezerTrack); // pass full object
+  
+      navigate("/results", {
+        state: { deezerTracks: recommendations },
+      });
     } catch (error) {
-      console.error("Error fetching recommendations:", error);
+      console.error("Error handling card click:", error);
     }
   };
+  
 
   return (
     <div 

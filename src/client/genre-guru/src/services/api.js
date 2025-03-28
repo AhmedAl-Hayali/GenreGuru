@@ -24,17 +24,44 @@ const getSpotifyToken = async () => {
 // Function to fetch preview URL from Deezer using ISRC code
 export const getDeezerPreview = async (isrc) => {
   try {
-    const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://api.deezer.com/track/isrc:${isrc}`);
-
-    if (response.data && response.data.preview) {
-      return response.data.preview; // Deezer preview URL (30s mp3)
-    }
+    const track = await getDeezerTrackFromISRC(isrc);
+    return track?.preview || null;
   } catch (error) {
-    console.error('Deezer API search failed:', error);
+    console.error("Deezer preview fetch failed:", error);
+    return null;
   }
-
-  return null; // Return null if no preview found
 };
+
+export const getDeezerTrackFromISRC = async (isrc) => {
+  try {
+    const response = await axios.get(`https://genreguru.onrender.com/proxy/deezer?isrc=${isrc}`);
+    return response.data;
+  } catch (err) {
+    console.error("Failed to fetch Deezer track from ISRC:", err);
+    throw err;
+  }
+};
+
+
+
+
+
+export const getSpotifyTrackFromISRC = async (isrc) => {
+  const accessToken = await getSpotifyToken();
+  const response = await axios.get(`https://api.spotify.com/v1/search`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    params: {
+      q: `isrc:${isrc}`,
+      type: "track",
+      limit: 1,
+    },
+  });
+
+  return response.data.tracks.items[0]; // null if not found
+};
+
 
 // Search for a song using the Spotify API
 export const searchSong = async (query) => {
@@ -107,6 +134,7 @@ export const fetchTrackDetails = async (spotifyIds) => {
     }
   };
   
+
   
   
   
