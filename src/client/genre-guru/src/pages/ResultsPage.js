@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import PlayCard from "../components/PlayCard";
 import "../styles/results.css";
 import { getSpotifyTrackFromISRC } from "../services/api";
+import { getDeezerTrackFromID } from "../services/api";
 
 const ResultsPage = () => {
   const location = useLocation();
