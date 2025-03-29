@@ -57,10 +57,10 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
       const deezerTrack = await getDeezerTrackFromISRC(isrc);
       if (!deezerTrack) throw new Error("Failed to get Deezer track");
   
-      const recommendations = await fetchRecommendations(deezerTrack); // pass full object
+      const trackIds = await fetchRecommendations(deezerTrack); // pass full object
   
       navigate("/results", {
-        state: { deezerTracks: recommendations },
+        state: { trackIds },
       });
     } catch (error) {
       console.error("Error handling card click:", error);

@@ -6,16 +6,17 @@ import { getSpotifyTrackFromISRC } from "../services/api";
 
 const ResultsPage = () => {
   const location = useLocation();
-  const { deezerTracks } = location.state || {};
+  const { deezerTrackIds } = location.state || {};
   const [recommendations, setRecommendations] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
 
   useEffect(() => {
     const fetchSpotifyTracks = async () => {
-      if (!deezerTracks || deezerTracks.length === 0) return;
+      if (!deezerTrackIds || deezerTrackIds.length === 0) return;
 
       try {
-        const promises = deezerTracks.map(async (deezerTrack) => {
+        const promises = deezerTrackIds.map(async (id) => {
+          const deezerTrack = await getDeezerTrackFromID(id);
           const isrc = deezerTrack?.isrc;
           if (!isrc) return null;
           return await getSpotifyTrackFromISRC(isrc);
@@ -30,7 +31,7 @@ const ResultsPage = () => {
     };
 
     fetchSpotifyTracks();
-  }, [deezerTracks]);
+  }, [deezerTrackIds]);
 
   // Handle play/stop logic
   const handlePlay = (audio, trackId) => {

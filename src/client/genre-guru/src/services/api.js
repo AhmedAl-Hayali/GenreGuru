@@ -43,7 +43,15 @@ export const getDeezerTrackFromISRC = async (isrc) => {
 };
 
 
-
+export const getDeezerTrackFromID = async (id) => {
+  try {
+    const response = await axios.get(`https://genreguru.onrender.com/proxy/deezer?id=${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching Deezer track by ID:", error);
+    return null;
+  }
+};
 
 
 export const getSpotifyTrackFromISRC = async (isrc) => {

@@ -34,37 +34,30 @@ export const getBaseURL = async () => {
 export const uploadWavFile = async (base64Wav) => {
   try {
     const API_BASE_URL = await getBaseURL();
-
     const response = await axios.post(`${API_BASE_URL}/process`, {
       is_wav_file: true,
       file: base64Wav,
     });
 
-    return response.data.deezer_tracks || []; // adapt as needed
+    return response.data.track_ids || []; // Expecting track_ids from backend
   } catch (err) {
     console.error("Upload failed:", err);
     throw err;
   }
 };
 
-
-
 // Submit a Deezer track for recommendations
 export const fetchRecommendations = async (deezerTrack) => {
   try {
     const API_BASE_URL = await getBaseURL();
-
     const response = await axios.post(`${API_BASE_URL}/process`, {
       is_wav_file: false,
       deezer_track: deezerTrack,
     });
 
-    return response.data.deezer_tracks;
+    return response.data.track_ids || []; // Expecting track_ids from backend
   } catch (error) {
     console.error("API error during recommendation request:", error);
     throw error;
   }
 };
-
-
-
