@@ -6,6 +6,10 @@ import time
 import requests
 import threading
 import uuid
+from io import BytesIO
+from pydub import AudioSegment
+from deezer import Client
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
@@ -43,6 +47,7 @@ def process_request():
 
             # This is a stub for future model predictions
             print(f"Saved WAV to: {file_path}")
+
             return jsonify({
                 "deezer_tracks": [
                     {
@@ -64,8 +69,26 @@ def process_request():
             deezer_track = data.get("deezer_track")
             print("Received Deezer Track:", deezer_track)
 
-            if not deezer_track:
-                raise ValueError("Missing deezer_track in request")
+            if not deezer_track: raise ValueError("Missing deezer_track in request")
+
+            dz = Client()
+            preview_url = dz.get_track(deezer_track["id"]).preview
+            response = requests.get(preview_url)
+            mp3_bytes = BytesIO(response.content)
+
+            print("successfully gotten the response")
+            # Step 2: Convert MP3 to WAV using pydub
+            audio = AudioSegment.from_file(mp3_bytes, format="mp3")
+            wav_object = BytesIO()
+            audio.export(wav_object, format="wav")
+            wav_object.seek(0)
+
+
+            # with open("preview.wav", "wb") as f: f.write(wav_object.read())
+
+            # print("WAV file saved as preview.wav")
+            # print(data.shape)
+
 
             return jsonify({
                 "deezer_tracks": [
