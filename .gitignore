@@ -294,3 +294,4 @@ src/cfg.toml
 /src/featurizer/__pycache__
 /src/featurizer/__pycache__
 .coverage.*
+node_modules
