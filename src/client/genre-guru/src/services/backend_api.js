@@ -31,40 +31,23 @@ export const getBaseURL = async () => {
 
 
 // Upload a WAV file for recommendations
-export const uploadWavFile = async (file) => {
+export const uploadWavFile = async (base64Wav) => {
   try {
-    const reader = new FileReader();
+    const API_BASE_URL = await getBaseURL();
 
-    return new Promise((resolve, reject) => {
-      reader.onload = async () => {
-        try {
-          const base64Wav = reader.result.split(",")[1]; // Extract base64 string
-          const API_BASE_URL = await getBaseURL();
-
-          const response = await axios.post(`${API_BASE_URL}/process`, {
-            is_wav_file: true,
-            file: base64Wav,
-          });
-
-          resolve(response.data.spotify_ids);
-        } catch (err) {
-          console.error("API error during WAV upload:", err);
-          reject(err);
-        }
-      };
-
-      reader.onerror = (error) => {
-        console.error("File reading error:", error);
-        reject(error);
-      };
-
-      reader.readAsDataURL(file);
+    const response = await axios.post(`${API_BASE_URL}/process`, {
+      is_wav_file: true,
+      file: base64Wav,
     });
-  } catch (error) {
-    console.error("Unexpected error during file upload:", error);
-    throw error;
+
+    return response.data.deezer_tracks || []; // adapt as needed
+  } catch (err) {
+    console.error("Upload failed:", err);
+    throw err;
   }
 };
+
+
 
 // Submit a Deezer track for recommendations
 export const fetchRecommendations = async (deezerTrack) => {
