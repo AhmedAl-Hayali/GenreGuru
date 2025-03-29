@@ -17,14 +17,19 @@ def update_url():
 def get_url():
     return jsonify({"url": latest_url})
 
-# Proxy Deezer API through Render
+# Proxy Deezer API through Render (by ISRC or ID)
 @app.route("/proxy/deezer", methods=["GET"])
 def proxy_deezer():
     isrc = request.args.get("isrc")
-    if not isrc:
-        return jsonify({"error": "Missing ISRC"}), 400
+    track_id = request.args.get("id")
 
-    deezer_url = f"https://api.deezer.com/track/isrc:{isrc}"
+    if isrc:
+        deezer_url = f"https://api.deezer.com/track/isrc:{isrc}"
+    elif track_id:
+        deezer_url = f"https://api.deezer.com/track/{track_id}"
+    else:
+        return jsonify({"error": "Missing 'isrc' or 'id' parameter"}), 400
+
     try:
         headers = {"User-Agent": "GenreGuru/1.0"}
         response = requests.get(deezer_url, headers=headers, timeout=10)
