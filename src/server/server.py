@@ -9,13 +9,12 @@ import uuid
 from io import BytesIO
 from pydub import AudioSegment
 from deezer import Client
-
+from src.featurizer.main_featurizer import Featurizer
+from src.recommendation.recommend import Recommendation
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
-
 URL_STORE_ENDPOINT = "https://genreguru.onrender.com/update-url"
-
 
 def save_wav_file(encoded_wav, output_path=f"received_{uuid.uuid4().hex}.wav"):
     try:
@@ -47,7 +46,6 @@ def process_request():
 
             # This is a stub for future model predictions
             print(f"Saved WAV to: {file_path}")
-
             return jsonify({
                 "deezer_tracks": [
                     {
@@ -70,9 +68,11 @@ def process_request():
             print("Received Deezer Track:", deezer_track)
 
             if not deezer_track: raise ValueError("Missing deezer_track in request")
-
+            featurizer = Featurizer()
             dz = Client()
-            preview_url = dz.get_track(deezer_track["id"]).preview
+
+            deezer_ID = deezer_track["id"]
+            preview_url = dz.get_track(deezer_ID).preview
             response = requests.get(preview_url)
             mp3_bytes = BytesIO(response.content)
 
@@ -83,12 +83,25 @@ def process_request():
             audio.export(wav_object, format="wav")
             wav_object.seek(0)
 
+            features = featurizer.run(wav_object)
+            
+            print(features)
 
             # with open("preview.wav", "wb") as f: f.write(wav_object.read())
 
             # print("WAV file saved as preview.wav")
             # print(data.shape)
+            
+            
+            # track_test = [dz.get_track(3135556)]
+            
+            # # jsonify({track_test})
+            # return jsonify({
+            #     "deezer_tracks": track_test
+            #     })
 
+            trackids = [110021542, 76376876, 874193372, 13234901, 3033559961, 2896010741, 1516680192, 771139772, 680449212, 2298383495]
+            return jsonify({"deezer_tracks": trackids})
 
             return jsonify({
                 "deezer_tracks": [
