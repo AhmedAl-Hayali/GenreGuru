@@ -8,7 +8,7 @@ import { getDeezerTrackFromISRC } from "../services/api";
 
 
 
-const PlayCard = ({ track, onPlay, isPlaying, variant = "search", isSelected = false }) => {
+const PlayCard = ({ track, onPlay, isPlaying, variant = "search", isSelected }) => {
   const { name, artists, album, preview_url, external_ids} = track;
   const artistNames = artists.map(artist => artist.name).join(', ');
   const [audio, setAudio] = useState(null);
@@ -78,7 +78,7 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search", isSelected = f
   
   return (
     <div 
-      className={`play-card ${variant === "recommendation" ? "recommendation-card" : ""} ${isSelected ? "selected" : ""}`} 
+    className={`play-card ${variant === "recommendation" ? "recommendation-card" : ""} ${isSelected ? "selected" : ""}`}
     >
 
       <img className="album-art" src={album.images[0]?.url || ''} alt={name} />

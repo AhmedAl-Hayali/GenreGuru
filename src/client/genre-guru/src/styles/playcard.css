@@ -8,7 +8,7 @@
     width: 80%;
     max-width: 600px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: border 0.2s ease, transform 0.2s ease;
   }
   
   .play-card:hover:not(.selected) {
@@ -24,17 +24,24 @@
   .track-info {
     flex-grow: 1;
     margin-left: 10px;
-  }
+    min-width: 0; /* Required for ellipsis inside flex item */
+  }  
   
   .track-name {
     font-size: 16px;
     font-weight: bold;
     color: #ffffff;
-  }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }  
   
   .artist-name {
     font-size: 14px;
     color: #b0b0b0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .play-btn {
@@ -49,4 +56,5 @@
     border: 3px solid #00ff00;
     transform: scale(1.05);
   }
+  
   
