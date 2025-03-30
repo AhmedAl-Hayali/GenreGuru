@@ -35,3 +35,15 @@
     width: 400px; /* Ensures playcards don't shrink */
     height: 150px; /* Adjusted for better spacing */
 }
+
+.carousel-item {
+    transition: transform 0.2s;
+    border-radius: 12px;
+  }
+  
+  .carousel-item.selected {
+    border: 3px solid #00ff00; /* bright green */
+    transform: scale(1.05);
+  }
+  
+  

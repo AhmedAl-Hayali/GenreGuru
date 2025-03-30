@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import navigation
 import '../styles/playcard.css';
 import { FaPlay, FaStop } from 'react-icons/fa';
@@ -8,7 +8,7 @@ import { getDeezerTrackFromISRC } from "../services/api";
 
 
 
-const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
+const PlayCard = ({ track, onPlay, isPlaying, variant = "search", isSelected = false }) => {
   const { name, artists, album, preview_url, external_ids} = track;
   const artistNames = artists.map(artist => artist.name).join(', ');
   const [audio, setAudio] = useState(null);
@@ -66,13 +66,21 @@ const PlayCard = ({ track, onPlay, isPlaying, variant = "search" }) => {
       console.error("Error handling card click:", error);
     }
   };
-  
 
+  useEffect(() => {
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
+  }, [audio]);
+  
   return (
     <div 
-      className={`play-card ${variant === "recommendation" ? "recommendation-card" : ""}`} 
-      onClick={handleCardClick} // Navigate when clicking the card
+      className={`play-card ${variant === "recommendation" ? "recommendation-card" : ""} ${isSelected ? "selected" : ""}`} 
     >
+
       <img className="album-art" src={album.images[0]?.url || ''} alt={name} />
       <div className="track-info">
         <div className="track-name">{name}</div>

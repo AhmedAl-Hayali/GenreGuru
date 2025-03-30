@@ -4,25 +4,28 @@ import PlayCard from "../components/PlayCard";
 import "../styles/results.css";
 import { getSpotifyTrackFromISRC } from "../services/api";
 import { getDeezerTrackFromID } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const ResultsPage = () => {
   const location = useLocation();
-  const { deezerTrackIds } = location.state || {};
+  const navigate = useNavigate();
+  const { trackIds, selectedTrack } = location.state || {};
+
   const [recommendations, setRecommendations] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
 
   useEffect(() => {
     const fetchSpotifyTracks = async () => {
-      if (!deezerTrackIds || deezerTrackIds.length === 0) return;
-
+      if (!trackIds || trackIds.length === 0) return;
+  
       try {
-        const promises = deezerTrackIds.map(async (id) => {
+        const promises = trackIds.map(async (id) => {
           const deezerTrack = await getDeezerTrackFromID(id);
           const isrc = deezerTrack?.isrc;
           if (!isrc) return null;
           return await getSpotifyTrackFromISRC(isrc);
         });
-
+  
         const resolvedTracks = await Promise.all(promises);
         const filteredTracks = resolvedTracks.filter((track) => track !== null);
         setRecommendations(filteredTracks);
@@ -30,9 +33,10 @@ const ResultsPage = () => {
         console.error("Error fetching Spotify tracks:", err);
       }
     };
-
+  
     fetchSpotifyTracks();
-  }, [deezerTrackIds]);
+  }, [trackIds]);
+  
 
   // Handle play/stop logic
   const handlePlay = (audio, trackId) => {
@@ -51,7 +55,12 @@ const ResultsPage = () => {
 
   return (
     <div className="results-container">
+      <button onClick={() => navigate("/")} className="back-btn">
+        ← Back
+      </button>
+  
       <h2>Recommended Songs</h2>
+  
       <div className="results-list">
         {recommendations.map((track) => (
           <PlayCard
@@ -65,6 +74,7 @@ const ResultsPage = () => {
       </div>
     </div>
   );
+  
 };
 
 export default ResultsPage;

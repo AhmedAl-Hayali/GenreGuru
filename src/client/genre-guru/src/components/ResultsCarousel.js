@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PlayCard from './PlayCard';
 import '../styles/carousel.css';
 
-const ResultsCarousel = ({ results }) => {
+const ResultsCarousel = ({ results, selectedTrack, onTrackClick }) => {
   const [currentAudio, setCurrentAudio] = useState(null);
   const [currentTrackId, setCurrentTrackId] = useState(null);
 
@@ -17,12 +17,19 @@ const ResultsCarousel = ({ results }) => {
   return (
     <div className="results-carousel">
       {results.map((track, index) => (
-        <PlayCard 
-          key={index} 
-          track={track} 
-          onPlay={handlePlay}
-          isPlaying={track.id === currentTrackId} 
-        />
+        <div
+          key={index}
+          className={`carousel-item ${selectedTrack?.id === track.id ? 'selected' : ''}`}
+          onClick={() => onTrackClick(track)}
+        >
+          <PlayCard 
+            track={track} 
+            onPlay={handlePlay}
+            isPlaying={track.id === currentTrackId}
+            isSelected={selectedTrack?.id === track.id}
+          />
+
+        </div>
       ))}
     </div>
   );
