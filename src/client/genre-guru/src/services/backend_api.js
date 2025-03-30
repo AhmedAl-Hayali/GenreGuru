@@ -6,9 +6,9 @@ const TTL = 60 * 1000; // 1 minute in milliseconds
 
 export const getBaseURL = async () => {
   const now = Date.now();
-  
+
   // Only use cached URL if it's fresh
-  if (cachedBaseUrl && (now - lastFetched < TTL)) {
+  if (cachedBaseUrl && now - lastFetched < TTL) {
     return cachedBaseUrl;
   }
 
@@ -29,14 +29,14 @@ export const getBaseURL = async () => {
   }
 };
 
-
-// Upload a WAV file for recommendations
-export const uploadWavFile = async (base64Wav) => {
+// ✅ Upload a WAV file using FormData instead of base64
+export const uploadWavFile = async (formData) => {
   try {
     const API_BASE_URL = await getBaseURL();
-    const response = await axios.post(`${API_BASE_URL}/process`, {
-      is_wav_file: true,
-      file: base64Wav,
+    const response = await axios.post(`${API_BASE_URL}/process`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
 
     return response.data.track_ids || []; // Expecting track_ids from backend
@@ -46,7 +46,7 @@ export const uploadWavFile = async (base64Wav) => {
   }
 };
 
-// Submit a Deezer track for recommendations
+// ✅ Submit a Deezer track for recommendations
 export const fetchRecommendations = async (deezerTrack) => {
   try {
     const API_BASE_URL = await getBaseURL();
@@ -55,7 +55,7 @@ export const fetchRecommendations = async (deezerTrack) => {
       deezer_track: deezerTrack,
     });
 
-    return response.data.track_ids || []; // Expecting track_ids from backend
+    return response.data.track_ids || [];
   } catch (error) {
     console.error("API error during recommendation request:", error);
     throw error;
