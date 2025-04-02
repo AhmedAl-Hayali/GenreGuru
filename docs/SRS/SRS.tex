@@ -60,20 +60,28 @@
 \subsection{User Business}
 \textcolor{red}{\sout{Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.}}
 
-Discovering new music that aligns with an individual's unique taste can be overwhelming, especially in todays vast music industry. 
+\textcolor{red}{Discovering new music that aligns with an individual's unique taste can be overwhelming, especially in todays vast music industry. 
 GenreGuru simplifies this process by leveraging a content-based recommendation system. 
 Rather than relying on user ratings or external popularity metrics, GenreGuru analyzes the intrinsic features of each song, 
 such as spectral characteristics, tempo, and key, to identify and suggest tracks that closely match a user's current favorite. 
 This approach empowers casual listeners, hobbyists, and music enthusiasts to effortlessly explore new music that resonates with their preferences, 
-transforming the music discovery into a more engaging experience.
+transforming the music discovery into a more engaging experience.}
 
 \subsection{Goals of the Project}
-\emph{GenreGuru} shall:
+
 \begin{itemize}
-  \item \emph{featurize} -- produce tabular features corresponding to characteristics of input songs;
-  \item \emph{recommend} -- produce a collection of songs similar to input songs;
-  \item \emph{generate} -- produce an audio artifact similar to input reference songs.
+  \item \textcolor{red}{\sout{\emph{featurize} -- produce tabular features corresponding to characteristics of input songs;}}
+  \item \textcolor{red}{\sout{\emph{recommend} -- produce a collection of songs similar to input songs;}}
+  \item \textcolor{red}{\sout{\emph{generate} -- produce an audio artifact similar to input reference songs.}}  
 \end{itemize}
+
+
+\textcolor{red}{The goal of the project is to develop a fast, accurate, and intuitive music recommendation system that leverages detailed audio features to suggest 
+tracks closely aligned with a listener’s unique taste. By analyzing intrinsic song characteristics such as spectral properties, tempo, and key, 
+GenreGuru delivers personalized recommendations through a user-friendly interface that requires minimal learning effort. 
+If successful, this system will enhance personalized music discovery for a broad range of users, fostering deeper engagement with their 
+favorite genres.}
+
 \section{Stakeholders}
 \subsection{Client} \label{2.1-client}
 The project is academic in nature, hence has no formal clients beyond the supervisor, who will be consulted periodically to direct project effort.
@@ -81,49 +89,94 @@ The project is academic in nature, hence has no formal clients beyond the superv
 Please refer to \ref{2.3-other-stakeholders} and \ref{2.4-hands-on-users} for the current characterization of candidate customers. Section \ref{2.5-personas} will more succinctly specify archetypal customers after candidate customer interviews are carried out.
 \subsection{Other Stakeholders} \label{2.3-other-stakeholders}
 \begin{itemize}
-  \item Subject Matter Experts (SMEs) -- \emph{To protect the privacy of our stakeholders, SMEs are completely deidentified with the exception of the user group they fall into, if applicable. Were this to be a commercial project, we acknowledge that we would have to, under jurisdiction of the Office of the Privacy Commissioner of Canada, abide by The \href{https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/}{Personal Information Protection and Electronic Documents Act (PIPEDA)}. Further, we have elected, for the interim, not to include a formal conflict resolution agreement as stakeholders' interests will be considered only under discretion of the development team.}
+  \item \textcolor{red}{\sout{Subject Matter Experts (SMEs) -- \emph{To protect the privacy of our stakeholders, SMEs are completely deidentified with the exception of the user group they fall into, if applicable. Were this to be a commercial project, we acknowledge that we would have to, under jurisdiction of the Office of the Privacy Commissioner of Canada, abide by The \href{https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/}{Personal Information Protection and Electronic Documents Act (PIPEDA)}. Further, we have elected, for the interim, not to include a formal conflict resolution agreement as stakeholders' interests will be considered only under discretion of the development team.}}}
+  
   \begin{itemize}
-    \item Music Producers \& Sound Engineers (\emph{subsequently ``producers''})
+    \item \textcolor{red}{\sout{Music Producers \& Sound Engineers (subsequently ``producers'')}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to guide recording artists to explore or experiment with a new \textcolor{red}{sound}. For example, ``\emph{while recording, if I get an idea, I play a song with a specific cool feature (take tempo for example) and iteratively incorporate it into the current song being recorded, guiding the artist to adjust (e.g., incorporating a different cadence) across different attempts to incorporate the experimental feature}.''
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per producer.
-      \item \emph{Influence on project:} moderate-low -- technology-keen producers may be more likely to already have a process into which \emph{GenreGuru} can be integrated, i.e., song featurization can  quickly, and in large volumes, summarize music that the producer's target audience listens to, allowing the producer to better tailor their music output. Such a producer's insights can inform and guide development, but at the discretion of the development team.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to guide recording artists to explore or experiment with a new \textcolor{red}{sound}. For example, ``\emph{while recording, if I get an idea, I play a song with a specific cool feature (take tempo for example) and iteratively incorporate it into the current song being recorded, guiding the artist to adjust (e.g., incorporating a different cadence) across different attempts to incorporate the experimental feature}''.}} 
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per producer.}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate-low -- technology-keen producers may be more likely to already have a process into which \emph{GenreGuru} can be integrated, i.e., song featurization can quickly, and in large volumes, summarize music that the producer's target audience listens to, allowing the producer to better tailor their music output. Such a producer's insights can inform and guide development, but at the discretion of the development team.}}
     \end{itemize}
-    \item Musicians
+    
+    \item \textcolor{red}{\sout{Musicians}} 
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for unrecorded songs or experimenting with different ideas for already recorded songs. \emph{We must be cautious so as to only consider the experimentation component of the musician's workflow, not the music creation in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per musician.
-      \item \emph{Influence on project:} moderate -- like technology-keen producers, we suspect musicians may already have a process into which \emph{GenreGuru} can be integrated, i.e., song recommendation can quickly, and in large volumes, expose the musician to songs with desirable features as they explore how to create their own song. The musician's insights can inform and guide development, but again, at the discretion of the development team.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for unrecorded songs or experimenting with different ideas for already recorded songs. \emph{We must be cautious so as to only consider the experimentation component of the musician's workflow, not the music creation in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per musician.}} 
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate -- like technology-keen producers, we suspect musicians may already have a process into which \emph{GenreGuru} can be integrated, i.e., song recommendation can quickly, and in large volumes, expose the musician to songs with desirable features as they explore how to create their own song. The musician's insights can inform and guide development, but again, at the discretion of the development team.}}
     \end{itemize}
-    \item Music Theorists
+    
+    \item \textcolor{red}{\sout{Music Theorists}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for composing new songs or experimenting with different ideas for arranging existing songs. \emph{Yet again, we must be cautious so as to only consider the experimentation component of the theorist's workflow, not the composition or arrangement process in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per theorist -- \emph{though, we currently do not have any candidate music theorists}.
-      \item \emph{Influence on project:} moderate-low -- music theorists may already have a process into which \emph{GenreGuru} can be integrated, similar to producers, i.e., song featurization can quickly, and in large volumes, summarize music from a catalogue of songs of interest to identify similarities and differences in their sound properties based on their composition and arrangement. At the discretion of the development team, the music theorist's insights can inform and guide development geared for very musically literate users.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for composing new songs or experimenting with different ideas for arranging existing songs. \emph{Yet again, we must be cautious so as to only consider the experimentation component of the theorist's workflow, not the composition or arrangement process in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per theorist -- \emph{though, we currently do not have any candidate music theorists.}}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate-low -- music theorists may already have a process into which \emph{GenreGuru} can be integrated, similar to producers, i.e., song featurization can quickly, and in large volumes, summarize music from a catalogue of songs of interest to identify similarities and differences in their sound properties based on their composition and arrangement. At the discretion of the development team, the music theorist's insights can inform and guide development geared for very musically literate users.}}
     \end{itemize}
-    \item Music Educators
+    
+    \item \textcolor{red}{\sout{Music Educators}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to introduce students to novel music concepts through experimentation or experimenting with different ideas for previously-learned (composite) concepts. \emph{We must be cautious so as to only consider the experimentation component of the teacher's workflow, not the teaching practice or philosophy in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per teacher -- \emph{though, we currently do not have any candidate music teachers}.
-      \item \emph{Influence on project:} low -- music teachers may already have a process into which \emph{GenreGuru} can be integrated, i.e., song generation can (relatively) quickly, and in (relatively) large volumes, produce sound artifacts that introduce novel music concepts or demonstrate alternative use of one or more previously-learned concepts. Like other stakeholders, at the discretion of the development team, the music teacher's insights can inform and guide development geared for \emph{shared} music experimentation settings.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to introduce students to novel music concepts through experimentation or experimenting with different ideas for previously-learned (composite) concepts. \emph{We must be cautious so as to only consider the experimentation component of the teacher's workflow, not the teaching practice or philosophy in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per teacher -- \emph{though, we currently do not have any candidate music teachers.}}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} low -- music teachers may already have a process into which \emph{GenreGuru} can be integrated, i.e., song generation can (relatively) quickly, and in (relatively) large volumes, produce sound artifacts that introduce novel music concepts or demonstrate alternative use of one or more previously-learned concepts. Like other stakeholders, at the discretion of the development team, the music teacher's insights can inform and guide development geared for \emph{shared} music experimentation settings.}}
     \end{itemize}
+    
   \end{itemize}
-  \item Affiliated corporation staff -- \emph{out of scope}
+  
+  \item \textcolor{red}{\sout{Affiliated corporation staff -- \emph{out of scope}}}
   \begin{itemize}
-    \item Label staff -- \emph{publishers, marketers, lawyers, \& executives}
-    \item Production studio staff -- \emph{studio managers, instrument maintainers, \& sound designers}
+    \item \textcolor{red}{\sout{Label staff -- \emph{publishers, marketers, lawyers, \& executives}}}
+    \item \textcolor{red}{\sout{Production studio staff -- \emph{studio managers, instrument maintainers, \& sound designers}}}
   \end{itemize}
-  \item Development team -- \emph{exclusively involves team members, so out of scope}.
-  \item Maintenance team -- \emph{exclusively involves team members, so out of scope}.
-  \item Music regulators -- \emph{song licensing laws to abide by when acquiring training data is the only applicable concern, otherwise out of scope. For the interim, API documentation and metadata dictionaries suffice as a resource.}
+  
+  \item \textcolor{red}{\sout{Development team -- \emph{exclusively involves team members, so out of scope}.}}
+  \item \textcolor{red}{\sout{Maintenance team -- \emph{exclusively involves team members, so out of scope}.}}
+  \item \textcolor{red}{\sout{Music regulators -- \emph{song licensing laws to abide by when acquiring training data is the only applicable concern, otherwise out of scope. For the interim, API documentation and metadata dictionaries suffice as a resource.}}}
 \end{itemize}
+
+\begin{itemize}
+  \item \textbf{Subject Matter Experts (SMEs)}\\
+    Experts in music and audio analysis who can offer insights into effective recommendation practices while ensuring stakeholder privacy. For a commercial project, compliance with data protection regulations (such as PIPEDA) would be required.
+    
+  \item \textbf{Music Producers \& Sound Engineers}\\
+    These stakeholders can use recommendations to quickly identify songs with similar production qualities or sonic characteristics, aiding in benchmarking and creative decision-making. Their involvement will be minimal (e.g., up to three interviews) but valuable for informing system integration into professional workflows.
+    
+  \item \textbf{Musicians}\\
+    Musicians can leverage the recommendation system to explore music that aligns with their style or inspires new creative directions. As with producers, their feedback (via a few interviews) will help refine the system’s usability and relevance.
+    
+  \item \textbf{Music Theorists}\\
+    Although their direct involvement is expected to be minimal (e.g., up to three interviews), theorists can provide insights into how the system might reveal relationships among songs based on shared musical structures or characteristics.
+    
+  \item \textbf{Music Educators}\\
+    Educators can utilize the recommendation system to expose students to a broader range of music with similar attributes, enhancing learning and creative exploration. Their feedback will help tailor the system for educational purposes.
+    
+  \item \textbf{Affiliated Corporate and Label Staff}\\
+    These groups (including publishers, marketers, and studio managers) are acknowledged as potential external stakeholders but are considered out of scope for the current academic project.
+    
+  \item \textbf{Development and Maintenance Teams}\\
+    Both teams consist exclusively of project members and are considered internal; therefore, they are not detailed further in this section.
+    
+  \item \textbf{Music Regulators}\\
+    Regulatory bodies concerned with song licensing and data usage provide context for compliance when acquiring training data, though these aspects are managed via API documentation and metadata dictionaries.
+\end{itemize}
+
+
 \subsection{Hands-On Users of the Project} \label{2.4-hands-on-users}
 The first four stakeholders of section \ref{2.3-other-stakeholders} are the users of concern. To maximize project reach, we do not distinguish between separate user groups with regards to some characteristics, i.e., experience level in the subject matter or technology, attitude toward technology, and physical location. A user can be any combination of: a beginner, novice, intermediate, advanced, or expert in the subject matter or technology, they may be timid to use technology or a technology fanatic, and they can be located anywhere that is within reach of our service area. What varies between user groups are their relevant responsibilities, outlined below.
 \begin{itemize}
-  \item Music Producers \& Sound Engineers -- \emph{Edit, mix, and master live \& recorded audio; facilitate experimentation with instruments, audio effects, and lyrics.}
-  \item Musicians -- \emph{Play instruments and/or sing in live \& recorded settings; experiment with instruments and vocals.}
-  \item Music Theorists -- \emph{Compose new pieces of music; arrange existing music compositions.}
-  \item Music Educators -- \emph{Conduct personal and group instruction sessions to present novel music concepts; reintroduce previously-learned music concepts used in a novel setting; present combinations of previously-learned music concepts.}
+  \item \textcolor{red}{\sout{Music Producers \& Sound Engineers -- \emph{Edit, mix, and master live \& recorded audio; facilitate experimentation with instruments, audio effects, and lyrics.}}}
+  \item \textcolor{red}{\sout{Musicians -- \emph{Play instruments and/or sing in live \& recorded settings; experiment with instruments and vocals.}}}
+  \item \textcolor{red}{\sout{Music Theorists -- \emph{Compose new pieces of music; arrange existing music compositions.}}}
+  \item \textcolor{red}{\sout{Music Educators -- \emph{Conduct personal and group instruction sessions to present novel music concepts; reintroduce previously-learned music concepts used in a novel setting; present combinations of previously-learned music concepts.}}}
+\end{itemize}
+
+
+
+The project’s primary users are now more specifically categorized as follows:
+\begin{itemize}
+  \item \textbf{Music Producers \& Sound Engineers:} Professionals who leverage the recommendation system to quickly identify and integrate similar production techniques and sonic characteristics into their work.
+  \item \textbf{Musicians:} Artists who utilize the system as a creative tool to discover new music that resonates with their style and inspires fresh ideas.
+  \item \textbf{Music Theorists:} Scholars and analysts who explore musical relationships by examining shared structures and patterns between songs.
+  \item \textbf{Music Educators:} Instructors who incorporate the recommendation system to expose students to a diverse range of music, thereby fostering creative learning and experimentation.
 \end{itemize}
 \subsection{Personas} \label{2.5-personas}
 \begin{itemize}
