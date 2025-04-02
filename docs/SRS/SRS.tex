@@ -5,7 +5,7 @@
 %
 % Risks are removed because they are covered by the Hazard Analysis
 \documentclass[12pt]{article}
-
+\usepackage[normalem]{ulem} % Keeps \emph in italics
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{xcolor}
@@ -58,7 +58,15 @@
 ~\newpage
 \section{Purpose of the Project}
 \subsection{User Business}
-Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.
+\textcolor{red}{\sout{Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.}}
+
+Discovering new music that aligns with an individual's unique taste can be overwhelming, especially in todays vast music industry. 
+GenreGuru simplifies this process by leveraging a content-based recommendation system. 
+Rather than relying on user ratings or external popularity metrics, GenreGuru analyzes the intrinsic features of each song, 
+such as spectral characteristics, tempo, and key, to identify and suggest tracks that closely match a user's current favorite. 
+This approach empowers casual listeners, hobbyists, and music enthusiasts to effortlessly explore new music that resonates with their preferences, 
+transforming the music discovery into a more engaging experience.
+
 \subsection{Goals of the Project}
 \emph{GenreGuru} shall:
 \begin{itemize}
