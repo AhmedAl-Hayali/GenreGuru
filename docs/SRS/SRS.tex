@@ -297,7 +297,35 @@ The maintenance team exclusively involves the team members, thus is considered o
 \end{itemize}
 
 \subsection{Implementation Environment of the Current System}
-\includegraphics[scale=0.552]{3_2_environment_diagram.pdf}
+% \includegraphics[scale=0.552]{3_2_environment_diagram.pdf}
+
+\textcolor{red}{\textbf{Hardware Specifications}} \\
+\\ \textcolor{red}{\textbf{Description:} The service shall run on a dedicated server with a minimum configuration of 8GB of RAM, 
+a quad-core processor, and 256GB of available storage. The front-end interface will be accessible on standard personal 
+computers or laptops (which include a keyboard, mouse, and speakers).}
+\\ \textcolor{red}{\textbf{Rationale:} These specifications reflect the typical hardware available to our target users and 
+ensure that both the backend processing and the user interface perform efficiently under normal operating conditions.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The system must pass performance tests on devices meeting these specifications.}
+\\ \\
+
+\noindent \textcolor{red}{\textbf{Software Environment}} \\
+\\ \textcolor{red}{\textbf{Description:} The backend will be developed using a high-level programming language (e.g., Python) 
+along with open-source libraries for efficient data processing. The frontend will be built with modern web technologies 
+(e.g., React and CSS) to provide a responsive and intuitive user experience.}
+\\ \textcolor{red}{\textbf{Rationale:} Using a proven, open-source software stack ensures rapid development, ease of maintenance, 
+and robust integration between backend and frontend components while meeting industry standards for security and performance.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The final product shall demonstrate seamless integration between backend and frontend components 
+and meet established performance benchmarks in processing speed and user interface responsiveness..}
+\\ \\
+
+\noindent \textcolor{red}{\textbf{Network and Integration}} \\
+\\ \textcolor{red}{\textbf{Description:} The service shall operate over a stable internet connection to support real-time API communications 
+with an external music streaming provider’s platform for up-to-date track metadata.}
+\\ \textcolor{red}{\textbf{Rationale:} Reliable network connectivity is essential for maintaining real-time interactions and ensuring the 
+system can access necessary external data sources to support its recommendation functionality.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The system must achieve a network uptime of at least 99\% during continuous operation and 
+successfully retrieve external data via API calls as verified through integration testing.}
+\\ \\
 
 \subsection{Partner or Collaborative Applications}
 \includegraphics[scale=0.72]{3_3_partner_constraints_figure}
@@ -309,63 +337,65 @@ There are several existing solutions that could serve as part of the music gener
     \item \textbf{Spotify API}: Provides access to a vast library of music, including song previews and metadata, which can be leveraged for generating recommendations.
     \item \textbf{Librosa Library}: An open-source Python package for analyzing and processing music files, suitable for extracting features from songs and facilitating generative components.
     \item \textbf{TensorFlow and PyTorch Pre-trained Models}: Both frameworks offer pre-trained models that could be adapted for music generation tasks. These solutions provide a basis for deep learning models without having to build and train from scratch.
-    \item \textbf{OpenAI Jukebox}: A generative model that is capable of producing music, which could potentially be adapted and integrated into our system.
+    \item \textcolor{red}{\sout{\textbf{OpenAI Jukebox}: A generative model that is capable of producing music, which could potentially be adapted and integrated into our system.}}
 \end{itemize}
 
 These off-the-shelf software solutions provide a foundation upon which we can build our custom features, significantly reducing the development time and leveraging existing technologies to enhance the functionality of our platform.
 
 \subsection{Anticipated Workplace Environment}
-\begin{itemize}
-  \item Home Usage
-  \\\textbf{Rationale:} This environment is more appropriate for casual music listeners. 
-  This means users will most likely be using it in a form of a casual environment. This can 
-  include such as during a public commute on the train, where the user might try to interact 
-  with the service while there is an unreliable internet connection on a mobile device. This
-  means the front end of the service must be easy to use and access on all types of devices, 
-  and preferrably, not a large amount of data is streamed between the user and the service. 
-  This means that preferrably, the input would have references to pieces of music instead of 
-  having say, full .MP3 files as the input. These users are also more likely interested in the 
-  recommendation system to attempt to find new pieces of music to listen to, and might be more
-  willing to use the generation system for "fun", so they might be satifisfied even with a 
-  generation component that produces odd results.
- 
-  \item Studio Usage
-  \\\textbf{Rationale:} This environment is more professional and what is most likely what 
-  creative professionals will be using. The expectation is that they will be using this on their 
-  computers, thus they are more likely have a reliable internet connection in addition to being
-  willing to input a lot more music to the service. This means that the service needs to faciliate 
-  entering a large amount of music, and be able to generate results in a rapid and efficient 
-  manner. Because the users of this type of environment would likely be inviduals engaged in some form
-  of creative endeavors, they will generally have higher standards of what the service provides, and
-  might be more interested in the analysis component, such as being able to find new labels for their
-  existing work to get new perspectives. This also means that they most likely expect the music generation
-  component to give them something more "listenable", something they could directly use as a sample or inspiration.  
 
-\end{itemize}
+\textbf{Home Usage}\\
+\\\textbf{Rationale:} This environment is more appropriate for casual music listeners. 
+This means users will most likely be using it in a form of a casual environment. This can 
+include such as during a public commute on the train, where the user might try to interact 
+with the service while there is an unreliable internet connection on a mobile device. This
+means the front end of the service must be easy to use and access on all types of devices, 
+and preferrably, not a large amount of data is streamed between the user and the service. 
+This means that preferrably, the input would have references to pieces of music instead of 
+having say, full .MP3 files as the input. These users are also more likely interested in the 
+recommendation system to attempt to find new pieces of music to listen to. \textcolor{red}{\sout{, and might be more
+willing to use the generation system for "fun", so they might be satifisfied even with a 
+generation component that produces odd results.}}
+ \\ \\
+\textbf{Studio Usage}
+\\
+\\\textbf{Rationale:}This environment is more professional and is most likely what creative professionals will be using. 
+The expectation is that they will be using this on their computers, thus they are more likely to have a reliable internet 
+connection in addition to being willing to input a large volume of music into the service. This means that the service needs 
+to facilitate entering a large amount of music, and be able to \textcolor{red}{\sout{generate results in a rapid and efficient manner}} 
+\textcolor{red}{produce accurate recommendations quickly}. Because the users of this type of environment would likely be individuals 
+engaged in creative endeavors, they will generally have higher standards of what the service provides, and might be more interested in 
+the \textcolor{red}{\sout{analysis component, such as being able to find new labels for their existing work to get new perspectives}} 
+\textcolor{red}{recommendation functionality that efficiently surfaces new musical inspirations}. This also means that they most likely 
+expect the \textcolor{red}{\sout{music generation component to give them something more "listenable", something they could directly use 
+as a sample or inspiration}} \textcolor{red}{recommendations that are both relevant and innovative, providing inspiration for creative projects}.
+
 
 \subsection{Schedule Constraints}
-This project was started in the 2024 Fall Term and is expected to be completed by the 
-2025 winter term at McMaster university. Some of the key deadlines are: 
+\textcolor{red}{\sout{This project was started in the 2024 Fall Term and is expected to be completed by the 
+2025 winter term at McMaster university. Some of the key deadlines are: }}
 \begin{itemize}
-  \item Proof of Concept Demonstration Plan, November 11-22
+  \item \textcolor{red}{\sout{Proof of Concept Demonstration Plan, November 11-22
   \\This deadline accounts for 5\% of the mark. The group should have identified the most significant
   risks involving the project and come up with plans on how to migitate said risks. If this is not possible, then the project 
   can be redefined. The group also needs to predict and note other concerns about potential problems or difficulties that could arise
   during development, such as testing difficulties or software portability. If this deadline is not met, then it means that our group
-   does not fully understand the potential pitfalls of our project and we need to redefine certain aspects of the project. 
+   does not fully understand the potential pitfalls of our project and we need to redefine certain aspects of the project. }}
 
-  \item Final Demonstration, March 24-30
+  \item \textcolor{red}{\sout{Final Demonstration, March 24-30
   \\This deadline accounts for 20\% of the mark. This deadline involves a demonstration of a finalized 
   version of the project to supervisors before the public EXPO happening at a TBD date. By this deadline, 
   the service should be in a completed state ready for use and demonstration. If this deadline is not met then
-  the project can be considered a "failure". 
+  the project can be considered a "failure". }}
 
-  \item Final Documentation, April 2
+  \item \textcolor{red}{\sout{Final Documentation, April 2
   \\This deadline accounts for 30\% of the mark. It involves the finalized documentation of plans pertaining to 
   the project and the actual working program/service. Any final revisions and reflections pertaining to the project
   should have been completed by this deadline as no further changes to the project will be possible. Whatever documentation
-  or code that is not completed by this deadline would be considered permanently unfinished. 
+  or code that is not completed by this deadline would be considered permanently unfinished. }}
 \end{itemize}
+\textcolor{red}{Schedule constraints are provided by the capstone course itself, for a detailed
+schedule refer to the \href{https://github.com/AhmedAl-Hayali/GenreGuru/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan Document, section 8}.}
 
 \subsection{Budget Constraints}
 The budget limit as stated by the capstone outline is 750\$ CAD. Potential additional
