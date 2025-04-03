@@ -12,6 +12,8 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{array}
+\usepackage{float}
+\usepackage{placeins}
 \graphicspath{ {./diagrams/} }
 
 \hypersetup{
@@ -505,111 +507,146 @@ Music contains the following core features:
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
-\begin{itemize}
-  \item \textbf{Music Analysis Component}
-  \\\textbf{Manual Process}: Currently, this is usually manually done by the artist self-labelling their work
-  or third parties labelling the music. This can end up being time consuming. 
-  \\\textbf{Automated Process}: Most automation on this regard (retrieving song information from a music 
-  provider's api) is mostly useful for retreiving already labelled information, there is not a lot of automation 
-  that is be done for labelling, but a lot that is possible retreiving said labels. 
-  \\What we wish to do with this component of the service is to gather and present said information that can be
-  gleamed from the music service provider's API to the user in a more presentable manner (such as audio visualizations)
-   but also featurize an individual song for the other components in our service. Our service should also generate new
-   labels using ML algorithms, which allows for faster automation of song labelling and more features for our other 
-   components. 
-  \\\includegraphics[width=\textwidth]{6_1_b.pdf}
-  \item \textbf{Music Recommendation Component}
-  \\\textbf{Manual Process}: Generally, this is mostly done through music curators should as DJs, playlist makers,
-  etc, where curators manually select songs and make recommendations based on popular trends, new artists releases,
-  or shifts in the genre. The main issue here is that it requires a large amount of manual work, as curators need to 
-  listen to new music before adding them to some form of playlist or recommending them to other people, which greatly
-  limits their potential recommendations. 
-  \\\textbf{Automated Process}: Most music service providers such as spotify, apple music or youtube already offer 
-  some form of music recommendation service use algorithms to recommend users new songs based on their listening history.
-  These generally already work decently well, but they end up usually being heavily weighted towards more popular songs 
-  (for example, sabrina carpenter's espresso being automatically recommended through smart shuffle no matter what your prior listening history was like), 
-  as record labels often have deals with these music service platforms so it is not unusual to get recommendations that 
-  do not necessarily suit the user's music tastes. 
-  \\The main benefit our service should provide is the ability to recommend songs that are more niche, more accurate based
-  on the user input while still using an automated system powered by machine learning, as we would have more features due 
-  to the analysis component for the ML algorithm to process, in addition to not being heavily weighted towards more popular,
-  trendy songs or some form of likely record label deals meddling. 
-  \\\includegraphics[width=\textwidth]{6_1_a.pdf}
+\textcolor{red}{\sout{\textbf{Music Analysis Component}}}
+\\\textcolor{red}{\sout{\textbf{Manual Process}: Currently, this is usually manually done by the artist self-labelling their work
+or third parties labelling the music. This can end up being time consuming. }}
+\\\textcolor{red}{\sout{\textbf{Automated Process}: Most automation on this regard (retrieving song information from a music 
+provider's api) is mostly useful for retreiving already labelled information, there is not a lot of automation 
+that is be done for labelling, but a lot that is possible retreiving said labels. }}
+\\\textcolor{red}{\sout{What we wish to do with this component of the service is to gather and present said information that can be
+gleamed from the music service provider's API to the user in a more presentable manner (such as audio visualizations)
+  but also featurize an individual song for the other components in our service. Our service should also generate new
+  labels using ML algorithms, which allows for faster automation of song labelling and more features for our other 
+  components. }}
+% \\\includegraphics[width=\textwidth]{6_1_b.pdf}
 
-  \item \textbf{Music Generation Component}
-  \\\textbf{Manual Process}: Currently, generating music usually requires years of dedication to the craft and involves the
-  labour of musicians, producers, and composers. This means that there is a large amount of manpower that is necessary
-  in order to create new unique pieces. 
-  
-  We wish to have our service provide a new avenue to generate new types of music. We do not envision this service as 
-  something that replaces the traditional music creation process, but rather as something that can potentially enhance it. 
+\noindent\textbf{Music Recommendation Component}
+\\\textbf{Manual Process}: Generally, this is mostly done through music curators should as DJs, playlist makers,
+etc, where curators manually select songs and make recommendations based on popular trends, new artists releases,
+or shifts in the genre. The main issue here is that it requires a large amount of manual work, as curators need to 
+listen to new music before adding them to some form of playlist or recommending them to other people, which greatly
+limits their potential recommendations. 
+\\\textbf{Automated Process}: Most music service providers such as spotify, apple music or youtube already offer 
+some form of music recommendation service use algorithms to recommend users new songs based on their listening history.
+These generally already work decently well, but they end up usually being heavily weighted towards more popular songs 
+(for example, sabrina carpenter's espresso being automatically recommended through smart shuffle no matter what your prior listening history was like), 
+as record labels often have deals with these music service platforms so it is not unusual to get recommendations that 
+do not necessarily suit the user's music tastes. 
+\\The main benefit our service should provide is the ability to recommend songs that are more niche, more accurate based
+on the user input while still using an automated system powered by machine learning, as we would have more features due 
+to the analysis component for the ML algorithm to process, in addition to not being heavily weighted towards more popular,
+trendy songs or some form of likely record label deals meddling. 
+\\\includegraphics[width=\textwidth]{6_1_a.pdf}
 
-  \includegraphics[width=\textwidth]{6_1_c.pdf}
+\noindent\textbf{Music Feature Extraction Component}
+\\\textbf{Manual Process}: Currently, musical features are often determined manually by artists or third parties 
+labeling the music. This process is time-consuming and can be inconsistent. 
+\\\textbf{Automated Process}: Most existing solutions rely on retrieving pre-labeled metadata from music service providers’ APIs.
+  However, there is limited automation in extracting detailed musical features directly from the audio. 
+\\Our service will automate the extraction or featurization of key musical features. By doing so, we will provide users with clear 
+and comprehensive feature data for each song. This feature extraction will serve as the foundation for generating accurate and personalized song recommendations.\\ 
+\\\includegraphics[width=\textwidth]{6_1b2.png}
 
-\end{itemize}
+
+\textcolor{red}{\sout{\textbf{Music Generation Component}}}
+\\\textcolor{red}{\sout{\textbf{Manual Process}: Currently, generating music usually requires years of dedication to the craft and involves the
+labour of musicians, producers, and composers. This means that there is a large amount of manpower that is necessary
+in order to create new unique pieces. }}
+\textcolor{red}{\sout{We wish to have our service provide a new avenue to generate new types of music. We do not envision this service as 
+something that replaces the traditional music creation process, but rather as something that can potentially enhance it. }}
+
+% \includegraphics[width=\textwidth]{6_1_c.pdf}
 
 \subsection{The Context of the Work}
-\includegraphics[width=\textwidth]{6_2_context_diagram.pdf}
+\vspace{2em}
+\includegraphics[width=\textwidth]{6_2context.png}
 
 \subsection{Work Partitioning}
-\includegraphics[width=\textwidth]{6_3_work_partitioning_table.pdf}
+\begin{table}[H]
+  \centering
+  \caption{Event List for Feature Extraction and Recommendation}
+  \label{tab:event-list}
+  \begin{tabular}{|p{5cm}|p{4cm}|p{7cm}|}
+    \hline
+    \textbf{Event Name} & \textbf{Input/Output} & \textbf{Summary} \\
+    \hline
+    \textbf{User Requests Recommendation} 
+    & Track [input] 
+    & The system receives user input track for generating a recommendation. \\
+    \hline
+    \textbf{Features Extracted From Song for Recommendations} 
+    & Analyzed Track [input] 
+    & The system extracts relevant features from the user’s input track to inform the recommendation process. \\
+    \hline
+    \textbf{Recommendations Returned to User} 
+    & List of recommended tracks [output] 
+    & The system returns a curated list of recommended tracks based on the extracted features. \\
+    \hline
+  \end{tabular}
+\end{table}
+
+% \includegraphics[width=\textwidth]{6_3_work_partitioning_table.pdf}
 
 \subsection{Specifying a Business Use Case (BUC)}
 \begin{itemize}
   \item \textbf{User Requests Track Recommendations}
     \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
+    \\Trigger: User intiates a request with the service to \textcolor{red}{\sout{generate}} \textcolor{red}{recommend} some new songs to listen to. 
     \\Preconditions: 
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{User has a valid reference track}
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
     Main Success Scenario: 
     \begin{itemize}
-    \item user submits request for track recommendation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component passes on tracks \& analysis to recommendation component
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{user submits request for track recommendation}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component passes on tracks \& analysis to recommendation component}}
+    \item \textcolor{red}{user inputs a track to the system}
+    \item \textcolor{red}{the user submits a request for track recommendation}
+    \item \textcolor{red}{the system then extracts features and passes these features to the recommendation component}
     \item recommendation component generates tracks
     \item user receives new tracks to listen to
     \end{itemize}
   
-  \item \textbf{User Requests Track Analysis}
-    \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
-    \\Preconditions: 
+  \item \textcolor{red}{\sout{\textbf{User Requests Track Analysis}}}
+    \\\textcolor{red}{\sout{Primary Actor: App User}}
+    \\\textcolor{red}{\sout{Trigger: User intiates a request with the service to generate some new songs to listen to. }}
+    \\\textcolor{red}{\sout{Preconditions: }}
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
-    Main Success Scenario: 
+    \textcolor{red}{\sout{Main Success Scenario: }}
     \begin{itemize}
-    \item user submits request for track recommendation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component generates presentations and visualizations based on the inputted track(s)
-    \item the service returns generated presentations and visualizations to the user
+    \item \textcolor{red}{\sout{user submits request for track recommendation}}
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component generates presentations and visualizations based on the inputted track(s)}}
+    \item \textcolor{red}{\sout{the service returns generated presentations and visualizations to the user}}
     \end{itemize}
   
-  \item \textbf{User Requests Snippet Generation}
-    \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
-    \\Preconditions: 
+  \item \textcolor{red}{\sout{\textbf{User Requests Snippet Generation}}}
+    \\\textcolor{red}{\sout{Primary Actor: App User}}
+    \\\textcolor{red}{\sout{Trigger: User intiates a request with the service to generate some new songs to listen to. }}
+    \\\textcolor{red}{\sout{Preconditions: }}
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
-    Main Success Scenario: 
+    \textcolor{red}{\sout{ Main Success Scenario: }}
     \begin{itemize}
-    \item user submits request for snippet generation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component passes on tracks \& analysis to generation component
-    \item generation component generates tracks
-    \item user receives a snippet to listen to
+    \item \textcolor{red}{\sout{user submits request for snippet generation}}
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component passes on tracks \& analysis to generation component}}
+    \item \textcolor{red}{\sout{generation component generates tracks}}
+    \item \textcolor{red}{\sout{user receives a snippet to listen to}}
     \end{itemize}
 \end{itemize}
 
