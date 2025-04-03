@@ -309,6 +309,7 @@ to be implemented.
   & Spotify API\\
   & Deezer API\\
   & \textcolor{red}{\st{Genre Feature Module}}\\
+  & \textcolor{red}{Spleeter Audio Splitter Module}\\
   \bottomrule
   
   \end{tabular}
@@ -484,7 +485,7 @@ to be implemented.
 % \item[Implemented By:] Python Function
 % \item[Type of Module:] Abstract Data Type
 % \end{description}
-\subsubsection*{\textcolor{red}{\sout{Contour Feature Extraction Module (\mref{m13})}}}
+\subsubsection{\textcolor{red}{\sout{Contour Feature Extraction Module (\mref{m13})}}}
 
 \begin{description}
 \item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm to detect the musical contour of the track.}}
@@ -502,7 +503,7 @@ to be implemented.
 % \item[Implemented By:] Python Function
 % \item[Type of Module:] Abstract Data Type
 % \end{description}
-\subsubsection*{\textcolor{red}{\sout{Mood Feature Extraction Module (\mref{m14})}}}
+\subsubsection{\textcolor{red}{\sout{Mood Feature Extraction Module (\mref{m14})}}}
 
 \begin{description}
 \item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm for detecting the mood of the track.}}
@@ -512,7 +513,7 @@ to be implemented.
 \end{description}
 
 %spectral features: centroid, flux, bandwidth, rolloff, contrast
-\subsubsection*{\textcolor{red}{Spectral centroid Feature Extraction Module (\mref{m12})}}
+\subsubsection{\textcolor{red}{Spectral centroid Feature Extraction Module (\mref{m12})}}
 
 \begin{description}
 \item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral centroid of the track.}
@@ -521,7 +522,7 @@ to be implemented.
 \item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
-\subsubsection*{\textcolor{red}{Spectral Bandwidth Feature Extraction Module (\mref{m12})}}
+\subsubsection{\textcolor{red}{Spectral Bandwidth Feature Extraction Module (\mref{m12})}}
 
 \begin{description}
 \item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Bandwidth of the track.}
@@ -530,7 +531,7 @@ to be implemented.
 \item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
-\subsubsection*{\textcolor{red}{Spectral Rolloff Feature Extraction Module (\mref{m12})}}
+\subsubsection{\textcolor{red}{Spectral Rolloff Feature Extraction Module (\mref{m12})}}
 
 \begin{description}
 \item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Rolloff of the track.}
@@ -539,7 +540,7 @@ to be implemented.
 \item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
-\subsubsection*{\textcolor{red}{Spectral Flux Feature Extraction Module (\mref{m12})}}
+\subsubsection{\textcolor{red}{Spectral Flux Feature Extraction Module (\mref{m12})}}
 
 \begin{description}
 \item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral flux of the track.}
@@ -548,7 +549,7 @@ to be implemented.
 \item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
-\subsubsection*{\textcolor{red}{Spectral Contrast Feature Extraction Module (\mref{m12})}}
+\subsubsection{\textcolor{red}{Spectral Contrast Feature Extraction Module (\mref{m12})}}
 
 \begin{description}
 \item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral contrast of the track.}
@@ -626,6 +627,15 @@ to be implemented.
   input parameters module.
 \item[Implemented By:] Deezer
 \item[Type of Module:] API Library
+\end{description}
+
+\subsubsection{\textcolor{red}{Spleeter Vocal Audio Splitter(\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} Machine learning model, training data.}
+\item \textcolor{red}{\textbf{Services:} Isolates vocal component of the song from non-vocal components.}
+\item \textcolor{red}{\textbf{Implemented By:} Spleeter Library}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Object}
 \end{description}
 
 % \subsubsection{Genre Feature Module (\mref{m20})}
