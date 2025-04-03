@@ -460,42 +460,47 @@ involved in the Project}
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
+
+Music contains the following core features:
 \begin{itemize}
-  \item Music contains the following core features \begin{itemize}
     \item Tempo
     \item Key signature
     \item Time signature
     \item Pitch
     \item Timbre
-  \end{itemize}
-  \item Song files have metadata that contains information such as: \begin{itemize}
-    \item Song title
-    \item Artist
-    \item Release date
-  \end{itemize}
-  \item Most songs can be classified into multiple genres
 \end{itemize}
+\noindent Song files from streaming services (e.g., Spotify, Deezer) include metadata such as:
+\begin{itemize}
+    \item Track ID
+    \item ISRC
+    \item Album name
+    \item Artist name
+    \item Track name
+\end{itemize}
+\noindent Most songs can be classified into multiple genres.
+
 \subsection{Business Rules}
 \begin{itemize}
-  \item The user should be able to generate their own music
-  \item The user should be able to figure out what musical features a song contains 
-  \item The user should be able to ask for similar songs
+  \item \textcolor{red}{\sout{The user should be able to generate their own music}}
+  \item \textcolor{red}{\sout{The user should be able to figure out what musical features a song contains }}
+  \item The user should be able to ask for similar songs \textcolor{red}{based on features}
   \item the user should be able to interact with the system without any external installation
+  \item \textcolor{red}{The system shall deliver recommendations in real time, ensuring that the user's interaction feels imeediate and responsive}
 \end{itemize}
 \subsection{Assumptions}
 \begin{itemize}
   \item Users will have at least some familiarity of music theory
-  \item The analysis and recommendation systems will use as many well-established musical 
+  \item The \textcolor{red}{\sout{analysis and}} recommendation system\textcolor{red}{\sout{s}} will use as many well-established musical 
   features as possible
   \item All API inputs will be easily accessible and reliable enough to support the
-  recommendation and analysis systems
+  recommendation \textcolor{red}{\sout{ and analysis}} system\textcolor{red}{\sout{s}}
   \item The system will be written in a language that all developers are familiar with
   \item The system will use a local server to handle the processing of
   the machine learning model and large datasets
-  \item Handling of niche features and cover art are designed to enhance the user experience, but 
-  these will not be a part of the core functionality of the system
-  \item The generative system will be completed by the POC demo date
-  \item The recommendation and analysis systems will be completed by the Revision 0 date
+  \item \textcolor{red}{\sout{Handling of niche features and cover art are designed to enhance the user experience, but 
+  these will not be a part of the core functionality of the system}}
+  \item \textcolor{red}{\sout{The generative system will be completed by the POC demo date}}
+  \item The recommendation \textcolor{red}{\sout{and analysis}} system\textcolor{red}{\sout{s}} will be completed by the Revision 0 date
 \end{itemize}
 
 \section{The Scope of the Work}
