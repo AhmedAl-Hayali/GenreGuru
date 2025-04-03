@@ -7,8 +7,10 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{soul}
 \usepackage{hyperref}
 \usepackage{caption}
+\usepackage{xcolor}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -285,12 +287,17 @@ to be implemented.
   %feature extractions
   & Tempo (BPM) Feature Extraction Module\\
   & Key and Scale Feature Extraction Module\\
-  & Instrument Type Feature Extraction Module\\
-  & Vocal Gender Feature Extraction Module\\
+  & \textcolor{red}{\st{Instrument Type Feature Extraction Module}}\\
+  & \textcolor{red}{\st{Vocal Gender Feature Extraction Module}}\\
+  & \textcolor{red}{\st{Mood Feature Extraction Module}}\\
   & Dynamic Range Feature Extraction Module\\
   & Instrumentalness Feature Extraction Module\\
-  & Contour Feature Extraction Module\\
-  & Mood Feature Extraction Module\\
+  & \textcolor{red}{\st{Contour Feature Extraction Module}}\\
+  & \textcolor{red}{Spectral Centroid Feature Module}\\
+  & \textcolor{red}{Spectral Bandwidth Feature Module}\\
+  & \textcolor{red}{Spectral Rolloff Feature Module}\\
+  & \textcolor{red}{Spectral Flux Feature Module}\\
+  & \textcolor{red}{Spectral Contrast Feature Module}\\
   %final pieces
   & Recommendation Module\\
   & Program Results Interface Module\\
@@ -299,7 +306,7 @@ to be implemented.
   \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
   & Spotify API\\
   & Deezer API\\
-  & Genre Feature Module\\
+  & \textcolor{red}{\st{Genre Feature Module}}\\
   \bottomrule
   
   \end{tabular}
