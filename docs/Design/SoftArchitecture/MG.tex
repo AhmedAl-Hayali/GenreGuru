@@ -503,14 +503,61 @@ to be implemented.
 \item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
 \end{description}
 
+%spectral features: centroid, flux, bandwidth, rolloff, contrast
+\subsubsection*{\textcolor{red}{Spectral centroid Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral centroid of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the Spectral Centroid of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection*{\textcolor{red}{Spectral Bandwidth Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Bandwidth of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral bandwidth of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection*{\textcolor{red}{Spectral Rolloff Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Rolloff of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the Spectral Rolloff of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection*{\textcolor{red}{Spectral Flux Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral flux of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral flux of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection*{\textcolor{red}{Spectral Contrast Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral contrast of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral contrast of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+
 %recommendation
 \subsubsection{Recommendation Module (\mref{m15})}
 
 \begin{description}
 \item[Secrets:] The recommendation machine learning algorithm. 
 \item[Services:] Generates a list of recommended songs. 
-\item[Implemented By:] Machine Learning Algorithm
-\item[Type of Module:] Library
+\item[Implemented By:] \textcolor{red}{\sout{Machine Learning Algorithm}} \textcolor{red}{K-NN Algorithm}
+\item[Type of Module:] \textcolor{red}{SKLearn Python Library}
 \end{description}
 
 %results GUI
