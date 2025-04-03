@@ -292,6 +292,7 @@ to be implemented.
   & \textcolor{red}{\st{Vocal Gender Feature Extraction Module}}\\
   & \textcolor{red}{\st{Mood Feature Extraction Module}}\\
   & Dynamic Range Feature Extraction Module\\
+  & \textcolor{red}{RMS feature Module}\\
   & Instrumentalness Feature Extraction Module\\
   & \textcolor{red}{\st{Contour Feature Extraction Module}}\\
   & \textcolor{red}{Spectral Centroid Feature Module}\\
@@ -427,8 +428,6 @@ to be implemented.
 
 \end{description}
 
-
-
 %f4
 % \subsubsection{Vocal Gender Feature Extraction Module (\mref{m10})}
 
@@ -452,9 +451,18 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Extracts the Dynamic Range (difference between peak and trough in decibels) of the input audio signal.
+\item[Services:]Extracts the Dynamic Range (difference between peak and \textcolor{red}{\sout{through} median} in decibels) of the input audio signal.
 \item[Implemented By:] Python Function
 \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{\textcolor{red}{RMS feature Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for computing the RMS of the track}
+\item \textcolor{red}{\textbf{Services:} Computes the RMS of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
 %f6
