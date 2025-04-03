@@ -233,33 +233,67 @@ The maintenance team exclusively involves the team members, thus is considered o
 \subsection{Solution Constraints}
 \begin{itemize}
 
-  \item The service uses a music dataset
-  \\ \textbf{Rationale:} A dataset for an AI project is necessary as some form of training data must be used 
-  in order to train the AI generative, analysis and recommendation systems. 
-  \\ \textbf{Fit Criterion:} The machine learning algorithms use a music dataset as the training set. 
+  \item \textcolor{red}{\sout{The service uses a music dataset}}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} A dataset for an AI project is necessary as some form of training data must be used 
+  in order to train the AI generative, analysis and recommendation systems. }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} The machine learning algorithms use a music dataset as the training set. }}
 
-  \item The service uses a machine learning algorithm in order to generate song recommendations and snippets. 
-  \\ \textbf{Rationale:} The general gist of this project is a leveraging of different signal processing and machine learning
+  \item \textcolor{red}{\sout{The service uses a machine learning algorithm in order to generate song recommendations and snippets. }}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} The general gist of this project is a leveraging of different signal processing and machine learning
   algorithms in order to provide an end user with a better experience for consuming music. We believe that using a machine 
   learning algorithm for these ends would both be interesting in terms of implementing and training a model, but also practically
-  useful for the end user to provide better recommendations by leveraging training over a very large dataset in order to produce results. 
-  \\\textbf{Fit Criterion:} The recommendation and generation components utilize trained machine learning algorithm. 
+  useful for the end user to provide better recommendations by leveraging training over a very large dataset in order to produce results. }}
+  \\\textcolor{red}{\sout{\textbf{Fit Criterion:} The recommendation and generation components utilize trained machine learning algorithm. }}
 
-  \item The service features integration with an existing music streaming provider's platform. 
-  \\ \textbf{Rationale:} A music service provider (such as Spotify) would allow the service to bypass the need to have
+  \item \textcolor{red}{\sout{The service features integration with an existing music streaming provider's platform. }}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} A music service provider (such as Spotify) would allow the service to bypass the need to have
   music inputted, instead being able to use references to a track. In addition, through API calls, providers such as spotify
   already have a large amount of useful labels for invidiual track(s) that can be used as features for the machine learning
-  components of the service.  
-  \\ \textbf{Fit Criterion:} The service has components that make uses of features (such as API calls) 
-  that belong to a music service provider's platform. 
+  components of the service.  }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} The service has components that make uses of features (such as API calls) 
+  that belong to a music service provider's platform. }}
 
-  \item The service uses a server to process the user requests separately from the front end.
-  \\ \textbf{Rationale:} Ideally, our service would use an on-premise deployed ubuntu server in order to process the user 
+  \item \textcolor{red}{\sout{The service uses a server to process the user requests separately from the front end.}}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} Ideally, our service would use an on-premise deployed ubuntu server in order to process the user 
   analysis, recommendation, and generation components of the project, as this would allow a more flexible front end design
-  (such as through a web application). 
-  \\ \textbf{Fit Criterion:} An on-premise server is deployed for the purposes of handling the analysis, generation and recommendations
-  systems separately from the front end. 
+  (such as through a web application). }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} An on-premise server is deployed for the purposes of handling the analysis, generation and recommendations
+  systems separately from the front end. }}
 
+
+  \textcolor{red}{\textbf{Technology Stack}} \\
+  \\ \textcolor{red}{\textbf{Description:} The system shall be developed using a high-level programming language for efficient core processing 
+  and a robust, secure language for backend logic, while the frontend will utilize modern web technologies (e.g., React and CSS) 
+  for a responsive, intuitive interface.}
+  \\ \textcolor{red}{\textbf{Rationale:} A high-level language on the backend enables rapid development and efficient handling of critical 
+  processing tasks, and modern web technologies on the frontend ensure the interface is user-friendly, maintainable, and secure.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} The final product shall meet established performance benchmarks for processing tasks and deliver a responsive, 
+  secure user interface across supported devices.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Open-Source Libraries}} \\
+  \\ \textcolor{red}{\textbf{Description:} The app shall use open-source libraries and frameworks where applicable to save both time and money.}
+  \\ \textcolor{red}{\textbf{Rationale:} Utilizing open-source libraries is cost-effective and leverages community-driven improvements and support.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} All third-party libraries used in the project must be licensed under recognized open-source agreements
+  (e.g., MIT, GPL, or Apache) to ensure they are free to use.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Integration with a Music Streaming Provider’s Platform}} \\
+  \\ \textcolor{red}{\textbf{Description:} The service shall integrate with an existing music streaming provider’s platform.}
+  \\ \textcolor{red}{\textbf{Rationale:} By integrating with a provider (such as Spotify, or Deezer), the service can use track references and 
+  leverage existing metadata—eliminating the need to manually input music—and take advantage of the rich labels that 
+  the provider supplies.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} The service must include components that successfully make API calls to a music streaming 
+  provider’s platform to retrieve track features.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Server-Based Processing of User Requests}} \\
+  \\ \textcolor{red}{\textbf{Description:} The service shall utilize a dedicated server to process user requests separately from the front end.}
+  \\ \textcolor{red}{\textbf{Rationale:} Deploying an on-premise Ubuntu server for backend processing allows for flexible front-end design 
+  (e.g., via a web application) while efficiently handling analysis, recommendations, and other processing tasks.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} An on-premise server must be deployed to handle the backend processing, ensuring that 
+  recommendation functions operate independently from the user interface.}
+  \\ \\
 \end{itemize}
 
 \subsection{Implementation Environment of the Current System}
