@@ -1,12 +1,12 @@
-from engine_manager import EngineManager
-from features_models import FeaturesCollapsedSctn, FeaturesCollapsedSttc
-from features_queries import UpsertQuerySctn, UpsertQuerySttc
+from src.db.engine_manager import EngineManager
+from src.db.features_models import FeaturesCollapsedSctn, FeaturesCollapsedSttc
+from src.db.features_queries import UpsertQuerySctn, UpsertQuerySttc
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.postgresql import insert
 import os
 import pandas as pd
 import tomli
-from features_queries import SelectQuerySctn, SelectQuerySttc
+from src.db.features_queries import SelectQuerySctn, SelectQuerySttc
 import random
 
 class DB_Engine:
@@ -68,14 +68,14 @@ class DB_Engine:
                     table = FeaturesCollapsedSctn,
                     track_id = track_id,
                     section = i+1,
-                    spctrl_rlf=features["collapsed_rolloff"][i],
-                    spctrl_cntrd=features["collapsed_centroid"][i],
-                    spctrl_bw=features["collapsed_bandwidth"][i],
-                    spctrl_cntrst=features["collapsed_contrast"][i],
-                    rms=features["collapsed_rms"][i],
-                    spctrl_flux=features["collapsed_flux"][i],
-                    dnmc_rng=features["collapsed_dynamic_range"][i],
-                    instrmntlns=features["collapsed_instrumentalness"][i]
+                    spctrl_rlf=features["collapsed_rolloff"][i].item(),
+                    spctrl_cntrd=features["collapsed_centroid"][i].item(),
+                    spctrl_bw=features["collapsed_bandwidth"][i].item(),
+                    spctrl_cntrst=features["collapsed_contrast"][i].item(),
+                    rms=features["collapsed_rms"][i].item(),
+                    spctrl_flux=features["collapsed_flux"][i].item(),
+                    dnmc_rng=features["collapsed_dynamic_range"][i].item(),
+                    instrmntlns=features["collapsed_instrumentalness"][i].item()
                     )
                         
                 print("WEEE")
@@ -85,8 +85,8 @@ class DB_Engine:
                 table = FeaturesCollapsedSttc, 
                 track_id = track_id,
                 bpm = features["bpm"],
-                keymjr = features["major_key"],
-                keymnr = features["minor_key"]
+                keymjr = features["major_key"][:5],
+                keymnr = features["minor_key"][:5]
             )
             
             print("finished running upsert stcn")

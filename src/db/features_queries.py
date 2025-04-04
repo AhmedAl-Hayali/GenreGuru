@@ -4,7 +4,7 @@ from sqlalchemy.dialects.postgresql import insert, Insert
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from features_models import FeaturesCollapsedSctn
+from src.db.features_models import FeaturesCollapsedSctn
 
 @dataclass
 class SelectQuerySctn:
