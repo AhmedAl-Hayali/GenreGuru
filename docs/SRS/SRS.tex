@@ -14,6 +14,8 @@
 \usepackage{array}
 \usepackage{float}
 \usepackage{placeins}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc}
 \graphicspath{ {./diagrams/} }
 
 \hypersetup{
@@ -135,31 +137,39 @@ Please refer to \ref{2.3-other-stakeholders} and \ref{2.4-hands-on-users} for th
   \item \textcolor{red}{\sout{Music regulators -- \emph{song licensing laws to abide by when acquiring training data is the only applicable concern, otherwise out of scope. For the interim, API documentation and metadata dictionaries suffice as a resource.}}}
 \end{itemize}
 
-\begin{itemize}
-  \item \textbf{Subject Matter Experts (SMEs)}\\
-    Experts in music and audio analysis who can offer insights into effective recommendation practices while ensuring stakeholder privacy. For a commercial project, compliance with data protection regulations (such as PIPEDA) would be required.
-    
-  \item \textbf{Music Producers \& Sound Engineers}\\
-    These stakeholders can use recommendations to quickly identify songs with similar production qualities or sonic characteristics, aiding in benchmarking and creative decision-making. Their involvement will be minimal (e.g., up to three interviews) but valuable for informing system integration into professional workflows.
-    
-  \item \textbf{Musicians}\\
-    Musicians can leverage the recommendation system to explore music that aligns with their style or inspires new creative directions. As with producers, their feedback (via a few interviews) will help refine the system’s usability and relevance.
-    
-  \item \textbf{Music Theorists}\\
-    Although their direct involvement is expected to be minimal (e.g., up to three interviews), theorists can provide insights into how the system might reveal relationships among songs based on shared musical structures or characteristics.
-    
-  \item \textbf{Music Educators}\\
-    Educators can utilize the recommendation system to expose students to a broader range of music with similar attributes, enhancing learning and creative exploration. Their feedback will help tailor the system for educational purposes.
-    
-  \item \textbf{Affiliated Corporate and Label Staff}\\
-    These groups (including publishers, marketers, and studio managers) are acknowledged as potential external stakeholders but are considered out of scope for the current academic project.
-    
-  \item \textbf{Development and Maintenance Teams}\\
-    Both teams consist exclusively of project members and are considered internal; therefore, they are not detailed further in this section.
-    
-  \item \textbf{Music Regulators}\\
-    Regulatory bodies concerned with song licensing and data usage provide context for compliance when acquiring training data, though these aspects are managed via API documentation and metadata dictionaries.
-\end{itemize}
+
+\noindent\textcolor{red}{\textbf{Subject Matter Experts (SMEs)}}\\
+\textcolor{red}{Experts in music and audio analysis who can offer insights into effective recommendation practices while 
+ensuring stakeholder privacy. For a commercial project, compliance with data protection regulations (such as PIPEDA) would be required.}\\
+  
+\noindent\textcolor{red}{\textbf{Music Producers \& Sound Engineers}}\\
+\textcolor{red}{These stakeholders can use recommendations to quickly identify songs with similar production qualities or sonic characteristics, 
+  aiding in benchmarking and creative decision-making. Their involvement will be minimal (e.g., up to three interviews) but valuable 
+  for informing system integration into professional workflows.}\\
+  
+  \noindent\textcolor{red}{\textbf{Musicians}}\\
+\textcolor{red}{Musicians can leverage the recommendation system to explore music that aligns with their style or inspires new creative directions. 
+  As with producers, their feedback (via a few interviews) will help refine the system’s usability and relevance.}\\
+
+  \noindent\textcolor{red}{\textbf{Music Theorists}}\\
+\textcolor{red}{Although their direct involvement is expected to be minimal (e.g., up to three interviews), theorists can provide insights into how 
+  the system might reveal relationships among songs based on shared musical structures or characteristics.}\\
+
+  \noindent\textcolor{red}{\textbf{Music Educators}}\\
+\textcolor{red}{Educators can utilize the recommendation system to expose students to a broader range of music with similar attributes, enhancing 
+  learning and creative exploration. Their feedback will help tailor the system for educational purposes.}\\
+
+  \noindent\textcolor{red}{\textbf{Affiliated Corporate and Label Staff}}\\
+\textcolor{red}{These groups (including publishers, marketers, and studio managers) are acknowledged as potential external stakeholders but are
+  considered out of scope for the current academic project.}\\
+
+  \noindent\textcolor{red}{\textbf{Development and Maintenance Teams}}\\
+\textcolor{red}{Both teams consist exclusively of project members and are considered internal; therefore, they are not detailed further in this section.}\\
+
+\noindent\textcolor{red}{\textbf{Music Regulators}}\\
+\textcolor{red}{Regulatory bodies concerned with song licensing and data usage provide context for compliance when acquiring training data, though 
+  these aspects are managed via API documentation and metadata dictionaries.}\\
+
 
 
 \subsection{Hands-On Users of the Project} \label{2.4-hands-on-users}
@@ -753,303 +763,561 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
-\includegraphics[width=\textwidth]{product_boundary.png} \\
+\includegraphics[width=\textwidth]{p_scope.png} \\
 \subsection{Product Use Case Table}
-\begin{table}[!ht]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-        \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input \& Output} \\ \hline
-        1 & UI Interaction & User & User Actions (click, swipe, drag) (in) \newline System Response (out) \\ \hline
-        2 & Song Recommendation Based on Features & User & User's desired features (in) \newline Collection of reference songs (out) \\ \hline
-        3 & Music Generation Based on Input & User & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
-        4 & Analyze Music & User & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
-        5 & Song Recommendation Based on Input & User & Reference song(s) (in) \newline Collection of reference songs (out) \\ \hline
-        6 & Server Interaction for Music Generation & Server & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
-        7 & Server Interaction for Song Recommendation & Server & User's desired features or reference song(s) and/or snippet(s) (in) \newline Collection of reference songs (out) \\ \hline
-        8 & Server Interaction for Music Analysis & Server & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
-    \end{tabular}
-    }
-    \caption{Product Use Case Table}
-    \label{tab:PUCtable}
-\end{table}
+\includegraphics[width=\textwidth]{PUCTable.png} \\
 
 \subsection{Individual Product Use Cases (PUC's)}
-\textbf{1. Product Use Case Name:} UI Interaction \\
-\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging) \\
-\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru \\
-\textbf{Interested Stakeholders:} All \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{UI.png} \\
-\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.
+\textcolor{red}{\sout{\textbf{1. Product Use Case Name:} UI Interaction}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging)}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} All}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{UI.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.}}
 
 \vspace{1cm}
 
-\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features \\
-\textbf{Trigger:} User picks features, and indicates they want to search for recommendations \\
-\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{recommendation_feature.png} \\
-\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.
+\textcolor{red}{\sout{\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User picks features, and indicates they want to search for recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{recommendation_feature.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.}}
 
 \vspace{1cm}
 
-\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input \\
-\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
-\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{generate_song.png} \\
-\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.
+\textcolor{red}{\sout{\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s)}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{generate_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.}}
 
 \vspace{1cm}
 
-\noindent \textbf{4. Product Use Case Name:} Analyze Music \\
-\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input \\
-\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{analyze_song.png} \\
-\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.
+\textcolor{red}{\sout{\noindent \textbf{4. Product Use Case Name:} Analyze Music}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{analyze_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.}}
 
 \vspace{1cm}
 
-\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input \\
-\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{recommend_song.png} \\
-\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.
+\textcolor{red}{\sout{\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s)}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{recommend_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.}}
 
 \vspace{1cm}
 
-\textbf{6. Product Use Case Name:} Server Interaction for Music Generation \\
-\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation \\
-\textbf{Preconditions:} User has provided a valid input through, and the server is operational \\
-\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians \\
-\textbf{Actor/s:} Server \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_gen.png} \\
-\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user
+\textcolor{red}{\sout{\textbf{6. Product Use Case Name:} Server Interaction for Music Generation}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided a valid input through, and the server is operational}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians }}\\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{server_song_gen.png}}} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user}}
 
 \vspace{1cm}
 
-\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation \\
-\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations \\
-\textbf{Preconditions:} User has provided valid input, and the server is available \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} Server \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_rec.png} \\
-\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.
+\textcolor{red}{\sout{\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided valid input, and the server is available}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{server_song_rec.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.}}
 
 \vspace{1cm}
 
-\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis \\
-\textbf{Trigger:} User submits a reference song or snippet and requests music analysis \\
-\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze \\
-\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
-\textbf{Actor/s:} Server \ \textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_analysis.png} \\
-\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.
+\textcolor{red}{\sout{\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits a reference song or snippet and requests music analysis}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators}}\\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server \ \textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\includegraphics[width=\textwidth]{server_song_analysis.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.}}
+
+\vspace{2cm}
+
+\noindent\textcolor{red}{\textbf{1. Product Use Case Name:} Submit Song Query} \\
+\textcolor{red}{\textbf{Trigger:} The user enters a song name and clicks the submit button.} \\
+\textcolor{red}{\textbf{Preconditions:} The user is logged into GenreGuru and on the query submission screen.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Musicians, Music Educators} \\
+\textcolor{red}{\textbf{Actor/s:} User} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC1.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The query is transmitted from the client to the server, initiating the recommendation process.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{2. Product Use Case Name:} Retrieve Song Snippet} \\
+\textcolor{red}{\textbf{Trigger:} The client application sends a snippet request upon receiving a song query.} \\
+\textcolor{red}{\textbf{Preconditions:} A valid song query has been submitted, and the client has access to the music provider API.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Music Producers \& Sound Engineers, Music Regulators} \\
+\textcolor{red}{\textbf{Actor/s:} Client Application, Music Provider} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC2.drawio.png}
+\textcolor{red}{\textbf{Outcome:} A song snippet (metadata or audio preview) is received from the music provider and passed to the client.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{3. Product Use Case Name:} Process Recommendation Request} \\
+\textcolor{red}{\textbf{Trigger:} The server receives a song snippet and query, triggering the recommendation process.} \\
+\textcolor{red}{\textbf{Preconditions:} The client has forwarded the song snippet; the database and recommendation module are accessible.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Music Producers \& Sound Engineers, Music Theorists, Music Educators, Music Regulators} \\
+\textcolor{red}{\textbf{Actor/s:} Server Controller, Recommendation Module, Feature Extraction} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC3.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The system checks for existing song features, performs feature extraction if needed, and generates a list of recommended songs.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{4. Product Use Case Name:} Display Recommendations} \\
+\textcolor{red}{\textbf{Trigger:} The recommendation module sends a list of recommended songs to the client.} \\
+\textcolor{red}{\textbf{Preconditions:} A valid recommendation list has been generated.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Musicians, Music Educators} \\
+\textcolor{red}{\textbf{Actor/s:} Client Application, User} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC4.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The list of recommended songs is displayed to the user in an intuitive format.}
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
 \hspace{14pt}
 
-\fbox{
+\fbox{%
 \begin{minipage}{\textwidth}
-\textbf{Requirement \# 1} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The client application should allow the user to provide a reference link to a song to initiate a request from the system \\
-\textbf{Rationale:} This provides a straightforward way for users to interact with the system and start a process of their choosing \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The user can paste a link, then make a request of the system \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 2} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should establish a connection between the client application, server, and external APIs to handle data requests and responses \\
-\textbf{Rationale:} Want to ensure data flow across the system, from client inputs to external API requests \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client’s request will trigger network communication with various components of the system, which will be confirmed by successful data retrieval and submission. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 3} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should process feature extraction requests \\
-\textbf{Rationale:} Want to provide efficient and reliable processing  \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} For each valid request, the server completes feature extraction within a specified time \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 4} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} When a reference link is provided, the system shall use External Service APIs to retrieve song data \\
-\textbf{Rationale:} Using external APIs to retrieve song data will reduce input requirements from the user \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} A valid reference link triggers data retrieval from the external API \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 5} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should analyze the provided reference song and extract a set of features (e.g. tempo, pitch, rhythm, genre, etc.) \\
-\textbf{Rationale:} Users want a way to break down songs for a more detailed analysis \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} With every request they system will return a consistent set of features \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 6} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should provide error feedback for each component \\
-\textbf{Rationale:} Clear error messaging supports debugging and ensures users receive actionable feedback \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} Each component generates specific error messages, guiding users and/or developers \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 7} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The client application should display the output of system components \\
-\textbf{Rationale:} To provide a way of interpreting/visualizing the output to the user \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client application displays the output for the user to see \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 8} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system will validate user inputs to ensure they are correct \\
-\textbf{Rationale:} Prevents errors and ensures the system processes valid data. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
+  \textcolor{red}{\sout{\textbf{Requirement \# 1}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The client application should allow the user to provide a reference link to a song to initiate a request from the system}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} This provides a straightforward way for users to interact with the system and start a process of their choosing}} \\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The user can paste a link, then make a request of the system}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
 }
 
 \vspace{10pt}
 
-\fbox{
+\fbox{%
 \begin{minipage}{\textwidth}
-\textbf{Requirement \# 9} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should feature a client application for user interaction \\
-\textbf{Rationale:} To allow users to interact with the system efficiently and intuitively \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client application allows users to initiate interactions such as submitting song links, requesting analysis, etc.  \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
+  \textcolor{red}{\sout{\textbf{Requirement \# 2}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should establish a connection between the client application, server, and external APIs to handle data requests and responses}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Want to ensure data flow across the system, from client inputs to external API requests}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client’s request will trigger network communication with various components of the system, which will be confirmed by successful data retrieval and submission.}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
 }
 
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 3}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should process feature extraction requests}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} Want to provide efficient and reliable processing}} \\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} For each valid request, the server completes feature extraction within a specified time}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 4}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} When a reference link is provided, the system shall use External Service APIs to retrieve song data}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Using external APIs to retrieve song data will reduce input requirements from the user}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} A valid reference link triggers data retrieval from the external API}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 5}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should analyze the provided reference song and extract a set of features (e.g., tempo, pitch, rhythm, genre, etc.)}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Users want a way to break down songs for a more detailed analysis}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} With every request, the system will return a consistent set of features}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 6}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should provide error feedback for each component}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Clear error messaging supports debugging and ensures users receive actionable feedback}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} Each component generates specific error messages that guide users and/or developers}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 7}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The client application should display the output of system components}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} To provide a way of interpreting/visualizing the output to the user}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client application displays the output for the user to see}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 8}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system will validate user inputs to ensure they are correct}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} Prevents errors and ensures the system processes valid data.}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid.}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 9}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should feature a client application for user interaction}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} To allow users to interact with the system efficiently and intuitively}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}}\\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client application allows users to initiate interactions such as submitting song links, requesting analysis, etc.}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+% =================================================================================================
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#1}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall allow users to input song queries either by typing in a text field or by uploading an audio file.} \\
+  \textcolor{red}{\textbf{Rationale:} Provides the primary mechanism for users to initiate interactions with GenreGuru.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The GUI displays clearly labeled input fields for text entry and file upload} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#2}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system GUI shall display search results—including song title, artist, and album cover—for text-based queries.} \\
+  \textcolor{red}{\textbf{Rationale:} Enables users to easily identify and select the desired track.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Search results are presented within 10 seconds of query submission in a clear, user-friendly format.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#3}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system shall allow users to play a 30-second preview of each search result.} \\
+  \textcolor{red}{\textbf{Rationale:} Helps users confirm their song selection before proceeding further.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Clicking the “Preview” button plays a 30-second audio clip within 3 seconds.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#4}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall validate uploaded audio files to ensure they are in supported formats (e.g., WAV, MP3).} \\
+  \textcolor{red}{\textbf{Rationale:} Prevents processing errors from unsupported file formats.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Unsupported files are rejected with a clear error message; only validated formats proceed to processing.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#5}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall convert non-WAV audio files to WAV format before processing.} \\
+  \textcolor{red}{\textbf{Rationale:} Standardizes input formats for the feature extraction module.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Any uploaded file not in WAV format is automatically converted to WAV with no user intervention.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#6}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system shall construct a query based on user input and interface with a music provider to retrieve a list of matching songs.} \\
+  \textcolor{red}{\textbf{Rationale:} Facilitates song discovery via text-based search by leveraging external music databases.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} A correctly formatted query string is generated and transmitted to the music provider, returning a valid list of matching songs within 10 seconds.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#7}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall extract essential audio features (e.g., spectral, rhythmic, timbral characteristics) from input songs required for generating recommendations.} \\
+  \textcolor{red}{\textbf{Rationale:} Audio features serve as the basis for comparing songs and generating meaningful recommendations.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The feature extraction module shall successfully extract all required audio features from with consitent results.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#8}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall support feature extraction for all ten predetermined audio features defined in the project scope.} \\
+  \textcolor{red}{\textbf{Rationale:} Ensures comprehensive analysis of song attributes for robust recommendation generation.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Each feature extraction module outputs valid data for supported audio files as verified by testing with representative samples.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#9}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall generate a ranked list of song recommendations based on the extracted audio features.} \\
+  \textcolor{red}{\textbf{Rationale:} Enables users to discover new songs aligned with the characteristics of their input without exposing internal algorithm details.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Recommendations are generated and displayed within 30 seconds of feature extraction; internal algorithm specifics remain abstract in the SRS.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#10}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall reliably transmit user-selected inputs (text queries or audio files) from the client to the server for processing.} \\
+  \textcolor{red}{\textbf{Rationale:} Ensures efficient and accurate data exchange between the client and server.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Data is transmitted with minimal latency (under 5 seconds)} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#11}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 4}\\
+  \textcolor{red}{\textbf{Description:} The system shall receive processed recommendation results from the server and update the GUI accordingly.} \\
+  \textcolor{red}{\textbf{Rationale:} Displays the final output to the user, completing the interaction cycle.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The GUI updates with the recommendation list within 5 seconds of receiving the processed results.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#12}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall store and retrieve song metadata, user queries, and extracted features in a secure and efficient database.} \\
+  \textcolor{red}{\textbf{Rationale:} A robust database is critical for caching data, minimizing redundant processing, and enabling quick retrieval.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Database queries execute with an average latency of under 2 seconds and maintain data integrity during transactions.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
 
 \vspace{10pt}
 
