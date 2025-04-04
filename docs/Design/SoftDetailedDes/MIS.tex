@@ -19,6 +19,9 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
+\usepackage{soul}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem} 
 
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
@@ -135,30 +138,37 @@ The following table is taken directly from the Module Guide document for this pr
 \midrule
 
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding} & GUI Module\\
-& Audio File Input Module\\
+& Audio File Upload Module\\
 & Search Query Module\\
-%server compute elements
 & Client Communication Module\\
+%server side
 & Server Communication Module\\
 & Driver Module\\
 %feature extractions
 & Tempo (BPM) Feature Extraction Module\\
 & Key and Scale Feature Extraction Module\\
-& Instrument Type Feature Extraction Module\\
-& Vocal Gender Feature Extraction Module\\
+& \textcolor{red}{\st{Instrument Type Feature Extraction Module}}\\
+& \textcolor{red}{\st{Vocal Gender Feature Extraction Module}}\\
+& \textcolor{red}{\st{Mood Feature Extraction Module}}\\
 & Dynamic Range Feature Extraction Module\\
+& \textcolor{red}{RMS feature Module}\\
 & Instrumentalness Feature Extraction Module\\
-& Contour Feature Extraction Module\\
-& Mood Feature Extraction Module\\
-%Results and display
+& \textcolor{red}{\st{Contour Feature Extraction Module}}\\
+& \textcolor{red}{Spectral Centroid Feature Module}\\
+& \textcolor{red}{Spectral Bandwidth Feature Module}\\
+& \textcolor{red}{Spectral Rolloff Feature Module}\\
+& \textcolor{red}{Spectral Flux Feature Module}\\
+& \textcolor{red}{Spectral Contrast Feature Module}\\
+%final pieces
 & Recommendation Module\\
-& Program Results Interface\\
+& Program Results Interface Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
 & Spotify API\\
 & Deezer API\\
-& Genre Feature Module\\
+& \textcolor{red}{\st{Genre Feature Module}}\\
+& \textcolor{red}{Spleeter Audio Splitter Module}\\
 \bottomrule
 
 \end{tabular}
