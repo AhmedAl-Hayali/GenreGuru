@@ -7,8 +7,11 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{soul}
 \usepackage{hyperref}
 \usepackage{caption}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem} 
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -285,12 +288,18 @@ to be implemented.
   %feature extractions
   & Tempo (BPM) Feature Extraction Module\\
   & Key and Scale Feature Extraction Module\\
-  & Instrument Type Feature Extraction Module\\
-  & Vocal Gender Feature Extraction Module\\
+  & \textcolor{red}{\st{Instrument Type Feature Extraction Module}}\\
+  & \textcolor{red}{\st{Vocal Gender Feature Extraction Module}}\\
+  & \textcolor{red}{\st{Mood Feature Extraction Module}}\\
   & Dynamic Range Feature Extraction Module\\
+  & \textcolor{red}{RMS feature Module}\\
   & Instrumentalness Feature Extraction Module\\
-  & Contour Feature Extraction Module\\
-  & Mood Feature Extraction Module\\
+  & \textcolor{red}{\st{Contour Feature Extraction Module}}\\
+  & \textcolor{red}{Spectral Centroid Feature Module}\\
+  & \textcolor{red}{Spectral Bandwidth Feature Module}\\
+  & \textcolor{red}{Spectral Rolloff Feature Module}\\
+  & \textcolor{red}{Spectral Flux Feature Module}\\
+  & \textcolor{red}{Spectral Contrast Feature Module}\\
   %final pieces
   & Recommendation Module\\
   & Program Results Interface Module\\
@@ -299,7 +308,8 @@ to be implemented.
   \multirow{3}{0.3\textwidth}{Software Decision} & Database\\
   & Spotify API\\
   & Deezer API\\
-  & Genre Feature Module\\
+  & \textcolor{red}{\st{Genre Feature Module}}\\
+  & \textcolor{red}{Spleeter Audio Splitter Module}\\
   \bottomrule
   
   \end{tabular}
@@ -408,23 +418,33 @@ to be implemented.
 \end{description}
 
 %f3
-\subsubsection{Instrument Type Feature Extraction Module (\mref{m9})}
+% \textcolor{red}{\sout{\subsubsection{Instrument Type Feature Extraction Module (\mref{m9})}}}
+\subsubsection*{\textcolor{red}{\sout{Instrument Type Feature Extraction Module (\mref{m9})}}}
 
 \begin{description}
-\item[Secrets:] The algorithm(s) for detecting the type(s) of instruments present within the track. 
-\item[Services:]Detects the presence of different instrument types within the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
+\item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm(s) for detecting the type(s) of instruments present within the track.}}
+\item \textcolor{red}{\sout{\textbf{Services:} Detects the presence of different instrument types within the input audio signal.}}
+\item \textcolor{red}{\sout{\textbf{Implemented By:} Python Function}}
+\item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
+
 \end{description}
 
 %f4
-\subsubsection{Vocal Gender Feature Extraction Module (\mref{m10})}
+% \subsubsection{Vocal Gender Feature Extraction Module (\mref{m10})}
+
+% \begin{description}
+% \item[Secrets:] The algorithm for detecting the overall vocal gender of the track. 
+% \item[Services:]Extracts the overall vocal gender of the input audio signal. 
+% \item[Implemented By:] Python Function
+% \item[Type of Module:] Abstract Data Type
+% \end{description}
+\subsubsection*{\textcolor{red}{\sout{Vocal Gender Feature Extraction Module (\mref{m10})}}}
 
 \begin{description}
-\item[Secrets:] The algorithm for detecting the overall vocal gender of the track. 
-\item[Services:]Extracts the overall vocal gender of the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
+\item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm for detecting the overall vocal gender of the track.}}
+\item \textcolor{red}{\sout{\textbf{Services:} Extracts the overall vocal gender of the input audio signal.}}
+\item \textcolor{red}{\sout{\textbf{Implemented By:} Python Function}}
+\item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
 \end{description}
 
 %f5
@@ -432,9 +452,18 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The format and structure of the input data.
-\item[Services:]Extracts the Dynamic Range (difference between peak and trough in decibels) of the input audio signal.
+\item[Services:]Extracts the Dynamic Range (difference between peak and \textcolor{red}{\sout{through} median} in decibels) of the input audio signal.
 \item[Implemented By:] Python Function
 \item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{\textcolor{red}{RMS feature Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for computing the RMS of the track}
+\item \textcolor{red}{\textbf{Services:} Computes the RMS of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
 \end{description}
 
 %f6
@@ -448,24 +477,87 @@ to be implemented.
 \end{description}
 
 %f7
-\subsubsection{Contour Feature Extraction Module (\mref{m13})}
+% \subsubsection{Contour Feature Extraction Module (\mref{m13})}
+
+% \begin{description}
+% \item[Secrets:] The algorithm to detect the musical contour of the track. 
+% \item[Services:] Extracts the musical contour of the input audio signal.  
+% \item[Implemented By:] Python Function
+% \item[Type of Module:] Abstract Data Type
+% \end{description}
+\subsubsection{\textcolor{red}{\sout{Contour Feature Extraction Module (\mref{m13})}}}
 
 \begin{description}
-\item[Secrets:] The algorithm to detect the musical contour of the track. 
-\item[Services:] Extracts the musical contour of the input audio signal.  
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
+\item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm to detect the musical contour of the track.}}
+\item \textcolor{red}{\sout{\textbf{Services:} Extracts the musical contour of the input audio signal.}}
+\item \textcolor{red}{\sout{\textbf{Implemented By:} Python Function}}
+\item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
 \end{description}
 
 %f8
-\subsubsection{Mood Feature Extraction Module (\mref{m14})}
+% \subsubsection{Mood Feature Extraction Module (\mref{m14})}
+
+% \begin{description}
+% \item[Secrets:] The algorithm for detecting the mood of the track. 
+% \item[Services:] Extracts the mood of the input audio signal. 
+% \item[Implemented By:] Python Function
+% \item[Type of Module:] Abstract Data Type
+% \end{description}
+\subsubsection{\textcolor{red}{\sout{Mood Feature Extraction Module (\mref{m14})}}}
 
 \begin{description}
-\item[Secrets:] The algorithm for detecting the mood of the track. 
-\item[Services:] Extracts the mood of the input audio signal. 
-\item[Implemented By:] Python Function
-\item[Type of Module:] Abstract Data Type
+\item \textcolor{red}{\sout{\textbf{Secrets:} The algorithm for detecting the mood of the track.}}
+\item \textcolor{red}{\sout{\textbf{Services:} Extracts the mood of the input audio signal.}}
+\item \textcolor{red}{\sout{\textbf{Implemented By:} Python Function}}
+\item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
 \end{description}
+
+%spectral features: centroid, flux, bandwidth, rolloff, contrast
+\subsubsection{\textcolor{red}{Spectral centroid Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral centroid of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the Spectral Centroid of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection{\textcolor{red}{Spectral Bandwidth Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Bandwidth of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral bandwidth of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection{\textcolor{red}{Spectral Rolloff Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm for detecting the Spectral Rolloff of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the Spectral Rolloff of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection{\textcolor{red}{Spectral Flux Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral flux of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral flux of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
+\subsubsection{\textcolor{red}{Spectral Contrast Feature Extraction Module (\mref{m12})}}
+
+\begin{description}
+\item \textcolor{red}{\textbf{Secrets:} The algorithm to compute the spectral contrast of the track.}
+\item \textcolor{red}{\textbf{Services:} Computes the spectral contrast of the input audio signal.}
+\item \textcolor{red}{\textbf{Implemented By:} Python Function}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Type}
+\end{description}
+
 
 %recommendation
 \subsubsection{Recommendation Module (\mref{m15})}
@@ -473,8 +565,8 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The recommendation machine learning algorithm. 
 \item[Services:] Generates a list of recommended songs. 
-\item[Implemented By:] Machine Learning Algorithm
-\item[Type of Module:] Library
+\item[Implemented By:] \textcolor{red}{\sout{Machine Learning Algorithm}} \textcolor{red}{K-NN Algorithm}
+\item[Type of Module:] \textcolor{red}{SKLearn Python Library}
 \end{description}
 
 %results GUI
@@ -537,13 +629,31 @@ to be implemented.
 \item[Type of Module:] API Library
 \end{description}
 
-\subsubsection{Genre Feature Module (\mref{m20})}
+\subsubsection{\textcolor{red}{Spleeter Vocal Audio Splitter(\mref{m12})}}
 
 \begin{description}
-\item[Secrets:]Genre label for a song
-\item[Services:]Fetches a genre label for a required song
-\item[Implemented By:] Deezer API
-\item[Type of Module:] Abstract Data Type
+\item \textcolor{red}{\textbf{Secrets:} Machine learning model, training data.}
+\item \textcolor{red}{\textbf{Services:} Isolates vocal component of the song from non-vocal components.}
+\item \textcolor{red}{\textbf{Implemented By:} Spleeter Library}
+\item \textcolor{red}{\textbf{Type of Module:} Abstract Data Object}
+\end{description}
+
+% \subsubsection{Genre Feature Module (\mref{m20})}
+
+% \begin{description}
+% \item[Secrets:]Genre label for a song
+% \item[Services:]Fetches a genre label for a required song
+% \item[Implemented By:] Deezer API
+% \item[Type of Module:] Abstract Data Type
+% \end{description}
+
+\subsubsection*{\textcolor{red}{\sout{Genre Feature Module (\mref{m20})}}}
+
+\begin{description}
+\item \textcolor{red}{\sout{\textbf{Secrets:} Genre label for a song}}
+\item \textcolor{red}{\sout{\textbf{Services:} Fetches a genre label for a required song}}
+\item \textcolor{red}{\sout{\textbf{Implemented By:} Deezer API}}
+\item \textcolor{red}{\sout{\textbf{Type of Module:} Abstract Data Type}}
 \end{description}
 
 \section{Traceability Matrix} \label{SecTM}
@@ -714,9 +824,18 @@ The following timeline outlines the key milestones and activities planned for th
     \item \textbf{January 20th - January 21st:} Conduct a meeting with Dr. MvM with a well-defined agenda to review progress and receive feedback.
     \item \textbf{January 22nd - January 23rd:} Engage with user groups to gather additional insights and validate design decisions.
     \item \textbf{January 23rd onwards:} Begin work on Rev 0 of the project deliverables, incorporating feedback from user groups and the advisor meeting.
+    \item \textcolor{red}{\textbf{Feb 4th:} Revision 0 demo: Demonstration of the completed project.}
+    \item \textcolor{red}{\textbf{March 10th:} VnV Report: Completed testing of the project.}
+    \item \textcolor{red}{\textbf{March 27th:} Supervisor Final Demonstration.}
+    \item \textcolor{red}{\textbf{April 4th:} Rev1: Final Documentation Completion}
+    \item \textcolor{red}{\textbf{April 8th:} Capstone Expo}
 \end{itemize}
 
-All team members are responsible for the tasks described in this timeline breakdown. (These were agreed upon in the [Post-Winter break Check-in](https://github.com/AhmedAl-Hayali/GenreGuru/issues/278))
+All team members are responsible for the tasks described in this timeline breakdown are features in the
+\hyperlink{https://github.com/AhmedAl-Hayali/GenreGuru/issues/278}{Post-Winter break Check-in} Issue.
+
+
+
 %\wss{Schedule of tasks and who is responsible}
 
 %\wss{You can point to GitHub if this information is included there}
