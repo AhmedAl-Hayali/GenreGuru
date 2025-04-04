@@ -374,7 +374,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The format and structure of the input data.
 \item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] Python File
+\item[Implemented By:] JavaScript File
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
@@ -804,15 +804,46 @@ arrows in the diagram typically correspond to the presence of import statement.}
 
 %\wss{Design of user interface for software and hardware.  Attach an appendix if needed. Drawings, Sketches, Figma}
 \section{Design of Communication Protocols}
-Our design features 2 modules that have to do communication. They are listed as such: 
+
+Our design involves two key modules that manage communication between the client and server:
 \begin{itemize}
-  \item Client communication module
-  \item Server communication module
+  \item \textbf{Client Communication Module}
+  \item \textbf{Server Communication Module}
 \end{itemize}
-The communication between the frontend systems is done simply through funtion calls. In order to send data (input type, audio data, song ID) from the frontend the user 
-interacts with to the backend (the server) this will be done through encrypted data sent to the hosted server. This would be done by using
-a RESTFUL interface as this is currently the most common method. Using standard REST API, the payload passed is a regular JSON object with 
-a label for search or file input (the type of input) as that changes the behavior of the backend and the actual song ID itself. 
+
+The system is architected around a RESTful API that facilitates communication between the frontend (client) and backend (server). This communication protocol is responsible for transferring input data such as the song ID or uploaded audio file, as well as receiving processed recommendations. Data is transmitted over HTTP in the form of JSON payloads.
+
+\subsection*{Frontend-to-Backend Communication}
+Users interact with the client-facing frontend to either search for a song or upload an audio file. Based on the selected input method, the frontend sends a POST request to the backend API endpoint. The request payload follows a standardized JSON schema containing:
+\begin{itemize}
+    \item \texttt{type} — either \texttt{"search"} or \texttt{"upload"}.
+    \item \texttt{payload} — the song ID (for search) or encoded audio file (for upload).
+\end{itemize}
+
+The backend processes this request and returns a JSON response containing:
+\begin{itemize}
+    \item \texttt{recommended\_songs} — a list of recommended tracks (deezer IDs).
+\end{itemize}
+
+\subsection*{Server Hosting and Ngrok Tunneling}
+Due to development constraints, the backend server is hosted locally and exposed to the internet using \texttt{ngrok}, a tunneling tool that creates a temporary public URL for the localhost server. However, since \texttt{ngrok} URLs are not persistent and change each time the tunnel is restarted, we implemented a dynamic solution for maintaining server availability.
+
+\subsection*{Dynamic URL Tracking with Render}
+To solve the problem of \texttt{ngrok}'s impermanence, we created a lightweight \texttt{url-store} microservice hosted on Render (which tracks the \texttt{render-deploy} branch). The backend server, on startup, sends its current \texttt{ngrok} URL to the \texttt{url-store} via an API request. This updated URL is then retrieved by the frontend to ensure that all outgoing API requests target the correct endpoint. The \texttt{url-store} is continuously deployed by tracking the \texttt{render-deploy} branch of our repository.
+
+This design ensures robust communication across environments while enabling rapid testing and iteration during development.
+
+\subsection*{Summary of Flow}
+\begin{enumerate}
+    \item Frontend fetches the current server URL from \texttt{url-store} (available on the \texttt{render-deploy} branch).
+    \item User submits a request (search/upload) from the frontend UI.
+    \item Frontend sends a JSON POST request to the server via the fetched ngrok URL.
+    \item Backend processes input, performs feature extraction and recommendation, and responds with JSON data.
+    \item Frontend displays the results to the user.
+\end{enumerate}
+
+This architecture balances flexibility and functionality, enabling modular development, real-time testing, and seamless deployment.
+
 
 \section{Timeline}
 
