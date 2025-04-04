@@ -189,6 +189,7 @@ The following table is taken directly from the Module Guide document for this pr
   \item Audio File Input Module
   \item Search Query Module
   \item Spotify API Module
+  \item \textcolor{red}{Deezer API Module}
 \end{itemize}
 
 \subsection{Syntax}
@@ -239,7 +240,7 @@ gui &N/A &N/A &-\\
 N/A
 
 %subinput 1
-\section{MIS of Audio File Input Module} 
+\section{MIS of Audio File \textcolor{red}{Upload} Module} 
 
 \subsection{Audio File Input Module}
 \textbf{audioFileIM}
@@ -632,13 +633,19 @@ The Featurizer Module is responsible for extracting 9 distinct feature values fr
 \begin{itemize}
     \item Tempo
     \item Key and Scale
-    \item Instrument Type
-    \item Vocal Gender
+    \item \textcolor{red}{\sout{Instrument Type}}
+    \item \textcolor{red}{\sout{Vocal Gender}}
     \item Dynamic Range
+    \item \textcolor{red}{RMS}
     \item Instrumentalness
-    \item Contour
-    \item Mood
-    \item Genre
+    \item \textcolor{red}{Spectral Centroid}
+    \item \textcolor{red}{Spectral Bandwidth}
+    \item \textcolor{red}{Spectral Rolloff}
+    \item \textcolor{red}{Spectral Flux}
+    \item \textcolor{red}{Spectral Contrast}
+    \item \textcolor{red}{\sout{Contour}}
+    \item \textcolor{red}{\sout{Mood}}
+    \item \textcolor{red}{\sout{Genre}}
 \end{itemize}
 
 The module invokes sub-feature modules to compute these feature values. It consolidates the results into a single \texttt{FeatureValues} object and returns it to the Driver Module.
@@ -818,107 +825,107 @@ N/A
 
 
 %Instrument Type Feature
-\section{MIS of Instrument Type Feature Extraction Module} 
+\section{\textcolor{red}{\sout{MIS of Instrument Type Feature Extraction Module}}} 
 
-\subsection{Instrument Type Feature Extraction Module}
+\subsection{\textcolor{red}{\sout{Instrument Type Feature Extraction Module}}}
 
-\subsection{Uses}
-N/A
+\subsection{\textcolor{red}{\sout{Uses}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsection{Syntax}
+\subsection{\textcolor{red}{\sout{Syntax}}}
 
-\subsubsection{Exported Constants}
-N/A
+\subsubsection{\textcolor{red}{\sout{Exported Constants}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\textcolor{red}{\sout{Exported Access Programs}}}
 
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Instrument Type} &\texttt{Audio time series (np.ndarray)} &\texttt{Instrument Type} $\in \mathbb{Z}^k$ &-\\
+\textcolor{red}{\sout{\textbf{Name}}} & \textcolor{red}{\sout{\textbf{In}}} & \textcolor{red}{\sout{\textbf{Out}}} & \textcolor{red}{\sout{\textbf{Exceptions}}}\\
+\hline
+\textcolor{red}{\sout{\texttt{Extract Instrument Type}}} & \textcolor{red}{\sout{\texttt{Audio time series (np.ndarray)}}} & \textcolor{red}{\sout{\texttt{Instrument Type} $\in \mathbb{Z}^k$}} & \textcolor{red}{\sout{-}}\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\textcolor{red}{\sout{Semantics}}}
 
-\subsubsection{State Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{State Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Environment Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{Environment Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\subsubsection{\textcolor{red}{\sout{Assumptions}}}
+\textcolor{red}{\sout{Valid audio file with coherent song information.}}
 
-\subsubsection{Access Routine Semantics}
+\subsubsection{\textcolor{red}{\sout{Access Routine Semantics}}}
 
-\noindent \texttt{ExtractInstrumentType()}:
+\noindent \textcolor{red}{\sout{\texttt{ExtractInstrumentType()}:}}
 \begin{itemize}
-\item transition: N/A
-\item output: \texttt{Instrument\textunderscore Type} : = \texttt{ExtractInstrumentType(Audio\textunderscore Time\textunderscore Series)}
-\item exception: N/A 
+\item \textcolor{red}{\sout{transition: N/A}}
+\item \textcolor{red}{\sout{output: \texttt{Instrument\_Type} := \texttt{ExtractInstrumentType(Audio\_Time\_Series)}}}
+\item \textcolor{red}{\sout{exception: N/A}}
 \end{itemize}
 
-\subsubsection{Local Functions}
-N/A
-
+\subsubsection{\textcolor{red}{\sout{Local Functions}}}
+\textcolor{red}{\sout{N/A}}
 
 %MIS Vocal Gender Feature
-\section{MIS of Vocal Gender Feature Extraction Module} 
+\section{\textcolor{red}{\sout{MIS of Vocal Gender Feature Extraction Module}}} 
 
-\subsection{MIS of Vocal Gender Feature Extraction Module}
-This feature seeks to quantify whether the voices features in the inputted audio file 
+\subsection{\textcolor{red}{\sout{MIS of Vocal Gender Feature Extraction Module}}}
+\textcolor{red}{\sout{This feature seeks to quantify whether the voices features in the inputted audio file 
 are largely more feminine or masculine sounding. This is represented by a float with a range between
 0 and 1 where 0 means only "masculine" sound signatures are contained and 1 means only "feminine" sounds,
-where values in-between represent a blend. 
-%IMO this conceptions is the easiest way to do it. If you did a 0 or 1 integer the representation wouldn't make
-%useful sense for songs where there are vocalists of different genders. 
+where values in-between represent a blend.}}
+%\textcolor{red}{\sout{IMO this conceptions is the easiest way to do it. If you did a 0 or 1 integer the representation wouldn't make
+%useful sense for songs where there are vocalists of different genders.}}
 
-\subsection{Uses}
-N/A
+\subsection{\textcolor{red}{\sout{Uses}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsection{Syntax}
+\subsection{\textcolor{red}{\sout{Syntax}}}
 
-\subsubsection{Exported Constants}
-N/A
+\subsubsection{\textcolor{red}{\sout{Exported Constants}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\textcolor{red}{\sout{Exported Access Programs}}}
 
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Vocal Gender} &\texttt{Audio time series (np.ndarray)} &\texttt{Vocal Gender} $\in \mathbb{R}$ &-\\
+\textcolor{red}{\sout{\textbf{Name}}} & \textcolor{red}{\sout{\textbf{In}}} & \textcolor{red}{\sout{\textbf{Out}}} & \textcolor{red}{\sout{\textbf{Exceptions}}}\\
+\hline
+\textcolor{red}{\sout{\texttt{Extract Vocal Gender}}} & \textcolor{red}{\sout{\texttt{Audio time series (np.ndarray)}}} & \textcolor{red}{\sout{\texttt{Vocal Gender} $\in \mathbb{R}$}} & \textcolor{red}{\sout{-}}\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\textcolor{red}{\sout{Semantics}}}
 
-\subsubsection{State Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{State Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Environment Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{Environment Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\subsubsection{\textcolor{red}{\sout{Assumptions}}}
+\textcolor{red}{\sout{Valid audio file with coherent song information.}}
 
-\subsubsection{Access Routine Semantics}
+\subsubsection{\textcolor{red}{\sout{Access Routine Semantics}}}
 
-\noindent \texttt{ExtractVocalGender()}:
+\noindent \textcolor{red}{\sout{\texttt{ExtractVocalGender()}:}}
 \begin{itemize}
-\item transition: N/A
-\item output: \texttt{Vocal\textunderscore Gender} : = \texttt{ExtractVocalGender(Audio\textunderscore Time\textunderscore Series)}
-\item exception: N/A
+\item \textcolor{red}{\sout{transition: N/A}}
+\item \textcolor{red}{\sout{output: \texttt{Vocal\_Gender} := \texttt{ExtractVocalGender(Audio\_Time\_Series)}}}
+\item \textcolor{red}{\sout{exception: N/A}}
 \end{itemize}
 
-\subsubsection{Local Functions}
-N/A
+\subsubsection{\textcolor{red}{\sout{Local Functions}}}
+\textcolor{red}{\sout{N/A}}
+
 
 %Dynamic Range Feature
 \section{MIS of Dynamic Range Feature Extraction Module} 
@@ -1022,168 +1029,290 @@ Valid audio file with coherent song information.
 N/A
 
 %Contour Extraction
-\section{MIS of Contour Feature Extraction Module} 
+\section{\textcolor{red}{\sout{MIS of Contour Feature Extraction Module}}} 
 
-\subsection{Contour Feature Extraction Module}
+\subsection{\textcolor{red}{\sout{Contour Feature Extraction Module}}}
 
-\subsection{Uses}
-N/A
+\subsection{\textcolor{red}{\sout{Uses}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsection{Syntax}
+\subsection{\textcolor{red}{\sout{Syntax}}}
 
-\subsubsection{Exported Constants}
-N/A
+\subsubsection{\textcolor{red}{\sout{Exported Constants}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\textcolor{red}{\sout{Exported Access Programs}}}
 
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Melodic Contour} &\texttt{Audio time series (np.ndarray)} &\texttt{Contour} &-\\
+\textcolor{red}{\sout{\textbf{Name}}} & \textcolor{red}{\sout{\textbf{In}}} & \textcolor{red}{\sout{\textbf{Out}}} & \textcolor{red}{\sout{\textbf{Exceptions}}}\\
+\hline
+\textcolor{red}{\sout{\texttt{Extract Melodic Contour}}} & \textcolor{red}{\sout{\texttt{Audio time series (np.ndarray)}}} & \textcolor{red}{\sout{\texttt{Contour}}} & \textcolor{red}{\sout{-}}\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\textcolor{red}{\sout{Semantics}}}
 
-\subsubsection{State Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{State Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Environment Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{Environment Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\subsubsection{\textcolor{red}{\sout{Assumptions}}}
+\textcolor{red}{\sout{Valid audio file with coherent song information.}}
 
-\subsubsection{Access Routine Semantics}
+\subsubsection{\textcolor{red}{\sout{Access Routine Semantics}}}
 
-\noindent \texttt{ExtractMelodicContour()}:
+\noindent \textcolor{red}{\sout{\texttt{ExtractMelodicContour()}:}}
 \begin{itemize}
-\item transition: N/A 
-\item output: \texttt{Contour} : = \texttt{ExtractMelodicContour(Audio\textunderscore Time\textunderscore Series)}
-\item exception: N/A
+\item \textcolor{red}{\sout{transition: N/A}}
+\item \textcolor{red}{\sout{output: \texttt{Contour} := \texttt{ExtractMelodicContour(Audio\_Time\_Series)}}}
+\item \textcolor{red}{\sout{exception: N/A}}
 \end{itemize}
 
-\subsubsection{Local Functions}
-N/A
+\subsubsection{\textcolor{red}{\sout{Local Functions}}}
+\textcolor{red}{\sout{N/A}}
 
+% %Mood extraction
+% \section{MIS of Mood Feature Extraction Module} 
+
+% \subsection{Mood Feature Extraction Module}
+
+% \subsection{Uses}
+% N/A
+
+% \subsection{Syntax}
+
+% \subsubsection{Exported Constants}
+% N/A
+
+% \subsubsection{Exported Access Programs}
+
+% \begin{center}
+% \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+% \hline
+% \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+% \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
+% \texttt{Extract Mood} &\texttt{Audio time series (np.ndarray)} &\texttt{Mood} $\in{\mathbb{Z}}$ &-\\
+% \hline
+% \end{tabular}
+% \end{center}
+
+% \subsection{Semantics}
+
+% \subsubsection{State Variables}
+% N/A
+
+% \subsubsection{Environment Variables}
+% N/A
+
+% \subsubsection{Assumptions}
+% Valid audio file with coherent song information.
+
+% \subsubsection{Access Routine Semantics}
+
+% \noindent \texttt{ExtractMood()}:
+% \begin{itemize}
+% \item transition: N/A 
+% \item output: \texttt{Mood} : = \texttt{ExtractMood(Audio\textunderscore Time\textunderscore Series)}
+% \item exception: N/A
+% \end{itemize}
+
+% \subsubsection{Local Functions}
+% N/A
+
+% % MIS of Genre Feature Module
+
+% \section{MIS of Genre Feature Extraction Module} \label{Module:GenreFeatureExtraction}
+
+% \subsection{Module}
+% Genre Feature Extraction Module
+
+% \subsection{Uses}
+% - Featurizer Module: Receives metadata from the Featurizer Module and extracts the genre attribute from it.
+% - Metadata Structure: Utilizes the metadata structure to locate and retrieve the genre attribute.
+
+% \subsection{Syntax}
+
+% \subsubsection{Exported Constants}
+% None.
+
+% \subsubsection{Exported Access Programs}
+
+% \begin{center}
+% \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+% \hline
+% \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+% \hline
+% extractGenre & metadata: Metadata & genre: String & MissingGenreException, InvalidMetadataException \\
+% \hline
+% \end{tabular}
+% \end{center}
+
+% \subsection{Semantics}
+
+% \subsubsection{State Variables}
+% - \texttt{metadata}: The metadata provided by the Featurizer Module, which contains the genre attribute.
+
+% \subsubsection{Environment Variables}
+% None.
+
+% \subsubsection{Assumptions}
+% - The metadata provided by the Featurizer Module is valid and includes the genre attribute.
+% - The genre attribute in the metadata is correctly formatted and accessible.
+
+% \subsubsection{Access Routine Semantics}
+
+% \noindent \textbf{extractGenre}(metadata: Metadata):
+% \begin{itemize}
+% \item \textbf{Transition:} 
+%     - Extracts the genre attribute from the provided metadata.
+% \item \textbf{Output:} 
+%     - Returns the extracted genre as a string.
+% \item \textbf{Exceptions:} 
+%     - \texttt{MissingGenreException}: Raised if the genre attribute is not found in the metadata.
+%     - \texttt{InvalidMetadataException}: Raised if the provided metadata is improperly formatted or invalid.
+% \end{itemize}
+
+% \subsubsection{Local Functions}
+
+% \textbf{validateMetadata}:
+% \begin{itemize}
+% \item Purpose: Ensures the provided metadata is valid and contains the necessary attributes.
+% \item Input: \texttt{metadata}.
+% \item Output: Boolean (true if valid, false otherwise).
+% \end{itemize}
+
+% \textbf{retrieveGenre}:
+% \begin{itemize}
+% \item Purpose: Locates and retrieves the genre attribute from the metadata.
+% \item Input: \texttt{metadata}.
+% \item Output: \texttt{genre} (String).
+% \end{itemize}
 %Mood extraction
-\section{MIS of Mood Feature Extraction Module} 
+\section{\textcolor{red}{\sout{MIS of Mood Feature Extraction Module}}} 
 
-\subsection{Mood Feature Extraction Module}
+\subsection{\textcolor{red}{\sout{Mood Feature Extraction Module}}}
 
-\subsection{Uses}
-N/A
+\subsection{\textcolor{red}{\sout{Uses}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsection{Syntax}
+\subsection{\textcolor{red}{\sout{Syntax}}}
 
-\subsubsection{Exported Constants}
-N/A
+\subsubsection{\textcolor{red}{\sout{Exported Constants}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\textcolor{red}{\sout{Exported Access Programs}}}
 
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Mood} &\texttt{Audio time series (np.ndarray)} &\texttt{Mood} $\in{\mathbb{Z}}$ &-\\
+\textcolor{red}{\sout{\textbf{Name}}} & \textcolor{red}{\sout{\textbf{In}}} & \textcolor{red}{\sout{\textbf{Out}}} & \textcolor{red}{\sout{\textbf{Exceptions}}}\\
+\hline
+\textcolor{red}{\sout{\texttt{Extract Mood}}} & \textcolor{red}{\sout{\texttt{Audio time series (np.ndarray)}}} & \textcolor{red}{\sout{\texttt{Mood} $\in{\mathbb{Z}}$}} & \textcolor{red}{\sout{-}}\\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\textcolor{red}{\sout{Semantics}}}
 
-\subsubsection{State Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{State Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Environment Variables}
-N/A
+\subsubsection{\textcolor{red}{\sout{Environment Variables}}}
+\textcolor{red}{\sout{N/A}}
 
-\subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\subsubsection{\textcolor{red}{\sout{Assumptions}}}
+\textcolor{red}{\sout{Valid audio file with coherent song information.}}
 
-\subsubsection{Access Routine Semantics}
+\subsubsection{\textcolor{red}{\sout{Access Routine Semantics}}}
 
-\noindent \texttt{ExtractMood()}:
+\noindent \textcolor{red}{\sout{\texttt{ExtractMood()}:}}
 \begin{itemize}
-\item transition: N/A 
-\item output: \texttt{Mood} : = \texttt{ExtractMood(Audio\textunderscore Time\textunderscore Series)}
-\item exception: N/A
+\item \textcolor{red}{\sout{transition: N/A}}
+\item \textcolor{red}{\sout{output: \texttt{Mood} := \texttt{ExtractMood(Audio\_Time\_Series)}}}
+\item \textcolor{red}{\sout{exception: N/A}}
 \end{itemize}
 
-\subsubsection{Local Functions}
-N/A
+\subsubsection{\textcolor{red}{\sout{Local Functions}}}
+\textcolor{red}{\sout{N/A}}
 
 % MIS of Genre Feature Module
 
-\section{MIS of Genre Feature Extraction Module} \label{Module:GenreFeatureExtraction}
+\section{\textcolor{red}{\sout{MIS of Genre Feature Extraction Module}}} %\label{\textcolor{red}{\sout{Module:GenreFeatureExtraction}}}
 
-\subsection{Module}
-Genre Feature Extraction Module
+\subsection{\textcolor{red}{\sout{Module}}}
+\textcolor{red}{\sout{Genre Feature Extraction Module}}
 
-\subsection{Uses}
-- Featurizer Module: Receives metadata from the Featurizer Module and extracts the genre attribute from it.
-- Metadata Structure: Utilizes the metadata structure to locate and retrieve the genre attribute.
+\subsection{\textcolor{red}{\sout{Uses}}}
+\begin{itemize}
+\item \textcolor{red}{\sout{Featurizer Module: Receives metadata from the Featurizer Module and extracts the genre attribute from it.}}
+\item \textcolor{red}{\sout{Metadata Structure: Utilizes the metadata structure to locate and retrieve the genre attribute.}}
+\end{itemize}
 
-\subsection{Syntax}
+\subsection{\textcolor{red}{\sout{Syntax}}}
 
-\subsubsection{Exported Constants}
-None.
+\subsubsection{\textcolor{red}{\sout{Exported Constants}}}
+\textcolor{red}{\sout{None.}}
 
-\subsubsection{Exported Access Programs}
+\subsubsection{\textcolor{red}{\sout{Exported Access Programs}}}
 
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\textcolor{red}{\sout{\textbf{Name}}} & \textcolor{red}{\sout{\textbf{In}}} & \textcolor{red}{\sout{\textbf{Out}}} & \textcolor{red}{\sout{\textbf{Exceptions}}} \\
 \hline
-extractGenre & metadata: Metadata & genre: String & MissingGenreException, InvalidMetadataException \\
+\textcolor{red}{\sout{extractGenre}} & \textcolor{red}{\sout{metadata: Metadata}} & \textcolor{red}{\sout{genre: String}} & \textcolor{red}{\sout{MissingGenreException, InvalidMetadataException}} \\
 \hline
 \end{tabular}
 \end{center}
 
-\subsection{Semantics}
+\subsection{\textcolor{red}{\sout{Semantics}}}
 
-\subsubsection{State Variables}
-- \texttt{metadata}: The metadata provided by the Featurizer Module, which contains the genre attribute.
+\subsubsection{\textcolor{red}{\sout{State Variables}}}
+\textcolor{red}{\sout{- \texttt{metadata}: The metadata provided by the Featurizer Module, which contains the genre attribute.}}
 
-\subsubsection{Environment Variables}
-None.
+\subsubsection{\textcolor{red}{\sout{Environment Variables}}}
+\textcolor{red}{\sout{None.}}
 
-\subsubsection{Assumptions}
-- The metadata provided by the Featurizer Module is valid and includes the genre attribute.
-- The genre attribute in the metadata is correctly formatted and accessible.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \textbf{extractGenre}(metadata: Metadata):
+\subsubsection{\textcolor{red}{\sout{Assumptions}}}
 \begin{itemize}
-\item \textbf{Transition:} 
-    - Extracts the genre attribute from the provided metadata.
-\item \textbf{Output:} 
-    - Returns the extracted genre as a string.
-\item \textbf{Exceptions:} 
-    - \texttt{MissingGenreException}: Raised if the genre attribute is not found in the metadata.
-    - \texttt{InvalidMetadataException}: Raised if the provided metadata is improperly formatted or invalid.
+\item \textcolor{red}{\sout{The metadata provided by the Featurizer Module is valid and includes the genre attribute.}}
+\item \textcolor{red}{\sout{The genre attribute in the metadata is correctly formatted and accessible.}}
 \end{itemize}
 
-\subsubsection{Local Functions}
+\subsubsection{\textcolor{red}{\sout{Access Routine Semantics}}}
 
-\textbf{validateMetadata}:
+\noindent \textcolor{red}{\sout{\textbf{extractGenre}(metadata: Metadata):}}
 \begin{itemize}
-\item Purpose: Ensures the provided metadata is valid and contains the necessary attributes.
-\item Input: \texttt{metadata}.
-\item Output: Boolean (true if valid, false otherwise).
+\item \textcolor{red}{\sout{\textbf{Transition:}}}
+    \textcolor{red}{\sout{- Extracts the genre attribute from the provided metadata.}}
+\item \textcolor{red}{\sout{\textbf{Output:}}}
+    \textcolor{red}{\sout{- Returns the extracted genre as a string.}}
+\item \textcolor{red}{\sout{\textbf{Exceptions:}}}
+    \begin{itemize}
+    \item \textcolor{red}{\sout{\texttt{MissingGenreException}: Raised if the genre attribute is not found in the metadata.}}
+    \item \textcolor{red}{\sout{\texttt{InvalidMetadataException}: Raised if the provided metadata is improperly formatted or invalid.}}
+    \end{itemize}
 \end{itemize}
 
-\textbf{retrieveGenre}:
+\subsubsection{\textcolor{red}{\sout{Local Functions}}}
+
+\textcolor{red}{\sout{\textbf{validateMetadata}:}}
 \begin{itemize}
-\item Purpose: Locates and retrieves the genre attribute from the metadata.
-\item Input: \texttt{metadata}.
-\item Output: \texttt{genre} (String).
+\item \textcolor{red}{\sout{Purpose: Ensures the provided metadata is valid and contains the necessary attributes.}}
+\item \textcolor{red}{\sout{Input: \texttt{metadata}.}}
+\item \textcolor{red}{\sout{Output: Boolean (true if valid, false otherwise).}}
+\end{itemize}
+
+\textcolor{red}{\sout{\textbf{retrieveGenre}:}}
+\begin{itemize}
+\item \textcolor{red}{\sout{Purpose: Locates and retrieves the genre attribute from the metadata.}}
+\item \textcolor{red}{\sout{Input: \texttt{metadata}.}}
+\item \textcolor{red}{\sout{Output: \texttt{genre} (String).}}
 \end{itemize}
 
 %Recommendation module
