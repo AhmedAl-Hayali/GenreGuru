@@ -374,7 +374,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The format and structure of the input data.
 \item[Services:] Takes in a user input, query searches it and then allows a user to select one of the query results. 
-\item[Implemented By:] JavaScript File
+\item[Implemented By:] \textcolor{red}{\sout{Python} JavaScript} File
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
@@ -811,8 +811,15 @@ Our design involves two key modules that manage communication between the client
   \item \textbf{Server Communication Module}
 \end{itemize}
 
-The system is architected around a RESTful API that facilitates communication between the frontend (client) and backend (server). This communication protocol is responsible for transferring input data such as the song ID or uploaded audio file, as well as receiving processed recommendations. Data is transmitted over HTTP in the form of JSON payloads.
+\textcolor{red}{\sout{The communication between the frontend systems is done simply through funtion calls. In order to send data (input type, audio data, song ID) from the frontend the user 
+interacts with to the backend (the server) this will be done through encrypted data sent to the hosted server. This would be done by using
+a RESTFUL interface as this is currently the most common method. Using standard REST API, the payload passed is a regular JSON object with 
+a label for search or file input (the type of input) as that changes the behavior of the backend and the actual song ID itself. }}
 
+\textcolor{red}{The system is architected around a RESTful API that facilitates communication between the frontend (client) and backend (server). This communication protocol is responsible for transferring input data such as the song ID or uploaded audio file, as well as receiving processed recommendations. Data is transmitted over HTTP in the form of JSON payloads.}
+
+\begingroup
+\color{red}
 \subsection*{Frontend-to-Backend Communication}
 Users interact with the client-facing frontend to either search for a song or upload an audio file. Based on the selected input method, the frontend sends a POST request to the backend API endpoint. The request payload follows a standardized JSON schema containing:
 \begin{itemize}
@@ -842,7 +849,7 @@ This design ensures robust communication across environments while enabling rapi
     \item Frontend displays the results to the user.
 \end{enumerate}
 
-This architecture balances flexibility and functionality, enabling modular development, real-time testing, and seamless deployment.
+\endgroup
 
 
 \section{Timeline}
