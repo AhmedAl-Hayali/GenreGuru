@@ -11,20 +11,25 @@ from pydub import AudioSegment
 from deezer import Client
 from src.featurizer.main_featurizer import Featurizer
 from src.recommendation.recommend import Recommendation
+from src.db.db_functions import DB_Engine
+import pandas as pd
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 URL_STORE_ENDPOINT = "https://genreguru.onrender.com/update-url"
 
-def save_wav_file(encoded_wav, output_path=f"received_{uuid.uuid4().hex}.wav"):
+def save_wav_file(wav_file, output_dir='.', custom_name=None):
     try:
-        wav_data = base64.b64decode(encoded_wav)
-        with open(output_path, "wb") as wav_file:
-            wav_file.write(wav_data)
-        print(f"WAV file saved successfully: {output_path}")
+        filename = custom_name or f'received_{uuid.uuid4().hex}.wav'
+        output_path = f'{output_dir}/{filename}'
+
+        with open(output_path, 'wbn') as f:
+            f.write(wav_file.read())
+
+        print(f'WAV file saved successfully: {output_path}')
         return output_path
     except Exception as e:
-        print(f"Error saving WAV file: {e}")
+        print(f'Error saving WAV file: {e}')
         return None
 
 @app.route("/process", methods=["POST"])
@@ -44,24 +49,47 @@ def process_request():
             if not file_path:
                 raise ValueError("Failed to save WAV file")
 
-            # This is a stub for future model predictions
+            # directly obtain our dataframe here
             print(f"Saved WAV to: {file_path}")
-            return jsonify({
-                "deezer_tracks": [
-                    {
-                        "id": 3135556,
-                        "title": "Harder, Better, Faster, Stronger",
-                        "isrc": "GBDUW0000059",
-                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
-                    },
-                    {
-                        "id": 2582901922,
-                        "title": "Happier (feat. Clementine Douglas)",
-                        "isrc": "GBAHT2301515",
-                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
-                    }
-                ]
-            })
+            db = DB_Engine()
+            featurizer = Featurizer()
+
+            #obtain features for the user uploaded wav file
+            features = featurizer.run(file_path)
+            print("wav file featurized")
+
+            feat_names = ['spctrl_rlf',
+                          'spctrl_cntrd',
+                          'spctrl_bw',
+                          'spctrl_cntrst',
+                          'rms',
+                          'spctrl_flux',
+                          'dnmc_rng',
+                          'instrmntlns']
+
+            features = [feature.flatten() for feature in features.values()]
+            print(features)
+            #instead of using deezer_id (we dont have one insert a fake id and the associated features:)
+            spoofed_id = "00000000"
+            DB_dataframe = db.obtain_all_records()
+            print("obtained database dataframe")
+
+            #insert spoofed_id, features into db_dataframe
+            x = pd.DataFrame([spoofed_id] + features, columns=['track_id']+[f'{feat_name}_{i}' for feat_name in feat_names for i in range(1, 8+1)]+['bpm', 'keymjr', 'keymnr'])
+            DB_dataframe = pd.concat([DB_dataframe, x])
+
+            print("obtained database dataframe")
+            recommender = Recommendation(data=DB_dataframe)
+            recommended_songs = recommender.get_similar_songs(spoofed_id)
+            print("recommendations generated")
+
+            print(recommended_songs.index.to_numpy())
+            recommended_songs_ids = recommended_songs.index.to_numpy()
+            print("extracted ids")
+            recommended_songs_ids = [int(sid) for sid in recommended_songs_ids]
+            print('yo wassup', recommended_songs_ids)
+
+            return jsonify({"track_ids": recommended_songs_ids})
         
         else:
             deezer_track = data.get("deezer_track")
@@ -70,55 +98,48 @@ def process_request():
             if not deezer_track: raise ValueError("Missing deezer_track in request")
             featurizer = Featurizer()
             dz = Client()
+            db = DB_Engine()
 
-            deezer_ID = deezer_track["id"]
-            preview_url = dz.get_track(deezer_ID).preview
-            response = requests.get(preview_url)
-            mp3_bytes = BytesIO(response.content)
-
-            print("successfully gotten the response")
-            # Step 2: Convert MP3 to WAV using pydub
-            audio = AudioSegment.from_file(mp3_bytes, format="mp3")
-            wav_object = BytesIO()
-            audio.export(wav_object, format="wav")
-            wav_object.seek(0)
-
-            features = featurizer.run(wav_object)
             
-            print(features)
+            deezer_ID = str(deezer_track["id"])
+            print('deezer id:', deezer_ID)
+            print("successfully gotten the deezer ID")
+            # in the case where the db is already there:
+            if not db.check_if_record_exists(deezer_ID):
+                print("successfully gotten the deezer ID NOT FOUND! FEATURIZE")
+                #fetch preview
+                preview_url = dz.get_track(deezer_ID).preview
+                response = requests.get(preview_url)
+                mp3_bytes = BytesIO(response.content)
 
-            # with open("preview.wav", "wb") as f: f.write(wav_object.read())
+                print("Successfully extracted preview url content")
+                # Step 2: Convert MP3 to WAV using pydub
+                audio = AudioSegment.from_file(mp3_bytes, format="mp3")
+                wav_object = BytesIO()
+                audio.export(wav_object, format="wav")
+                wav_object.seek(0)
+                print("Successfully exported to wav")
 
-            # print("WAV file saved as preview.wav")
-            # print(data.shape)
+                features = featurizer.run(wav_object)
+                print("Successfully computed features")
+
+                #now insert our record
+                db.insert_record(deezer_ID, features)
+                print("Successfully inserted record")
             
-            
-            # track_test = [dz.get_track(3135556)]
-            
-            # # jsonify({track_test})
-            # return jsonify({
-            #     "deezer_tracks": track_test
-            #     })
+            DB_dataframe = db.obtain_all_records()
+            print("obtained database dataframe")
+            recommender = Recommendation(data=DB_dataframe)
 
-            trackids = [110021542, 76376876, 874193372, 13234901, 3033559961, 2896010741, 1516680192, 771139772, 680449212, 2298383495]
-            return jsonify({"deezer_tracks": trackids})
+            recommended_songs = recommender.get_similar_songs(deezer_ID)
+            print("recommendations generated")
+            print(recommended_songs.index.to_numpy())
+            recommended_songs_ids = recommended_songs.index.to_numpy()
+            print("extracted ids")
+            recommended_songs_ids = [int(sid) for sid in recommended_songs_ids]
 
-            return jsonify({
-                "deezer_tracks": [
-                    {
-                        "id": 3135556,
-                        "title": "Harder, Better, Faster, Stronger",
-                        "isrc": "GBDUW0000059",
-                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3?hdnea=exp=1743103749~acl=/api/1/1/c/4/d/0/c4d7dbe3524ba59d2ad06d8cccd2484f.mp3*~data=user_id=0,application_id=42~hmac=832b8683abc56db185864bb3bb98f8d588b3cef57aae3f218666243055c985dd"
-                    },
-                    {
-                        "id": 2582901922,
-                        "title": "Happier (feat. Clementine Douglas)",
-                        "isrc": "GBAHT2301515",
-                        "preview": "https://cdnt-preview.dzcdn.net/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3?hdnea=exp=1743192301~acl=/api/1/1/4/d/6/0/4d6b38a80a40ee56ab31dd0842c1a5eb.mp3*~data=user_id=0,application_id=42~hmac=bc455d28bcadcdd68e33e47a4d8eb769681c76a2d78ac6eebe5b18d75ec9e858"
-                    }
-                ]
-            })
+            return jsonify({"track_ids": recommended_songs_ids})
+            
 
     except Exception as e:
         print("Error in /process:", str(e))
@@ -130,8 +151,7 @@ def ping():
     return jsonify({"status": "Backend is alive!"}), 200
 
 def start_ngrok_and_post_url():
-    # Start ngrok in background
-    subprocess.Popen(["ngrok", "http", "5000"])
+    subprocess.Popen(["./ngrok.exe", "http", "5000"])
     print("Started ngrok... waiting for public URL")
 
     # Give ngrok time to initialize
