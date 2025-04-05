@@ -12,7 +12,6 @@
 
 ```bash
 git clone https://github.com/AhmedAl-Hayali/GenreGuru.git
-cd GenreGuru
 ```
 
 ## Step 2 (Optional): Install and Run the Backend
