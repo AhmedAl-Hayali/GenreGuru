@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Node.js (vXX+): [Download here](https://nodejs.org)
+- Node.js: [Download here](https://nodejs.org)
 - Python 3.12.8
 - pip (Python package manager)
 - Git
