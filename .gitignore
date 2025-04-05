@@ -295,3 +295,4 @@ src/cfg.toml
 /src/featurizer/__pycache__
 .coverage.*
 /src/client/genre-guru
+node_modules
