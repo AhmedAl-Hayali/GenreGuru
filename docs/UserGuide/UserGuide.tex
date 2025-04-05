@@ -10,7 +10,7 @@
 
 \author{\authname}
 
-\date{}
+\date{2025-04-03}
 
 \begin{document}
 
@@ -24,12 +24,57 @@ Date1 & Name(s) & Description of changes\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
-\end{tabularx}
+\end{tabularx}  
 \end{table}
 
 \newpage
 
 \maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This user guide provides instructions for setting up and launching the GenreGuru application.
+The frontend is built using react and node js, and is launched by using \texttt{npm start} and communicates with a backend service to provide recommendations. 
+This guide assumes the user has already cloned the project repository.
+
+\section{Installation Requirements}
+Before launching the frontend, ensure that all dependencies are installed correctly.
+
+\subsection{Python Backend Dependencies}
+The backend dependencies are specified in \texttt{setup.py}. To install them, navigate to the backend root directory and run:
+
+\begin{verbatim}
+pip install -e .
+\end{verbatim}
+
+\subsection{Frontend Dependencies}
+Navigate to the frontend directory (\texttt{cd src/client/genre-guru}) and run \texttt{npm install}
+
+\subsection{Audit and Fix Security Issues}
+Use \texttt{npm audit fix} in order to resolve the issues that arise during \texttt{npm install}. 
+
+\subsection{Setup a .env.local file}
+First, use spotify's developer dashboard in order to generate your client id and client secret.
+Then, navigate to \texttt{cd src/client/genre-guru} and create a .env.local file, with two lines corresponding to\texttt{REACT\_APP\_SPOTIFY\_CLIENT\_ID, REACT\_APP\_SPOTIFY\_CLIENT\_SECRET},
+and set them equal to your client id and client secret.
+
+\section{Launching the Frontend Application}
+Once the dependencies are installed, you can start the frontend application by running the following commands:
+
+\begin{verbatim}
+cd src/client/genre-gur
+npm start
+\end{verbatim}
+
+This will launch the frontend in your default web browser at \url{http://localhost:3000}.
+
+\section{Troubleshooting}
+\begin{itemize}
+  \item If there is 500 error when receiving recommendations, verify that the backend is running and accessible.
+  \item If there is 400 error when making API calls, verify that the .env.local file is correct and/or the client id and client secret are correct.
+  \item If modules fail to install via \texttt{npm install}, try deleting \texttt{node\_modules/} and \texttt{package-lock.json}, then reinstall.
+\end{itemize}
 
 
 \end{document}
