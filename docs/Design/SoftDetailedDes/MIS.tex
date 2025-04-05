@@ -851,7 +851,6 @@ Valid audio file with coherent song information.
 \subsubsection{Local Functions}
 N/A
 
-
 %Instrument Type Feature
 \section{\textcolor{red}{\sout{MIS of Instrument Type Feature Extraction Module}}} 
 
@@ -1106,6 +1105,360 @@ Valid audio file with coherent song information.
 \subsubsection{Local Functions}
 N/A
 
+
+{\color{red}
+\section{MIS of Spectral Centroid Feature Module}
+
+\subsection{Spectral Centroid Feature Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{4cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{ComputeSpectralCentroid} & \texttt{STFT Magnitude Array (np.ndarray, 2D)} & \texttt{Spectral Centroid Vector (np.ndarray)} & - \\
+  \hline
+  \texttt{ComputeSpectralCentroidsMean} & \texttt{Divided STFT Magnitude Array (np.ndarray, 3D)} & \texttt{(Spectral Centroid Matrix (np.ndarray), Total Mean Spectral Centroid (float), Mean Spectral Centroids (np.ndarray))} & - \\
+  \hline
+  \end{tabular}
+\end{center}
+  
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item The input signal is processed such that its Short-Time Fourier Transform (STFT) magnitude is correctly computed.
+    \item The frequency bins are precomputed using the sampling rate.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ComputeSpectralCentroid()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} \texttt{Spectral Centroid Vector} = For a given STFT magnitude array, each element is computed as 
+    \[
+    \text{Spectral Centroid} = \frac{\sum_{n} f(n) \cdot x(n)}{\sum_{n} x(n)},
+    \]
+    where \(f(n)\) are the precomputed frequency bins and \(x(n)\) are the STFT magnitude values.
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\noindent \texttt{ComputeSpectralCentroidsMean()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} 
+    \begin{itemize}
+        \item \texttt{Spectral Centroid Matrix}: A 2D array where each row corresponds to the spectral centroid values for each sampling frame of a window.
+        \item \texttt{Total Mean Spectral Centroid}: A single float representing the average of the mean spectral centroids across all windows.
+        \item \texttt{Mean Spectral Centroids}: A 2D array (or column vector) containing the mean spectral centroid for each window.
+    \end{itemize}
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+}
+
+
+{\color{red}
+\section{MIS of Spectral Bandwidth Feature Module}
+
+\subsection{Spectral Bandwidth Feature Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{4cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{ComputeSpectralBandwidth} & \texttt{STFT Magnitude Array (np.ndarray, 2D), Centroid (np.ndarray)} & \texttt{Bandwidth (np.ndarray)} & - \\
+  \hline
+  \texttt{ComputeSpectralBandwidthMean} & \texttt{Divided STFT Magnitude Array (np.ndarray, 3D), Spectral Centroids (np.ndarray)} & \texttt{(Spectral Bandwidths (np.ndarray), Total Mean Spectral Bandwidth (float), Mean Spectral Bandwidths (np.ndarray))} & - \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item The input signal's STFT magnitude is computed correctly.
+    \item Frequency bins are precomputed using the given sampling rate.
+    \item The spectral centroid values are available for spectral bandwidth computation.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ComputeSpectralBandwidth()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} \texttt{Bandwidth (np.ndarray)} computed for each sampling frame using the formula:
+    \[
+    \text{Bandwidth} = \sqrt{\text{stft\_magnitude} \times \left( \text{frequency} - \text{centroid} \right)^2},
+    \]
+    where the frequency bins are precomputed.
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\noindent \texttt{ComputeSpectralBandwidthMean()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} 
+    \begin{itemize}
+        \item \texttt{Spectral Bandwidths (np.ndarray)}: A 3D array of spectral bandwidth values for each window and frame.
+        \item \texttt{Total Mean Spectral Bandwidth (float)}: The average spectral bandwidth over all windows.
+        \item \texttt{Mean Spectral Bandwidths (np.ndarray)}: A 2D array (or column vector) containing the mean spectral bandwidth per window.
+    \end{itemize}
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+}
+
+{\color{red}
+\section{MIS of Spectral Rolloff Feature Module}
+
+\subsection{Spectral Rolloff Feature Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{|p{7cm}|p{3cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{ComputeSpectralRolloffFrequency} & \texttt{STFT Magnitude Array (np.ndarray, 2D)} & \texttt{(Upper Rolloff (np.ndarray), Lower Rolloff (np.ndarray))} & - \\
+  \hline
+  \texttt{ComputeFrequencyRange} & \texttt{Divided STFT Magnitude Array (np.ndarray, 3D)} & \texttt{(Frequency Ranges (np.ndarray), Mean Frequency Range (float))} & - \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item The input signal's STFT magnitude is correctly computed.
+    \item Frequency bins are precomputed using the provided sampling rate.
+    \item The percentile value for roll-off calculation is set and valid.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ComputeSpectralRolloffFrequency()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} \texttt{(Upper Rolloff, Lower Rolloff)} where:
+    \begin{itemize}
+        \item \texttt{Upper Rolloff (np.ndarray)}: Upper spectral roll-off frequencies at each sampling frame, computed by identifying the first frequency bin where the cumulative energy meets or exceeds the upper threshold.
+        \item \texttt{Lower Rolloff (np.ndarray)}: Lower spectral roll-off frequencies at each sampling frame, computed by identifying the first frequency bin where the cumulative energy falls below the lower threshold.
+    \end{itemize}
+    The computation uses two-sided percentile thresholds on the cumulative energy of the STFT magnitudes.
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\noindent \texttt{ComputeFrequencyRange()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:}
+    \begin{itemize}
+        \item \texttt{Frequency Ranges (np.ndarray)}: An array representing the frequency range (upper minus lower roll-off) for each window.
+        \item \texttt{Mean Frequency Range (float)}: The average frequency range computed across all windows.
+    \end{itemize}
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+}
+
+{\color{red}
+\section{MIS of Spectral Flux Feature Module}
+
+\subsection{Spectral Flux Feature Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{4cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{ComputeSpectralFlux} & \texttt{STFT Magnitude Array (np.ndarray, 2D)} & \texttt{Spectral Flux (np.ndarray)} & - \\
+  \hline
+  \texttt{ComputeSpectralFluxMean} & \texttt{Divided STFT Magnitude Array (np.ndarray, 3D)} & \texttt{(Spectral Flux (np.ndarray), Total Mean Spectral Flux (float), Mean Spectral Flux (np.ndarray))} & - \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item The input STFT magnitude array is correctly computed.
+    \item For the mean computation, the divided STFT magnitude array is properly segmented into windows.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ComputeSpectralFlux()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} \texttt{Spectral Flux (np.ndarray)} computed as follows: The STFT magnitudes are first scaled using a logarithmic function, then the flux is determined by summing the positive differences between consecutive time frames.
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\noindent \texttt{ComputeSpectralFluxMean()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} 
+    \begin{itemize}
+        \item \texttt{Spectral Flux (np.ndarray)}: A 2D array where each row contains the spectral flux values computed for each window.
+        \item \texttt{Total Mean Spectral Flux (float)}: The average spectral flux computed across all windows.
+        \item \texttt{Mean Spectral Flux (np.ndarray)}: A 2D array (or column vector) where each entry represents the mean spectral flux for a given window.
+    \end{itemize}
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+}
+
+
+{\color{red}
+\section{MIS of Spectral Contrast Feature Module}
+
+\subsection{Spectral Contrast Feature Module}
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{4cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{ComputeSpectralContrast} & \texttt{Subband Magnitudes (np.ndarray, 2D)} & \texttt{Spectral Contrast (np.ndarray)} & - \\
+  \hline
+  \texttt{ComputeSpectralContrastMean} & \texttt{Divided STFT Magnitude Array (np.ndarray, 3D)} & \texttt{(Spectral Contrast (np.ndarray), Total Mean Spectral Contrast (float), Mean Spectral Contrast (np.ndarray))} & - \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item The input STFT magnitude arrays are correctly computed.
+    \item The frequency range is divided into the specified number of bands.
+    \item The parameter \(\alpha\) (fraction of peak/valley magnitudes) is set and valid.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{ComputeSpectralContrast()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:} \texttt{Spectral Contrast (np.ndarray)} computed as the difference between the subband peak and valley values (both converted to dB scale) for each frame.
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\noindent \texttt{ComputeSpectralContrastMean()}:
+\begin{itemize}
+    \item \textbf{transition:} N/A
+    \item \textbf{output:}
+    \begin{itemize}
+        \item \texttt{Spectral Contrast (np.ndarray)}: A 3D array containing spectral contrast values for each window and frequency band.
+        \item \texttt{Total Mean Spectral Contrast (float)}: The average spectral contrast computed over all windows and bands.
+        \item \texttt{Mean Spectral Contrast (np.ndarray)}: A 2D array (or column vector) containing the mean spectral contrast for each window and band.
+    \end{itemize}
+    \item \textbf{exception:} N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+\begin{itemize}
+    \item \texttt{ComputeSubbandPeak}: Computes the subband peak by averaging the top \(\alpha\)-percent of magnitudes, then converting to dB scale.
+    \item \texttt{ComputeSubbandValley}: Computes the subband valley by averaging the lowest \(\alpha\)-percent of magnitudes, then converting to dB scale.
+\end{itemize}
+}
+
+
+
 %Contour Extraction
 \section{\textcolor{red}{\sout{MIS of Contour Feature Extraction Module}}} 
 
@@ -1277,29 +1630,13 @@ N/A
 \end{itemize}
 
 %Recommendation module
-\section{MIS of Recommendation Module} 
+{\color{red}
+\section{MIS of Recommendation System Module}
 
-\subsection{Recommendation Module}
-%for features input I assume it is an array of features (which is an array itself) and then the 
-%recs are generated this way. I'm not 100% certain this is how, just placeholder for now. 
-
-%also, we need to determine how the song recommendations are represented. Should they just be names? or spotify url links? etc. 
-%i've currently left this as abstract as I think it is possible - just as a set of songs where the type is nebulous
+\subsection{Recommendation System Module}
 
 \subsection{Uses}
-\begin{itemize}
-  \item Tempo (BPM) Feature Extraction Module
-  \item Key and Scale Feature Extraction Module
-  \item Instrument Type Feature Extraction Module
-  \item Vocal Gender Feature Extraction Module
-  \item Dynamic Range Feature Extraction Module
-  \item Instrumentalness Feature Extraction Module
-  \item Contour Feature Extraction Module
-  \item Mood Feature Extraction Module
-  \item Driver Module
-  \item Spotify API
-\end{itemize}
-
+Database Module
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
@@ -1308,37 +1645,60 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
-\hline
-\texttt{Generate Recs} &\texttt{Song\textunderscore Features (np.ndarray $\in$ Feature)} &\texttt{Rec\textunderscore Tracks \linebreak np.ndarray $\in$ Track} &-\\
-\hline
-\end{tabular}
+  \begin{tabular}{|p{6cm}|p{4cm}|p{3cm}|p{2cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  \texttt{Recommendation (Constructor)} & \texttt{data (pd.DataFrame) [optional], file\_path (str) [optional]} & \texttt{Recommendation Object} & \texttt{ValueError if neither provided} \\
+  \hline
+  \texttt{get\_similar\_songs} & \texttt{reference\_track (str), top\_n (int, default=10)} & \texttt{Similar Songs (pd.Series) or error message (str)} & - \\
+  \hline
+  \end{tabular}
 \end{center}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-N/A
+\begin{itemize}
+    \item \texttt{df}: Original dataset containing song features.
+    \item \texttt{df\_encoded}: Dataset with categorical features (\texttt{major} and \texttt{minor}) encoded numerically.
+    \item \texttt{feature\_cols}: List of feature columns used for similarity computation.
+    \item \texttt{features}: DataFrame containing the selected numerical features.
+    \item \texttt{scaler}: StandardScaler used to normalize features.
+    \item \texttt{features\_scaled}: Normalized feature matrix.
+    \item \texttt{similarity\_matrix}: Cosine similarity matrix computed from the normalized features.
+    \item \texttt{similarity\_df}: DataFrame version of the similarity matrix with track names as both index and columns.
+\end{itemize}
 
 \subsubsection{Environment Variables}
 N/A
 
 \subsubsection{Assumptions}
-N/A
+\begin{itemize}
+    \item The input dataset contains a \texttt{track\_name} column along with other feature columns including \texttt{major} and \texttt{minor}.
+    \item Categorical features (\texttt{major} and \texttt{minor}) are properly encoded into numerical values.
+    \item The CSV file (if used) is properly formatted and accessible.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent GenerateRecommendations():
+\noindent \texttt{Recommendation (Constructor)}:
 \begin{itemize}
-\item transition: N/A
-\item output: \texttt{Recommended\textunderscore Songs} : = \texttt{GenerateRecommendations(Song\textunderscore Features)} 
-\item exception: N/A
+    \item \textbf{transition:} Loads the dataset from a provided DataFrame or CSV file, encodes categorical features, selects numerical feature columns, normalizes the data using a StandardScaler, computes the cosine similarity matrix, and creates a similarity DataFrame with track names.
+    \item \textbf{output:} A \texttt{Recommendation} object with all necessary data structures initialized.
+    \item \textbf{exception:} Raises a \texttt{ValueError} if neither \texttt{data} nor \texttt{file\_path} is provided.
+\end{itemize}
+
+\noindent \texttt{get\_similar\_songs}:
+\begin{itemize}
+    \item \textbf{transition:} Retrieves the top N most similar songs by sorting the similarity scores for a given reference track.
+    \item \textbf{output:} A pandas Series containing the names and similarity scores of the top N similar songs (excluding the reference track). If the reference track is not found in the dataset, returns an error message.
+    \item \textbf{exception:} N/A
 \end{itemize}
 
 \subsubsection{Local Functions}
 N/A
+}
 % \begin{itemize}
 %   \item \texttt{Generate_Embeds()}
 % \end{itemize}
