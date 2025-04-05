@@ -54,12 +54,90 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 2024-10-11 & 0.0 & Revision 0\\
+2025-04-04 & 1.0 & Revision 1: made changes mentioned in the rubrics and Peer review issues \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/103}{Issue \#103}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/104}{Issue \#104}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/105}{Issue \#105}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/106}{Issue \#106} \\
 \bottomrule
 \end{tabularx}
 
-~\\
+% Glossary table
+\section*{Glossary}
+\begin{table}[H] % [H] forces the table to appear here (requires the float package)
+  \centering
+  \label{tab:glossary}
+  \begin{tabular}{p{3cm} p{10cm}}
+  \hline
+  \textbf{Term} & \textbf{Definition} \\
+  \hline
+  \textit{Track} &
+  A full song, i.e., a completed audio file published by a musician. \\[6pt]
+  
+  \textit{Snippet} &
+  A fragment of a track, i.e., an incomplete audio file. Such audio files can be in a lossy compressed format (e.g., .mp3), 
+  a lossless compressed format (e.g., .FLAC), or an uncompressed format (e.g., .WAV). The source can be anything 
+  (e.g., a 30-second snippet from Spotify’s API; \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}). \\[6pt]
+  
+  \textit{Model} &
+  Refers to a statistical model (not a software module). \\[6pt]
+  
+  \textit{Module} &
+  A software component (e.g., a self-contained piece of the system’s codebase). \\[6pt]
+  
+  \textit{AI} &
+  Artificial Intelligence. \\[6pt]
+  
+  \textit{ML} &
+  Machine Learning model. \\[6pt]
 
-~\newpage
+  \textcolor{red}{\textit{SIM}} &
+  \textcolor{red}{Subscriber Identity Module} \\[6pt]
+
+  \textcolor{red}{\textit{PIPEDA }} &
+  \textcolor{red}{Personal Information Protection and Electronic Documents Act} \\[6pt]
+
+  \textcolor{red}{\textit{VoIP}} &
+  \textcolor{red}{Voice over Internet Protocol} \\[6pt]
+
+  \textcolor{red}{\textit{LP}} &
+  \textcolor{red}{Long-Playing} \\[6pt]
+
+  \textcolor{red}{\textit{CSS}} &
+  \textcolor{red}{Cascading Style Sheets} \\[6pt]
+
+  \textcolor{red}{\textit{MIT}} &
+  \textcolor{red}{Massachusetts Institute of Technology} \\[6pt]
+
+  \textcolor{red}{\textit{RAM}} &
+  \textcolor{red}{Random Access Memory} \\[6pt]
+  
+  \textcolor{red}{\textit{GB}} &
+  \textcolor{red}{Gigabyte} \\[6pt]
+
+  \textcolor{red}{\textit{API}} &
+  \textcolor{red}{Application Programming Interface} \\[6pt]
+
+  \textcolor{red}{\textit{GPL}} &
+  \textcolor{red}{General Public License} \\[6pt]
+
+  \textcolor{red}{\textit{ID}} &
+  \textcolor{red}{Identification} \\[6pt]
+
+  \textcolor{red}{\textit{clpsd}} &
+  \textcolor{red}{Collapsed} \\[6pt]
+
+  \textcolor{red}{\textit{sctn}} &
+ \textcolor{red}{ Section} \\[6pt]
+
+  \textcolor{red}{\textit{sttc}} &
+\textcolor{red}{  Static} \\[6pt]
+
+  \textcolor{red}{\textit{ISRC}} &
+  \textcolor{red}{International Standard Recording Code} \\[6pt]
+  
+  \textit{Music Metadata} &
+  Labels obtained through a music streaming API (e.g., Spotify) that act as features (e.g., genre, “danceability”). \\
+  \hline
+  \end{tabular}
+\end{table}
+
 \section{Purpose of the Project}
 \subsection{User Business}
 \textcolor{red}{\sout{Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.}}
@@ -435,39 +513,6 @@ involved in the Project}
   like features (eg genre, 'danceability')}}
 \end{itemize}
 
-\begin{table}[ht]
-  \centering
-  \caption{Glossary of All Terms, Including Acronyms}
-  \label{tab:glossary}
-  \begin{tabular}{p{3cm} p{10cm}}
-  \hline
-  \textbf{Term} & \textbf{Definition} \\
-  \hline
-  \textit{Track} &
-  A full song, i.e., a completed audio file published by a musician. \\[6pt]
-  
-  \textit{Snippet} &
-  A fragment of a track, i.e., an incomplete audio file. Such audio files can be in a lossy compressed format (e.g., .mp3), 
-  a lossless compressed format (e.g., .FLAC), or an uncompressed format (e.g., .WAV). The source can be anything 
-  (e.g., a 30-second snippet from Spotify’s API; \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}). \\[6pt]
-  
-  \textit{Model} &
-  Refers to a statistical model (not a software module). \\[6pt]
-  
-  \textit{Module} &
-  A software component (e.g., a self-contained piece of the system’s codebase). \\[6pt]
-  
-  \textit{AI} &
-  Artificial Intelligence. \\[6pt]
-  
-  \textit{ML} &
-  Machine Learning model. \\[6pt]
-  
-  \textit{Music Metadata} &
-  Labels obtained through a music streaming API (e.g., Spotify) that act as features (e.g., genre, “danceability”). \\
-  \hline
-  \end{tabular}
-  \end{table}
   
 
 \section{Relevant Facts And Assumptions}
