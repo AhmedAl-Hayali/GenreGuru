@@ -716,6 +716,28 @@ None.
 \end{itemize}
 
 \subsubsection{Local Functions}
+
+\textcolor{red}{\textbf{ProcessAudio}:}
+\begin{itemize}
+    \item \textcolor{red}{Converts the audio file input into a normalized audio time series.}
+    \item \textcolor{red}{Input: \texttt{audioFile}}
+    \item \textcolor{red}{Output: \texttt{AudioTimeSeries, Vocal\_Signal, Non\_Vocal\_Signal}}
+\end{itemize}
+
+\textcolor{red}{\textbf{Divide Signal}:}
+\begin{itemize}
+    \item \textcolor{red}{Computes the number of windows (for STFT) based on the audio time series length, divides the signal into that many pieces}
+    \item \textcolor{red}{Input: \texttt{AudioTimeSeries}}
+    \item \textcolor{red}{Output: \texttt{Divided\_Audio\_Time\_Series, Number\_Of\_Windows, Beats\_Per\_Window}}
+\end{itemize}
+
+\textcolor{red}{\textbf{Divide STFT}:}
+\begin{itemize}
+    \item \textcolor{red}{Computes the STFT and STFT magnitudes of the divided signal}
+    \item \textcolor{red}{Input:  \texttt{Divided\_Audio\_Time\_Seriess}}
+    \item \textcolor{red}{Output: \texttt{Divided\_STFT\_Signal, Divded\_STFT\_Magnitudes}}
+\end{itemize}
+
 \textbf{invokeSubFeatureModule}:
 \begin{itemize}
     \item Purpose: Calls a specific sub-feature module (e.g., for Tempo, Genre) and retrieves its computed value.
