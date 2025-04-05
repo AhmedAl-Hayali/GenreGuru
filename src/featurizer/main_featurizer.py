@@ -257,150 +257,26 @@ class Featurizer:
         
         return collaped_features
 
-    def write_to_csv(self, track_features, csv_filepath="src/featurizer/featurized_music.csv"):
-        "writes audio features to a .csv file"
-
-        # check if we need to create the file, and then check if we need to create fieldnames
-        os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
-        file_exists = os.path.exists(csv_filepath)
-        with open(csv_filepath, mode='a', newline='', encoding='utf-8') as csvfile:
-            fieldnames = [
-                'track_name',
-                'mean_spectral_rolloff',
-                'mean_spectral_centroid', 
-                'mean_spectral_bandwidth',
-                'mean_spectral_contrast',
-                'mean_rms',
-                'mean_dynamic_range',
-                'mean_instrumentalness',
-                'major_key',
-                'minor_key',
-                'bmp'
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-            if not file_exists:
-                writer.writeheader()
-            writer.writerow({
-                'track_name': track_features['track_name'],
-                'mean_spectral_rolloff': round(track_features['mean_spectral_rolloff'], 6),
-                'mean_spectral_centroid': round(track_features['mean_spectral_centroid'], 6),
-                'mean_spectral_bandwidth': round(track_features['mean_spectral_bandwidth'], 6),
-                'mean_spectral_contrast': round(track_features['mean_spectral_contrast'], 6),
-                'mean_rms': round(track_features['mean_rms'], 6),
-                'mean_dynamic_range': round(track_features['mean_dynamic_range'], 6),
-                'mean_instrumentalness': round(track_features['mean_instrumentalness'], 6),
-                'major_key': track_features['major_key'],
-                'minor_key': track_features['minor_key'],
-                'bmp': track_features['bmp']
-            })
-
-    def write_features_to_csv(self, track_name, features, csv_filepath="src/featurizer/test.csv"):
-        """
-        Writes feature dictionary data into a CSV file, and seperates the data by section for the recommendation algo
-
-        Parameters:
-            track_name (str): The name of the track (not included in the features dictionary).
-            features (dict): Dictionary containing track features.
-            csv_filepath (str): Path to the CSV file.
-        """
-
-        # Extract feature names and expand list-based features
-        expanded_fieldnames = ["track_name"]  # Start with track name as the first column
-
-        # Iterate through the dictionary keys and dynamically create column names
-        for key, value in features.items():
-            if isinstance(value, np.ndarray) and value.shape[0] == 8:  # If the feature has 8 sections
-                expanded_fieldnames.extend([f"{key}_{i+1}" for i in range(8)])
-            else:  # Non-array features like BPM, key, etc.
-                expanded_fieldnames.append(key)
-
-        # Ensure directory exists
-        os.makedirs(os.path.dirname(csv_filepath), exist_ok=True)
-
-        # Open CSV file in append mode ('a' means add new rows)
-        file_exists = os.path.exists(csv_filepath)
-        with open(csv_filepath, mode="a", newline='', encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=expanded_fieldnames)
-
-            # If the file is new, write the headers first
-            if not file_exists:
-                writer.writeheader()
-
-            # Convert NumPy arrays to lists before writing
-            expanded_features = {"track_name": track_name}  # Store the track name
-
-            for key, value in features.items():
-                if isinstance(value, np.ndarray) and value.shape[0] == 8:  # If it's an array with 8 sections
-                    for i in range(8):
-                        expanded_features[f"{key}_{i+1}"] = value[i][0]  # Extract each value
-                else:  # Directly store non-array features
-                    expanded_features[key] = value
-
-            # Write the features dictionary as a row
-            writer.writerow(expanded_features)
-
-        print(f"Features for '{track_name}' successfully written to {csv_filepath}")
-
-def main_directory(directory = "src/deezer_previews/"):
-    feat = Featurizer()
-    for audio_file in os.scandir(directory):
-        #extract name
-        # _name = f"{audio_file.path}".split("/")[2].split(".")[0].split("(")[0]
-        _name = f"{audio_file.path}".split("/")[2]
-
-        # _name = _name.split("preview_")[1]
-        song_name = {"track_name": _name}
-        print(f"Currently Featurizing: {_name}")
-
-        signal, sr, vocal_signal, _ = feat.process_audio(audio_file, sampling_rate=44100)
+    def run(self, audio_file, sampling_rate = 44100):
+        """fetches all the features.
+        parameters:
+        - audio_file (audio file object): input song
+        returns:
+        - features (dictionary): features for the input audio file."""
+        signal, sr, vocal_signal, _ = self.process_audio(audio_file, sampling_rate=sampling_rate)
 
         #compute the bpmn
         tempo = Tempo_Estimator(sr = sr)
         bpm = tempo.estimate_tempo(signal)
         
         #divide the signal
-        div_signal, _, _ = feat.divide_signal(signal, bpm)
-        div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
+        div_signal, _, _ = self.divide_signal(signal, bpm)
+        _, div_stft_mag = self.divide_stft(div_signal)
 
         #divide signals of the vocal for instrumentalness
-        div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
-        _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
+        div_vocal, _, _ = self.divide_signal(vocal_signal, bpm)
+        _, div_stft_vocal_mag = self.divide_stft(div_vocal)
 
-        features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
+        features = self.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
 
-        line = song_name | features
-        print(line)
-        # feat.write_features_to_csv(line)
-
-def main_audio_file(audio_file_path = "src/audio/"):
-    # init featurizer
-    feat = Featurizer()
-    #extract name
-    _name = f"{audio_file_path}".split("/")[2].split(".")[0].split("(")[0]
-    # _name = _name.split("preview_")[1]
-    song_name = {"track_name": _name}
-    print(f"Currently Featurizing: {_name}")
-
-    signal, sr, vocal_signal, _ = feat.process_audio(audio_file_path, sampling_rate=44100)
-
-    #compute the bpmn
-    tempo = Tempo_Estimator(sr = sr)
-    bpm = tempo.estimate_tempo(signal)
-    
-    #divide the signal
-    div_signal, _, _ = feat.divide_signal(signal, bpm)
-    div_stft_signal, div_stft_mag = feat.divide_stft(div_signal)
-
-    #divide signals of the vocal for instrumentalness
-    div_vocal, _, _ = feat.divide_signal(vocal_signal, bpm)
-    _, div_stft_vocal_mag = feat.divide_stft(div_vocal)
-
-    features = feat.compute_features(div_stft_mag, div_stft_vocal_mag, signal, bpm)
-    
-    #mash the dictionaries together
-    line = song_name | features
-    # feat.write_features_to_csv(line)
-
-if __name__ == "__main__":
-    main_directory("src/deezer_gooner/")
+        return features

@@ -1,0 +1,35 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a4c5e;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Main container */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Ensures vertical centering */
+    height: 100vh; /* Takes full viewport height */
+}
+
+
+
+  
+  /* Large title */
+.main-title {
+    font-size: 7rem; /* Ensures text size remains large */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px; /* Reduce margin to move text closer */
+    transform: translateY(-50px);
+}
+
+  

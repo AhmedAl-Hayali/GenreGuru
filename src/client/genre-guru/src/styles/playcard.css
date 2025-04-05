@@ -1,0 +1,60 @@
+.play-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    cursor: pointer;
+    transition: border 0.2s ease, transform 0.2s ease;
+  }
+  
+  .play-card:hover:not(.selected) {
+    transform: scale(1.05);
+  }  
+  
+  .album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+  }
+  
+  .track-info {
+    flex-grow: 1;
+    margin-left: 10px;
+    min-width: 0; /* Required for ellipsis inside flex item */
+  }  
+  
+  .track-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }  
+  
+  .artist-name {
+    font-size: 14px;
+    color: #b0b0b0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .play-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .play-card.selected {
+    border: 3px solid #00ff00;
+    transform: scale(1.05);
+  }
+  
+  

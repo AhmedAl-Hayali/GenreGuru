@@ -1,0 +1,49 @@
+/* Horizontal scrolling container */
+.results-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 10px;
+    margin-top: 50px;
+    scrollbar-width: thin; /* ✅ Keeps scrollbar visible but unobtrusive */
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent; /* ✅ Light track with no white background */
+    white-space: nowrap;
+    max-width: 90vw;
+}
+
+/* Custom scrollbar styling for WebKit browsers (Chrome, Edge, Safari) */
+.results-carousel::-webkit-scrollbar {
+    height: 5px;
+    background: transparent; /* ✅ No white background */
+}
+
+/* Scrollbar thumb (the draggable part) */
+.results-carousel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5); /* ✅ Subtle scrollbar color */
+    border-radius: 10px;
+}
+
+/* Scrollbar track (the area the thumb moves in) */
+.results-carousel::-webkit-scrollbar-track {
+    background: transparent; /* ✅ No visible track */
+}
+
+
+/* Play Cards in Carousel */
+.play-card {
+    flex: 0 0 auto; /* Ensures playcards retain width */
+    width: 400px; /* Ensures playcards don't shrink */
+    height: 150px; /* Adjusted for better spacing */
+}
+
+.carousel-item {
+    transition: transform 0.2s;
+    border-radius: 12px;
+  }
+  
+  .carousel-item.selected {
+    border: 3px solid #00ff00; /* bright green */
+    transform: scale(1.05);
+  }
+  
+  
