@@ -5,13 +5,17 @@
 %
 % Risks are removed because they are covered by the Hazard Analysis
 \documentclass[12pt]{article}
-
+\usepackage[normalem]{ulem} % Keeps \emph in italics
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{array}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc}
 \graphicspath{ {./diagrams/} }
 
 \hypersetup{
@@ -50,22 +54,116 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 2024-10-11 & 0.0 & Revision 0\\
+2025-04-04 & 1.0 & Revision 1: made changes mentioned in the rubrics and Peer review issues \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/103}{Issue \#103}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/104}{Issue \#104}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/105}{Issue \#105}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/106}{Issue \#106} \\
 \bottomrule
 \end{tabularx}
 
-~\\
+% Glossary table
+\section*{Glossary}
+\begin{table}[H] % [H] forces the table to appear here (requires the float package)
+  \centering
+  \label{tab:glossary}
+  \begin{tabular}{p{3cm} p{10cm}}
+  \hline
+  \textbf{Term} & \textbf{Definition} \\
+  \hline
+  \textit{Track} &
+  A full song, i.e., a completed audio file published by a musician. \\[6pt]
+  
+  \textit{Snippet} &
+  A fragment of a track, i.e., an incomplete audio file. Such audio files can be in a lossy compressed format (e.g., .mp3), 
+  a lossless compressed format (e.g., .FLAC), or an uncompressed format (e.g., .WAV). The source can be anything 
+  (e.g., a 30-second snippet from Spotify’s API; \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}). \\[6pt]
+  
+  \textit{Model} &
+  Refers to a statistical model (not a software module). \\[6pt]
+  
+  \textit{Module} &
+  A software component (e.g., a self-contained piece of the system’s codebase). \\[6pt]
+  
+  \textit{AI} &
+  Artificial Intelligence. \\[6pt]
+  
+  \textit{ML} &
+  Machine Learning model. \\[6pt]
 
-~\newpage
+  \textcolor{red}{\textit{SIM}} &
+  \textcolor{red}{Subscriber Identity Module} \\[6pt]
+
+  \textcolor{red}{\textit{PIPEDA }} &
+  \textcolor{red}{Personal Information Protection and Electronic Documents Act} \\[6pt]
+
+  \textcolor{red}{\textit{VoIP}} &
+  \textcolor{red}{Voice over Internet Protocol} \\[6pt]
+
+  \textcolor{red}{\textit{LP}} &
+  \textcolor{red}{Long-Playing} \\[6pt]
+
+  \textcolor{red}{\textit{CSS}} &
+  \textcolor{red}{Cascading Style Sheets} \\[6pt]
+
+  \textcolor{red}{\textit{MIT}} &
+  \textcolor{red}{Massachusetts Institute of Technology} \\[6pt]
+
+  \textcolor{red}{\textit{RAM}} &
+  \textcolor{red}{Random Access Memory} \\[6pt]
+  
+  \textcolor{red}{\textit{GB}} &
+  \textcolor{red}{Gigabyte} \\[6pt]
+
+  \textcolor{red}{\textit{API}} &
+  \textcolor{red}{Application Programming Interface} \\[6pt]
+
+  \textcolor{red}{\textit{GPL}} &
+  \textcolor{red}{General Public License} \\[6pt]
+
+  \textcolor{red}{\textit{ID}} &
+  \textcolor{red}{Identification} \\[6pt]
+
+  \textcolor{red}{\textit{clpsd}} &
+  \textcolor{red}{Collapsed} \\[6pt]
+
+  \textcolor{red}{\textit{sctn}} &
+ \textcolor{red}{ Section} \\[6pt]
+
+  \textcolor{red}{\textit{sttc}} &
+\textcolor{red}{  Static} \\[6pt]
+
+  \textcolor{red}{\textit{ISRC}} &
+  \textcolor{red}{International Standard Recording Code} \\[6pt]
+  
+  \textit{Music Metadata} &
+  Labels obtained through a music streaming API (e.g., Spotify) that act as features (e.g., genre, “danceability”). \\
+  \hline
+  \end{tabular}
+\end{table}
+
 \section{Purpose of the Project}
 \subsection{User Business}
-Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.
+\textcolor{red}{\sout{Experimentation in music production is a process driven by intuition, i.e., lacking a core systematic structure, limited by a producer's experience and exposure to complex tools and techniques. \emph{GenreGuru} strives to greatly reduce the effort involved in \emph{methodically} attaining exposure to the use of tools and techniques in other songs. \emph{GenreGuru}, by extension, democratizes access to experimentation in music production to less experienced producers, hobbyist musicians, and novices in music production.}}
+
+\textcolor{red}{Discovering new music that aligns with an individual's unique taste can be overwhelming, especially in todays vast music industry. 
+GenreGuru simplifies this process by leveraging a content-based recommendation system. 
+Rather than relying on user ratings or external popularity metrics, GenreGuru analyzes the intrinsic features of each song, 
+such as spectral characteristics, tempo, and key, to identify and suggest tracks that closely match a user's current favorite. 
+This approach empowers casual listeners, hobbyists, and music enthusiasts to effortlessly explore new music that resonates with their preferences, 
+transforming the music discovery into a more engaging experience.}
+
 \subsection{Goals of the Project}
-\emph{GenreGuru} shall:
+
 \begin{itemize}
-  \item \emph{featurize} -- produce tabular features corresponding to characteristics of input songs;
-  \item \emph{recommend} -- produce a collection of songs similar to input songs;
-  \item \emph{generate} -- produce an audio artifact similar to input reference songs.
+  \item \textcolor{red}{\sout{\emph{featurize} -- produce tabular features corresponding to characteristics of input songs;}}
+  \item \textcolor{red}{\sout{\emph{recommend} -- produce a collection of songs similar to input songs;}}
+  \item \textcolor{red}{\sout{\emph{generate} -- produce an audio artifact similar to input reference songs.}}  
 \end{itemize}
+
+
+\textcolor{red}{The goal of the project is to develop a fast, accurate, and intuitive music recommendation system that leverages detailed audio features to suggest 
+tracks closely aligned with a listener’s unique taste. By analyzing intrinsic song characteristics such as spectral properties, tempo, and key, 
+GenreGuru delivers personalized recommendations through a user-friendly interface that requires minimal learning effort. 
+If successful, this system will enhance personalized music discovery for a broad range of users, fostering deeper engagement with their 
+favorite genres.}
+
 \section{Stakeholders}
 \subsection{Client} \label{2.1-client}
 The project is academic in nature, hence has no formal clients beyond the supervisor, who will be consulted periodically to direct project effort.
@@ -73,49 +171,99 @@ The project is academic in nature, hence has no formal clients beyond the superv
 Please refer to \ref{2.3-other-stakeholders} and \ref{2.4-hands-on-users} for the current characterization of candidate customers. Section \ref{2.5-personas} will more succinctly specify archetypal customers after candidate customer interviews are carried out.
 \subsection{Other Stakeholders} \label{2.3-other-stakeholders}
 \begin{itemize}
-  \item Subject Matter Experts (SMEs) -- \emph{To protect the privacy of our stakeholders, SMEs are completely deidentified with the exception of the user group they fall into, if applicable. Were this to be a commercial project, we acknowledge that we would have to, under jurisdiction of the Office of the Privacy Commissioner of Canada, abide by The \href{https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/}{Personal Information Protection and Electronic Documents Act (PIPEDA)}. Further, we have elected, for the interim, not to include a formal conflict resolution agreement as stakeholders' interests will be considered only under discretion of the development team.}
+  \item \textcolor{red}{\sout{Subject Matter Experts (SMEs) -- \emph{To protect the privacy of our stakeholders, SMEs are completely deidentified with the exception of the user group they fall into, if applicable. Were this to be a commercial project, we acknowledge that we would have to, under jurisdiction of the Office of the Privacy Commissioner of Canada, abide by The \href{https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/}{Personal Information Protection and Electronic Documents Act (PIPEDA)}. Further, we have elected, for the interim, not to include a formal conflict resolution agreement as stakeholders' interests will be considered only under discretion of the development team.}}}
+  
   \begin{itemize}
-    \item Music Producers \& Sound Engineers (\emph{subsequently ``producers''})
+    \item \textcolor{red}{\sout{Music Producers \& Sound Engineers (subsequently ``producers'')}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to guide recording artists to explore or experiment with a new \textcolor{red}{sound}. For example, ``\emph{while recording, if I get an idea, I play a song with a specific cool feature (take tempo for example) and iteratively incorporate it into the current song being recorded, guiding the artist to adjust (e.g., incorporating a different cadence) across different attempts to incorporate the experimental feature}.''
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per producer.
-      \item \emph{Influence on project:} moderate-low -- technology-keen producers may be more likely to already have a process into which \emph{GenreGuru} can be integrated, i.e., song featurization can  quickly, and in large volumes, summarize music that the producer's target audience listens to, allowing the producer to better tailor their music output. Such a producer's insights can inform and guide development, but at the discretion of the development team.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to guide recording artists to explore or experiment with a new \textcolor{red}{sound}. For example, ``\emph{while recording, if I get an idea, I play a song with a specific cool feature (take tempo for example) and iteratively incorporate it into the current song being recorded, guiding the artist to adjust (e.g., incorporating a different cadence) across different attempts to incorporate the experimental feature}''.}} 
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per producer.}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate-low -- technology-keen producers may be more likely to already have a process into which \emph{GenreGuru} can be integrated, i.e., song featurization can quickly, and in large volumes, summarize music that the producer's target audience listens to, allowing the producer to better tailor their music output. Such a producer's insights can inform and guide development, but at the discretion of the development team.}}
     \end{itemize}
-    \item Musicians
+    
+    \item \textcolor{red}{\sout{Musicians}} 
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for unrecorded songs or experimenting with different ideas for already recorded songs. \emph{We must be cautious so as to only consider the experimentation component of the musician's workflow, not the music creation in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per musician.
-      \item \emph{Influence on project:} moderate -- like technology-keen producers, we suspect musicians may already have a process into which \emph{GenreGuru} can be integrated, i.e., song recommendation can quickly, and in large volumes, expose the musician to songs with desirable features as they explore how to create their own song. The musician's insights can inform and guide development, but again, at the discretion of the development team.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for unrecorded songs or experimenting with different ideas for already recorded songs. \emph{We must be cautious so as to only consider the experimentation component of the musician's workflow, not the music creation in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per musician.}} 
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate -- like technology-keen producers, we suspect musicians may already have a process into which \emph{GenreGuru} can be integrated, i.e., song recommendation can quickly, and in large volumes, expose the musician to songs with desirable features as they explore how to create their own song. The musician's insights can inform and guide development, but again, at the discretion of the development team.}}
     \end{itemize}
-    \item Music Theorists
+    
+    \item \textcolor{red}{\sout{Music Theorists}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for composing new songs or experimenting with different ideas for arranging existing songs. \emph{Yet again, we must be cautious so as to only consider the experimentation component of the theorist's workflow, not the composition or arrangement process in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per theorist -- \emph{though, we currently do not have any candidate music theorists}.
-      \item \emph{Influence on project:} moderate-low -- music theorists may already have a process into which \emph{GenreGuru} can be integrated, similar to producers, i.e., song featurization can quickly, and in large volumes, summarize music from a catalogue of songs of interest to identify similarities and differences in their sound properties based on their composition and arrangement. At the discretion of the development team, the music theorist's insights can inform and guide development geared for very musically literate users.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to generate novel ideas for composing new songs or experimenting with different ideas for arranging existing songs. \emph{Yet again, we must be cautious so as to only consider the experimentation component of the theorist's workflow, not the composition or arrangement process in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per theorist -- \emph{though, we currently do not have any candidate music theorists.}}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} moderate-low -- music theorists may already have a process into which \emph{GenreGuru} can be integrated, similar to producers, i.e., song featurization can quickly, and in large volumes, summarize music from a catalogue of songs of interest to identify similarities and differences in their sound properties based on their composition and arrangement. At the discretion of the development team, the music theorist's insights can inform and guide development geared for very musically literate users.}}
     \end{itemize}
-    \item Music Educators
+    
+    \item \textcolor{red}{\sout{Music Educators}}
     \begin{itemize}
-      \item \emph{Target subject matter knowledge:} description of current process and/or approach used to introduce students to novel music concepts through experimentation or experimenting with different ideas for previously-learned (composite) concepts. \emph{We must be cautious so as to only consider the experimentation component of the teacher's workflow, not the teaching practice or philosophy in its core.}
-      \item \emph{Extent of project involvement:} minimal, i.e., no more than three interviews per teacher -- \emph{though, we currently do not have any candidate music teachers}.
-      \item \emph{Influence on project:} low -- music teachers may already have a process into which \emph{GenreGuru} can be integrated, i.e., song generation can (relatively) quickly, and in (relatively) large volumes, produce sound artifacts that introduce novel music concepts or demonstrate alternative use of one or more previously-learned concepts. Like other stakeholders, at the discretion of the development team, the music teacher's insights can inform and guide development geared for \emph{shared} music experimentation settings.
+      \item \textcolor{red}{\sout{\emph{Target subject matter knowledge:} description of current process and/or approach used to introduce students to novel music concepts through experimentation or experimenting with different ideas for previously-learned (composite) concepts. \emph{We must be cautious so as to only consider the experimentation component of the teacher's workflow, not the teaching practice or philosophy in its core.}}}
+      \item \textcolor{red}{\sout{\emph{Extent of project involvement:} minimal, i.e., no more than three interviews per teacher -- \emph{though, we currently do not have any candidate music teachers.}}}
+      \item \textcolor{red}{\sout{\emph{Influence on project:} low -- music teachers may already have a process into which \emph{GenreGuru} can be integrated, i.e., song generation can (relatively) quickly, and in (relatively) large volumes, produce sound artifacts that introduce novel music concepts or demonstrate alternative use of one or more previously-learned concepts. Like other stakeholders, at the discretion of the development team, the music teacher's insights can inform and guide development geared for \emph{shared} music experimentation settings.}}
     \end{itemize}
+    
   \end{itemize}
-  \item Affiliated corporation staff -- \emph{out of scope}
+  
+  \item \textcolor{red}{\sout{Affiliated corporation staff -- \emph{out of scope}}}
   \begin{itemize}
-    \item Label staff -- \emph{publishers, marketers, lawyers, \& executives}
-    \item Production studio staff -- \emph{studio managers, instrument maintainers, \& sound designers}
+    \item \textcolor{red}{\sout{Label staff -- \emph{publishers, marketers, lawyers, \& executives}}}
+    \item \textcolor{red}{\sout{Production studio staff -- \emph{studio managers, instrument maintainers, \& sound designers}}}
   \end{itemize}
-  \item Development team -- \emph{exclusively involves team members, so out of scope}.
-  \item Maintenance team -- \emph{exclusively involves team members, so out of scope}.
-  \item Music regulators -- \emph{song licensing laws to abide by when acquiring training data is the only applicable concern, otherwise out of scope. For the interim, API documentation and metadata dictionaries suffice as a resource.}
+  
+  \item \textcolor{red}{\sout{Development team -- \emph{exclusively involves team members, so out of scope}.}}
+  \item \textcolor{red}{\sout{Maintenance team -- \emph{exclusively involves team members, so out of scope}.}}
+  \item \textcolor{red}{\sout{Music regulators -- \emph{song licensing laws to abide by when acquiring training data is the only applicable concern, otherwise out of scope. For the interim, API documentation and metadata dictionaries suffice as a resource.}}}
 \end{itemize}
+
+
+\noindent\textcolor{red}{\textbf{Subject Matter Experts (SMEs)}}\\
+\textcolor{red}{Experts in music and audio analysis who can offer insights into effective recommendation practices while 
+ensuring stakeholder privacy. For a commercial project, compliance with data protection regulations (such as PIPEDA) would be required.}\\
+  
+\noindent\textcolor{red}{\textbf{Music Producers \& Sound Engineers}}\\
+\textcolor{red}{These stakeholders can use recommendations to quickly identify songs with similar production qualities or sonic characteristics, 
+  aiding in benchmarking and creative decision-making. Their involvement will be minimal (e.g., up to three interviews) but valuable 
+  for informing system integration into professional workflows.}\\
+  
+  \noindent\textcolor{red}{\textbf{Musicians}}\\
+\textcolor{red}{Musicians can leverage the recommendation system to explore music that aligns with their style or inspires new creative directions. 
+  As with producers, their feedback (via a few interviews) will help refine the system’s usability and relevance.}\\
+
+  \noindent\textcolor{red}{\textbf{Music Theorists}}\\
+\textcolor{red}{Although their direct involvement is expected to be minimal (e.g., up to three interviews), theorists can provide insights into how 
+  the system might reveal relationships among songs based on shared musical structures or characteristics.}\\
+
+  \noindent\textcolor{red}{\textbf{Music Educators}}\\
+\textcolor{red}{Educators can utilize the recommendation system to expose students to a broader range of music with similar attributes, enhancing 
+  learning and creative exploration. Their feedback will help tailor the system for educational purposes.}\\
+
+  \noindent\textcolor{red}{\textbf{Affiliated Corporate and Label Staff}}\\
+\textcolor{red}{These groups (including publishers, marketers, and studio managers) are acknowledged as potential external stakeholders but are
+  considered out of scope for the current academic project.}\\
+
+  \noindent\textcolor{red}{\textbf{Development and Maintenance Teams}}\\
+\textcolor{red}{Both teams consist exclusively of project members and are considered internal; therefore, they are not detailed further in this section.}\\
+
+\noindent\textcolor{red}{\textbf{Music Regulators}}\\
+\textcolor{red}{Regulatory bodies concerned with song licensing and data usage provide context for compliance when acquiring training data, though 
+  these aspects are managed via API documentation and metadata dictionaries.}\\
+
+
+
 \subsection{Hands-On Users of the Project} \label{2.4-hands-on-users}
 The first four stakeholders of section \ref{2.3-other-stakeholders} are the users of concern. To maximize project reach, we do not distinguish between separate user groups with regards to some characteristics, i.e., experience level in the subject matter or technology, attitude toward technology, and physical location. A user can be any combination of: a beginner, novice, intermediate, advanced, or expert in the subject matter or technology, they may be timid to use technology or a technology fanatic, and they can be located anywhere that is within reach of our service area. What varies between user groups are their relevant responsibilities, outlined below.
 \begin{itemize}
-  \item Music Producers \& Sound Engineers -- \emph{Edit, mix, and master live \& recorded audio; facilitate experimentation with instruments, audio effects, and lyrics.}
-  \item Musicians -- \emph{Play instruments and/or sing in live \& recorded settings; experiment with instruments and vocals.}
-  \item Music Theorists -- \emph{Compose new pieces of music; arrange existing music compositions.}
-  \item Music Educators -- \emph{Conduct personal and group instruction sessions to present novel music concepts; reintroduce previously-learned music concepts used in a novel setting; present combinations of previously-learned music concepts.}
+  \item \textcolor{red}{\sout{Music Producers \& Sound Engineers -- Edit, mix, and master live \& recorded audio; facilitate experimentation with instruments, audio effects, and lyrics.}}  
+  \item \textcolor{red}{\sout{Musicians -- Play instruments and/or sing in live \& recorded settings; experiment with instruments and vocals.}}
+  \item \textcolor{red}{\sout{Music Theorists -- Compose new pieces of music; arrange existing music compositions.}}  
+  \item \textcolor{red}{\sout{Music Educators -- Conduct personal and group instruction sessions to present novel music concepts; reintroduce previously-learned music concepts used in a novel setting; present combinations of previously-learned music concepts.}}
+\end{itemize}
+
+\begin{itemize}
+  \item \textcolor{red}{\textbf{Music Producers \& Sound Engineers:} Professionals who leverage the recommendation system to quickly identify and integrate similar production techniques and sonic characteristics into their work.}
+  \item \textcolor{red}{\textbf{Musicians:} Artists who utilize the system as a creative tool to discover new music that resonates with their style and inspires fresh ideas.}
+  \item \textcolor{red}{\textbf{Music Theorists:} Scholars and analysts who explore musical relationships by examining shared structures and patterns between songs.}
+  \item \textcolor{red}{\textbf{Music Educators:} Instructors who incorporate the recommendation system to expose students to a diverse range of music, thereby fostering creative learning and experimentation.}
 \end{itemize}
 \subsection{Personas} \label{2.5-personas}
 \begin{itemize}
@@ -126,7 +274,8 @@ The first four stakeholders of section \ref{2.3-other-stakeholders} are the user
     \item Relevant job -- \emph{Accountant}
     \item Relevant hobbies -- \emph{Disc jockeying}
     \item Relevant music genres -- \emph{pop \& hip-hop}
-    \item Relevant likes/dislikes -- TBD after interviews
+    \item \textcolor{red}{\sout{Relevant likes/dislikes -- TBD after interviews}}
+    \item \textcolor{red}{Relevant likes/dislikes -- Like tracks that are energetic, well-produced, and dynamic, but dislikes music that is unpolished.}
     \item Technology attitude -- \emph{comfortable using digital tools, but prefers analog when it comes to audio.}
   \end{itemize}
   \item Musicians
@@ -136,7 +285,8 @@ The first four stakeholders of section \ref{2.3-other-stakeholders} are the user
     \item Relevant job -- \emph{N/A, studying for a MSc in Chemistry and Biochemistry from UWaterloo}
     \item Relevant hobbies -- \emph{Breakdancing}
     \item Relevant music genres -- \emph{Samba \& Bossa Nova}
-    \item Relevant likes/dislikes -- TBD after interviews
+    \item \textcolor{red}{\sout{Relevant likes/dislikes -- TBD after interviews}}
+    \item \textcolor{red}{Relevant likes/dislikes -- Enjoys creative, inspiring tunes with a unique vibe, and avoids repetitive or generic music.}
     \item Technology attitude --  \emph{very proficient, he grew up spending his free time in an internet café before starting university.}
   \end{itemize}
   \item Music Theorists
@@ -146,7 +296,8 @@ The first four stakeholders of section \ref{2.3-other-stakeholders} are the user
     \item Relevant job -- \emph{Consulting}
     \item Relevant hobbies -- \emph{Collecting LP vinyl records}
     \item Relevant music genres -- \emph{Folk \& Jazz}
-    \item Relevant likes/dislikes -- TBD after interviews
+    \item \textcolor{red}{\sout{Relevant likes/dislikes -- TBD after interviews}}
+    \item \textcolor{red}{Relevant likes/dislikes -- Appreciates music with complex structures that challenge my thinking. Stays away from overly simplistic, commercial tracks.}
     \item Technology attitude --  \emph{vehemently anti-digital, owns a flip-phone without a SIM card, and only uses VoIP.}
   \end{itemize}
   \item Music Educators
@@ -156,12 +307,13 @@ The first four stakeholders of section \ref{2.3-other-stakeholders} are the user
     \item Relevant job -- \emph{Music teacher}
     \item Relevant hobbies -- \emph{Swimming in Lake Waikaremoana}
     \item Relevant music genres -- \emph{Pūoro Māori}
-    \item Relevant likes/dislikes -- TBD after interviews
+    \item \textcolor{red}{\sout{Relevant likes/dislikes -- TBD after interviews}}
+    \item \textcolor{red}{Relevant likes/dislikes -- Likes culturally rich music, avoids anything that offers little in terms of teaching opportunities.}
     \item Technology attitude --  \emph{complete beginner, and he only ever goes to the studio to record something he's performed a few times prior.}
   \end{itemize}
 \end{itemize}
 \subsection{Priorities Assigned to Users}
-This section builds on \ref{2.4-hands-on-users}, appointing \emph{music producers} \& \emph{musicians} key users, then music theorists \& music educators secondary users. These priorities may change as interviews are conducted and different user groups become more concrete.
+This section builds on \ref{2.4-hands-on-users}, appointing \emph{music producers} \& \emph{musicians} key users, then music theorists \& music educators secondary users. \textcolor{red}{\sout{These priorities may change as interviews are conducted and different user groups become more concrete.}}
 \subsection{User Participation}
 Further extending \ref{2.4-hands-on-users}, all users will be notified that they will be involved in no more than 3 interviews as mentioned in the extent of project involvement in \ref{2.3-other-stakeholders}. Should a user be willing to further contribute to the project after three interviews, they will be contacted as sparingly or generously as they outline. Asynchronous communication via e-mails and text are unrestricted, but expected to be within reason and not to cause a disturbance to its recipient.
 \subsection{Maintenance Users and Service Technicians}
@@ -171,37 +323,99 @@ The maintenance team exclusively involves the team members, thus is considered o
 \subsection{Solution Constraints}
 \begin{itemize}
 
-  \item The service uses a music dataset
-  \\ \textbf{Rationale:} A dataset for an AI project is necessary as some form of training data must be used 
-  in order to train the AI generative, analysis and recommendation systems. 
-  \\ \textbf{Fit Criterion:} The machine learning algorithms use a music dataset as the training set. 
+  \item \textcolor{red}{\sout{The service uses a music dataset}}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} A dataset for an AI project is necessary as some form of training data must be used 
+  in order to train the AI generative, analysis and recommendation systems. }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} The machine learning algorithms use a music dataset as the training set. }}
 
-  \item The service uses a machine learning algorithm in order to generate song recommendations and snippets. 
-  \\ \textbf{Rationale:} The general gist of this project is a leveraging of different signal processing and machine learning
+  \item \textcolor{red}{\sout{The service uses a machine learning algorithm in order to generate song recommendations and snippets. }}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} The general gist of this project is a leveraging of different signal processing and machine learning
   algorithms in order to provide an end user with a better experience for consuming music. We believe that using a machine 
   learning algorithm for these ends would both be interesting in terms of implementing and training a model, but also practically
-  useful for the end user to provide better recommendations by leveraging training over a very large dataset in order to produce results. 
-  \\\textbf{Fit Criterion:} The recommendation and generation components utilize trained machine learning algorithm. 
+  useful for the end user to provide better recommendations by leveraging training over a very large dataset in order to produce results. }}
+  \\\textcolor{red}{\sout{\textbf{Fit Criterion:} The recommendation and generation components utilize trained machine learning algorithm. }}
 
-  \item The service features integration with an existing music streaming provider's platform. 
-  \\ \textbf{Rationale:} A music service provider (such as Spotify) would allow the service to bypass the need to have
+  \item \textcolor{red}{\sout{The service features integration with an existing music streaming provider's platform. }}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} A music service provider (such as Spotify) would allow the service to bypass the need to have
   music inputted, instead being able to use references to a track. In addition, through API calls, providers such as spotify
   already have a large amount of useful labels for invidiual track(s) that can be used as features for the machine learning
-  components of the service.  
-  \\ \textbf{Fit Criterion:} The service has components that make uses of features (such as API calls) 
-  that belong to a music service provider's platform. 
+  components of the service.  }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} The service has components that make uses of features (such as API calls) 
+  that belong to a music service provider's platform. }}
 
-  \item The service uses a server to process the user requests separately from the front end.
-  \\ \textbf{Rationale:} Ideally, our service would use an on-premise deployed ubuntu server in order to process the user 
+  \item \textcolor{red}{\sout{The service uses a server to process the user requests separately from the front end.}}
+  \\ \textcolor{red}{\sout{\textbf{Rationale:} Ideally, our service would use an on-premise deployed ubuntu server in order to process the user 
   analysis, recommendation, and generation components of the project, as this would allow a more flexible front end design
-  (such as through a web application). 
-  \\ \textbf{Fit Criterion:} An on-premise server is deployed for the purposes of handling the analysis, generation and recommendations
-  systems separately from the front end. 
+  (such as through a web application). }}
+  \\ \textcolor{red}{\sout{\textbf{Fit Criterion:} An on-premise server is deployed for the purposes of handling the analysis, generation and recommendations
+  systems separately from the front end. }}
 
+
+  \textcolor{red}{\textbf{Technology Stack}} \\
+  \\ \textcolor{red}{\textbf{Description:} The system shall be developed using a high-level programming language for efficient core processing 
+  and a robust, secure language for backend logic, while the frontend will utilize modern web technologies (e.g., React and CSS) 
+  for a responsive, intuitive interface.}
+  \\ \textcolor{red}{\textbf{Rationale:} A high-level language on the backend enables rapid development and efficient handling of critical 
+  processing tasks, and modern web technologies on the frontend ensure the interface is user-friendly, maintainable, and secure.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} The final product shall meet established performance benchmarks for processing tasks and deliver a responsive, 
+  secure user interface across supported devices.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Open-Source Libraries}} \\
+  \\ \textcolor{red}{\textbf{Description:} The app shall use open-source libraries and frameworks where applicable to save both time and money.}
+  \\ \textcolor{red}{\textbf{Rationale:} Utilizing open-source libraries is cost-effective and leverages community-driven improvements and support.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} All third-party libraries used in the project must be licensed under recognized open-source agreements
+  (e.g., MIT, GPL, or Apache) to ensure they are free to use.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Integration with a Music Streaming Provider’s Platform}} \\
+  \\ \textcolor{red}{\textbf{Description:} The service shall integrate with an existing music streaming provider’s platform.}
+  \\ \textcolor{red}{\textbf{Rationale:} By integrating with a provider (such as Spotify, or Deezer), the service can use track references and 
+  leverage existing metadata—eliminating the need to manually input music—and take advantage of the rich labels that 
+  the provider supplies.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} The service must include components that successfully make API calls to a music streaming 
+  provider’s platform to retrieve track features.}
+  \\ \\
+
+  \textcolor{red}{\textbf{Server-Based Processing of User Requests}} \\
+  \\ \textcolor{red}{\textbf{Description:} The service shall utilize a dedicated server to process user requests separately from the front end.}
+  \\ \textcolor{red}{\textbf{Rationale:} Deploying an on-premise Ubuntu server for backend processing allows for flexible front-end design 
+  (e.g., via a web application) while efficiently handling analysis, recommendations, and other processing tasks.}
+  \\ \textcolor{red}{\textbf{Fit Criterion:} An on-premise server must be deployed to handle the backend processing, ensuring that 
+  recommendation functions operate independently from the user interface.}
+  \\ \\
 \end{itemize}
 
 \subsection{Implementation Environment of the Current System}
-\includegraphics[scale=0.552]{3_2_environment_diagram.pdf}
+% \includegraphics[scale=0.552]{3_2_environment_diagram.pdf}
+
+\textcolor{red}{\textbf{Hardware Specifications}} \\
+\\ \textcolor{red}{\textbf{Description:} The service shall run on a dedicated server with a minimum configuration of 8GB of RAM, 
+a quad-core processor, and 256GB of available storage. The front-end interface will be accessible on standard personal 
+computers or laptops (which include a keyboard, mouse, and speakers).}
+\\ \textcolor{red}{\textbf{Rationale:} These specifications reflect the typical hardware available to our target users and 
+ensure that both the backend processing and the user interface perform efficiently under normal operating conditions.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The system must pass performance tests on devices meeting these specifications.}
+\\ \\
+
+\noindent \textcolor{red}{\textbf{Software Environment}} \\
+\\ \textcolor{red}{\textbf{Description:} The backend will be developed using a high-level programming language (e.g., Python) 
+along with open-source libraries for efficient data processing. The frontend will be built with modern web technologies 
+(e.g., React and CSS) to provide a responsive and intuitive user experience.}
+\\ \textcolor{red}{\textbf{Rationale:} Using a proven, open-source software stack ensures rapid development, ease of maintenance, 
+and robust integration between backend and frontend components while meeting industry standards for security and performance.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The final product shall demonstrate seamless integration between backend and frontend components 
+and meet established performance benchmarks in processing speed and user interface responsiveness..}
+\\ \\
+
+\noindent \textcolor{red}{\textbf{Network and Integration}} \\
+\\ \textcolor{red}{\textbf{Description:} The service shall operate over a stable internet connection to support real-time API communications 
+with an external music streaming provider’s platform for up-to-date track metadata.}
+\\ \textcolor{red}{\textbf{Rationale:} Reliable network connectivity is essential for maintaining real-time interactions and ensuring the 
+system can access necessary external data sources to support its recommendation functionality.}
+\\ \textcolor{red}{\textbf{Fit Criterion:} The system must achieve a network uptime of at least 99\% during continuous operation and 
+successfully retrieve external data via API calls as verified through integration testing.}
+\\ \\
 
 \subsection{Partner or Collaborative Applications}
 \includegraphics[scale=0.72]{3_3_partner_constraints_figure}
@@ -213,63 +427,65 @@ There are several existing solutions that could serve as part of the music gener
     \item \textbf{Spotify API}: Provides access to a vast library of music, including song previews and metadata, which can be leveraged for generating recommendations.
     \item \textbf{Librosa Library}: An open-source Python package for analyzing and processing music files, suitable for extracting features from songs and facilitating generative components.
     \item \textbf{TensorFlow and PyTorch Pre-trained Models}: Both frameworks offer pre-trained models that could be adapted for music generation tasks. These solutions provide a basis for deep learning models without having to build and train from scratch.
-    \item \textbf{OpenAI Jukebox}: A generative model that is capable of producing music, which could potentially be adapted and integrated into our system.
+    \item \textcolor{red}{\sout{\textbf{OpenAI Jukebox}: A generative model that is capable of producing music, which could potentially be adapted and integrated into our system.}}
 \end{itemize}
 
 These off-the-shelf software solutions provide a foundation upon which we can build our custom features, significantly reducing the development time and leveraging existing technologies to enhance the functionality of our platform.
 
 \subsection{Anticipated Workplace Environment}
-\begin{itemize}
-  \item Home Usage
-  \\\textbf{Rationale:} This environment is more appropriate for casual music listeners. 
-  This means users will most likely be using it in a form of a casual environment. This can 
-  include such as during a public commute on the train, where the user might try to interact 
-  with the service while there is an unreliable internet connection on a mobile device. This
-  means the front end of the service must be easy to use and access on all types of devices, 
-  and preferrably, not a large amount of data is streamed between the user and the service. 
-  This means that preferrably, the input would have references to pieces of music instead of 
-  having say, full .MP3 files as the input. These users are also more likely interested in the 
-  recommendation system to attempt to find new pieces of music to listen to, and might be more
-  willing to use the generation system for "fun", so they might be satifisfied even with a 
-  generation component that produces odd results.
- 
-  \item Studio Usage
-  \\\textbf{Rationale:} This environment is more professional and what is most likely what 
-  creative professionals will be using. The expectation is that they will be using this on their 
-  computers, thus they are more likely have a reliable internet connection in addition to being
-  willing to input a lot more music to the service. This means that the service needs to faciliate 
-  entering a large amount of music, and be able to generate results in a rapid and efficient 
-  manner. Because the users of this type of environment would likely be inviduals engaged in some form
-  of creative endeavors, they will generally have higher standards of what the service provides, and
-  might be more interested in the analysis component, such as being able to find new labels for their
-  existing work to get new perspectives. This also means that they most likely expect the music generation
-  component to give them something more "listenable", something they could directly use as a sample or inspiration.  
 
-\end{itemize}
+\textbf{Home Usage}\\
+\\\textbf{Rationale:} This environment is more appropriate for casual music listeners. 
+This means users will most likely be using it in a form of a casual environment. This can 
+include such as during a public commute on the train, where the user might try to interact 
+with the service while there is an unreliable internet connection on a mobile device. This
+means the front end of the service must be easy to use and access on all types of devices, 
+and preferrably, not a large amount of data is streamed between the user and the service. 
+This means that preferrably, the input would have references to pieces of music instead of 
+having say, full .MP3 files as the input. These users are also more likely interested in the 
+recommendation system to attempt to find new pieces of music to listen to. \textcolor{red}{\sout{, and might be more
+willing to use the generation system for "fun", so they might be satifisfied even with a 
+generation component that produces odd results.}}
+ \\ \\
+\textbf{Studio Usage}
+\\
+\\\textbf{Rationale:}This environment is more professional and is most likely what creative professionals will be using. 
+The expectation is that they will be using this on their computers, thus they are more likely to have a reliable internet 
+connection in addition to being willing to input a large volume of music into the service. This means that the service needs 
+to facilitate entering a large amount of music, and be able to \textcolor{red}{\sout{generate results in a rapid and efficient manner}} 
+\textcolor{red}{produce accurate recommendations quickly}. Because the users of this type of environment would likely be individuals 
+engaged in creative endeavors, they will generally have higher standards of what the service provides, and might be more interested in 
+the \textcolor{red}{\sout{analysis component, such as being able to find new labels for their existing work to get new perspectives}} 
+\textcolor{red}{recommendation functionality that efficiently surfaces new musical inspirations}. This also means that they most likely 
+expect the \textcolor{red}{\sout{music generation component to give them something more "listenable", something they could directly use 
+as a sample or inspiration}} \textcolor{red}{recommendations that are both relevant and innovative, providing inspiration for creative projects}.
+
 
 \subsection{Schedule Constraints}
-This project was started in the 2024 Fall Term and is expected to be completed by the 
-2025 winter term at McMaster university. Some of the key deadlines are: 
+\textcolor{red}{\sout{This project was started in the 2024 Fall Term and is expected to be completed by the 
+2025 winter term at McMaster university. Some of the key deadlines are: }}
 \begin{itemize}
-  \item Proof of Concept Demonstration Plan, November 11-22
+  \item \textcolor{red}{\sout{Proof of Concept Demonstration Plan, November 11-22
   \\This deadline accounts for 5\% of the mark. The group should have identified the most significant
   risks involving the project and come up with plans on how to migitate said risks. If this is not possible, then the project 
   can be redefined. The group also needs to predict and note other concerns about potential problems or difficulties that could arise
   during development, such as testing difficulties or software portability. If this deadline is not met, then it means that our group
-   does not fully understand the potential pitfalls of our project and we need to redefine certain aspects of the project. 
+   does not fully understand the potential pitfalls of our project and we need to redefine certain aspects of the project. }}
 
-  \item Final Demonstration, March 24-30
+  \item \textcolor{red}{\sout{Final Demonstration, March 24-30
   \\This deadline accounts for 20\% of the mark. This deadline involves a demonstration of a finalized 
   version of the project to supervisors before the public EXPO happening at a TBD date. By this deadline, 
   the service should be in a completed state ready for use and demonstration. If this deadline is not met then
-  the project can be considered a "failure". 
+  the project can be considered a "failure". }}
 
-  \item Final Documentation, April 2
+  \item \textcolor{red}{\sout{Final Documentation, April 2
   \\This deadline accounts for 30\% of the mark. It involves the finalized documentation of plans pertaining to 
   the project and the actual working program/service. Any final revisions and reflections pertaining to the project
   should have been completed by this deadline as no further changes to the project will be possible. Whatever documentation
-  or code that is not completed by this deadline would be considered permanently unfinished. 
+  or code that is not completed by this deadline would be considered permanently unfinished. }}
 \end{itemize}
+\textcolor{red}{Schedule constraints are provided by the capstone course itself, for a detailed
+schedule refer to the \href{https://github.com/AhmedAl-Hayali/GenreGuru/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan Document, section 8}.}
 
 \subsection{Budget Constraints}
 The budget limit as stated by the capstone outline is 750\$ CAD. Potential additional
@@ -281,177 +497,216 @@ There are no specific enterprise constraints as we do not have outside investors
 for this project. 
 
 \section{Naming Conventions and Terminology}
-\subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
-involved in the Project}
+\textcolor{red}{\emph{N/A.}}
 \begin{itemize}
-  \item Track is full song, i.e., a completed audio file published by a musician. 
-  \item A snippet is a fragment of a track, i.e., an incomplete audio file. Such audio files can be in a \emph{lossy} compressed format, e.g., 
+  \item \textcolor{red}{\sout{Track is full song, i.e., a completed audio file published by a musician. }}
+  \item\textcolor{red}{\sout{ A snippet is a fragment of a track, i.e., an incomplete audio file. Such audio files can be in a \emph{lossy} compressed format, e.g., 
   \texttt{.mp3}, a \emph{lossless} compressed format, e.g., \texttt{.FLAC}, or an uncompressed format, e.g., \texttt{.WAV}. While the file formats of audio files are known, 
   the source of a song or song snippet can be anything. A concrete example is a 30-second snippet from Spotify's API being an MP3 file delivered through the Spotify content 
-  delivery network, \texttt{scdn}, e.g., \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}.
-  \item Model: Statistical Model (Not software module)
-  \item Module: Software Component
-  \item AI: Artificial Intelligence
-  \item ML: Machine Learning Model
-  \item Music Metadata: labels obtained through streaming music API (eg spotify) that are
-  like features (eg genre, 'danceability')
+  delivery network, \texttt{scdn}, e.g., \href{https://p.scdn.co/mp3-preview/c05a687254dbdf50a9ab4879d85e54a7594e367f?cid=945b9ed74f4c43b49bcf26e7dc388df0}{Jack Harlow's ``First Class''}.}}
+  \item \textcolor{red}{\sout{Model: Statistical Model (Not software module)}}
+  \item \textcolor{red}{\sout{Module: Software Component}}
+  \item \textcolor{red}{\sout{AI: Artificial Intelligence}}
+  \item \textcolor{red}{\sout{ML: Machine Learning Model}}
+  \item \textcolor{red}{\sout{Music Metadata: labels obtained through streaming music API (eg spotify) that are
+  like features (eg genre, 'danceability')}}
 \end{itemize}
+
+  
 
 \section{Relevant Facts And Assumptions}
 \subsection{Relevant Facts}
+
+Music contains the following core features:
 \begin{itemize}
-  \item Music contains the following core features \begin{itemize}
     \item Tempo
     \item Key signature
     \item Time signature
     \item Pitch
     \item Timbre
-  \end{itemize}
-  \item Song files have metadata that contains information such as: \begin{itemize}
-    \item Song title
-    \item Artist
-    \item Release date
-  \end{itemize}
-  \item Most songs can be classified into multiple genres
 \end{itemize}
+\noindent Song files from streaming services (e.g., Spotify, Deezer) include metadata such as:
+\begin{itemize}
+    \item Track ID
+    \item ISRC
+    \item Album name
+    \item Artist name
+    \item Track name
+\end{itemize}
+\noindent Most songs can be classified into multiple genres.
+
 \subsection{Business Rules}
 \begin{itemize}
-  \item The user should be able to generate their own music
-  \item The user should be able to figure out what musical features a song contains 
-  \item The user should be able to ask for similar songs
+  \item \textcolor{red}{\sout{The user should be able to generate their own music}}
+  \item \textcolor{red}{\sout{The user should be able to figure out what musical features a song contains }}
+  \item The user should be able to ask for similar songs \textcolor{red}{based on features}
   \item the user should be able to interact with the system without any external installation
+  \item \textcolor{red}{The system shall deliver recommendations in real time, ensuring that the user's interaction feels imeediate and responsive}
 \end{itemize}
 \subsection{Assumptions}
 \begin{itemize}
   \item Users will have at least some familiarity of music theory
-  \item The analysis and recommendation systems will use as many well-established musical 
+  \item The \textcolor{red}{\sout{analysis and}} recommendation system\textcolor{red}{\sout{s}} will use as many well-established musical 
   features as possible
   \item All API inputs will be easily accessible and reliable enough to support the
-  recommendation and analysis systems
+  recommendation \textcolor{red}{\sout{ and analysis}} system\textcolor{red}{\sout{s}}
   \item The system will be written in a language that all developers are familiar with
   \item The system will use a local server to handle the processing of
   the machine learning model and large datasets
-  \item Handling of niche features and cover art are designed to enhance the user experience, but 
-  these will not be a part of the core functionality of the system
-  \item The generative system will be completed by the POC demo date
-  \item The recommendation and analysis systems will be completed by the Revision 0 date
+  \item \textcolor{red}{\sout{Handling of niche features and cover art are designed to enhance the user experience, but 
+  these will not be a part of the core functionality of the system}}
+  \item \textcolor{red}{\sout{The generative system will be completed by the POC demo date}}
+  \item The recommendation \textcolor{red}{\sout{and analysis}} system\textcolor{red}{\sout{s}} will be completed by the Revision 0 date
 \end{itemize}
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
-\begin{itemize}
-  \item \textbf{Music Analysis Component}
-  \\\textbf{Manual Process}: Currently, this is usually manually done by the artist self-labelling their work
-  or third parties labelling the music. This can end up being time consuming. 
-  \\\textbf{Automated Process}: Most automation on this regard (retrieving song information from a music 
-  provider's api) is mostly useful for retreiving already labelled information, there is not a lot of automation 
-  that is be done for labelling, but a lot that is possible retreiving said labels. 
-  \\What we wish to do with this component of the service is to gather and present said information that can be
-  gleamed from the music service provider's API to the user in a more presentable manner (such as audio visualizations)
-   but also featurize an individual song for the other components in our service. Our service should also generate new
-   labels using ML algorithms, which allows for faster automation of song labelling and more features for our other 
-   components. 
-  \\\includegraphics[width=\textwidth]{6_1_b.pdf}
-  \item \textbf{Music Recommendation Component}
-  \\\textbf{Manual Process}: Generally, this is mostly done through music curators should as DJs, playlist makers,
-  etc, where curators manually select songs and make recommendations based on popular trends, new artists releases,
-  or shifts in the genre. The main issue here is that it requires a large amount of manual work, as curators need to 
-  listen to new music before adding them to some form of playlist or recommending them to other people, which greatly
-  limits their potential recommendations. 
-  \\\textbf{Automated Process}: Most music service providers such as spotify, apple music or youtube already offer 
-  some form of music recommendation service use algorithms to recommend users new songs based on their listening history.
-  These generally already work decently well, but they end up usually being heavily weighted towards more popular songs 
-  (for example, sabrina carpenter's espresso being automatically recommended through smart shuffle no matter what your prior listening history was like), 
-  as record labels often have deals with these music service platforms so it is not unusual to get recommendations that 
-  do not necessarily suit the user's music tastes. 
-  \\The main benefit our service should provide is the ability to recommend songs that are more niche, more accurate based
-  on the user input while still using an automated system powered by machine learning, as we would have more features due 
-  to the analysis component for the ML algorithm to process, in addition to not being heavily weighted towards more popular,
-  trendy songs or some form of likely record label deals meddling. 
-  \\\includegraphics[width=\textwidth]{6_1_a.pdf}
+\textcolor{red}{\sout{\textbf{Music Analysis Component}}}
+\\\textcolor{red}{\sout{\textbf{Manual Process}: Currently, this is usually manually done by the artist self-labelling their work
+or third parties labelling the music. This can end up being time consuming. }}
+\\\textcolor{red}{\sout{\textbf{Automated Process}: Most automation on this regard (retrieving song information from a music 
+provider's api) is mostly useful for retreiving already labelled information, there is not a lot of automation 
+that is be done for labelling, but a lot that is possible retreiving said labels. }}
+\\\textcolor{red}{\sout{What we wish to do with this component of the service is to gather and present said information that can be
+gleamed from the music service provider's API to the user in a more presentable manner (such as audio visualizations)
+  but also featurize an individual song for the other components in our service. Our service should also generate new
+  labels using ML algorithms, which allows for faster automation of song labelling and more features for our other 
+  components. }}
+% \\\includegraphics[width=\textwidth]{6_1_b.pdf}
 
-  \item \textbf{Music Generation Component}
-  \\\textbf{Manual Process}: Currently, generating music usually requires years of dedication to the craft and involves the
-  labour of musicians, producers, and composers. This means that there is a large amount of manpower that is necessary
-  in order to create new unique pieces. 
-  
-  We wish to have our service provide a new avenue to generate new types of music. We do not envision this service as 
-  something that replaces the traditional music creation process, but rather as something that can potentially enhance it. 
+\noindent\textbf{Music Recommendation Component}
+\\\textbf{Manual Process}: Generally, this is mostly done through music curators should as DJs, playlist makers,
+etc, where curators manually select songs and make recommendations based on popular trends, new artists releases,
+or shifts in the genre. The main issue here is that it requires a large amount of manual work, as curators need to 
+listen to new music before adding them to some form of playlist or recommending them to other people, which greatly
+limits their potential recommendations. 
+\\\textbf{Automated Process}: Most music service providers such as spotify, apple music or youtube already offer 
+some form of music recommendation service use algorithms to recommend users new songs based on their listening history.
+These generally already work decently well, but they end up usually being heavily weighted towards more popular songs 
+(for example, sabrina carpenter's espresso being automatically recommended through smart shuffle no matter what your prior listening history was like), 
+as record labels often have deals with these music service platforms so it is not unusual to get recommendations that 
+do not necessarily suit the user's music tastes. 
+\\The main benefit our service should provide is the ability to recommend songs that are more niche, more accurate based
+on the user input while still using an automated system powered by machine learning, as we would have more features due 
+to the analysis component for the ML algorithm to process, in addition to not being heavily weighted towards more popular,
+trendy songs or some form of likely record label deals meddling. 
+\\\includegraphics[width=\textwidth]{6_1_a.pdf}
 
-  \includegraphics[width=\textwidth]{6_1_c.pdf}
+\noindent\textbf{Music Feature Extraction Component}
+\\\textbf{Manual Process}: Currently, musical features are often determined manually by artists or third parties 
+labeling the music. This process is time-consuming and can be inconsistent. 
+\\\textbf{Automated Process}: Most existing solutions rely on retrieving pre-labeled metadata from music service providers’ APIs.
+  However, there is limited automation in extracting detailed musical features directly from the audio. 
+\\Our service will automate the extraction or featurization of key musical features. By doing so, we will provide users with clear 
+and comprehensive feature data for each song. This feature extraction will serve as the foundation for generating accurate and personalized song recommendations.\\ 
+\\\includegraphics[width=\textwidth]{6_1b2.png}
 
-\end{itemize}
+
+\textcolor{red}{\sout{\textbf{Music Generation Component}}}
+\\\textcolor{red}{\sout{\textbf{Manual Process}: Currently, generating music usually requires years of dedication to the craft and involves the
+labour of musicians, producers, and composers. This means that there is a large amount of manpower that is necessary
+in order to create new unique pieces. }}
+\textcolor{red}{\sout{We wish to have our service provide a new avenue to generate new types of music. We do not envision this service as 
+something that replaces the traditional music creation process, but rather as something that can potentially enhance it. }}
+
+% \includegraphics[width=\textwidth]{6_1_c.pdf}
 
 \subsection{The Context of the Work}
-\includegraphics[width=\textwidth]{6_2_context_diagram.pdf}
+\vspace{2em}
+\includegraphics[width=\textwidth]{6_2context.png}
 
 \subsection{Work Partitioning}
-\includegraphics[width=\textwidth]{6_3_work_partitioning_table.pdf}
+\begin{table}[H]
+  \centering
+  \caption{Event List for Feature Extraction and Recommendation}
+  \label{tab:event-list}
+  \begin{tabular}{|p{5cm}|p{4cm}|p{7cm}|}
+    \hline
+    \textbf{Event Name} & \textbf{Input/Output} & \textbf{Summary} \\
+    \hline
+    \textbf{User Requests Recommendation} 
+    & Track [input] 
+    & The system receives user input track for generating a recommendation. \\
+    \hline
+    \textbf{Features Extracted From Song for Recommendations} 
+    & Analyzed Track [input] 
+    & The system extracts relevant features from the user’s input track to inform the recommendation process. \\
+    \hline
+    \textbf{Recommendations Returned to User} 
+    & List of recommended tracks [output] 
+    & The system returns a curated list of recommended tracks based on the extracted features. \\
+    \hline
+  \end{tabular}
+\end{table}
+
+% \includegraphics[width=\textwidth]{6_3_work_partitioning_table.pdf}
 
 \subsection{Specifying a Business Use Case (BUC)}
 \begin{itemize}
   \item \textbf{User Requests Track Recommendations}
     \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
+    \\Trigger: User intiates a request with the service to \textcolor{red}{\sout{generate}} \textcolor{red}{recommend} some new songs to listen to. 
     \\Preconditions: 
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{User has a valid reference track}
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
     Main Success Scenario: 
     \begin{itemize}
-    \item user submits request for track recommendation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component passes on tracks \& analysis to recommendation component
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{user submits request for track recommendation}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component passes on tracks \& analysis to recommendation component}}
+    \item \textcolor{red}{user inputs a track to the system}
+    \item \textcolor{red}{the user submits a request for track recommendation}
+    \item \textcolor{red}{the system then extracts features and passes these features to the recommendation component}
     \item recommendation component generates tracks
     \item user receives new tracks to listen to
     \end{itemize}
   
-  \item \textbf{User Requests Track Analysis}
-    \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
-    \\Preconditions: 
+  \item \textcolor{red}{\sout{\textbf{User Requests Track Analysis}}}
+    \\\textcolor{red}{\sout{Primary Actor: App User}}
+    \\\textcolor{red}{\sout{Trigger: User intiates a request with the service to generate some new songs to listen to. }}
+    \\\textcolor{red}{\sout{Preconditions: }}
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
-    Main Success Scenario: 
+    \textcolor{red}{\sout{Main Success Scenario: }}
     \begin{itemize}
-    \item user submits request for track recommendation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component generates presentations and visualizations based on the inputted track(s)
-    \item the service returns generated presentations and visualizations to the user
+    \item \textcolor{red}{\sout{user submits request for track recommendation}}
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component generates presentations and visualizations based on the inputted track(s)}}
+    \item \textcolor{red}{\sout{the service returns generated presentations and visualizations to the user}}
     \end{itemize}
   
-  \item \textbf{User Requests Snippet Generation}
-    \\Primary Actor: App User
-    \\Trigger: User intiates a request with the service to generate some new songs to listen to. 
-    \\Preconditions: 
+  \item \textcolor{red}{\sout{\textbf{User Requests Snippet Generation}}}
+    \\\textcolor{red}{\sout{Primary Actor: App User}}
+    \\\textcolor{red}{\sout{Trigger: User intiates a request with the service to generate some new songs to listen to. }}
+    \\\textcolor{red}{\sout{Preconditions: }}
     \begin{itemize}
-    \item User has valid references to tracks for the service to accept
-    \item ML generation components are currently active
+    \item \textcolor{red}{\sout{User has valid references to tracks for the service to accept}}
+    \item \textcolor{red}{\sout{ML generation components are currently active}}
     \end{itemize}
 
-    Main Success Scenario: 
+    \textcolor{red}{\sout{ Main Success Scenario: }}
     \begin{itemize}
-    \item user submits request for snippet generation
-    \item user inputs track(s) to the service
-    \item the service's analyzation component analyzes the tracks
-    \item analyzation component passes on tracks \& analysis to generation component
-    \item generation component generates tracks
-    \item user receives a snippet to listen to
+    \item \textcolor{red}{\sout{user submits request for snippet generation}}
+    \item \textcolor{red}{\sout{user inputs track(s) to the service}}
+    \item \textcolor{red}{\sout{the service's analyzation component analyzes the tracks}}
+    \item \textcolor{red}{\sout{analyzation component passes on tracks \& analysis to generation component}}
+    \item \textcolor{red}{\sout{generation component generates tracks}}
+    \item \textcolor{red}{\sout{user receives a snippet to listen to}}
     \end{itemize}
 \end{itemize}
 
-
-
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\includegraphics[width=\textwidth]{7_1_business_data_model.png}
+\includegraphics[width=\textwidth]{database.drawio.png}
 \subsection{Data Dictionary}
 \subsubsection{Relations}
 Please refer to table \ref{tbl:rel-data-dict}.
@@ -460,393 +715,734 @@ Please refer to table \ref{tbl:rel-data-dict}.
   \begin{tabular}{ p{.25\linewidth} || p{.65\linewidth} }
     \textbf{Relation Name} & \textbf{Relation Description} \\
     \toprule
-    \emph{Track} & Primary relation containing track name, track length, \& references to other relations. \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{Primary relation containing track name, track length, \& references to other relations.}} \\
     \midrule
-    \emph{TrackArtists} & Intermediate relation to retain information about which artists appear on which tracks. \\
+    \textcolor{red}{\sout{\emph{TrackArtists}}} & \textcolor{red}{\sout{Intermediate relation to retain information about which artists appear on which tracks.}} \\
     \midrule
-    \emph{TracksAlbum} & Intermediate relation to retain information about which tracks appear on which albums, if applicable. \\
+    \textcolor{red}{\sout{\emph{TracksAlbum}}} & \textcolor{red}{\sout{Intermediate relation to retain information about which tracks appear on which albums, if applicable.}} \\
     \midrule
-    \emph{TrackSource} & Secondary relation containing information about the source of a track, e.g., Spotify, Deezer, Amazon music, BandCamp, or local. \\
+    \textcolor{red}{\sout{\emph{TrackSource}}} & \textcolor{red}{\sout{Secondary relation containing information about the source of a track, e.g., Spotify, Deezer, Amazon music, BandCamp, or local.}} \\
     \midrule
-    \emph{TrackFeatures} & Secondary relation contianing information about the features of a track, following the \href{https://en.wikipedia.org/wiki/Entity%E2%80%93attribute%E2%80%93value_model}{entity-attribute-value (EAV) model}. \\
+    \textcolor{red}{\sout{\emph{TrackFeatures}}} & \textcolor{red}{\sout{Secondary relation contianing information about the features of a track, following the entity-attribute-value (EAV) model.}} \\
     \midrule
-    \emph{TrackCover} & Abstract relation containing information about the cover art of the track. \\
+    \textcolor{red}{\sout{\emph{TrackCover}}} & \textcolor{red}{\sout{Abstract relation containing information about the cover art of the track.}} \\
     \midrule
-    \emph{Artist} & Secondary relation containing information about artists. \\
+    \textcolor{red}{\sout{\emph{Artist}}} & \textcolor{red}{\sout{Secondary relation containing information about artists.}} \\
     \midrule
-    \emph{Album} & Secondary relation containing information about albums. \\
+    \textcolor{red}{\sout{\emph{Album}}} & \textcolor{red}{\sout{Secondary relation containing information about albums.}} \\
     \midrule
-    \textcolor{red}{Audio Access System} & Abstract storage system containing information about the track audio. \\
+    \textcolor{red}{\sout{Audio Access System}} & \textcolor{red}{\sout{Abstract storage system containing information about the track audio.}} \\
+  \end{tabular}
+  \label{tbl:rel-data-dict-old}
+  \caption{Relations Data Dictionary}
+\end{table}
+\vspace{1cm}
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{ p{.25\linewidth} || p{.65\linewidth} }
+    \textbf{Relation Name} & \textbf{Relation Description} \\
+    \toprule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}} & \textcolor{red}{A relation containing track ID, section, spectral rolloff, spectral centroid, spectral bandwidth, spectral contrast, RMS, spectral flux, dynamic range, instrumentalness, modtime. Each song is broken down into 8 sections which is why there is another table for static varaibles} \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sttc}} & \textcolor{red}{A relation containing BPM, key major, key minor, modtime. These values are static (constant over all sections) which is why they are in a separate tables} \\
   \end{tabular}
   \label{tbl:rel-data-dict}
   \caption{Relations Data Dictionary}
 \end{table}
+\vspace{1cm}
 \subsubsection{Attributes}
 Please refer to table \ref{tbl:attr-data-dict}.
-\begin{table}[h!]
+\begin{table}[htbp!]
   \centering
-  \begin{tabular}{ p{.35\linewidth} || p{.55\linewidth} }
+  \begin{tabular}{ p{.45\linewidth} || p{.55\linewidth} }
     \textbf{Attribute Name} & \textbf{Attribute Description} \\
     \toprule
-    \textbf{track\_id} & Unique track identifier. \\
+    \textcolor{red}{\sout{\textbf{track\_id}}} & \textcolor{red}{\sout{Unique track identifier.}} \\
     \midrule
-    \textbf{artist\_id} & Unique artist identifier. \\
+    \textcolor{red}{\sout{\textbf{artist\_id}}} & \textcolor{red}{\sout{Unique artist identifier.}} \\
     \midrule
-    \textbf{album\_id} & Unique album identifier. \\
+    \textcolor{red}{\sout{\textbf{album\_id}}} & \textcolor{red}{\sout{Unique album identifier.}} \\
     \midrule
-    \textbf{audio\_id} & Unique track audio reference identifier. \\
+    \textcolor{red}{\sout{\textbf{audio\_id}}} & \textcolor{red}{\sout{Unique track audio reference identifier.}} \\
     \midrule
-    \textbf{track\_source\_id} & Unique track source reference identifier. \\
+    \textcolor{red}{\sout{\textbf{track\_source\_id}}} & \textcolor{red}{\sout{Unique track source reference identifier.}} \\
     \midrule
-    \textbf{track\_features\_id} & Unique track features reference identifier. \\
+    \textcolor{red}{\sout{\textbf{track\_features\_id}}} & \textcolor{red}{\sout{Unique track features reference identifier.}} \\
     \midrule
-    \textbf{track\_cover\_id} & Unique track cover art reference identifier. \\
+    \textcolor{red}{\sout{\textbf{track\_cover\_id}}} & \textcolor{red}{\sout{Unique track cover art reference identifier.}} \\
     \midrule
-    \emph{Track}.name & Track name. \\
+    \textcolor{red}{\sout{\emph{Track}.name}} & \textcolor{red}{\sout{Track name.}} \\
     \midrule
-    \emph{Track}.length & Track length. \\
+    \textcolor{red}{\sout{\emph{Track}.length}} & \textcolor{red}{\sout{Track length.}} \\
     \midrule
-    \emph{Artist}.name & Artist name. \\
+    \textcolor{red}{\sout{\emph{Artist}.name}} & \textcolor{red}{\sout{Artist name.}} \\
     \midrule
-    \emph{Album}.title & Album title \\
+    \textcolor{red}{\sout{\emph{Album}.title}} & \textcolor{red}{\sout{Album title}} \\
     \midrule
-    \emph{TrackSource}.track\_source & Track source name. \\
+    \textcolor{red}{\sout{\emph{TrackSource}.track\_source}} & \textcolor{red}{\sout{Track source name.}} \\
     \midrule
-    \emph{TrackSource}.track\_loc\_type & Track source location type, e.g., ``URL'' or ``path''. \\
+    \textcolor{red}{\sout{\emph{TrackSource}.track\_loc\_type}} & \textcolor{red}{\sout{Track source location type, e.g., ``URL'' or ``path''.}} \\
     \midrule
-    \emph{TrackSource}.track\_loc & Track location, i.e., a URL or path. \\
+    \textcolor{red}{\sout{\emph{TrackSource}.track\_loc}} & \textcolor{red}{\sout{Track location, i.e., a URL or path.}} \\
     \midrule
-    \emph{TrackFeatures}.feature\_name & Track feature name, e.g., popularity. \\
+    \textcolor{red}{\sout{\emph{TrackFeatures}.feature\_name}} & \textcolor{red}{\sout{Track feature name, e.g., popularity.}} \\
     \midrule
-    \emph{TrackFeatures}.feature\_value & Track feature corresponding value, e.g., 88. \\
+    \textcolor{red}{\sout{\emph{TrackFeatures}.feature\_value}} & \textcolor{red}{\sout{Track feature corresponding value, e.g., 88.}} \\
     \midrule
-    \emph{TrackCover}.cover\_loc\_type & Track cover art location type, e.g., ``URL'' or ``path''. \\
+    \textcolor{red}{\sout{\emph{TrackCover}.cover\_loc\_type}} & \textcolor{red}{\sout{Track cover art location type, e.g., ``URL'' or ``path''.}} \\
     \midrule
-    \emph{TrackCover}.cover\_loc & Track cover art location, i.e., a URL or path.
+    \textcolor{red}{\sout{\emph{TrackCover}.cover\_loc}} & \textcolor{red}{\sout{Track cover art location, i.e., a URL or path.}}\\
+  \end{tabular}
+  \label{tbl:attr-data-dict-old}
+  \caption{Attributes Data Dictionary}
+\end{table}
+\vspace{1cm}
+\begin{table}[htbp!]
+  \centering
+  \begin{tabular}{ p{.45\linewidth} || p{.55\linewidth} }
+    \textbf{Attribute Name} & \textbf{Attribute Description} \\
+    \toprule
+    \textcolor{red}{\textbf{track\_id}} & \textcolor{red}{Unique track identifier.} \\
+    \midrule
+    \textcolor{red}{\textbf{section}} & \textcolor{red}{song section identifier} \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.spctrl\_rlf} & \textcolor{red}{Track length. } \\
+    \midrule
+    \textcolor{red}{\emph{feature\_clpsd\_sctn}.spctrl\_cntrd} & \textcolor{red}{calculated spectral rolloff } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.spctrl\_bw} & \textcolor{red}{calculated spectral centroid } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.spctrl\_cntrst} & \textcolor{red}{calculated spectral bandwidth } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.rms} & \textcolor{red}{calculated RMS (Root Mean Square) } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.spctrl\_flux} & \textcolor{red}{calculated spectral flux } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.dnmc\_rng} & \textcolor{red}{calculated dynamic range } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.instrmntlns} & \textcolor{red}{calculated instumentalness } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sctn}.modtime} & \textcolor{red}{ time since entry was last modified } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sttc}.bpm} & \textcolor{red}{calculated BPM (Beats Per Minute) } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sttc}.keymjr} & \textcolor{red}{Tcalculated key major } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sttc}.keymnr} & \textcolor{red}{calculated key minor } \\
+    \midrule
+    \textcolor{red}{\emph{features\_clpsd\_sttc}.modtime} & \textcolor{red}{time since entry was last modified. } \\
+    \midrule
   \end{tabular}
   \label{tbl:attr-data-dict}
   \caption{Attributes Data Dictionary}
 \end{table}
+\vspace{1cm}
 \subsubsection{Relationships}
 Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model#Crow's_foot_notation}{Entity Relationship Model - Crow's Foot Notation} as a notation reference if necessary - it is mostly useful for the connector multiplicities.
-\begin{table}[htbp]
+\begin{table}[htbp!]
   \centering
-  \begin{tabular}{ p{.175\linewidth} || p{.175\linewidth} || p{.55\linewidth} }
+  \begin{tabular}{ p{.3\linewidth} || p{.3\linewidth} || p{.4\linewidth} }
     \textbf{Relation 1} & \textbf{Relation 2} & \textbf{Relationship Description} \\
     \toprule
-    \emph{Track} & \emph{TrackArtists} & A track can correspond to multiple artists, and vice versa. \\
-    \emph{Track} & \emph{TracksAlbum} & A track can correspond to multiple albums (a single and a long-playing (LP) album), and vice versa. \\
-    \emph{Track} & \textcolor{red}{Audio Access System} & Multiple tracks can correspond to a single instance of an audio file, i.e., a single and an LP release of a song point to the same audio file. \\
-    \emph{Track} & \emph{TrackSource} & A track should only belong to one and only one source to avoid duplication. \\
-    \emph{Track} & \emph{TrackFeatures} & A track can correspond to 0 or more features, i.e., a song with no features has not been featurized and a song with multiple features has. This allows modular and evolvable data storage. \\
-    \emph{Track} & \emph{TrackCover} & A track can correspond to at most one cover, i.e., it can have no cover art. The cover art of an album can also apply to its constitutent tracks. \\
-    \emph{TrackArtists} & \emph{Artist} & A mapping relationship, where an artist can exist on multiple tracks. \\
-    \emph{TracksAlbum} & \emph{Album} & A mapping relationship, where an album can contain multiple tracks. \\
-    \emph{Artist} & \emph{Album} & An artist can have 0 or more albums, but an album must have at least one artist. 
+    \textcolor{red}{\emph{features\_clpsd\_sctn}} & \textcolor{red}{\emph{features\_clpsd\_sttc}} & \textcolor{red}{sctn stands for section, and sttc stands for static, each table shares the same primary key which fully completes the set of features for each song} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{\emph{TrackArtists}}} & \textcolor{red}{\sout{A track can correspond to multiple artists, and vice versa.}} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{\emph{TracksAlbum}}} & \textcolor{red}{\sout{A track can correspond to multiple albums (a single and a long-playing (LP) album), and vice versa.}} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{Audio Access System}} & \textcolor{red}{\sout{Multiple tracks can correspond to a single instance of an audio file, i.e., a single and an LP release of a song point to the same audio file.}} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{\emph{TrackSource}}} & \textcolor{red}{\sout{A track should only belong to one and only one source to avoid duplication.}} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{\emph{TrackFeatures}}} & \textcolor{red}{\sout{A track can correspond to 0 or more features, i.e., a song with no features has not been featurized and a song with multiple features has. This allows modular and evolvabl}e data storage.} \\
+    \textcolor{red}{\sout{\emph{Track}}} & \textcolor{red}{\sout{\emph{TrackCover}}} & \textcolor{red}{\sout{A track can correspond to at most one cover, i.e., it can have no cover art. The cover art of an album can also apply to its constitutent tracks.}} \\
+    \textcolor{red}{\sout{\emph{TrackArtists}}} & \textcolor{red}{\sout{\emph{Artist}}} & \textcolor{red}{\sout{A mapping relationship, where an artist can exist on multiple tracks.}} \\
+    \textcolor{red}{\sout{\emph{TracksAlbum}}} & \textcolor{red}{\sout{\emph{Album}}} & \textcolor{red}{\sout{A mapping relationship, where an album can contain multiple tracks.}} \\
+    \textcolor{red}{\sout{\emph{Artist}}} & \textcolor{red}{\sout{\emph{Album}}} & \textcolor{red}{\sout{An artist can have 0 or more albums, but an album must have at least one artist.}}
   \end{tabular}
   \label{tbl:relsh-data-dict}
   \caption{Relationships Data Dictionary}
 \end{table}
-
+\vspace{1cm}
 \section{The Scope of the Product}
 \subsection{Product Boundary}
-\includegraphics[width=\textwidth]{product_boundary.png} \\
+\includegraphics[width=\textwidth]{p_scope.png} \\
 \subsection{Product Use Case Table}
-\begin{table}[!ht]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-        \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input \& Output} \\ \hline
-        1 & UI Interaction & User & User Actions (click, swipe, drag) (in) \newline System Response (out) \\ \hline
-        2 & Song Recommendation Based on Features & User & User's desired features (in) \newline Collection of reference songs (out) \\ \hline
-        3 & Music Generation Based on Input & User & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
-        4 & Analyze Music & User & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
-        5 & Song Recommendation Based on Input & User & Reference song(s) (in) \newline Collection of reference songs (out) \\ \hline
-        6 & Server Interaction for Music Generation & Server & Reference song(s) and/or song snippet(s) (in) \newline Generated song or song snippet (out) \\ \hline
-        7 & Server Interaction for Song Recommendation & Server & User's desired features or reference song(s) and/or snippet(s) (in) \newline Collection of reference songs (out) \\ \hline
-        8 & Server Interaction for Music Analysis & Server & Reference song or song snippet (in) \newline Collection of features and visualizations (out) \\ \hline
-    \end{tabular}
-    }
-    \caption{Product Use Case Table}
-    \label{tab:PUCtable}
-\end{table}
+\includegraphics[width=\textwidth]{PUCTable.png} \\
 
 \subsection{Individual Product Use Cases (PUC's)}
-\textbf{1. Product Use Case Name:} UI Interaction \\
-\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging) \\
-\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru \\
-\textbf{Interested Stakeholders:} All \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{UI.png} \\
-\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.
+\textcolor{red}{\sout{\textbf{1. Product Use Case Name:} UI Interaction}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User commits some action (e.g. clicking, swiping, dragging)}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has successfully accessed GenreGuru, or is already in GenreGuru}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} All}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{UI.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will commit an action like swiping or pressing and the system will react depending on the action.}}
 
 \vspace{1cm}
 
-\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features \\
-\textbf{Trigger:} User picks features, and indicates they want to search for recommendations \\
-\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{recommendation_feature.png} \\
-\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.
+\textcolor{red}{\sout{\noindent \textbf{2. Product Use Case Name:} Song Recommendation Based on Features}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User picks features, and indicates they want to search for recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, the user has selected features to search for}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{recommendation_feature.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will select or manually enter features they are looking for in a song, and the system will first check to see if the features they selected/entered are valid, and the system will return a collection of reference songs that match those features.}}
 
 \vspace{1cm}
 
-\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input \\
-\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
-\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{generate_song.png} \\
-\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.
+\textcolor{red}{\sout{\noindent \textbf{3. Product Use Case Name:} Music Generation Based on Input}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs reference song(s) and/or song snippet(s), and indicates they want to generate a song}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s)}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music producers, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{generate_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will enter song(s) and/or song snippet(s) and indicate to the system that they want to generate music, the system will check that these inputs are valid (correct format) and then will generate a song and return it to the user.}}
 
 \vspace{1cm}
 
-\noindent \textbf{4. Product Use Case Name:} Analyze Music \\
-\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input \\
-\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{analyze_song.png} \\
-\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.
+\textcolor{red}{\sout{\noindent \textbf{4. Product Use Case Name:} Analyze Music}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs a reference song or song snippet and indicates they want to analyze the music}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{analyze_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The user will input a reference song or song snippet and indicate they want to analyze the song, the system will validate the input and return a set of features and visualizations.}}
 
 \vspace{1cm}
 
-\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input \\
-\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations \\
-\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s) \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} User \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{recommend_song.png} \\
-\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.
+\textcolor{red}{\sout{\noindent \textbf{5. Product Use Case Name:} Song Recommendation Based on Input}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User inputs reference song(s) and/or snippet(s), and indicates they want to search for recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User must have GenreGuru open, and the user has provided a valid input(s)}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} User}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{recommend_song.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The users will input reference song(s) and/or snippet(s), the system will first check to see if the inputs are valid. Then the system will return a collection of reference songs.}}
 
 \vspace{1cm}
 
-\textbf{6. Product Use Case Name:} Server Interaction for Music Generation \\
-\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation \\
-\textbf{Preconditions:} User has provided a valid input through, and the server is operational \\
-\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians \\
-\textbf{Actor/s:} Server \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_gen.png} \\
-\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user
+\textcolor{red}{\sout{\textbf{6. Product Use Case Name:} Server Interaction for Music Generation}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits a reference song and/or snippet and requests music generation}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided a valid input through, and the server is operational}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Hobbyist Musicians }}\\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{server_song_gen.png}}} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server processes the input, generates music, and returns the generated song to the user}}
 
 \vspace{1cm}
 
-\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation \\
-\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations \\
-\textbf{Preconditions:} User has provided valid input, and the server is available \\
-\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians \\
-\textbf{Actor/s:} Server \\
-\textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_rec.png} \\
-\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.
+\textcolor{red}{\sout{\textbf{7. Product Use Case Name:} Server Interaction for Song Recommendation}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits desired features or reference songs/snippets and requests song recommendations}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided valid input, and the server is available}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Casual Music Listeners, Hobbyist Musicians}} \\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server}} \\
+\textcolor{red}{\sout{\textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\sout{\includegraphics[width=\textwidth]{server_song_rec.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server processes the input and returns a collection of recommended songs based on the input features or reference songs/snippets.}}
 
 \vspace{1cm}
 
-\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis \\
-\textbf{Trigger:} User submits a reference song or snippet and requests music analysis \\
-\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze \\
-\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators \\
-\textbf{Actor/s:} Server \ \textbf{Activity Diagram:} \\
-\includegraphics[width=\textwidth]{server_song_analysis.png} \\
-\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.
+\textcolor{red}{\sout{\textbf{8. Product Use Case Name:} Server Interaction for Music Analysis}} \\
+\textcolor{red}{\sout{\textbf{Trigger:} User submits a reference song or snippet and requests music analysis}} \\
+\textcolor{red}{\sout{\textbf{Preconditions:} User has provided a valid input, and the server is ready to analyze}} \\
+\textcolor{red}{\sout{\textbf{Interested Stakeholders:} Music Producers, Audio Engineers, Music Educators}}\\
+\textcolor{red}{\sout{\textbf{Actor/s:} Server \ \textbf{Activity Diagram:}}} \\
+% \textcolor{red}{\includegraphics[width=\textwidth]{server_song_analysis.png} \\
+\textcolor{red}{\sout{\textbf{Outcome:} The server analyzes the song or snippet and returns a collection of features and visualizations to the user.}}
+
+\vspace{2cm}
+
+\noindent\textcolor{red}{\textbf{1. Product Use Case Name:} Submit Song Query} \\
+\textcolor{red}{\textbf{Trigger:} The user enters a song name and clicks the submit button.} \\
+\textcolor{red}{\textbf{Preconditions:} The user is logged into GenreGuru and on the query submission screen.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Musicians, Music Educators} \\
+\textcolor{red}{\textbf{Actor/s:} User} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC1.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The query is transmitted from the client to the server, initiating the recommendation process.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{2. Product Use Case Name:} Retrieve Song Snippet} \\
+\textcolor{red}{\textbf{Trigger:} The client application sends a snippet request upon receiving a song query.} \\
+\textcolor{red}{\textbf{Preconditions:} A valid song query has been submitted, and the client has access to the music provider API.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Music Producers \& Sound Engineers, Music Regulators} \\
+\textcolor{red}{\textbf{Actor/s:} Client Application, Music Provider} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC2.drawio.png}
+\textcolor{red}{\textbf{Outcome:} A song snippet (metadata or audio preview) is received from the music provider and passed to the client.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{3. Product Use Case Name:} Process Recommendation Request} \\
+\textcolor{red}{\textbf{Trigger:} The server receives a song snippet and query, triggering the recommendation process.} \\
+\textcolor{red}{\textbf{Preconditions:} The client has forwarded the song snippet; the database and recommendation module are accessible.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Music Producers \& Sound Engineers, Music Theorists, Music Educators, Music Regulators} \\
+\textcolor{red}{\textbf{Actor/s:} Server Controller, Recommendation Module, Feature Extraction} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC3.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The system checks for existing song features, performs feature extraction if needed, and generates a list of recommended songs.} \\
+
+\vspace{1cm}
+
+\noindent\textcolor{red}{\textbf{4. Product Use Case Name:} Display Recommendations} \\
+\textcolor{red}{\textbf{Trigger:} The recommendation module sends a list of recommended songs to the client.} \\
+\textcolor{red}{\textbf{Preconditions:} A valid recommendation list has been generated.} \\
+\textcolor{red}{\textbf{Interested Stakeholders:} Client, Customer, Subject Matter Experts, Musicians, Music Educators} \\
+\textcolor{red}{\textbf{Actor/s:} Client Application, User} \\
+\textcolor{red}{\textbf{Activity Diagram:}} \\
+\includegraphics[width=\textwidth]{PUC4.drawio.png}
+\textcolor{red}{\textbf{Outcome:} The list of recommended songs is displayed to the user in an intuitive format.}
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
 \hspace{14pt}
 
-\fbox{
+\fbox{%
 \begin{minipage}{\textwidth}
-\textbf{Requirement \# 1} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The client application should allow the user to provide a reference link to a song to initiate a request from the system \\
-\textbf{Rationale:} This provides a straightforward way for users to interact with the system and start a process of their choosing \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The user can paste a link, then make a request of the system \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 2} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should establish a connection between the client application, server, and external APIs to handle data requests and responses \\
-\textbf{Rationale:} Want to ensure data flow across the system, from client inputs to external API requests \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client’s request will trigger network communication with various components of the system, which will be confirmed by successful data retrieval and submission. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 3} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should process feature extraction requests \\
-\textbf{Rationale:} Want to provide efficient and reliable processing  \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} For each valid request, the server completes feature extraction within a specified time \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 4} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} When a reference link is provided, the system shall use External Service APIs to retrieve song data \\
-\textbf{Rationale:} Using external APIs to retrieve song data will reduce input requirements from the user \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} A valid reference link triggers data retrieval from the external API \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 5} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should analyze the provided reference song and extract a set of features (e.g. tempo, pitch, rhythm, genre, etc.) \\
-\textbf{Rationale:} Users want a way to break down songs for a more detailed analysis \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} With every request they system will return a consistent set of features \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 6} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should provide error feedback for each component \\
-\textbf{Rationale:} Clear error messaging supports debugging and ensures users receive actionable feedback \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} Each component generates specific error messages, guiding users and/or developers \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 7} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The client application should display the output of system components \\
-\textbf{Rationale:} To provide a way of interpreting/visualizing the output to the user \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client application displays the output for the user to see \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
-}
-
-
-\vspace{10pt}
-
-\fbox{
-\begin{minipage}{\textwidth}
-\textbf{Requirement \# 8} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system will validate user inputs to ensure they are correct \\
-\textbf{Rationale:} Prevents errors and ensures the system processes valid data. \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid. \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
+  \textcolor{red}{\sout{\textbf{Requirement \# 1}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The client application should allow the user to provide a reference link to a song to initiate a request from the system}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} This provides a straightforward way for users to interact with the system and start a process of their choosing}} \\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The user can paste a link, then make a request of the system}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
 }
 
 \vspace{10pt}
 
-\fbox{
+\fbox{%
 \begin{minipage}{\textwidth}
-\textbf{Requirement \# 9} \\
-\textbf{Requirement Type:} 9 \\
-\textbf{Event/Use Case \#:} (need to figure this out later)\\
-\textbf{Description:} The system should feature a client application for user interaction \\
-\textbf{Rationale:} To allow users to interact with the system efficiently and intuitively \\
-\textbf{Originator:} Requirement Analyst \\
-\textbf{Fit Criterion:} The client application allows users to initiate interactions such as submitting song links, requesting analysis, etc.  \\
-\textbf{Customer Satisfaction:} 5 \\
-\textbf{Customer Dissatisfaction:} 0 \\
-\textbf{Priority:} High \\
-\textbf{Conflicts:} None \\
-\textbf{Supporting Material:} None \\
-\textbf{History:} Created November 1, 2024
-\end{minipage}
+  \textcolor{red}{\sout{\textbf{Requirement \# 2}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should establish a connection between the client application, server, and external APIs to handle data requests and responses}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Want to ensure data flow across the system, from client inputs to external API requests}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client’s request will trigger network communication with various components of the system, which will be confirmed by successful data retrieval and submission.}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
 }
 
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 3}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should process feature extraction requests}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} Want to provide efficient and reliable processing}} \\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} For each valid request, the server completes feature extraction within a specified time}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 4}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} When a reference link is provided, the system shall use External Service APIs to retrieve song data}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Using external APIs to retrieve song data will reduce input requirements from the user}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} A valid reference link triggers data retrieval from the external API}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 5}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should analyze the provided reference song and extract a set of features (e.g., tempo, pitch, rhythm, genre, etc.)}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Users want a way to break down songs for a more detailed analysis}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} With every request, the system will return a consistent set of features}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 6}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should provide error feedback for each component}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} Clear error messaging supports debugging and ensures users receive actionable feedback}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} Each component generates specific error messages that guide users and/or developers}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 7}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The client application should display the output of system components}}\\
+  \textcolor{red}{\sout{\textbf{Rationale:} To provide a way of interpreting/visualizing the output to the user}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client application displays the output for the user to see}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 8}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system will validate user inputs to ensure they are correct}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} Prevents errors and ensures the system processes valid data.}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}} \\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The system will display an error message if the input is invalid, or will let the user proceed if the input is valid.}}\\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\sout{\textbf{Requirement \# 9}}} \\
+  \textcolor{red}{\sout{\textbf{Requirement Type:} 9}} \\
+  \textcolor{red}{\sout{\textbf{Event/Use Case \#:} (need to figure this out later)}}\\
+  \textcolor{red}{\sout{\textbf{Description:} The system should feature a client application for user interaction}} \\
+  \textcolor{red}{\sout{\textbf{Rationale:} To allow users to interact with the system efficiently and intuitively}}\\
+  \textcolor{red}{\sout{\textbf{Originator:} Requirement Analyst}}\\
+  \textcolor{red}{\sout{\textbf{Fit Criterion:} The client application allows users to initiate interactions such as submitting song links, requesting analysis, etc.}} \\
+  \textcolor{red}{\sout{\textbf{Customer Satisfaction:} 5}} \\
+  \textcolor{red}{\sout{\textbf{Customer Dissatisfaction:} 0}} \\
+  \textcolor{red}{\sout{\textbf{Priority:} High}} \\
+  \textcolor{red}{\sout{\textbf{Conflicts:} None}} \\
+  \textcolor{red}{\sout{\textbf{Supporting Material:} None}} \\
+  \textcolor{red}{\sout{\textbf{History:} Created November 1, 2024}}
+\end{minipage}%
+}
+
+\vspace{10pt}
+% =================================================================================================
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#1}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall allow users to input song queries either by typing in a text field or by uploading an audio file.} \\
+  \textcolor{red}{\textbf{Rationale:} Provides the primary mechanism for users to initiate interactions with GenreGuru.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The GUI displays clearly labeled input fields for text entry and file upload} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#2}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system GUI shall display search results—including song title, artist, and album cover—for text-based queries.} \\
+  \textcolor{red}{\textbf{Rationale:} Enables users to easily identify and select the desired track.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Search results are presented within 10 seconds of query submission in a clear, user-friendly format.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#3}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system shall allow users to play a 30-second preview of each search result.} \\
+  \textcolor{red}{\textbf{Rationale:} Helps users confirm their song selection before proceeding further.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Clicking the “Preview” button plays a 30-second audio clip within 3 seconds.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#4}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall validate uploaded audio files to ensure they are in supported formats (e.g., WAV, MP3).} \\
+  \textcolor{red}{\textbf{Rationale:} Prevents processing errors from unsupported file formats.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Unsupported files are rejected with a clear error message; only validated formats proceed to processing.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#5}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall convert non-WAV audio files to WAV format before processing.} \\
+  \textcolor{red}{\textbf{Rationale:} Standardizes input formats for the feature extraction module.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Any uploaded file not in WAV format is automatically converted to WAV with no user intervention.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#6}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 2}\\
+  \textcolor{red}{\textbf{Description:} The system shall construct a query based on user input and interface with a music provider to retrieve a list of matching songs.} \\
+  \textcolor{red}{\textbf{Rationale:} Facilitates song discovery via text-based search by leveraging external music databases.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} A correctly formatted query string is generated and transmitted to the music provider, returning a valid list of matching songs within 10 seconds.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#7}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall extract essential audio features (e.g., spectral, rhythmic, timbral characteristics) from input songs required for generating recommendations.} \\
+  \textcolor{red}{\textbf{Rationale:} Audio features serve as the basis for comparing songs and generating meaningful recommendations.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The feature extraction module shall successfully extract all required audio features from with consitent results.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#8}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall support feature extraction for all ten predetermined audio features defined in the project scope.} \\
+  \textcolor{red}{\textbf{Rationale:} Ensures comprehensive analysis of song attributes for robust recommendation generation.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Each feature extraction module outputs valid data for supported audio files as verified by testing with representative samples.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#9}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall generate a ranked list of song recommendations based on the extracted audio features.} \\
+  \textcolor{red}{\textbf{Rationale:} Enables users to discover new songs aligned with the characteristics of their input without exposing internal algorithm details.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Recommendations are generated and displayed within 30 seconds of feature extraction; internal algorithm specifics remain abstract in the SRS.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#10}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 1}\\
+  \textcolor{red}{\textbf{Description:} The system shall reliably transmit user-selected inputs (text queries or audio files) from the client to the server for processing.} \\
+  \textcolor{red}{\textbf{Rationale:} Ensures efficient and accurate data exchange between the client and server.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Data is transmitted with minimal latency (under 5 seconds)} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#11}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 4}\\
+  \textcolor{red}{\textbf{Description:} The system shall receive processed recommendation results from the server and update the GUI accordingly.} \\
+  \textcolor{red}{\textbf{Rationale:} Displays the final output to the user, completing the interaction cycle.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} The GUI updates with the recommendation list within 5 seconds of receiving the processed results.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\fbox{%
+\begin{minipage}{\textwidth}
+  \textcolor{red}{\textbf{Requirement \#12}} \\
+  \textcolor{red}{\textbf{Requirement Type:} 9} \\
+  \textcolor{red}{\textbf{Event/Use Case \#:} 3}\\
+  \textcolor{red}{\textbf{Description:} The system shall store and retrieve song metadata, user queries, and extracted features in a secure and efficient database.} \\
+  \textcolor{red}{\textbf{Rationale:} A robust database is critical for caching data, minimizing redundant processing, and enabling quick retrieval.} \\
+  \textcolor{red}{\textbf{Originator:} Requirement Analyst} \\
+  \textcolor{red}{\textbf{Fit Criterion:} Database queries execute with an average latency of under 2 seconds and maintain data integrity during transactions.} \\
+  \textcolor{red}{\textbf{Customer Satisfaction:} 5} \\
+  \textcolor{red}{\textbf{Customer Dissatisfaction:} 0} \\
+  \textcolor{red}{\textbf{Priority:} High} \\
+  \textcolor{red}{\textbf{Conflicts:} None} \\
+  \textcolor{red}{\textbf{Supporting Material:} None} \\
+  \textcolor{red}{\textbf{History:} Created April 3, 2025}
+\end{minipage}%
+}
+
+\vspace{10pt}
+
+\section*{Traceability Matrix}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|l|c|c|c|c|}
+  \hline
+  \textbf{} & \textbf{PUC1} & \textbf{PUC2} & \textbf{PUC3} & \textbf{PUC4} \\
+  \hline
+  \textbf{FR1}  & X &   &   &   \\ \hline
+  \textbf{FR2}  &   & X &   &   \\ \hline
+  \textbf{FR3}  &   & X &   &   \\ \hline
+  \textbf{FR4}  & X &   &   &   \\ \hline
+  \textbf{FR5}  & X &   &   &   \\ \hline
+  \textbf{FR6}  &   & X &   &   \\ \hline
+  \textbf{FR7}  &   &   & X &   \\ \hline
+  \textbf{FR8}  &   &   & X &   \\ \hline
+  \textbf{FR9}  &   &   & X &   \\ \hline
+  \textbf{FR10} & X &   &   &   \\ \hline
+  \textbf{FR11} &   &   &   & X \\ \hline
+  \textbf{FR12} &   &   & X &   \\ \hline
+  \end{tabular}
+  \caption{Traceability Matrix Linking Functional Requirements to Product Use Cases}
+  \label{tab:traceability}
+  \end{table}
 
 \vspace{10pt}
 
@@ -867,7 +1463,7 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 \textbf{LR1.} The system shall provide a first-time user guide to use features upon first launch. \\
 \textbf{LR2.} The user shall be able to complete the tutorial within \emph{10} minutes.
 \subsection{Understandability and Politeness Requirements}
-\textbf{UPR1.} The system shall not generate vulgar content.
+\textbf{UPR1.} The system shall not generate vulgar content.\\
 \textbf{UPR2.} The system shall only use standardized, inoffensive iconography wherever icons are needed.
 \subsection{Accessibility Requirements}
 \textbf{ACR1.} The system shall only use accessible fonts. \\
@@ -932,78 +1528,148 @@ Please refer to table \ref{tbl:relsh-data-dict}. Please consult \href{https://en
 \emph{N/A -- out of project scope.}
 
 \section{Open Issues}
+\textcolor{red}{\emph{N/A.}}
 \begin{itemize}
-  \item Generated output use regulation, \#1
-  \\\textbf{Summary:} The service EULA agreement might need to consider how and where the generated snippet by the service is allowed
-  to be used. 
+  \item \textcolor{red}{\sout{Generated output use regulation, \#1}}
+  \\\textcolor{red}{\sout{\textbf{Summary:} The service EULA agreement might need to consider how and where the generated snippet by the service is allowed
+  to be used. }}
   
-  This is important because the training data or inputted track(s) into the service
+  \textcolor{red}{\sout{This is important because the training data or inputted track(s) into the service
   might have copyright laws \& rules regulating commerical use associated with them, thus we need to consider whether those rules \& regulations
-   also apply with the generated snippet.  
+   also apply with the generated snippet.  }}
   
-  For example, the EULA might need to state that generated snippets cannot be used for commercial purposes if the input contains song from a 
+  \textcolor{red}{\sout{For example, the EULA might need to state that generated snippets cannot be used for commercial purposes if the input contains song from a 
   specific artist belonging to some specific record label. This means that a creative professional's ability to actually use 
   this portion of the service could be greatly limited depending on what tracks they
-  are inputting, and/or what the machine learning algorithm was trained on. 
+  are inputting, and/or what the machine learning algorithm was trained on. }}
 
-  \item Dataset Bias, \#2
-  \\\textbf{Summary:} We are currently not exactly certain about what dataset we will be using for the algorithm training. 
+  \item\textcolor{red}{\sout{ Dataset Bias, \#2}}
+  \\\textcolor{red}{\sout{\textbf{Summary:} We are currently not exactly certain about what dataset we will be using for the algorithm training. 
   For example, if we are using some form of non-copyrighted music, there's a likely chance it is heavily biased towards electronic dance 
   music as a genre. This could skew the algorithm's ability to interact with music that is not of that genre, thus the service 
   might not be able to properly process requests users who perhaps listen to more niche genres of music. This means we might need to train the 
   machine learning algorithms on multiple different datasets, or we need to manually modify an existing dataset to integrate more niche genres 
-  of music as the training source. 
+  of music as the training source. }}
 
 \end{itemize}
 
 \section{Off-the-Shelf Solutions}
 \subsection{Ready-Made Products}
-\lips
+\textcolor{red}{\emph{N/A.}}
 \subsection{Reusable Components}
-\lips
+\textcolor{red}{\emph{N/A.}}
 \subsection{Products That Can Be Copied}
-\lips
+\textcolor{red}{\emph{N/A.}}
 
 \section{New Problems}
 
 \subsection{Effects on the Current Environment}
 
-The platform's high computational requirements, especially during the training and usage of generative models, may put a strain on existing computational resources. This could lead to slower performance for other applications that share these resources. Additionally, increased data transmission due to the integration with APIs such as Spotify and Deezer could lead to higher network bandwidth utilization, potentially affecting the performance of other network-dependent systems. Mitigating these effects may require infrastructure scaling, such as increasing server capacity or optimizing data processing, to ensure that the existing systems are not disrupted.
+\textcolor{red}{\sout{The platform's high computational requirements, especially during the training and usage of generative models, may put a strain on existing 
+computational resources. This could lead to slower performance for other applications that share these resources. Additionally, increased data 
+transmission due to the integration with APIs such as Spotify and Deezer could lead to higher network bandwidth utilization, potentially affecting 
+the performance of other network-dependent systems. Mitigating these effects may require infrastructure scaling, such as increasing server capacity 
+or optimizing data processing, to ensure that the existing systems are not disrupted.}}\\
+
+\noindent\textcolor{red}{With the revised scope, the system’s computational load is significantly reduced because it no longer involves intensive generative modeling or 
+in-depth audio analysis. However, relying heavily on external music provider APIs (e.g., Spotify and Deezer) for song data and snippets may increase 
+network dependency. This could lead to performance bottlenecks if the external services experience latency or downtime. Additionally, although computational 
+requirements are lower, the system must still handle potentially high volumes of recommendation requests, which may require improved load balancing on the server.}
+
 
 \subsection{Effects on the Installed Systems}
 
-The new platform will interact with various installed systems, leading to the introduction of new dependencies. For example, using third-party APIs like Spotify or integrating machine learning frameworks such as TensorFlow may require changes to the current software stack. These dependencies could introduce compatibility issues, particularly if third-party providers update their APIs or if new versions of required libraries are released. Such updates might necessitate timely system changes to maintain functionality and avoid disruptions. Ensuring that installed systems remain compatible requires diligent version management, comprehensive testing, and a structured process for managing library and API updates.
+\textcolor{red}{\sout{The new platform will interact with various installed systems, leading to the introduction of new dependencies. For example, using third-party 
+APIs like Spotify or integrating machine learning frameworks such as TensorFlow may require changes to the current software stack. These dependencies 
+could introduce compatibility issues, particularly if third-party providers update their APIs or if new versions of required libraries are released. 
+Such updates might necessitate timely system changes to maintain functionality and avoid disruptions. Ensuring that installed systems remain compatible 
+requires diligent version management, comprehensive testing, and a structured process for managing library and API updates.}}\\
+
+\noindent\textcolor{red}{The new recommendation system now integrates with external APIs and an internal database, rather than relying on custom-built generative models. 
+This change reduces stress on local processing resources but introduces new dependencies on third-party API stability and compatibility. As external 
+providers update their APIs or change data formats, our system might require timely adjustments to maintain functionality. Furthermore, integrating 
+with the existing client interface and database now centers on efficient retrieval and display of recommendations rather than processing raw audio data.}
+
 
 \subsection{Potential User Problems}
 
-The platform is designed to offer advanced features, which may present usability challenges for some users. For example, users with limited technical skills may struggle to understand the process of modifying musical features like key, rhythm, or tempo, which are essential for customizing music generation. Furthermore, the quality of generated outputs is inherently subjective, and users may feel frustrated if the system-generated music does not meet their expectations. Another potential problem is system latency, especially when resource-intensive operations like model inference are being performed. Long waiting times could negatively impact user experience, making the platform feel less responsive, which may deter regular use.
+\textcolor{red}{\sout{The platform is designed to offer advanced features, which may present usability challenges for some users. For example, users with limited technical 
+skills may struggle to understand the process of modifying musical features like key, rhythm, or tempo, which are essential for customizing music generation. 
+Furthermore, the quality of generated outputs is inherently subjective, and users may feel frustrated if the system-generated music does not meet their expectations. 
+Another potential problem is system latency, especially when resource-intensive operations like model inference are being performed. Long waiting times could negatively 
+impact user experience, making the platform feel less responsive, which may deter regular use.}}\\
 
-\subsection{Limitations in the Anticipated Implementation Environment That May Inhibit the New Product}
+\noindent\textcolor{red}{Since the system now only provides recommendations, user problems may shift toward issues of relevance and clarity. For example, if the recommendation 
+engine fails to consider a user’s context adequately, users might receive suggestions that do not align with their preferences. In addition, users might 
+be confused if the recommendations are not clearly explained or if the interface does not provide intuitive feedback regarding how recommendations are derived.
+ Although the computational complexity is reduced, latency in fetching data from external APIs could still impact the overall user experience, 
+ particularly if network conditions are poor.}
 
-The platform is expected to be implemented on a local server, which presents certain limitations. The local server environment will need sufficient processing power to handle computationally intensive tasks, such as model training and music generation. If the server infrastructure is under-resourced, performance issues such as latency and reduced processing speed could arise. Additionally, reliance on a local server means that the platform's effectiveness is tied directly to server availability and maintenance. Any server downtime could render the platform inaccessible to users. If we decide to extend the platform's implementation onto personal devices, new limitations arise. Personal devices, especially those with limited hardware capabilities, may struggle with the computational requirements of generative music models, leading to significant performance bottlenecks. This could make the platform inaccessible or difficult to use for some users. Moreover, the reliance on internet connectivity for accessing external APIs is another major limitation. Users in areas with unreliable internet or low bandwidth may face difficulties, particularly with real-time features like music recommendations or generating new songs based on streaming data. These limitations could restrict the user base to only those with high-performance devices and stable internet connections.
+
+\noindent\subsection{Limitations in the Anticipated Implementation Environment That May Inhibit the New Product}
+
+\textcolor{red}{\sout{The platform is expected to be implemented on a local server, which presents certain limitations. The local server environment will need sufficient 
+processing power to handle computationally intensive tasks, such as model training and music generation. If the server infrastructure is under-resourced, 
+performance issues such as latency and reduced processing speed could arise. Additionally, reliance on a local server means that the platform's effectiveness 
+is tied directly to server availability and maintenance. Any server downtime could render the platform inaccessible to users. If we decide to extend the platform's 
+implementation onto personal devices, new limitations arise. Personal devices, especially those with limited hardware capabilities, may struggle with the computational 
+requirements of generative music models, leading to significant performance bottlenecks. This could make the platform inaccessible or difficult to use for some users. 
+Moreover, the reliance on internet connectivity for accessing external APIs is another major limitation. Users in areas with unreliable internet or low bandwidth may 
+face difficulties, particularly with real-time features like music recommendations or generating new songs based on streaming data. These limitations could restrict 
+the user base to only those with high-performance devices and stable internet connections.}}\\
+
+\noindent\textcolor{red}{The reliance on external APIs introduces new limitations. Any changes in API rate limits, unexpected downtime, or shifts in available data could directly 
+affect system performance. Furthermore, while the reduced computational load allows the system to run on less powerful hardware, it also means that network 
+reliability becomes the primary constraint. Users in regions with low bandwidth or unreliable internet connections may experience delays in receiving recommendations.
+ Finally, the centralized nature of the recommendation processing still requires a robust server environment to handle concurrent requests effectively.}
+
 
 \subsection{Follow-Up Problems}
 
-Once the platform is deployed, several follow-up issues will need to be addressed to maintain and improve the product. One of the primary challenges will be keeping up with third-party API changes, such as modifications to Spotify or Deezer APIs, which could lead to broken features if not handled promptly. The generative models used by the platform will also require regular updates and retraining to stay relevant to emerging musical styles and user preferences. Another follow-up problem is related to usability: feedback from users might reveal unforeseen pain points or desired improvements. Addressing these concerns will require an iterative development approach, incorporating user feedback into future versions of the platform to enhance usability and performance.
+\textcolor{red}{\sout{Once the platform is deployed, several follow-up issues will need to be addressed to maintain and improve the product. One of the primary challenges will be 
+keeping up with third-party API changes, such as modifications to Spotify or Deezer APIs, which could lead to broken features if not handled promptly. 
+The generative models used by the platform will also require regular updates and retraining to stay relevant to emerging musical styles and user preferences.
+ Another follow-up problem is related to usability: feedback from users might reveal unforeseen pain points or desired improvements. Addressing these concerns 
+ will require an iterative development approach, incorporating user feedback into future versions of the platform to enhance usability and performance.}}\\
+
+ \noindent\textcolor{red}{Post-deployment, the system will need ongoing monitoring of external API changes. The team must establish a process to rapidly adapt to updates from Spotify,
+  Deezer, or other providers to prevent broken functionality. In addition, user feedback may reveal new issues—such as a need for more personalized recommendation 
+  criteria or additional explanation of recommendation logic—that were not apparent during development. Periodic reviews of the recommendation algorithm may also
+   be necessary to adjust parameters or incorporate new features as user preferences evolve. Lastly, ensuring seamless integration with evolving client interfaces 
+   and maintaining data integrity within the database will remain continuous challenges.}
 
 
-\lips
 \subsection{Follow-Up Problems}
-\lips
+\textcolor{red}{\emph{N/A.}}
 
 \section{Tasks}
 \begin{itemize}
-  \item Revise requirements document
-  \item Design the systems structure
-  \item Build prototype and get feedback
-  \item Integrate Spotify API for song data
-  \item Develop music recommendation module
-  \item Work on music generation  module
-  \item Create song analysis moudle
-  \item Test the platform and gather feedback
-  \item Revise based on feedback
-  \item Write user guide and documentation
-  \item Finalize revisions to documentation
+  \item \textcolor{red}{\sout{Revise requirements document}}
+  \item \textcolor{red}{\sout{Design the systems structure}}
+  \item \textcolor{red}{\sout{Build prototype and get feedback}}
+  \item \textcolor{red}{\sout{Integrate Spotify API for song data}}
+  \item \textcolor{red}{\sout{Develop music recommendation module}}
+  \item \textcolor{red}{\sout{Work on music generation  module}}
+  \item \textcolor{red}{\sout{Create song analysis moudle}}
+  \item \textcolor{red}{\sout{Test the platform and gather feedback}}
+  \item \textcolor{red}{\sout{Revise based on feedback}}
+  \item \textcolor{red}{\sout{Write user guide and documentation}}
+  \item \textcolor{red}{\sout{Finalize revisions to documentation}}
+\end{itemize}
+
+\noindent \textcolor{red}{The following tasks outline our planned next steps following the successful completion of the capstone project. 
+These tasks focus on further enhancing and scaling GenreGuru:}
+
+\begin{itemize}
+    \item \textcolor{red}{\textbf{Revise Requirements and Documentation:} Update all requirements documents and supporting materials to reflect the completed recommendation system and identify future enhancements.}
+    \item \textcolor{red}{\textbf{Implement Neural Network for User Preferences:} Develop a machine learning component to learn from user interactions and assign adaptive weights to different audio features, personalizing recommendations.}
+    \item \textcolor{red}{\textbf{Expand Audio Feature Set:} Investigate and integrate additional nuanced audio traits (e.g., emotional tone, energy, instrumentation) to enrich the musical profile used for recommendations.}
+    \item \textcolor{red}{\textbf{Refine User Experience:} Enhance the frontend interface for smoother interactions, better visual feedback, and improved responsiveness across various devices.}
+    \item \textcolor{red}{\textbf{Finalize WAV Upload Integration:} Complete and productionize the WAV file upload feature, ensuring robust error handling and a seamless user experience.}
+    \item \textcolor{red}{\textbf{Optimize and Scale the Recommendation Engine:} Review and enhance server resources, database queries, and concurrency handling to support increased load and minimize latency.}
+    \item \textcolor{red}{\textbf{Conduct Further User Testing and Feedback Cycles:} Gather detailed feedback from diverse user groups on the new features and overall user interface to guide further improvements.}
+    \item \textcolor{red}{\textbf{Iterate and Evolve:} Incorporate user feedback into continuous development, refine the neural network, and monitor external API changes to maintain system relevance.}
+    \item \textcolor{red}{\textbf{Update User Documentation:} Revise and publish updated user guides and technical documentation reflecting the new features and enhancements.}
 \end{itemize}
 
 \section{Migration to the New Product}
@@ -1017,7 +1683,9 @@ The monetary cost estimate of the project is \$0 CAD. All of the necessary equip
 owned by at least one group member.\\
 
 \noindent
-The total time cost estimate of the project is 8 months (September 2024 - April 2025).\\
+\textcolor{red}{\sout{The total time cost estimate of the project is 8 months (September 2024 - April 2025).}}\\
+\textcolor{red}{The total time cost estimate of the project is 1,600 man-hours (5 people × 2 hours/day × 5 days/week × 32 weeks).}
+
 
 \noindent
 The function point cost estimate is 12. This is derived from the above sections, mainly the functional
@@ -1026,60 +1694,61 @@ requirements, non-functional requirements, and business rules
 
 \subsection{User Documentation Requirements}
 
-The music featurization feature is heavily API-driven, and as such, detailed documentation will primarily be covered within the API reference section. This approach ensures that developers and advanced users can understand the feature's capabilities without needing additional user guides.
+% Original introduction text with changes:
+The \textcolor{red}{\sout{music featurization feature}} \textcolor{red}{music recommendation feature} is heavily API-driven, and as such, detailed documentation will primarily be covered within the API reference section. This approach ensures that developers and advanced users can understand the feature's capabilities without needing additional user guides.
 
-To ensure that users can effectively interact with the music generation and recommendation platform, the following user documentation will be provided:
+To ensure that users can effectively interact with the \textcolor{red}{\sout{music generation and recommendation platform}} \textcolor{red}{music recommendation platform}, the following user documentation will be provided:
 
 \begin{itemize}
-  \item \textbf{Quick Start Guide}: A concise guide aimed at helping new users get started with the basics of generating and recommending music.
+  \item \textbf{Quick Start Guide}: A concise guide aimed at helping new users get started with the basics of \textcolor{red}{\sout{generating and }}recommending music.
   \item \textbf{API Reference and Technical Specifications}: Detailed documentation of the platform’s API, including available endpoints, request/response formats, and example queries. This reference is crucial for developers and advanced users who want to integrate the platform with other applications or automate tasks.
   \item \textbf{Installation Guide}: A step-by-step guide for installing the platform on local servers, including system requirements, installation commands, and troubleshooting common setup issues.
   \item \textbf{FAQs and Troubleshooting}: A list of frequently asked questions and troubleshooting tips to help users solve common issues independently.
-  \item \textbf{Video Tutorials}: Step-by-step video guides that visually demonstrate key features and workflows, including setting up the platform, using the API, and generating music.
+  \item \textbf{Video Tutorials}: Step-by-step video guides that visually demonstrate key features and workflows, including setting up the platform, using the API, and \textcolor{red}{\sout{generating music}} \textcolor{red}{using the recommendation engine}.
 \end{itemize}
 
 These documents will be designed for users of varying technical backgrounds to ensure they can fully utilize the platform's capabilities. The documentation will be created and maintained primarily by the development team, ensuring accuracy and alignment with the latest platform features. However, feedback from user groups will be actively sought to improve clarity and address any documentation gaps. Updates to the API reference and technical specifications will be managed as part of the regular software update cycle.
+
 \subsection{Training Requirements}
 
 To provide users with sufficient knowledge to operate the platform effectively, the following training resources will be developed:
 
 \begin{itemize}
-  \item \textbf{Video Tutorials}: Developed by the development team, these tutorials will cover various aspects of the platform, including API usage, generating music, and using advanced features. 
+  \item \textbf{Video Tutorials}: Developed by the development team, these tutorials will cover various aspects of the platform, including API usage, \textcolor{red}{\sout{generating music,}} and using the recommendation system.
   \item \textbf{Online Training Modules}: If additional resources become available, online training modules could be developed to provide users with a structured learning path. However, due to current resource constraints, we do not plan to offer live training sessions.
 \end{itemize}
 
 These training requirements aim to encourage users to explore the full potential of the platform, regardless of their prior experience in music production or technology.
 
-
 \section{Waiting Room}
-\begin{enumerate}
-  \item The recommendation system will be able to recommend songs from less popular music genres (jazz, blues, etc.)
-  \item The analysis system will be able to extract musical features from less popular music genres (jazz, blues, etc.)
-  \item The generative system will be able to generate songs from less popular music genres (jazz, blues, etc.)
-  \item The recommendation system will be able to recommend songs from unpopular music genres (gnawa, libyan funk, etc.)
-  \item The analysis system will be able to extract musical features from less popular music genres (gnawa, libyan funk, etc.)
-  \item The generative system will be able to generate songs from less popular music genres (gnawa, libyan funk, etc.)
-  \item The recommendation system will be able to search for songs with cover art similar to an input song
-  \item The generative system will be able to generate new cover art for a newly generated song, based on the user's
-  input criteria
-  \item The generative system will be able to generate new covert art for an existing song
-\end{enumerate}
+
+\begin{itemize}
+  \item The recommendation system will be able to recommend songs from less popular music genres (jazz, blues, etc.).
+  \item \textcolor{red}{\sout{The analysis system will be able to extract musical features from less popular music genres (jazz, blues, etc.).}}
+  \item \textcolor{red}{\sout{The generative system will be able to generate songs from less popular music genres (jazz, blues, etc.).}}
+  \item The recommendation system will be able to recommend songs from unpopular music genres (gnawa, Libyan funk, etc.).
+  \item \textcolor{red}{\sout{The analysis system will be able to extract musical features from less popular music genres (gnawa, Libyan funk, etc.).}}
+  \item \textcolor{red}{\sout{The generative system will be able to generate songs from less popular music genres (gnawa, Libyan funk, etc.).}}
+  \item The recommendation system will be able to search for songs with cover art similar to an input song.
+  \item \textcolor{red}{\sout{The generative system will be able to generate new cover art for a newly generated song, based on the user's input criteria.}}
+  \item \textcolor{red}{\sout{The generative system will be able to generate new cover art for an existing song.}}
+  % New potential waiting room items can be inserted here if desired.
+  \item \textcolor{red}{The recommendation system will incorporate user feedback to improve song suggestion relevance over time.}
+\end{itemize}
 
 \section{Ideas for Solution}
 
 \begin{itemize}
-    \item \textbf{Hybrid Recommendation System}: 
-    A hybrid recommendation system combines content-based filtering and collaborative filtering techniques to provide a more personalized experience for users. Content-based filtering analyzes song features, such as genre, key, and rhythm, to suggest similar tracks. Collaborative filtering uses user preferences and historical listening patterns to suggest music. By combining these approaches, the system can offer users personalized suggestions while also helping them discover new genres and music styles.
-
-    \item \textbf{Generative Music Model}: 
-    To enable the creation of new music, a generative model will be used. This model could be based on techniques such as a Generative Adversarial Network (GAN) or Recurrent Neural Network (RNN). A GAN would allow for the generation of realistic music by having the generator and discriminator work together to produce convincing compositions. An RNN, on the other hand, would be well-suited for learning the sequential nature of music, generating new melodies based on learned patterns. This solution provides users with an innovative way to create new music based on their inputs and preferences.
-
-    \item \textbf{Feature Manipulation Interface}: 
-    This interface will allow users to interact directly with song features, such as tempo, key, and rhythm, enabling them to create customized versions of existing tracks or generate entirely new compositions. By adjusting different musical parameters, users can personalize their musical experience and experiment with creative variations, providing a high level of control over the output.
-
-    \item \textbf{Integration with Existing Platforms}: 
-    Integrating the system with existing music platforms, such as Spotify, will allow users to easily access and analyze a large library of songs. Users will be able to input their favorite tracks from these platforms and generate variations or receive recommendations. This integration ensures a smooth user experience, allowing seamless interaction between existing music libraries and the platform's generative capabilities.
-
+    \item \textbf{Hybrid Recommendation System}: A hybrid recommendation system combines content-based filtering and collaborative filtering techniques to provide a more personalized experience for users. Content-based filtering analyzes song features, such as genre, key, and rhythm, to suggest similar tracks. Collaborative filtering uses user preferences and historical listening patterns to suggest music. By combining these approaches, the system can offer users personalized suggestions while also helping them discover new genres and music styles.
+    
+    \item \textcolor{red}{\sout{\textbf{Generative Music Model}: To enable the creation of new music, a generative model will be used. This model could be based on techniques such as a Generative Adversarial Network (GAN) or Recurrent Neural Network (RNN). A GAN would allow for the generation of realistic music by having the generator and discriminator work together to produce convincing compositions. An RNN, on the other hand, would be well-suited for learning the sequential nature of music, generating new melodies based on learned patterns. This solution provides users with an innovative way to create new music based on their inputs and preferences.}}
+    
+    \item \textcolor{red}{\sout{\textbf{Feature Manipulation Interface}: This interface will allow users to interact directly with song features, such as tempo, key, and rhythm, enabling them to create customized versions of existing tracks or generate entirely new compositions. By adjusting different musical parameters, users can personalize their musical experience and experiment with creative variations, providing a high level of control over the output.}}
+    
+    \item \textbf{Integration with Existing Platforms}: Integrating the system with existing music platforms, such as Spotify, will allow users to easily access and analyze a large library of songs. Users will be able to input their favorite tracks from these platforms and receive recommendations. This integration ensures a smooth user experience, allowing seamless interaction between existing music libraries and the recommendation engine.
+    
+    % If there are additional new ideas, you can add them here.
+    \item \textcolor{red}{User Preference Neural Network: Develop a model that learns from user interactions to weight different audio features, thereby improving recommendation personalization.}
 \end{itemize}
 
 
