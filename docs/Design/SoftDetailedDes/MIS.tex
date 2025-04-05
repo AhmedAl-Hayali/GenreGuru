@@ -19,6 +19,8 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
+\usepackage{xcolor}
+\usepackage{soul}
 
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
@@ -724,11 +726,11 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Tempo} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Tempo} $\in \mathbb{R}$ &- \\
+\texttt{\textcolor{red}{\st{Extract Tempo}}} \newline \texttt{\textcolor{red}{extract\_tempo}} &\texttt{\textcolor{red}{\st{Audio time series}} \newline \texttt{\textcolor{red}{signal}} (np.ndarray)} &\texttt{\textcolor{red}{\st{Song\_Tempo}} \newline \texttt{\textcolor{red}{tempo}}} $\in \mathbb{R}$ &- \\
 \hline
 \end{tabular}
 \end{center}
@@ -742,14 +744,14 @@ N/A
 N/A
 
 \subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\textcolor{red}{\st{Valid audio file with coherent song information.}} \textcolor{red}{Digital signal with coherent song information.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent \texttt{ExtractTempo()}:
 \begin{itemize}
 \item transition: N/A
-\item output: \texttt{Song\textunderscore Tempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}
+\item output: \textcolor{red}{\st{\texttt{Song\textunderscore Tempo} : = \texttt{ExtractTempo(Audio\textunderscore Time\textunderscore Series)}}} \newline {\textcolor{red}{\texttt{tempo := \texttt{estimate\_tempo(signal)}}}}
 \item exception: N/A
 \end{itemize}
 
@@ -774,11 +776,11 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
 \hline%by results, at this stage, we mean the output of the final program (could include features, includes recs)
-\texttt{Extract Key \& Scale} &\texttt{Audio time series (np.ndarray)} &\texttt{Song Key, Scale} $\in \mathbb{Z}^2$ &-\\
+\textcolor{red}{\st{\texttt{Extract Key \& Scale}}} \newline \textcolor{red}{\texttt{estimate\_keys}} &\texttt{\textcolor{red}{\st{Audio time series}} \newline \texttt{\textcolor{red}{signal}} (np.ndarray)} &\texttt{\textcolor{red}{\st{Song Key, Scale}} \newline \texttt{\textcolor{red}{major\_key, minor\_key}}} $\in \mathbb{Z}^2$ &-\\
 \hline
 \end{tabular}
 \end{center}
@@ -792,14 +794,14 @@ N/A
 N/A
 
 \subsubsection{Assumptions}
-Valid audio file with coherent song information.
+\textcolor{red}{\st{Valid audio file with coherent song information.}} \textcolor{red}{Digital signal with coherent song information.}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent \texttt{ExtractKeyScale()}:
 \begin{itemize}
 \item transition: N/A
-\item output: \texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{ExtractKeyScale(Audio\textunderscore Time\textunderscore Series)}
+\item output: \textcolor{red}{\st{\texttt{Song\textunderscore Key, Song\textunderscore Scale} : = \texttt{ExtractKeyScale(Audio\textunderscore Time\textunderscore Series)}}} \newline \textcolor{red}{\texttt{major\_key, minor\_key := estimate\_keys(signal)}}
 \item exception: N/A
 \end{itemize}
 
