@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{pdflscape}
+\usepackage[normalem]{ulem}
 \graphicspath{./diagrams/}
 
 \hypersetup{
@@ -41,6 +42,7 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 2024-10-25 & 0.0 & Revision 0\\
+2025-04-04 & 1.0 & Revision 1, Fixed issues outlined under peer reviews \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/111}{Issue \#111}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/112}{Issue \#112}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/113}{Issue \#113}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/114}{Issue \#114}, \href{https://github.com/AhmedAl-Hayali/GenreGuru/issues/115}{Issue \#115}\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -58,13 +60,14 @@
 This document is dedicated as a hazard analysis of the GenreGuru music system. The GenreGuru software is designed to aid its users with their consumption and creation of music, doing so by providing song analysis, recommendation, and music generation services. As such, we define a hazard as a potential malfunction in the system, either due to internal factors (such as the training data, defects in the software) or external factors (such as user inputs).
 
 \section{Scope and Purpose of Hazard Analysis}
-
-The purpose of hazard analysis for this project is to determine points and causes of failure in the system. This includes their effects and considering mitigation methods. Here are some brief types of loss we expect hazards could incur:
+The purpose of hazard analysis for this project is to determine points and causes of failure in the system. \textcolor{red}{\sout{This includes their effects and considering mitigation methods.}} \textcolor{red}{This includes analyzing the effects of potential failures and devising appropriate mitigation strategies.} Here are some brief types of loss we expect hazards could incur: \\
 \begin{itemize}
-    \item Compromised Data - such as corruption of the training dataset/outputs.
-    \item Project History - improper github merging causing portions of documentation to vanish.
-    \item User Experience Loss - generated recommendations/snippets do not satisfy user needs.
+    \item Compromised Data -- such as corruption of the training dataset/outputs.
+    \item Project History -- improper GitHub merging causing portions of documentation to vanish.
+    \item User Experience Loss -- generated recommendations/snippets do not satisfy user needs.
 \end{itemize}
+
+\textcolor{red}{\sout{Note that traditional/physical hazards are not applicable in a pure software system.}} \textcolor{red}{It is important to note that traditional physical hazards (e.g., fires, explosions, mechanical failures) are not applicable in a pure software system such as this.}
 
 \section{System Boundaries and Components}
 \subsection{Diagrammatic System Characterization}
@@ -98,9 +101,10 @@ Please refer to table \ref{tbl:sys-cmpnt-desc}.
 \section{Critical Assumptions}
 
 \begin{itemize}
-    \item It is assumed that the user will not attempt to exploit system vulnerabilities to gain unauthorized access to the components of the system.
-    \item It is assumed that users will have the physical capabilities to interact with the system.
-    \item It is assumed that all libraries used in development are validated and tested.
+    \item \textcolor{red}{\sout{It is assumed that the user will not attempt to exploit system vulnerabilities to gain unauthorized access to the components of the system.}} \\
+    \textcolor{red}{It is assumed that users will not intentionally misuse or attempt to break the system.}
+    \item It is assumed that users will have the physical capabilities to interact with the system. \textcolor{red}{(Specifically, users are expected to have adequate visual acuity, fine motor control, and familiarity with input devices such as keyboards, mice, or touchscreens. Additionally, users must have access to hardware (e.g., a computer or smartphone) that meets the minimum display, processing, and connectivity requirements specified in the user documentation.)}
+    \item It is assumed that all libraries used in development are \textcolor{red}{\sout{validated and tested.}} \textcolor{red}{validated and tested, where validation involves verifying that each library meets its documented functional and non-functional requirements (including API contracts and dependency compatibility), and testing involves comprehensive unit, integration, and regression tests to ensure stability and correct behavior under expected conditions.}
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
